@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EthicalStyle Collective - Sustainable Fashion Marketplace</title>
+    <meta name="description" content="Discover conscious fashion with EthicalStyle Collective. Shop sustainable, ethically-made clothing from verified brands committed to environmental and social responsibility.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts - Playfair Display & Lato -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <style>
+        /* Custom CSS for sustainable fashion theme */
+        :root {
+            --organic-cotton: #FDF8F3;
+            --natural-indigo: #4A5568;
+            --plant-dyed-pink: #F7FAFC;
+            --earth-brown: #8B7355;
+            --sage-green: #9AE6B4;
+        }
+
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .font-lato { font-family: 'Lato', sans-serif; }
+
+        /* Fabric texture backgrounds */
+        .fabric-texture-1 {
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(255,255,255,0.2) 2px, transparent 2px),
+                radial-gradient(circle at 75% 75%, rgba(0,0,0,0.05) 1px, transparent 1px);
+            background-size: 20px 20px, 15px 15px;
+        }
+
+        .fabric-texture-2 {
+            background-image: 
+                linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%),
+                linear-gradient(-45deg, rgba(255,255,255,0.1) 25%, transparent 25%);
+            background-size: 30px 30px;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(154, 230, 180, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(154, 230, 180, 0.8); }
+        }
+
+        .float-animation { animation: float 3s ease-in-out infinite; }
+        .slide-in-up { animation: slideInUp 0.8s ease-out; }
+        .pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--organic-cotton); }
+        ::-webkit-scrollbar-thumb { 
+            background: var(--natural-indigo); 
+            border-radius: 4px; 
+        }
+
+        /* Interactive elements */
+        .ethical-card {
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .ethical-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        /* Production process animation */
+        .production-step {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.5s ease;
+        }
+
+        .production-step.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Rating filter styles */
+        .rating-filter {
+            background: linear-gradient(135deg, var(--sage-green), var(--earth-brown));
+            border-radius: 25px;
+        }
+
+        /* Scroll-triggered animations */
+        .fade-in-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in-scroll.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive grid */
+        @media (max-width: 640px) {
+            .hero-grid { grid-template-columns: 1fr; }
+            .brand-grid { grid-template-columns: 1fr; }
+            .testimonial-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'organic-cotton': '#FDF8F3',
+                        'natural-indigo': '#4A5568',
+                        'plant-pink': '#F7FAFC',
+                        'earth-brown': '#8B7355',
+                        'sage-green': '#9AE6B4'
+                    },
+                    fontFamily: {
+                        'playfair': ['Playfair Display', 'serif'],
+                        'lato': ['Lato', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-organic-cotton font-lato">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-sage-green/20">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-sage-green rounded-full flex items-center justify-center">
+                        <i data-lucide="leaf" class="w-4 h-4 text-natural-indigo"></i>
+                    </div>
+                    <span class="font-playfair font-bold text-xl text-natural-indigo">EthicalStyle Collective</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#brands" class="text-natural-indigo hover:text-earth-brown transition-colors">Brands</a>
+                    <a href="#community" class="text-natural-indigo hover:text-earth-brown transition-colors">Community</a>
+                    <a href="#education" class="text-natural-indigo hover:text-earth-brown transition-colors">Learn</a>
+                    <a href="#swap" class="text-natural-indigo hover:text-earth-brown transition-colors">Swap</a>
+                    <button class="bg-sage-green text-natural-indigo px-4 py-2 rounded-full font-medium hover:bg-earth-brown hover:text-white transition-all duration-300">
+                        Join Collective
+                    </button>
+                </div>
+                
+                <button class="md:hidden">
+                    <i data-lucide="menu" class="w-6 h-6 text-natural-indigo"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center fabric-texture-1 pt-16">
+        <div class="container mx-auto px-4">
+            <div class="hero-grid grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-center lg:text-left">
+                    <h1 class="font-playfair text-4xl md:text-6xl font-bold text-natural-indigo leading-tight mb-6">
+                        Fashion That
+                        <span class="text-earth-brown">Cares</span><br>
+                        For Our
+                        <span class="text-sage-green">Planet</span>
+                    </h1>
+                    
+                    <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-xl">
+                        Discover conscious fashion from verified sustainable brands. 
+                        Every purchase supports ethical production, fair wages, and environmental preservation.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 mb-12">
+                        <button class="bg-natural-indigo text-white px-8 py-4 rounded-full font-medium hover:bg-earth-brown transition-all duration-300 transform hover:scale-105">
+                            Explore Sustainable Brands
+                        </button>
+                        <button class="border-2 border-sage-green text-natural-indigo px-8 py-4 rounded-full font-medium hover:bg-sage-green transition-all duration-300">
+                            Learn About Ethical Fashion
+                        </button>
+                    </div>
+
+                    <!-- Ethical Certifications -->
+                    <div class="flex justify-center lg:justify-start space-x-4 mb-8">
+                        <div class="ethical-card bg-white/60 px-4 py-2 rounded-full float-animation">
+                            <span class="text-sm font-medium text-natural-indigo">GOTS Certified</span>
+                        </div>
+                        <div class="ethical-card bg-white/60 px-4 py-2 rounded-full float-animation" style="animation-delay: 0.5s">
+                            <span class="text-sm font-medium text-natural-indigo">Fair Trade</span>
+                        </div>
+                        <div class="ethical-card bg-white/60 px-4 py-2 rounded-full float-animation" style="animation-delay: 1s">
+                            <span class="text-sm font-medium text-natural-indigo">B-Corp</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <!-- Sustainable Production Process Animation -->
+                    <div class="relative w-full max-w-md mx-auto">
+                        <div class="production-process grid grid-cols-2 gap-4">
+                            <div id="step1" class="production-step active bg-white/80 backdrop-blur-sm p-4 rounded-lg text-center">
+                                <div class="w-12 h-12 bg-sage-green rounded-full mx-auto mb-2 flex items-center justify-center">
+                                    <i data-lucide="sprout" class="w-6 h-6 text-natural-indigo"></i>
+                                </div>
+                                <p class="text-sm font-medium">Organic Materials</p>
+                            </div>
+                            <div id="step2" class="production-step bg-white/80 backdrop-blur-sm p-4 rounded-lg text-center">
+                                <div class="w-12 h-12 bg-earth-brown rounded-full mx-auto mb-2 flex items-center justify-center">
+                                    <i data-lucide="users" class="w-6 h-6 text-white"></i>
+                                </div>
+                                <p class="text-sm font-medium">Fair Labor</p>
+                            </div>
+                            <div id="step3" class="production-step bg-white/80 backdrop-blur-sm p-4 rounded-lg text-center">
+                                <div class="w-12 h-12 bg-natural-indigo rounded-full mx-auto mb-2 flex items-center justify-center">
+                                    <i data-lucide="recycle" class="w-6 h-6 text-white"></i>
+                                </div>
+                                <p class="text-sm font-medium">Eco Manufacturing</p>
+                            </div>
+                            <div id="step4" class="production-step bg-white/80 backdrop-blur-sm p-4 rounded-lg text-center">
+                                <div class="w-12 h-12 bg-sage-green rounded-full mx-auto mb-2 flex items-center justify-center">
+                                    <i data-lucide="heart" class="w-6 h-6 text-natural-indigo"></i>
+                                </div>
+                                <p class="text-sm font-medium">Conscious Choice</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Discovery Tools -->
+    <section id="brands" class="py-20 bg-white fabric-texture-2">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="font-playfair text-3xl md:text-4xl font-bold text-natural-indigo mb-4">
+                    Discover Ethical Brands
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Filter by sustainability ratings, certifications, and values to find brands that align with your conscious lifestyle.
+                </p>
+            </div>
+
+            <!-- Ethical Rating Filter -->
+            <div class="mb-12">
+                <div class="flex flex-wrap justify-center gap-4 mb-8">
+                    <button class="rating-filter text-white px-6 py-3 font-medium active" data-rating="all">
+                        All Brands
+                    </button>
+                    <button class="rating-filter text-white px-6 py-3 font-medium" data-rating="5">
+                        ⭐⭐⭐⭐⭐ Exceptional
+                    </button>
+                    <button class="rating-filter text-white px-6 py-3 font-medium" data-rating="4">
+                        ⭐⭐⭐⭐ Excellent
+                    </button>
+                    <button class="rating-filter text-white px-6 py-3 font-medium" data-rating="organic">
+                        🌱 Organic Certified
+                    </button>
+                    <button class="rating-filter text-white px-6 py-3 font-medium" data-rating="fair-trade">
+                        🤝 Fair Trade
+                    </button>
+                </div>
+            </div>
+
+            <!-- Brand Grid -->
+            <div class="brand-grid grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="brandGrid">
+                <!-- Brand cards will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Designer Spotlight -->
+    <section class="py-20 bg-organic-cotton">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="font-playfair text-3xl md:text-4xl font-bold text-natural-indigo mb-4">
+                    Designer Spotlight
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Meet the visionaries creating beautiful, sustainable fashion with purpose and passion.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-16 fade-in-scroll">
+                <div class="order-2 lg:order-1">
+                    <div class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-sage-green rounded-full flex items-center justify-center mr-4">
+                                <span class="text-2xl font-playfair font-bold text-natural-indigo">SM</span>
+                            </div>
+                            <div>
+                                <h3 class="font-playfair text-xl font-bold text-natural-indigo">Sarah Martinez</h3>
+                                <p class="text-earth-brown">Founder, Verde Threads</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6">
+                            "I started Verde Threads after witnessing the environmental impact of fast fashion firsthand. 
+                            Every piece we create uses organic cotton and supports farming communities in Guatemala."
+                        </p>
+                        <div class="flex items-center space-x-4">
+                            <span class="bg-sage-green text-natural-indigo px-3 py-1 rounded-full text-sm font-medium">Carbon Neutral</span>
+                            <span class="bg-earth-brown text-white px-3 py-1 rounded-full text-sm font-medium">Living Wage</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-1 lg:order-2">
+                    <div class="aspect-square bg-gradient-to-br from-sage-green to-earth-brown rounded-2xl flex items-center justify-center">
+                        <i data-lucide="user" class="w-32 h-32 text-white/60"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center fade-in-scroll">
+                <div>
+                    <div class="aspect-square bg-gradient-to-br from-natural-indigo to-earth-brown rounded-2xl flex items-center justify-center">
+                        <i data-lucide="user" class="w-32 h-32 text-white/60"></i>
+                    </div>
+                </div>
+                <div>
+                    <div class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-natural-indigo rounded-full flex items-center justify-center mr-4">
+                                <span class="text-2xl font-playfair font-bold text-white">AK</span>
+                            </div>
+                            <div>
+                                <h3 class="font-playfair text-xl font-bold text-natural-indigo">Alex Kim</h3>
+                                <p class="text-earth-brown">Creative Director, Mindful Minimalist</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6">
+                            "Minimalism meets sustainability in every design. We believe in creating timeless pieces 
+                            that last decades, not seasons. Our capsule collections use recycled materials and zero-waste patterns."
+                        </p>
+                        <div class="flex items-center space-x-4">
+                            <span class="bg-natural-indigo text-white px-3 py-1 rounded-full text-sm font-medium">Zero Waste</span>
+                            <span class="bg-sage-green text-natural-indigo px-3 py-1 rounded-full text-sm font-medium">Recycled Materials</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Gallery -->
+    <section id="community" class="py-20 bg-white fabric-texture-1">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="font-playfair text-3xl md:text-4xl font-bold text-natural-indigo mb-4">
+                    Community Style Gallery
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Get inspired by our community's sustainable style choices and ethical fashion tips.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <div class="ethical-card bg-organic-cotton p-6 rounded-2xl">
+                    <div class="aspect-square bg-gradient-to-br from-sage-green to-natural-indigo rounded-xl mb-4 flex items-center justify-center">
+                        <i data-lucide="image" class="w-16 h-16 text-white/60"></i>
+                    </div>
+                    <h3 class="font-playfair text-lg font-bold text-natural-indigo mb-2">Capsule Wardrobe Essentials</h3>
+                    <p class="text-gray-600 text-sm mb-4">
+                        "Built my entire wardrobe with just 30 sustainable pieces. Here's how I mix and match for endless looks!"
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-earth-brown font-medium text-sm">@eco_emma</span>
+                        <div class="flex space-x-1">
+                            <i data-lucide="heart" class="w-4 h-4 text-sage-green"></i>
+                            <span class="text-sm text-gray-500">124</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ethical-card bg-organic-cotton p-6 rounded-2xl">
+                    <div class="aspect-square bg-gradient-to-br from-earth-brown to-natural-indigo rounded-xl mb-4 flex items-center justify-center">
+                        <i data-lucide="image" class="w-16 h-16 text-white/60"></i>
+                    </div>
+                    <h3 class="font-playfair text-lg font-bold text-natural-indigo mb-2">Thrift Flip Friday</h3>
+                    <p class="text-gray-600 text-sm mb-4">
+                        "Transformed this vintage dress with natural dyes. Sustainable fashion is also creative expression!"
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-earth-brown font-medium text-sm">@sustainable_sarah</span>
+                        <div class="flex space-x-1">
+                            <i data-lucide="heart" class="w-4 h-4 text-sage-green"></i>
+                            <span class="text-sm text-gray-500">89</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ethical-card bg-organic-cotton p-6 rounded-2xl">
+                    <div class="aspect-square bg-gradient-to-br from-sage-green to-earth-brown rounded-xl mb-4 flex items-center justify-center">
+                        <i data-lucide="image" class="w-16 h-16 text-white/60"></i>
+                    </div>
+                    <h3 class="font-playfair text-lg font-bold text-natural-indigo mb-2">Rental Outfit Success</h3>
+                    <p class="text-gray-600 text-sm mb-4">
+                        "Rented this designer dress for my wedding. Luxury fashion without the environmental cost!"
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-earth-brown font-medium text-sm">@mindful_maria</span>
+                        <div class="flex space-x-1">
+                            <i data-lucide="heart" class="w-4 h-4 text-sage-green"></i>
+                            <span class="text-sm text-gray-500">156</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Community Tips -->
+            <div class="bg-sage-green/20 rounded-2xl p-8">
+                <h3 class="font-playfair text-2xl font-bold text-natural-indigo mb-6 text-center">
+                    Community Ethical Fashion Tips
+                </h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-sage-green rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <i data-lucide="recycle" class="w-8 h-8 text-natural-indigo"></i>
+                        </div>
+                        <h4 class="font-bold text-natural-indigo mb-2">Quality Over Quantity</h4>
+                        <p class="text-gray-600 text-sm">
+                            Invest in fewer, higher-quality pieces that last longer and look better over time.
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-earth-brown rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <i data-lucide="search" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <h4 class="font-bold text-natural-indigo mb-2">Research Brands</h4>
+                        <p class="text-gray-600 text-sm">
+                            Look for transparency in supply chains, certifications, and genuine sustainability commitments.
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-natural-indigo rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <i data-lucide="heart" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <h4 class="font-bold text-natural-indigo mb-2">Care for Clothes</h4>
+                        <p class="text-gray-600 text-sm">
+                            Proper care extends garment life. Wash less, air dry, and store properly to maintain quality.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Testimonials -->
+    <section class="py-20 bg-organic-cotton">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="font-playfair text-3xl md:text-4xl font-bold text-natural-indigo mb-4">
+                    Wardrobe Transformations
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Real stories from customers who transformed their style while making a positive impact.
+                </p>
+            </div>
+
+            <div class="testimonial-grid grid lg:grid-cols-2 gap-12">
+                <div class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl fade-in-scroll">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-sage-green rounded-full flex items-center justify-center mr-4">
+                            <span class="text-xl font-playfair font-bold text-natural-indigo">JL</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-natural-indigo">Jessica Liu</h3>
+                            <p class="text-earth-brown text-sm">Marketing Executive</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        "I went from owning 200+ fast fashion pieces to a curated collection of 40 ethical items. 
+                        My style improved dramatically, and I feel so much better about my choices. The quality difference is incredible!"
+                    </p>
+                    <div class="bg-sage-green/20 p-4 rounded-lg">
+                        <div class="flex justify-between text-sm mb-2">
+                            <span class="font-medium text-natural-indigo">Wardrobe Transformation</span>
+                            <span class="text-earth-brown">6 months</span>
+                        </div>
+                        <div class="flex space-x-4 text-center">
+                            <div>
+                                <div class="text-2xl font-bold text-natural-indigo">80%</div>
+                                <div class="text-xs text-gray-600">Less Purchases</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-bold text-natural-indigo">5x</div>
+                                <div class="text-xs text-gray-600">Better Quality</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-bold text-natural-indigo">100%</div>
+                                <div class="text-xs text-gray-600">Satisfaction</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl fade-in-scroll">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-natural-indigo rounded-full flex items-center justify-center mr-4">
+                            <span class="text-xl font-playfair font-bold text-white">MR</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-natural-indigo">Michael Rodriguez</h3>
+                            <p class="text-earth-brown text-sm">Freelance Designer</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        "As someone in the creative industry, I wanted my wardrobe to reflect my values. 
+                        EthicalStyle helped me find amazing brands that create beautiful, sustainable pieces. 
+                        My clients notice the difference in quality!"
+                    </p>
+                    <div class="bg-natural-indigo/10 p-4 rounded-lg">
+                        <div class="flex justify-between text-sm mb-2">
+                            <span class="font-medium text-natural-indigo">Style Evolution</span>
+                            <span class="text-earth-brown">4 months</span>
+                        </div>
+                        <div class="flex space-x-4 text-center">
+                            <div>
+                                <div class="text-2xl font-bold text-natural-indigo">90%</div>
+                                <div class="text-xs text-gray-600">Ethical Brands</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-bold text-natural-indigo">3x</div>
+                                <div class="text-xs text-gray-600">Longer Lasting</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-bold text-natural-indigo">10+</div>
+                                <div class="text-xs text-gray-600">Compliments Daily</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Guides & Education -->
+    <section id="education" class="py-20 bg-white fabric-texture-2">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="font-playfair text-3xl md:text-4xl font-bold text-natural-indigo mb-4">
+                    Conscious Shopping Guides
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Make informed choices with our comprehensive guides comparing environmental impact and ethical practices.
+                </p>
+            </div>
+
+            <!-- Environmental Impact Comparison -->
+            <div class="bg-organic-cotton rounded-2xl p-8 mb-12 fade-in-scroll">
+                <h3 class="font-playfair text-2xl font-bold text-natural-indigo mb-8 text-center">
+                    Environmental Impact Comparison
+                </h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-red-50 border-l-4 border-red-400 p-6 rounded-lg">
+                        <h4 class="font-bold text-red-800 mb-4 flex items-center">
+                            <i data-lucide="alert-triangle" class="w-5 h-5 mr-2"></i>
+                            Fast Fashion Impact
+                        </h4>
+                        <ul class="space-y-2 text-red-700">
+                            <li>• 2,700L water per cotton t-shirt</li>
+                            <li>• 35% of ocean microplastics from synthetic textiles</li>
+                            <li>• 10% of global carbon emissions</li>
+                            <li>• 92 million tons textile waste annually</li>
+                            <li>• Toxic chemicals in waterways</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-50 border-l-4 border-sage-green p-6 rounded-lg">
+                        <h4 class="font-bold text-green-800 mb-4 flex items-center">
+                            <i data-lucide="check-circle" class="w-5 h-5 mr-2"></i>
+                            Sustainable Fashion Impact
+                        </h4>
+                        <ul class="space-y-2 text-green-700">
+                            <li>• 70% less water with organic cotton</li>
+                            <li>• Biodegradable natural fibers</li>
+                            <li>• Carbon-negative manufacturing</li>
+                            <li>• Zero-waste production methods</li>
+                            <li>• Non-toxic, eco-friendly dyes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clothing Care Guide -->
+            <div class="grid lg:grid-cols-2 gap-12 mb-12">
+                <div class="fade-in-scroll">
+                    <h3 class="font-playfair text-2xl font-bold text-natural-indigo mb-6">
+                        Clothing Care & Longevity
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="bg-white p-4 rounded-lg border-l-4 border-sage-green">
+                            <h4 class="font-bold text-natural-indigo mb-2">Washing Best Practices</h4>
+                            <p class="text-gray-600 text-sm">Wash in cold water, use eco-friendly detergent, and wash full loads to reduce energy consumption.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border-l-4 border-earth-brown">
+                            <h4 class="font-bold text-natural-indigo mb-2">Drying Techniques</h4>
+                            <p class="text-gray-600 text-sm">Air dry whenever possible to preserve fabric integrity and reduce energy use by 6% per household.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border-l-4 border-natural-indigo">
+                            <h4 class="font-bold text-natural-indigo mb-2">Storage Solutions</h4>
+                            <p class="text-gray-600 text-sm">Use cedar blocks, proper hangers, and breathable garment bags to maintain quality and prevent damage.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fade-in-scroll">
+                    <h3 class="font-playfair text-2xl font-bold text-natural-indigo mb-6">
+                        Sustainable Fashion Education
+                    </h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-sage-green/20 p-4 rounded-lg text-center">
+                            <div class="w-12 h-12 bg-sage-green rounded-full mx-auto mb-2 flex items-center justify-center">
+                                <i data-lucide="book-open" class="w-6 h-6 text-natural-indigo"></i>
+                            </div>
+                            <h4 class="font-bold text-natural-indigo text-sm">Fabric Guide</h4>
+                            <p class="text-xs text-gray-600">Learn about sustainable materials</p>
+                        </div>
+                        <div class="bg-earth-brown/20 p-4 rounded-lg text-center">
+                            <div class="w-12 h-12 bg-earth-brown rounded-full mx-auto mb-2 flex items-center justify-center">
+                                <i data-lucide="award" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <h4 class="font-bold text-natural-indigo text-sm">Certifications</h4>
+                            <p class="text-xs text-gray-600">Understanding eco labels</p>
+                        </div>
+                        <div class="bg-natural-indigo/20 p-4 rounded-lg text-center">
+                            <div class="w-12 h-12 bg-natural-indigo rounded-full mx-auto mb-2 flex items-center justify-center">
+                                <i data-lucide="users" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <h4 class="font-bold text-natural-indigo text-sm">Fair Labor</h4>
+                            <p class="text-xs text-gray-600">Worker rights & wages</p>
+                        </div>
+                        <div class="bg-sage-green/20 p-4 rounded-lg text-center">
+                            <div class="w-12 h-12 bg-sage-green rounded-full mx-auto mb-2 flex items-center justify-center">
+                                <i data-lucide="globe" class="w-6 h-6 text-natural-indigo"></i>
+                            </div>
+                            <h4 class="font-bold text-natural-indigo text-sm">Global Impact</h4>
+                            <p class="text-xs text-gray-600">Fashion's environmental cost</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clothing Swap Community -->
+    <section id="swap" class="py-20 bg-organic-cotton">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="font-playfair text-3xl md:text-4xl font-bold text-natural-indigo mb-4">
+                    Clothing Swap Community
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Give your clothes a second life and discover new treasures in our thriving swap community.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8 mb-12">
+                <div class="bg-white/80 backdrop-blur-sm p-6 rounded-2xl ethical-card fade-in-scroll">
+                    <div class="w-16 h-16 bg-sage-green rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <i data-lucide="refresh-cw" class="w-8 h-8 text-natural-indigo"></i>
+                    </div>
+                    <h3 class="font-playfair text-xl font-bold text-natural-indigo mb-3 text-center">Host a Swap</h3>
+                    <p class="text-gray-600 text-center mb-4">
+                        Organize a clothing swap event in your community. We provide guides, materials, and support.
+                    </p>
+                    <button class="w-full bg-sage-green text-natural-indigo py-3 rounded-full font-medium hover:bg-earth-brown hover:text-white transition-all">
+                        Start Organizing
+                    </button>
+                </div>
+
+                <div class="bg-white/80 backdrop-blur-sm p-6 rounded-2xl ethical-card fade-in-scroll">
+                    <div class="w-16 h-16 bg-natural-indigo rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <i data-lucide="map-pin" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="font-playfair text-xl font-bold text-natural-indigo mb-3 text-center">Find Local Swaps</h3>
+                    <p class="text-gray-600 text-center mb-4">
+                        Discover clothing swap events near you. Connect with like-minded fashion lovers in your area.
+                    </p>
+                    <button class="w-full bg-natural-indigo text-white py-3 rounded-full font-medium hover:bg-earth-brown transition-all">
+                        Browse Events
+                    </button>
+                </div>
+
+                <div class="bg-white/80 backdrop-blur-sm p-6 rounded-2xl ethical-card fade-in-scroll">
+                    <div class="w-16 h-16 bg-earth-brown rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <i data-lucide="package" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="font-playfair text-xl font-bold text-natural-indigo mb-3 text-center">Online Swaps</h3>
+                    <p class="text-gray-600 text-center mb-4">
+                        Join virtual clothing swaps and trade pieces with community members across the country.
+                    </p>
+                    <button class="w-full bg-earth-brown text-white py-3 rounded-full font-medium hover:bg-natural-indigo transition-all">
+                        Join Digital Swap
+                    </button>
+                </div>
+            </div>
+
+            <!-- Recent Swaps -->
+            <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-8">
+                <h3 class="font-playfair text-2xl font-bold text-natural-indigo mb-6 text-center">
+                    Recent Successful Swaps
+                </h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-sage-green rounded-full mx-auto mb-3 flex items-center justify-center">
+                            <span class="text-2xl">👗</span>
+                        </div>
+                        <p class="font-medium text-natural-indigo">Vintage Silk Dress</p>
+                        <p class="text-sm text-gray-600">Swapped by @anna_vintage</p>
+                        <p class="text-xs text-earth-brown">San Francisco, CA</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-earth-brown rounded-full mx-auto mb-3 flex items-center justify-center">
+                            <span class="text-2xl">🧥</span>
+                        </div>
+                        <p class="font-medium text-natural-indigo">Wool Coat</p>
+                        <p class="text-sm text-gray-600">Swapped by @eco_emma</p>
+                        <p class="text-xs text-earth-brown">Portland, OR</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-natural-indigo rounded-full mx-auto mb-3 flex items-center justify-center">
+                            <span class="text-2xl">👖</span>
+                        </div>
+                        <p class="font-medium text-natural-indigo">Organic Denim</p>
+                        <p class="text-sm text-gray-600">Swapped by @sustainable_sam</p>
+                        <p class="text-xs text-earth-brown">Austin, TX</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-natural-indigo fabric-texture-1">
+        <div class="container mx-auto px-4 text-center">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="font-playfair text-3xl md:text-4xl font-bold text-white mb-6">
+                    Join the Conscious Fashion Movement
+                </h2>
+                <p class="text-xl text-sage-green mb-8">
+                    Every purchase is a vote for the kind of world you want to live in. 
+                    Choose fashion that cares for people and planet.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+                    <button class="bg-sage-green text-natural-indigo px-8 py-4 rounded-full font-bold hover:bg-white transition-all duration-300 transform hover:scale-105 pulse-glow">
+                        Start Shopping Sustainably
+                    </button>
+                    <button class="border-2 border-sage-green text-sage-green px-8 py-4 rounded-full font-medium hover:bg-sage-green hover:text-natural-indigo transition-all duration-300">
+                        Join Our Community
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-3 gap-8 max-w-md mx-auto text-center">
+                    <div>
+                        <div class="text-3xl font-bold text-sage-green">10K+</div>
+                        <div class="text-white/80 text-sm">Community Members</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold text-sage-green">500+</div>
+                        <div class="text-white/80 text-sm">Ethical Brands</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold text-sage-green">50K+</div>
+                        <div class="text-white/80 text-sm">Items Swapped</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-sage-green rounded-full flex items-center justify-center">
+                            <i data-lucide="leaf" class="w-4 h-4 text-natural-indigo"></i>
+                        </div>
+                        <span class="font-playfair font-bold text-lg text-natural-indigo">EthicalStyle Collective</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4">
+                        Building a sustainable future through conscious fashion choices, one wardrobe at a time.
+                    </p>
+                    <div class="flex space-x-3">
+                        <button class="w-8 h-8 bg-sage-green rounded-full flex items-center justify-center hover:bg-earth-brown transition-colors">
+                            <i data-lucide="instagram" class="w-4 h-4 text-natural-indigo"></i>
+                        </button>
+                        <button class="w-8 h-8 bg-sage-green rounded-full flex items-center justify-center hover:bg-earth-brown transition-colors">
+                            <i data-lucide="twitter" class="w-4 h-4 text-natural-indigo"></i>
+                        </button>
+                        <button class="w-8 h-8 bg-sage-green rounded-full flex items-center justify-center hover:bg-earth-brown transition-colors">
+                            <i data-lucide="facebook" class="w-4 h-4 text-natural-indigo"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-natural-indigo mb-4">Shop</h4>
+                    <ul class="space-y-2 text-gray-600 text-sm">
+                        <li><a href="#" class="hover:text-earth-brown transition-colors">Women's</a></li>
+                        <li><a href="#" class="hover:text-earth-brown transition-colors">Men's</a></li>
+                        <li><a href="#" class="hover:text-earth-brown transition-colors">Accessories</a></li>
+                        <li><a href="#" class="hover:text-earth-brown transition-colors">New Arrivals</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-natural-indigo mb-4">Community</h4>
+                    <ul class="space-y-2 text-gray-600 text-sm">
+                        <li><a href="#" class="hover:text-earth-brown transition-colors">Style Gallery</a></li>
+                        <li><a href="#" class="hover:text-earth-brown transition-colors">Clothing Swaps</a></li>
+                        <li><a href="#" class="hover:text-earth-brown transition-colors">Designer Spotlights</a></li>
+                        <li><a href="#" class="hover:text-earth-brown transition-colors">Events</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-natural-indigo mb-4">Learn</h4>
+                    <ul class="space-y-2 text-gray-600 text-sm">
+                        <li><a href="#" class="hover:text-earth-brown transition-colors">Sustainability Guide</a></li>
+                        <li><a href="#" class="hover:text-earth-brown transition-colors">Clothing Care</a></li>
+                        <li><a href="#" class="hover:text-earth-brown transition-colors">Brand Directory</a></li>
+                        <li><a href="#" class="hover:text-earth-brown transition-colors">Impact Reports</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-600 text-sm mb-4 md:mb-0">
+                    © 2024 EthicalStyle Collective. All rights reserved.
+                </p>
+                <div class="flex space-x-6 text-sm text-gray-600">
+                    <a href="#" class="hover:text-earth-brown transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-earth-brown transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-earth-brown transition-colors">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Sustainable production process animation
+        function animateProductionProcess() {
+            const steps = ['step1', 'step2', 'step3', 'step4'];
+            let currentStep = 0;
+
+            setInterval(() => {
+                // Remove active class from all steps
+                steps.forEach(step => {
+                    document.getElementById(step).classList.remove('active');
+                });
+
+                // Add active class to current step
+                document.getElementById(steps[currentStep]).classList.add('active');
+
+                // Move to next step
+                currentStep = (currentStep + 1) % steps.length;
+            }, 2000);
+        }
+
+        // Brand data for filtering
+        const brands = [
+            {
+                name: "Verde Threads",
+                rating: 5,
+                certifications: ["organic", "fair-trade"],
+                description: "Organic cotton clothing made with fair trade practices",
+                impact: "Carbon negative production, living wages"
+            },
+            {
+                name: "Mindful Minimalist", 
+                rating: 5,
+                certifications: ["recycled"],
+                description: "Zero-waste fashion using recycled materials",
+                impact: "95% waste reduction, circular design"
+            },
+            {
+                name: "Earth Denim",
+                rating: 4,
+                certifications: ["organic", "water-save"],
+                description: "Sustainable denim with innovative water-saving techniques",
+                impact: "70% less water usage, organic cotton"
+            },
+            {
+                name: "Conscious Cashmere",
+                rating: 4,
+                certifications: ["fair-trade", "animal-welfare"],
+                description: "Ethically sourced cashmere supporting herder communities",
+                impact: "Fair prices to herders, sustainable grazing"
+            },
+            {
+                name: "Renewal Wear",
+                rating: 5,
+                certifications: ["recycled", "carbon-neutral"],
+                description: "Fashion from recycled plastic bottles and ocean waste",
+                impact: "Ocean cleanup, carbon neutral shipping"
+            },
+            {
+                name: "Natural Silk Co",
+                rating: 4,
+                certifications: ["organic", "peace-silk"],
+                description: "Peace silk production without harming silkworms",
+                impact: "Cruelty-free silk, biodegradable packaging"
+            }
+        ];
+
+        // Render brand cards
+        function renderBrands(filteredBrands = brands) {
+            const brandGrid = document.getElementById('brandGrid');
+            brandGrid.innerHTML = '';
+
+            filteredBrands.forEach(brand => {
+                const brandCard = document.createElement('div');
+                brandCard.className = 'ethical-card bg-white/80 backdrop-blur-sm p-6 rounded-2xl fade-in-scroll';
+                
+                const stars = '⭐'.repeat(brand.rating);
+                const certBadges = brand.certifications.map(cert => {
+                    const certMap = {
+                        'organic': '🌱 Organic',
+                        'fair-trade': '🤝 Fair Trade',
+                        'recycled': '♻️ Recycled',
+                        'water-save': '💧 Water Save',
+                        'carbon-neutral': '🌍 Carbon Neutral',
+                        'animal-welfare': '🐑 Animal Welfare',
+                        'peace-silk': '🕊️ Peace Silk'
+                    };
+                    return `<span class="bg-sage-green/20 text-natural-indigo px-2 py-1 rounded-full text-xs">${certMap[cert] || cert}</span>`;
+                }).join(' ');
+
+                brandCard.innerHTML = `
+                    <div class="aspect-square bg-gradient-to-br from-sage-green to-natural-indigo rounded-xl mb-4 flex items-center justify-center">
+                        <i data-lucide="store" class="w-16 h-16 text-white/60"></i>
+                    </div>
+                    <h3 class="font-playfair text-xl font-bold text-natural-indigo mb-2">${brand.name}</h3>
+                    <div class="mb-3">
+                        <span class="text-lg">${stars}</span>
+                        <span class="text-sm text-gray-600 ml-2">(${brand.rating}/5)</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4">${brand.description}</p>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex flex-wrap gap-1">
+                            ${certBadges}
+                        </div>
+                    </div>
+                    <div class="bg-organic-cotton p-3 rounded-lg mb-4">
+                        <p class="text-xs text-natural-indigo font-medium">Impact: ${brand.impact}</p>
+                    </div>
+                    <button class="w-full bg-natural-indigo text-white py-3 rounded-full font-medium hover:bg-earth-brown transition-all">
+                        Explore Brand
+                    </button>
+                `;
+                
+                brandGrid.appendChild(brandCard);
+            });
+
+            // Reinitialize icons for new content
+            lucide.createIcons();
+        }
+
+        // Brand filtering functionality
+        function setupBrandFilters() {
+            const filterButtons = document.querySelectorAll('[data-rating]');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active state
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    const rating = button.dataset.rating;
+                    let filteredBrands;
+                    
+                    if (rating === 'all') {
+                        filteredBrands = brands;
+                    } else if (rating === 'organic') {
+                        filteredBrands = brands.filter(brand => brand.certifications.includes('organic'));
+                    } else if (rating === 'fair-trade') {
+                        filteredBrands = brands.filter(brand => brand.certifications.includes('fair-trade'));
+                    } else {
+                        filteredBrands = brands.filter(brand => brand.rating >= parseInt(rating));
+                    }
+                    
+                    renderBrands(filteredBrands);
+                });
+            });
+        }
+
+        // Scroll-triggered animations
+        function setupScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all elements with fade-in-scroll class
+            document.querySelectorAll('.fade-in-scroll').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        function setupSmoothScrolling() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Respect user's motion preferences
+        function respectMotionPreferences() {
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            
+            if (prefersReducedMotion) {
+                // Disable animations for users who prefer reduced motion
+                const style = document.createElement('style');
+                style.textContent = `
+                    *, *::before, *::after {
+                        animation-duration: 0.01ms !important;
+                        animation-iteration-count: 1 !important;
+                        transition-duration: 0.01ms !important;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            animateProductionProcess();
+            renderBrands();
+            setupBrandFilters();
+            setupScrollAnimations();
+            setupSmoothScrolling();
+            respectMotionPreferences();
+        });
+
+        // Handle mobile menu toggle (basic implementation)
+        document.querySelector('[data-lucide="menu"]').parentElement.addEventListener('click', function() {
+            // This would normally toggle a mobile menu
+            alert('Mobile menu would open here');
+        });
+
+        // Add some interactivity to CTA buttons
+        document.querySelectorAll('button').forEach(button => {
+            if (button.textContent.includes('Join') || button.textContent.includes('Start') || button.textContent.includes('Explore')) {
+                button.addEventListener('click', function(e) {
+                    // Add a visual feedback effect
+                    button.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        button.style.transform = '';
+                    }, 150);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
