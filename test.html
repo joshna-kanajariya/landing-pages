@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SoundWave Premium - Test Suite</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test { margin: 10px 0; padding: 10px; border: 1px solid #ccc; }
+        .pass { background: #d4edda; border-color: #c3e6cb; }
+        .fail { background: #f8d7da; border-color: #f5c6cb; }
+        .pending { background: #fff3cd; border-color: #ffeaa7; }
+    </style>
+</head>
+<body>
+    <h1>SoundWave Premium Landing Page - Test Results</h1>
+    <div id="test-results"></div>
+    
+    <script>
+        const tests = [
+            {
+                name: "Page loads successfully",
+                test: () => document.title === "SoundWave Premium - Your Music, Amplified"
+            },
+            {
+                name: "Hero section contains waveform animations",
+                test: () => document.querySelectorAll('.wave-bar').length > 0
+            },
+            {
+                name: "Navigation contains all required links",
+                test: () => {
+                    const nav = document.querySelector('nav');
+                    return nav && nav.textContent.includes('Features') && 
+                           nav.textContent.includes('Artists') && 
+                           nav.textContent.includes('Pricing');
+                }
+            },
+            {
+                name: "Mood filtering buttons exist",
+                test: () => {
+                    const filters = document.querySelectorAll('.mood-filter');
+                    return filters.length >= 5;
+                }
+            },
+            {
+                name: "Artist testimonials section exists",
+                test: () => document.querySelector('#artists') !== null
+            },
+            {
+                name: "Concert venues section exists",
+                test: () => document.textContent.includes('Virtual Concert Experiences')
+            },
+            {
+                name: "Subscription tiers section exists",
+                test: () => document.querySelector('#pricing') !== null
+            },
+            {
+                name: "AI recommendation section exists",
+                test: () => document.textContent.includes('AI-Powered Discovery')
+            },
+            {
+                name: "Footer contains social links",
+                test: () => {
+                    const footer = document.querySelector('footer');
+                    return footer && footer.querySelectorAll('a[href="#"]').length >= 4;
+                }
+            },
+            {
+                name: "Mobile responsive design elements present",
+                test: () => document.querySelector('#mobile-menu') !== null
+            }
+        ];
+
+        function runTests() {
+            const resultsContainer = document.getElementById('test-results');
+            let passCount = 0;
+            
+            tests.forEach(test => {
+                const div = document.createElement('div');
+                div.className = 'test';
+                
+                try {
+                    const result = test.test();
+                    if (result) {
+                        div.classList.add('pass');
+                        div.innerHTML = `✓ ${test.name}`;
+                        passCount++;
+                    } else {
+                        div.classList.add('fail');
+                        div.innerHTML = `✗ ${test.name}`;
+                    }
+                } catch (error) {
+                    div.classList.add('fail');
+                    div.innerHTML = `✗ ${test.name} - Error: ${error.message}`;
+                }
+                
+                resultsContainer.appendChild(div);
+            });
+
+            const summary = document.createElement('div');
+            summary.style.marginTop = '20px';
+            summary.style.fontWeight = 'bold';
+            summary.innerHTML = `Summary: ${passCount}/${tests.length} tests passed`;
+            if (passCount === tests.length) {
+                summary.style.color = 'green';
+                summary.innerHTML += ' - All tests PASSED! 🎉';
+            } else {
+                summary.style.color = 'red';
+            }
+            resultsContainer.appendChild(summary);
+        }
+
+        // Load the main page in an iframe and run tests
+        window.onload = () => {
+            const iframe = document.createElement('iframe');
+            iframe.src = 'index.html';
+            iframe.style.width = '100%';
+            iframe.style.height = '400px';
+            iframe.style.border = '1px solid #ccc';
+            iframe.onload = () => {
+                // Copy the iframe content to this document for testing
+                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                document.body.appendChild(iframe);
+                setTimeout(runTests, 1000); // Give time for animations to load
+            };
+        };
+    </script>
+</body>
+</html>
