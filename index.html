@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlowState Mastery - Transform Your Productivity</title>
+    <meta name="description" content="Master your productivity with FlowState Mastery - the complete system for time optimization, workflow enhancement, and peak performance achievement.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --focus-blue: #2563eb;
+            --energy-orange: #ea580c;
+            --efficiency-green: #059669;
+            --workflow-purple: #7c3aed;
+            --neutral-gray: #6b7280;
+        }
+        
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+        
+        .font-roboto {
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        .bg-workflow-pattern {
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(234, 88, 12, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, rgba(5, 150, 105, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%);
+        }
+        
+        .productivity-gradient {
+            background: linear-gradient(135deg, var(--focus-blue) 0%, var(--efficiency-green) 50%, var(--energy-orange) 100%);
+        }
+        
+        .floating-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-animation-delayed {
+            animation: float 6s ease-in-out infinite 2s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .pulse-glow {
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(37, 99, 235, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(37, 99, 235, 0.6); }
+        }
+        
+        .workflow-step {
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .workflow-step.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .productivity-card {
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
+        .productivity-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .metric-counter {
+            font-weight: 700;
+            color: var(--focus-blue);
+        }
+        
+        .efficiency-bar {
+            width: 0%;
+            transition: width 2s ease-out;
+        }
+        
+        .efficiency-bar.animate {
+            width: var(--target-width);
+        }
+        
+        .methodology-showcase {
+            background: linear-gradient(45deg, rgba(37, 99, 235, 0.05), rgba(5, 150, 105, 0.05));
+            border-left: 4px solid var(--focus-blue);
+        }
+        
+        .assessment-tool {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tier-card {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .tier-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .tier-popular::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: var(--energy-orange);
+            color: white;
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            .floating-animation,
+            .floating-animation-delayed,
+            .pulse-glow {
+                animation: none;
+            }
+        }
+        
+        .scroll-trigger {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .scroll-trigger.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-md shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="bg-gradient-to-r from-blue-600 to-green-600 p-2 rounded-lg">
+                        <i class="fas fa-bolt text-white text-xl"></i>
+                    </div>
+                    <span class="ml-3 font-roboto font-bold text-xl text-gray-900">FlowState Mastery</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#features" class="text-gray-700 hover:text-blue-600 transition-colors">Features</a>
+                    <a href="#assessment" class="text-gray-700 hover:text-blue-600 transition-colors">Assessment</a>
+                    <a href="#coaches" class="text-gray-700 hover:text-blue-600 transition-colors">Coaches</a>
+                    <a href="#pricing" class="text-gray-700 hover:text-blue-600 transition-colors">Pricing</a>
+                </div>
+                <button class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                    Start Free Trial
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen bg-workflow-pattern pt-16 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <h1 class="text-5xl lg:text-6xl font-roboto font-bold text-gray-900 leading-tight">
+                        Master Your
+                        <span class="bg-gradient-to-r from-blue-600 via-green-600 to-orange-500 bg-clip-text text-transparent">
+                            FlowState
+                        </span>
+                        <br>Unlock Peak Productivity
+                    </h1>
+                    <p class="text-xl text-gray-600 leading-relaxed">
+                        Transform your workflow with science-backed productivity techniques. 
+                        Achieve 300% more in less time with our comprehensive system.
+                    </p>
+                    
+                    <!-- Real-time Metrics Display -->
+                    <div class="grid grid-cols-3 gap-6 p-6 bg-white/80 rounded-2xl backdrop-blur-sm">
+                        <div class="text-center">
+                            <div class="metric-counter text-3xl font-roboto font-bold" data-target="89">0</div>
+                            <div class="text-sm text-gray-600">Time Saved %</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="metric-counter text-3xl font-roboto font-bold" data-target="247">0</div>
+                            <div class="text-sm text-gray-600">Focus Minutes</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="metric-counter text-3xl font-roboto font-bold" data-target="156">0</div>
+                            <div class="text-sm text-gray-600">Goals Achieved</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-all transform hover:scale-105 pulse-glow">
+                            Take Productivity Assessment
+                        </button>
+                        <button class="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg font-semibold hover:border-blue-600 hover:text-blue-600 transition-colors">
+                            Watch Demo
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Animated Workflow Visualization -->
+                <div class="relative">
+                    <div class="workflow-demo-container">
+                        <!-- Floating Productivity Tools -->
+                        <div class="floating-animation absolute top-0 right-0 bg-white p-4 rounded-xl shadow-lg">
+                            <i class="fas fa-clock text-blue-600 text-2xl mb-2"></i>
+                            <div class="text-sm font-semibold">Time Tracker</div>
+                            <div class="text-xs text-gray-500">2h 34m focused</div>
+                        </div>
+                        
+                        <div class="floating-animation-delayed absolute top-1/3 left-0 bg-white p-4 rounded-xl shadow-lg">
+                            <i class="fas fa-target text-green-600 text-2xl mb-2"></i>
+                            <div class="text-sm font-semibold">Goal Manager</div>
+                            <div class="text-xs text-gray-500">8/10 completed</div>
+                        </div>
+                        
+                        <div class="floating-animation absolute bottom-1/4 right-1/4 bg-white p-4 rounded-xl shadow-lg">
+                            <i class="fas fa-chart-line text-orange-600 text-2xl mb-2"></i>
+                            <div class="text-sm font-semibold">Analytics</div>
+                            <div class="text-xs text-gray-500">+45% efficiency</div>
+                        </div>
+                        
+                        <!-- Central Workflow Diagram -->
+                        <div class="mx-auto w-64 h-64 relative">
+                            <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-green-500 rounded-full opacity-20 animate-pulse"></div>
+                            <div class="absolute inset-4 bg-white rounded-full shadow-lg flex items-center justify-center">
+                                <div class="text-center">
+                                    <i class="fas fa-bolt text-4xl text-blue-600 mb-2"></i>
+                                    <div class="font-roboto font-bold text-lg">FlowState</div>
+                                    <div class="text-sm text-gray-600">Active</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-gray-400 text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- Productivity Techniques Showcase -->
+    <section id="features" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-roboto font-bold text-gray-900 mb-4">
+                    Proven Productivity Techniques
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Master time-tested methods with modern technology integration
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Pomodoro Technique -->
+                <div class="workflow-step methodology-showcase p-8 rounded-2xl">
+                    <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-tomato text-red-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Pomodoro Technique</h3>
+                    <p class="text-gray-600 mb-6">Work in focused 25-minute intervals with strategic breaks</p>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm">Focus Time</span>
+                            <span class="font-semibold">25 min</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="efficiency-bar bg-red-500 h-2 rounded-full" style="--target-width: 85%"></div>
+                        </div>
+                        <div class="text-sm text-gray-500">85% Effectiveness Rate</div>
+                    </div>
+                </div>
+                
+                <!-- Time Blocking -->
+                <div class="workflow-step methodology-showcase p-8 rounded-2xl">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-calendar-alt text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Time Blocking</h3>
+                    <p class="text-gray-600 mb-6">Schedule specific time slots for different activities</p>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm">Planning Time</span>
+                            <span class="font-semibold">15 min</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="efficiency-bar bg-blue-500 h-2 rounded-full" style="--target-width: 92%"></div>
+                        </div>
+                        <div class="text-sm text-gray-500">92% Effectiveness Rate</div>
+                    </div>  
+                </div>
+                
+                <!-- Getting Things Done -->
+                <div class="workflow-step methodology-showcase p-8 rounded-2xl">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-check-double text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Getting Things Done</h3>
+                    <p class="text-gray-600 mb-6">Capture, clarify, organize, and execute your tasks</p>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm">Setup Time</span>
+                            <span class="font-semibold">2 hours</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="efficiency-bar bg-green-500 h-2 rounded-full" style="--target-width: 96%"></div>
+                        </div>
+                        <div class="text-sm text-gray-500">96% Effectiveness Rate</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Productivity Assessment -->
+    <section id="assessment" class="py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-roboto font-bold text-gray-900 mb-4">
+                    Discover Your Productivity Profile
+                </h2>
+                <p class="text-xl text-gray-600">
+                    Get personalized recommendations based on your work style
+                </p>
+            </div>
+            
+            <div class="assessment-tool p-8">
+                <div id="assessment-questions" class="space-y-8">
+                    <!-- Question 1 -->
+                    <div class="assessment-question">
+                        <h3 class="text-xl font-semibold mb-4">1. What's your biggest productivity challenge?</h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <label class="flex items-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-blue-500 transition-colors">
+                                <input type="radio" name="challenge" value="focus" class="mr-3">
+                                <div>
+                                    <div class="font-semibold">Staying Focused</div>
+                                    <div class="text-sm text-gray-600">Easily distracted, hard to concentrate</div>
+                                </div>
+                            </label>
+                            <label class="flex items-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-blue-500 transition-colors">
+                                <input type="radio" name="challenge" value="time" class="mr-3">
+                                <div>
+                                    <div class="font-semibold">Time Management</div>
+                                    <div class="text-sm text-gray-600">Poor planning, missed deadlines</div>
+                                </div>
+                            </label>
+                            <label class="flex items-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-blue-500 transition-colors">
+                                <input type="radio" name="challenge" value="motivation" class="mr-3">
+                                <div>
+                                    <div class="font-semibold">Motivation</div>
+                                    <div class="text-sm text-gray-600">Procrastination, lack of energy</div>
+                                </div>
+                            </label>
+                            <label class="flex items-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-blue-500 transition-colors">
+                                <input type="radio" name="challenge" value="organization" class="mr-3">
+                                <div>
+                                    <div class="font-semibold">Organization</div>
+                                    <div class="text-sm text-gray-600">Cluttered workspace, scattered tasks</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 2 -->
+                    <div class="assessment-question">
+                        <h3 class="text-xl font-semibold mb-4">2. When are you most productive?</h3>
+                        <div class="grid grid-cols-4 gap-4">
+                            <label class="text-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-blue-500 transition-colors">
+                                <input type="radio" name="timing" value="morning" class="mb-2">
+                                <i class="fas fa-sun text-yellow-500 text-2xl mb-2"></i>
+                                <div class="font-semibold">Morning</div>
+                                <div class="text-sm text-gray-600">6-10 AM</div>
+                            </label>
+                            <label class="text-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-blue-500 transition-colors">
+                                <input type="radio" name="timing" value="midday" class="mb-2">
+                                <i class="fas fa-sun text-orange-500 text-2xl mb-2"></i>
+                                <div class="font-semibold">Midday</div>
+                                <div class="text-sm text-gray-600">10 AM-2 PM</div>
+                            </label>
+                            <label class="text-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-blue-500 transition-colors">
+                                <input type="radio" name="timing" value="afternoon" class="mb-2">
+                                <i class="fas fa-cloud-sun text-blue-500 text-2xl mb-2"></i>
+                                <div class="font-semibold">Afternoon</div>
+                                <div class="text-sm text-gray-600">2-6 PM</div>
+                            </label>
+                            <label class="text-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-blue-500 transition-colors">
+                                <input type="radio" name="timing" value="evening" class="mb-2">
+                                <i class="fas fa-moon text-purple-500 text-2xl mb-2"></i>
+                                <div class="font-semibold">Evening</div>
+                                <div class="text-sm text-gray-600">6+ PM</div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 text-center">
+                    <button id="get-recommendations" class="bg-gradient-to-r from-blue-600 to-green-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-blue-700 hover:to-green-700 transition-all transform hover:scale-105">
+                        Get My Personalized Plan
+                    </button>
+                </div>
+                
+                <!-- Results Section -->
+                <div id="assessment-results" class="hidden mt-8 p-6 bg-blue-50 rounded-xl">
+                    <h3 class="text-2xl font-bold text-blue-900 mb-4">Your Productivity Profile</h3>
+                    <div id="profile-content" class="space-y-4">
+                        <!-- Dynamic content will be inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expert Coaches Section -->
+    <section id="coaches" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-roboto font-bold text-gray-900 mb-4">
+                    Meet Your Productivity Experts
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Learn from certified coaches who've mastered the science of productivity
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Coach 1 -->
+                <div class="scroll-trigger productivity-card p-8 rounded-2xl text-center">
+                    <div class="w-24 h-24 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <i class="fas fa-user-tie text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Dr. Sarah Chen</h3>
+                    <div class="text-blue-600 font-semibold mb-4">Time Management Specialist</div>
+                    <p class="text-gray-600 mb-6">15+ years helping executives optimize their schedules and achieve work-life balance</p>
+                    <div class="space-y-3 text-left">
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span class="text-sm">Time Blocking Mastery</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span class="text-sm">Energy Management</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span class="text-sm">Stress Reduction Techniques</span>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <div class="text-sm text-gray-500">Success Rate</div>
+                        <div class="text-2xl font-bold text-blue-600">94%</div>
+                    </div>
+                </div>
+                
+                <!-- Coach 2 -->
+                <div class="scroll-trigger productivity-card p-8 rounded-2xl text-center">
+                    <div class="w-24 h-24 bg-gradient-to-r from-green-500 to-green-600 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <i class="fas fa-user-graduate text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Marcus Johnson</h3>
+                    <div class="text-green-600 font-semibold mb-4">Flow State Expert</div>
+                    <p class="text-gray-600 mb-6">Former Olympic athlete turned productivity coach, specializing in peak performance states</p>
+                    <div class="space-y-3 text-left">
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span class="text-sm">Deep Work Protocols</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span class="text-sm">Attention Training</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span class="text-sm">Performance Optimization</span>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <div class="text-sm text-gray-500">Success Rate</div>
+                        <div class="text-2xl font-bold text-green-600">97%</div>
+                    </div>
+                </div>
+                
+                <!-- Coach 3 -->
+                <div class="scroll-trigger productivity-card p-8 rounded-2xl text-center">
+                    <div class="w-24 h-24 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <i class="fas fa-user-cog text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Emily Rodriguez</h3>
+                    <div class="text-orange-600 font-semibold mb-4">Systems & Automation</div>
+                    <p class="text-gray-600 mb-6">Technology consultant who helps professionals automate repetitive tasks and streamline workflows</p>
+                    <div class="space-y-3 text-left">
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span class="text-sm">Workflow Automation</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span class="text-sm">Digital Organization</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span class="text-sm">Tool Integration</span>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <div class="text-sm text-gray-500">Success Rate</div>
+                        <div class="text-2xl font-bold text-orange-600">92%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Testimonials -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-roboto font-bold text-gray-900 mb-4">
+                    Real Results from Real People
+                </h2>
+                <p class="text-xl text-gray-600">
+                    See how FlowState Mastery transformed their productivity
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="scroll-trigger bg-white p-8 rounded-2xl shadow-sm">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-blue-600"></i>
+                        </div>
+                        <div>
+                            <div class="font-semibold">Jennifer Walsh</div>
+                            <div class="text-sm text-gray-600">Marketing Director</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">"FlowState Mastery helped me reclaim 3 hours daily. I went from struggling with deadlines to leading my team's productivity initiatives."</p>
+                    <div class="grid grid-cols-2 gap-4 text-center">
+                        <div>
+                            <div class="text-2xl font-bold text-blue-600">3.2hrs</div>
+                            <div class="text-sm text-gray-500">Time Saved Daily</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-green-600">185%</div>
+                            <div class="text-sm text-gray-500">Goal Achievement</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="scroll-trigger bg-white p-8 rounded-2xl shadow-sm">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-green-600"></i>
+                        </div>
+                        <div>
+                            <div class="font-semibold">David Park</div>
+                            <div class="text-sm text-gray-600">Software Engineer</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">"The deep work protocols transformed my coding sessions. I now complete complex projects 60% faster with better quality."</p>
+                    <div class="grid grid-cols-2 gap-4 text-center">
+                        <div>
+                            <div class="text-2xl font-bold text-blue-600">60%</div>
+                            <div class="text-sm text-gray-500">Faster Completion</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-green-600">4.8/5</div>
+                            <div class="text-sm text-gray-500">Quality Score</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="scroll-trigger bg-white p-8 rounded-2xl shadow-sm">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-orange-600"></i>
+                        </div>
+                        <div>
+                            <div class="font-semibold">Lisa Thompson</div>
+                            <div class="text-sm text-gray-600">Entrepreneur</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">"From chaos to clarity in 30 days. My startup's efficiency increased dramatically, and I finally achieved work-life balance."</p>
+                    <div class="grid grid-cols-2 gap-4 text-center">
+                        <div>
+                            <div class="text-2xl font-bold text-blue-600">240%</div>
+                            <div class="text-sm text-gray-500">Team Efficiency</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-green-600">8hrs</div>
+                            <div class="text-sm text-gray-500">Work-Life Balance</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Tiers -->
+    <section id="pricing" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-roboto font-bold text-gray-900 mb-4">
+                    Choose Your Productivity Journey
+                </h2>
+                <p class="text-xl text-gray-600">
+                    Flexible plans designed for every productivity goal
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Starter Tier -->
+                <div class="tier-card bg-white border-2 border-gray-200 rounded-2xl p-8 text-center">
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Starter</h3>
+                        <div class="text-4xl font-bold text-gray-900 mb-1">$29</div>
+                        <div class="text-gray-600">/month</div>
+                    </div>
+                    
+                    <ul class="space-y-4 text-left mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Basic productivity techniques</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Time tracking tools</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Weekly progress reports</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Mobile app access</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Email support</span>
+                        </li>
+                    </ul>
+                    
+                    <button class="w-full bg-gray-900 text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors">
+                        Get Started
+                    </button>
+                </div>
+                
+                <!-- Professional Tier (Most Popular) -->
+                <div class="tier-card tier-popular bg-gradient-to-b from-blue-50 to-blue-100 border-2 border-blue-500 rounded-2xl p-8 text-center transform scale-105">
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold text-blue-900 mb-2">Professional</h3>
+                        <div class="text-4xl font-bold text-blue-900 mb-1">$79</div>
+                        <div class="text-blue-700">/month</div>
+                    </div>
+                    
+                    <ul class="space-y-4 text-left mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Advanced productivity methods</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>AI-powered recommendations</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>1-on-1 coaching sessions</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Habit tracking & analytics</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Team collaboration tools</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Priority support</span>
+                        </li>
+                    </ul>
+                    
+                    <button class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                        Start Free Trial
+                    </button>
+                </div>
+                
+                <!-- Enterprise Tier -->
+                <div class="tier-card bg-white border-2 border-gray-200 rounded-2xl p-8 text-center">
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Enterprise</h3>
+                        <div class="text-4xl font-bold text-gray-900 mb-1">$199</div>
+                        <div class="text-gray-600">/month</div>
+                    </div>
+                    
+                    <ul class="space-y-4 text-left mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Complete productivity system</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Unlimited coaching access</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Custom workflow design</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Advanced integrations</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>White-label options</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>24/7 dedicated support</span>
+                        </li>
+                    </ul>
+                    
+                    <button class="w-full bg-gray-900 text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors">
+                        Contact Sales
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Habit Tracking & Challenges -->
+    <section class="py-20 bg-gradient-to-r from-blue-50 to-green-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-roboto font-bold text-gray-900 mb-4">
+                    Track Progress, Build Habits
+                </h2>
+                <p class="text-xl text-gray-600">
+                    Gamified challenges and comprehensive analytics to keep you motivated
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div class="bg-white p-6 rounded-xl shadow-sm">
+                        <h3 class="text-xl font-bold mb-4">30-Day Productivity Challenge</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span>Deep Work Sessions</span>
+                                <span class="font-semibold text-blue-600">23/30</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div class="bg-blue-500 h-3 rounded-full" style="width: 77%"></div>
+                            </div>
+                            <div class="text-sm text-gray-600">7 days remaining</div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-xl shadow-sm">
+                        <h3 class="text-xl font-bold mb-4">Weekly Analytics</h3>
+                        <div class="grid grid-cols-3 gap-4 text-center">
+                            <div>
+                                <div class="text-2xl font-bold text-green-600">94%</div>
+                                <div class="text-sm text-gray-600">Goal Completion</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-bold text-blue-600">6.2h</div>
+                                <div class="text-sm text-gray-600">Focus Time</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-bold text-orange-600">+18%</div>
+                                <div class="text-sm text-gray-600">Improvement</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-xl shadow-sm">
+                        <h3 class="text-xl font-bold mb-4">Achievement Badges</h3>
+                        <div class="flex space-x-4">
+                            <div class="text-center">
+                                <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mb-2">
+                                    <i class="fas fa-trophy text-yellow-600"></i>
+                                </div>
+                                <div class="text-xs text-gray-600">Focus Master</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-2">
+                                    <i class="fas fa-target text-green-600"></i>
+                                </div>
+                                <div class="text-xs text-gray-600">Goal Crusher</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-2">
+                                    <i class="fas fa-clock text-blue-600"></i>
+                                </div>
+                                <div class="text-xs text-gray-600">Time Saver</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold text-gray-900">Set Your Next Goal</h3>
+                    <div class="space-y-4">
+                        <div class="bg-white p-4 rounded-lg border-2 border-gray-200 hover:border-blue-500 cursor-pointer transition-colors">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <div class="font-semibold">Increase Deep Work Time</div>
+                                    <div class="text-sm text-gray-600">Target: 4 hours daily</div>
+                                </div>
+                                <i class="fas fa-chevron-right text-gray-400"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-4 rounded-lg border-2 border-gray-200 hover:border-blue-500 cursor-pointer transition-colors">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <div class="font-semibold">Master Time Blocking</div>
+                                    <div class="text-sm text-gray-600">Target: 21-day streak</div>
+                                </div>
+                                <i class="fas fa-chevron-right text-gray-400"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-4 rounded-lg border-2 border-gray-200 hover:border-blue-500 cursor-pointer transition-colors">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <div class="font-semibold">Reduce Distractions</div>
+                                    <div class="text-sm text-gray-600">Target: 80% focus score</div>
+                                </div>
+                                <i class="fas fa-chevron-right text-gray-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="w-full bg-gradient-to-r from-blue-600 to-green-600 text-white py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-green-700 transition-all">
+                        Start New Challenge
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-blue-600 via-purple-600 to-green-600">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+            <h2 class="text-4xl lg:text-5xl font-roboto font-bold mb-6">
+                Ready to Transform Your Productivity?
+            </h2>
+            <p class="text-xl mb-8 opacity-90">
+                Join thousands of professionals who've already mastered their FlowState
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <button class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors transform hover:scale-105">
+                    Start Your Free Trial
+                </button>
+                <button class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+                    Schedule Demo
+                </button>
+            </div>
+            
+            <div class="mt-8 text-sm opacity-75">
+                No credit card required • 14-day free trial • Cancel anytime
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="col-span-2">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-gradient-to-r from-blue-600 to-green-600 p-2 rounded-lg">
+                            <i class="fas fa-bolt text-white text-xl"></i>
+                        </div>
+                        <span class="ml-3 font-roboto font-bold text-xl">FlowState Mastery</span>
+                    </div>
+                    <p class="text-gray-400 mb-6 max-w-md">
+                        Transform your productivity with science-backed techniques and expert coaching. 
+                        Achieve more in less time with our comprehensive system.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Product</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Features</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Pricing</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Integrations</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">API</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 mt-8 text-center text-gray-400">
+                <p>&copy; 2025 FlowState Mastery. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animated counters
+        function animateCounters() {
+            const counters = document.querySelectorAll('.metric-counter');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                let current = 0;
+                const increment = target / 100;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        counter.textContent = target;
+                        clearInterval(timer);
+                    } else {
+                        counter.textContent = Math.floor(current);
+                    }
+                }, 20);
+            });
+        }
+
+        // Scroll-triggered animations
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.scroll-trigger, .workflow-step');
+            
+            elements.forEach(element => {
+                const rect = element.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+                
+                if (isVisible) {
+                    element.classList.add('visible');
+                }
+            });
+            
+            // Animate efficiency bars
+            const bars = document.querySelectorAll('.efficiency-bar');
+            bars.forEach(bar => {
+                const rect = bar.getBoundingClientRect();
+                if (rect.top < window.innerHeight && !bar.classList.contains('animate')) {
+                    bar.classList.add('animate');
+                }
+            });
+        }
+
+        // Productivity Assessment
+        function handleAssessment() {
+            const button = document.getElementById('get-recommendations');
+            const results = document.getElementById('assessment-results');
+            const profileContent = document.getElementById('profile-content');
+            
+            button.addEventListener('click', () => {
+                const challenge = document.querySelector('input[name="challenge"]:checked');
+                const timing = document.querySelector('input[name="timing"]:checked');
+                
+                if (!challenge || !timing) {
+                    alert('Please answer all questions to get your personalized recommendations.');
+                    return;
+                }
+                
+                const profiles = {
+                    focus: {
+                        title: 'Focus Enhancer',
+                        description: 'You benefit from structured deep work sessions and distraction management.',
+                        techniques: ['Pomodoro Technique', 'Environment Design', 'Digital Minimalism'],
+                        color: 'blue'
+                    },
+                    time: {
+                        title: 'Time Optimizer',
+                        description: 'You need better planning and time allocation strategies.',
+                        techniques: ['Time Blocking', 'Priority Matrix', 'Calendar Management'],
+                        color: 'green'
+                    },
+                    motivation: {
+                        title: 'Energy Manager',
+                        description: 'You thrive with momentum-building and motivation systems.',
+                        techniques: ['Habit Stacking', 'Reward Systems', 'Energy Tracking'],
+                        color: 'orange'
+                    },
+                    organization: {
+                        title: 'Systems Builder',
+                        description: 'You excel with structured workflows and organization methods.',
+                        techniques: ['Getting Things Done', 'Workspace Design', 'Digital Organization'],
+                        color: 'purple'
+                    }
+                };
+                
+                const profile = profiles[challenge.value];
+                const timePreference = timing.value;
+                
+                profileContent.innerHTML = `
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-${profile.color}-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-user text-${profile.color}-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-${profile.color}-900">${profile.title}</h4>
+                    </div>
+                    <p class="text-gray-700 mb-6">${profile.description}</p>
+                    <div class="mb-6">
+                        <h5 class="font-semibold mb-3">Recommended Techniques:</h5>
+                        <ul class="space-y-2">
+                            ${profile.techniques.map(technique => `
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-green-500 mr-2"></i>
+                                    <span>${technique}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                    <div class="mb-6">
+                        <h5 class="font-semibold mb-3">Optimal Timing:</h5>
+                        <p class="text-gray-700">Based on your ${timePreference} preference, schedule your most important work during this time for maximum productivity.</p>
+                    </div>
+                    <button class="w-full bg-${profile.color}-600 text-white py-3 rounded-lg font-semibold hover:bg-${profile.color}-700 transition-colors">
+                        Get Your Custom Plan
+                    </button>
+                `;
+                
+                results.classList.remove('hidden');
+                results.scrollIntoView({ behavior: 'smooth' });
+            });
+        }
+
+        // Initialize all functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            // Start counter animations after a short delay
+            setTimeout(animateCounters, 1000);
+            
+            // Handle scroll animations
+            handleScrollAnimations();
+            window.addEventListener('scroll', handleScrollAnimations);
+            
+            // Initialize assessment
+            handleAssessment();
+            
+            // Add selection effects to radio buttons
+            document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    // Remove selected class from siblings
+                    const siblings = document.querySelectorAll(`input[name="${this.name}"]`);
+                    siblings.forEach(sibling => {
+                        sibling.parentElement.classList.remove('border-blue-500', 'bg-blue-50');
+                    });
+                    
+                    // Add selected class to current
+                    this.parentElement.classList.add('border-blue-500', 'bg-blue-50');
+                });
+            });
+        });
+
+        // Respect reduced motion preferences
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.documentElement.style.setProperty('--animation-duration', '0s');
+        }
+    </script>
+</body>
+</html>
