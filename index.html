@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrandStay Hospitality - Luxury Hotels & Resorts</title>
+    
+    <!-- Embedded Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Lato:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome via CDN (fallback to local icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" onerror="this.remove()">
+    
+    <!-- Tailwind CSS equivalent styles -->
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #374151;
+            overflow-x: hidden;
+        }
+        
+        /* Typography */
+        .font-cinzel { font-family: 'Cinzel', serif; }
+        .font-lato { font-family: 'Lato', sans-serif; }
+        
+        h1 { font-size: 3rem; font-weight: 700; line-height: 1.1; }
+        h2 { font-size: 2.5rem; font-weight: 600; line-height: 1.2; }
+        h3 { font-size: 1.5rem; font-weight: 600; line-height: 1.3; }
+        h4 { font-size: 1.25rem; font-weight: 600; line-height: 1.4; }
+        
+        @media (min-width: 768px) {
+            h1 { font-size: 4.5rem; }
+            h2 { font-size: 3rem; }
+        }
+        
+        /* Colors */
+        .text-royal-blue { color: #002B5C; }
+        .text-elegant-gold { color: #D4AF37; }
+        .text-white { color: #ffffff; }
+        .text-gray-800 { color: #1f2937; }
+        .text-gray-700 { color: #374151; }
+        .text-gray-600 { color: #4b5563; }
+        .text-gray-500 { color: #6b7280; }
+        .text-gray-300 { color: #d1d5db; }
+        .text-gray-200 { color: #e5e7eb; }
+        .text-yellow-400 { color: #facc15; }
+        .text-green-500 { color: #10b981; }
+        .text-green-600 { color: #059669; }
+        .text-red-800 { color: #991b1b; }
+        .text-blue-800 { color: #1e40af; }
+        
+        .bg-white { background-color: #ffffff; }
+        .bg-gray-50 { background-color: #f9fafb; }
+        .bg-gray-100 { background-color: #f3f4f6; }
+        .bg-gray-200 { background-color: #e5e7eb; }
+        .bg-gray-400 { background-color: #9ca3af; }
+        .bg-gray-500 { background-color: #6b7280; }
+        .bg-gray-700 { background-color: #374151; }
+        .bg-gray-800 { background-color: #1f2937; }
+        .bg-gray-900 { background-color: #111827; }
+        .bg-royal-blue { background-color: #002B5C; }
+        .bg-elegant-gold { background-color: #D4AF37; }
+        .bg-blue-600 { background-color: #2563eb; }
+        .bg-blue-800 { background-color: #1e40af; }
+        .bg-red-100 { background-color: #fee2e2; }
+        .bg-blue-100 { background-color: #dbeafe; }
+        .bg-black { background-color: #000000; }
+        
+        /* Layout */
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 1rem; }
+        .max-w-7xl { max-width: 1280px; }
+        .max-w-4xl { max-width: 896px; }
+        .max-w-3xl { max-width: 768px; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+        .px-8 { padding-left: 2rem; padding-right: 2rem; }
+        .px-12 { padding-left: 3rem; padding-right: 3rem; }
+        .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+        .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+        .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+        .py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+        .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+        .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+        .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+        .pt-8 { padding-top: 2rem; }
+        .mb-3 { margin-bottom: 0.75rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .mb-12 { margin-bottom: 3rem; }
+        .mb-16 { margin-bottom: 4rem; }
+        .mr-2 { margin-right: 0.5rem; }
+        .mr-3 { margin-right: 0.75rem; }
+        .ml-4 { margin-left: 1rem; }
+        .ml-10 { margin-left: 2.5rem; }
+        
+        /* Flexbox */
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .items-baseline { align-items: baseline; }
+        .justify-center { justify-content: center; }
+        .justify-between { justify-content: space-between; }
+        .space-x-4 > * + * { margin-left: 1rem; }
+        .space-x-8 > * + * { margin-left: 2rem; }
+        .space-y-1 > * + * { margin-top: 0.25rem; }
+        .space-y-2 > * + * { margin-top: 0.5rem; }
+        .space-y-3 > * + * { margin-top: 0.75rem; }
+        
+        /* Grid */
+        .grid { display: grid; }
+        .gap-4 { gap: 1rem; }
+        .gap-6 { gap: 1.5rem; }
+        .gap-8 { gap: 2rem; }
+        .gap-12 { gap: 3rem; }
+        
+        @media (min-width: 768px) {
+            .md\\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .md\\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .md\\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+            .md\\:flex-row { flex-direction: row; }
+            .md\\:block { display: block; }
+        }
+        
+        @media (min-width: 1024px) {
+            .lg\\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .lg\\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+            .lg\\:px-8 { padding-left: 2rem; padding-right: 2rem; }
+        }
+        
+        /* Positioning */
+        .relative { position: relative; }
+        .absolute { position: absolute; }
+        .fixed { position: fixed; }
+        .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+        .top-0 { top: 0; }
+        .top-4 { top: 1rem; }
+        .top-20 { top: 5rem; }
+        .top-40 { top: 10rem; }
+        .right-4 { right: 1rem; }
+        .right-10 { right: 2.5rem; }
+        .right-20 { right: 5rem; }
+        .bottom-0 { bottom: 0; }
+        .bottom-20 { bottom: 5rem; }
+        .bottom-40 { bottom: 10rem; }
+        .left-0 { left: 0; }
+        .left-10 { left: 2.5rem; }
+        .left-20 { left: 5rem; }
+        .left-1\\/2 { left: 50%; }
+        .z-10 { z-index: 10; }
+        .z-50 { z-index: 50; }
+        
+        /* Sizing */
+        .w-full { width: 100%; }
+        .w-16 { width: 4rem; }
+        .w-20 { width: 5rem; }
+        .w-24 { width: 6rem; }
+        .h-16 { height: 4rem; }
+        .h-20 { height: 5rem; }
+        .h-24 { height: 6rem; }
+        .h-64 { height: 16rem; }
+        .h-80 { height: 20rem; }
+        .min-h-screen { min-height: 100vh; }
+        
+        /* Border radius */
+        .rounded-lg { border-radius: 0.5rem; }
+        .rounded-xl { border-radius: 0.75rem; }
+        .rounded-2xl { border-radius: 1rem; }
+        .rounded-3xl { border-radius: 1.5rem; }
+        .rounded-full { border-radius: 9999px; }
+        
+        /* Borders */
+        .border { border-width: 1px; border-style: solid; }
+        .border-2 { border-width: 2px; border-style: solid; }
+        .border-t { border-top-width: 1px; border-top-style: solid; }
+        .border-gray-200 { border-color: #e5e7eb; }
+        .border-gray-300 { border-color: #d1d5db; }
+        .border-white { border-color: #ffffff; }
+        .border-elegant-gold { border-color: #D4AF37; }
+        
+        /* Shadows */
+        .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+        .shadow-2xl { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }
+        
+        /* Display */
+        .hidden { display: none; }
+        .block { display: block; }
+        .overflow-hidden { overflow: hidden; }
+        .overflow-x-hidden { overflow-x: hidden; }
+        
+        @media (min-width: 768px) {
+            .md\\:hidden { display: none; }
+            .sm\\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+        }
+        
+        /* Text alignment */
+        .text-center { text-align: center; }
+        .text-left { text-left: left; }
+        
+        /* Text sizes */
+        .text-sm { font-size: 0.875rem; }
+        .text-lg { font-size: 1.125rem; }
+        .text-xl { font-size: 1.25rem; }
+        .text-2xl { font-size: 1.5rem; }
+        .text-3xl { font-size: 1.875rem; }
+        .text-4xl { font-size: 2.25rem; }
+        .text-5xl { font-size: 3rem; }
+        .text-6xl { font-size: 3.75rem; }
+        
+        @media (min-width: 768px) {
+            .md\\:text-2xl { font-size: 1.5rem; }
+            .md\\:text-5xl { font-size: 3rem; }
+            .md\\:text-7xl { font-size: 4.5rem; }
+        }
+        
+        /* Font weights */
+        .font-light { font-weight: 300; }
+        .font-medium { font-weight: 500; }
+        .font-semibold { font-weight: 600; }
+        .font-bold { font-weight: 700; }
+        
+        /* Text decoration */
+        .italic { font-style: italic; }
+        
+        /* Buttons */
+        button, .btn {
+            cursor: pointer;
+            border: none;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* Forms */
+        input, select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: #D4AF37;
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+        
+        /* Lists */
+        ul { list-style: none; }
+        
+        /* Links */
+        a {
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+        
+        /* Flex direction */
+        .flex-col { flex-direction: column; }
+        
+        @media (min-width: 640px) {
+            .sm\\:flex-row { flex-direction: row; }
+        }
+        
+        /* Transform */
+        .transform { transform: translateZ(0); }
+        .scale-105 { transform: scale(1.05); }
+        .-translate-x-1\\/2 { transform: translateX(-50%); }
+        
+        /* Transitions */
+        .transition-all { transition: all 0.3s ease; }
+        .transition-colors { transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease; }
+        
+        /* Hover effects */
+        .hover\\:bg-dark-gold:hover { background-color: #B8941F; }
+        .hover\\:bg-blue-800:hover { background-color: #1e40af; }
+        .hover\\:bg-gray-100:hover { background-color: #f3f4f6; }
+        .hover\\:bg-gray-500:hover { background-color: #6b7280; }
+        .hover\\:bg-white:hover { background-color: #ffffff; }
+        .hover\\:text-elegant-gold:hover { color: #D4AF37; }
+        .hover\\:text-white:hover { color: #ffffff; }
+        .hover\\:text-royal-blue:hover { color: #002B5C; }
+        .hover\\:border-elegant-gold:hover { border-color: #D4AF37; }
+        .hover\\:border-black\\/10:hover { border-color: rgba(0, 0, 0, 0.1); }
+        .hover\\:scale-105:hover { transform: scale(1.05); }
+        
+        /* Group hover */
+        .group:hover .group-hover\\:bg-black\\/10 { background-color: rgba(0, 0, 0, 0.1); }
+        
+        /* Backdrop */
+        .backdrop-blur-md { backdrop-filter: blur(12px); }
+        .backdrop-blur-sm { backdrop-filter: blur(4px); }
+        
+        /* Background opacity */
+        .bg-white\\/95 { background-color: rgba(255, 255, 255, 0.95); }
+        .bg-white\\/10 { background-color: rgba(255, 255, 255, 0.1); }
+        .bg-white\\/20 { background-color: rgba(255, 255, 255, 0.2); }
+        .bg-black\\/20 { background-color: rgba(0, 0, 0, 0.2); }
+        
+        /* Gradient backgrounds */
+        .luxury-gradient {
+            background: linear-gradient(135deg, #002B5C 0%, #1e3a8a 50%, #002B5C 100%);
+        }
+        
+        .gold-gradient {
+            background: linear-gradient(135deg, #D4AF37 0%, #F4E4BC 50%, #D4AF37 100%);
+        }
+        
+        .hero-pattern {
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+        }
+        
+        /* Icons (fallback for Font Awesome) */
+        .icon {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .fa-crown::before { content: "♔"; }
+        .fa-calendar-alt::before { content: "📅"; }
+        .fa-play::before { content: "▶"; }
+        .fa-spa::before { content: "🧘"; }
+        .fa-swimming-pool::before { content: "🏊"; }
+        .fa-utensils::before { content: "🍽"; }
+        .fa-concierge-bell::before { content: "🛎"; }
+        .fa-water::before { content: "🌊"; }
+        .fa-briefcase::before { content: "💼"; }
+        .fa-check::before { content: "✓"; }
+        .fa-star::before { content: "⭐"; }
+        .fa-search::before { content: "🔍"; }
+        .fa-island-tropical::before { content: "🏝"; }
+        .fa-mountain::before { content: "🏔"; }
+        .fa-city::before { content: "🏙"; }
+        .fa-medal::before { content: "🏅"; }
+        .fa-gem::before { content: "💎"; }
+        .fa-heart::before { content: "❤"; }
+        .fa-phone::before { content: "📞"; }
+        .fa-envelope::before { content: "✉"; }
+        .fa-map-marker-alt::before { content: "📍"; }
+        .fa-bars::before { content: "☰"; }
+        .fab-facebook-f::before { content: "f"; }
+        .fab-instagram::before { content: "📷"; }
+        .fab-twitter::before { content: "🐦"; }
+        .fab-linkedin::before { content: "in"; }
+    </style>
+    
+    <style>
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes pulseGold {
+            0%, 100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(212, 175, 55, 0.6); }
+        }
+        
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-slide-up { animation: slideUp 0.8s ease-out; }
+        .animate-fade-in { animation: fadeIn 1s ease-out; }
+        .animate-pulse-gold { animation: pulseGold 2s infinite; }
+        
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .virtual-tour-card {
+            perspective: 1000px;
+        }
+        
+        .virtual-tour-card:hover .card-inner {
+            transform: rotateY(10deg) rotateX(5deg);
+        }
+        
+        .card-inner {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        
+        .booking-calendar {
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            box-shadow: 0 20px 60px rgba(0, 43, 92, 0.1);
+        }
+        
+        .amenity-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        .amenity-float:nth-child(2) {
+            animation-delay: -1s;
+        }
+        
+        .amenity-float:nth-child(3) {
+            animation-delay: -2s;
+        }
+        
+        .testimonial-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+        }
+        
+        .loyalty-tier {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .loyalty-tier::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .loyalty-tier:hover::before {
+            left: 100%;
+        }
+        
+        /* Responsive grid columns */
+        @media (min-width: 1024px) {
+            .lg\\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .lg\\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        }
+        
+        /* Additional gradient classes */
+        .bg-gradient-to-br {
+            background: linear-gradient(to bottom right, var(--tw-gradient-stops));
+        }
+        
+        .from-elegant-gold { --tw-gradient-from: #D4AF37; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(212, 175, 55, 0)); }
+        .to-dark-gold { --tw-gradient-to: #B8941F; }
+        .from-gray-100 { --tw-gradient-from: #f3f4f6; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(243, 244, 246, 0)); }
+        .to-gray-200 { --tw-gradient-to: #e5e7eb; }
+        .from-gray-800 { --tw-gradient-from: #1f2937; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(31, 41, 55, 0)); }
+        .from-blue-400 { --tw-gradient-from: #60a5fa; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(96, 165, 250, 0)); }
+        .to-blue-600 { --tw-gradient-to: #2563eb; }
+        .from-green-400 { --tw-gradient-from: #4ade80; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(74, 222, 128, 0)); }
+        .to-green-600 { --tw-gradient-to: #16a34a; }
+        .from-purple-400 { --tw-gradient-from: #c084fc; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(192, 132, 252, 0)); }
+        .to-purple-600 { --tw-gradient-to: #9333ea; }
+        .from-pink-400 { --tw-gradient-from: #f472b6; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(244, 114, 182, 0)); }
+        .to-red-500 { --tw-gradient-to: #ef4444; }
+        .from-pink-500 { --tw-gradient-from: #ec4899; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(236, 72, 153, 0)); }
+        .from-pink-600 { --tw-gradient-from: #db2777; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(219, 39, 119, 0)); }
+        .to-red-600 { --tw-gradient-to: #dc2626; }
+        .from-blue-600 { --tw-gradient-from: #2563eb; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(37, 99, 235, 0)); }
+        .from-blue-700 { --tw-gradient-from: #1d4ed8; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(29, 78, 216, 0)); }
+        .to-blue-900 { --tw-gradient-to: #1e3a8a; }
+        
+        .bg-gradient-to-r {
+            background: linear-gradient(to right, var(--tw-gradient-stops));
+        }
+        
+        /* Hover gradients */
+        .hover\\:from-pink-600:hover { --tw-gradient-from: #db2777; }
+        .hover\\:from-blue-700:hover { --tw-gradient-from: #1d4ed8; }
+    </style>
+</head>
+
+<body class="font-lato text-gray-800 overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="font-cinzel text-2xl font-bold text-royal-blue">
+                        <i class="fas fa-crown text-elegant-gold mr-2"></i>
+                        GrandStay
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="text-royal-blue hover:text-elegant-gold transition-colors font-medium">Home</a>
+                        <a href="#rooms" class="text-royal-blue hover:text-elegant-gold transition-colors font-medium">Rooms</a>
+                        <a href="#amenities" class="text-royal-blue hover:text-elegant-gold transition-colors font-medium">Amenities</a>
+                        <a href="#destinations" class="text-royal-blue hover:text-elegant-gold transition-colors font-medium">Destinations</a>
+                        <a href="#loyalty" class="text-royal-blue hover:text-elegant-gold transition-colors font-medium">Loyalty</a>
+                        <button class="bg-elegant-gold text-white px-6 py-2 rounded-full hover:bg-dark-gold transition-all transform hover:scale-105">
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button class="text-royal-blue hover:text-elegant-gold">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen luxury-gradient hero-pattern flex items-center">
+        <div class="absolute inset-0 bg-black/20"></div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+            <h1 class="font-cinzel text-5xl md:text-7xl font-bold mb-6 animate-slide-up">
+                Experience
+                <span class="text-elegant-gold">Luxury</span>
+                Redefined
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto animate-fade-in font-light">
+                Immerse yourself in unparalleled hospitality at GrandStay's collection of world-class hotels and resorts
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in">
+                <button class="bg-elegant-gold text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-dark-gold transition-all transform hover:scale-105 animate-pulse-gold">
+                    <i class="fas fa-calendar-alt mr-2"></i>
+                    Book Your Stay
+                </button>
+                <button class="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-royal-blue transition-all transform hover:scale-105">
+                    <i class="fas fa-play mr-2"></i>
+                    Virtual Tour
+                </button>
+            </div>
+        </div>
+        
+        <!-- Floating Amenity Icons -->
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="amenity-float absolute top-20 left-10 text-elegant-gold text-3xl">
+                <i class="fas fa-spa"></i>
+            </div>
+            <div class="amenity-float absolute top-40 right-20 text-elegant-gold text-3xl">
+                <i class="fas fa-swimming-pool"></i>
+            </div>
+            <div class="amenity-float absolute bottom-40 left-20 text-elegant-gold text-3xl">
+                <i class="fas fa-utensils"></i>
+            </div>
+            <div class="amenity-float absolute bottom-20 right-10 text-elegant-gold text-3xl">
+                <i class="fas fa-concierge-bell"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Virtual Tours Section -->
+    <section id="rooms" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="font-cinzel text-4xl md:text-5xl font-bold text-royal-blue mb-4">
+                    Virtual Room Tours
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Step inside our luxurious accommodations from the comfort of your home
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Presidential Suite -->
+                <div class="virtual-tour-card scroll-reveal">
+                    <div class="card-inner bg-white rounded-2xl shadow-2xl overflow-hidden">
+                        <div class="relative h-64 bg-gradient-to-br from-elegant-gold to-dark-gold">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="text-center text-white">
+                                    <i class="fas fa-crown text-6xl mb-4"></i>
+                                    <h3 class="font-cinzel text-2xl font-bold">Presidential Suite</h3>
+                                </div>
+                            </div>
+                            <div class="absolute top-4 right-4 bg-white/20 backdrop-blur-sm rounded-full px-3 py-1">
+                                <span class="text-white text-sm font-semibold">360° Tour</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-2xl font-bold text-elegant-gold">$899/night</span>
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <ul class="text-gray-600 space-y-2 mb-4">
+                                <li><i class="fas fa-check text-elegant-gold mr-2"></i>Ocean View Balcony</li>
+                                <li><i class="fas fa-check text-elegant-gold mr-2"></i>Private Butler Service</li>
+                                <li><i class="fas fa-check text-elegant-gold mr-2"></i>Marble Bathroom with Jacuzzi</li>
+                            </ul>
+                            <button class="w-full bg-royal-blue text-white py-3 rounded-lg hover:bg-blue-800 transition-colors">
+                                Start Virtual Tour
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Deluxe Ocean Suite -->
+                <div class="virtual-tour-card scroll-reveal">
+                    <div class="card-inner bg-white rounded-2xl shadow-2xl overflow-hidden">
+                        <div class="relative h-64 bg-gradient-to-br from-blue-600 to-royal-blue">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="text-center text-white">
+                                    <i class="fas fa-water text-6xl mb-4"></i>
+                                    <h3 class="font-cinzel text-2xl font-bold">Deluxe Ocean Suite</h3>
+                                </div>
+                            </div>
+                            <div class="absolute top-4 right-4 bg-white/20 backdrop-blur-sm rounded-full px-3 py-1">
+                                <span class="text-white text-sm font-semibold">360° Tour</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-2xl font-bold text-elegant-gold">$599/night</span>
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <ul class="text-gray-600 space-y-2 mb-4">
+                                <li><i class="fas fa-check text-elegant-gold mr-2"></i>Panoramic Ocean Views</li>
+                                <li><i class="fas fa-check text-elegant-gold mr-2"></i>Premium Amenities</li>
+                                <li><i class="fas fa-check text-elegant-gold mr-2"></i>Spacious Living Area</li>
+                            </ul>
+                            <button class="w-full bg-royal-blue text-white py-3 rounded-lg hover:bg-blue-800 transition-colors">
+                                Start Virtual Tour
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Executive Business Suite -->
+                <div class="virtual-tour-card scroll-reveal">
+                    <div class="card-inner bg-white rounded-2xl shadow-2xl overflow-hidden">
+                        <div class="relative h-64 bg-gradient-to-br from-gray-700 to-gray-900">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="text-center text-white">
+                                    <i class="fas fa-briefcase text-6xl mb-4"></i>
+                                    <h3 class="font-cinzel text-2xl font-bold">Executive Business Suite</h3>
+                                </div>
+                            </div>
+                            <div class="absolute top-4 right-4 bg-white/20 backdrop-blur-sm rounded-full px-3 py-1">
+                                <span class="text-white text-sm font-semibold">360° Tour</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-2xl font-bold text-elegant-gold">$449/night</span>
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <ul class="text-gray-600 space-y-2 mb-4">
+                                <li><i class="fas fa-check text-elegant-gold mr-2"></i>Dedicated Work Space</li>
+                                <li><i class="fas fa-check text-elegant-gold mr-2"></i>High-Speed Wi-Fi</li>
+                                <li><i class="fas fa-check text-elegant-gold mr-2"></i>Business Center Access</li>
+                            </ul>
+                            <button class="w-full bg-royal-blue text-white py-3 rounded-lg hover:bg-blue-800 transition-colors">
+                                Start Virtual Tour
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Amenities Showcase -->
+    <section id="amenities" class="py-20 luxury-gradient">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="font-cinzel text-4xl md:text-5xl font-bold text-white mb-4">
+                    World-Class Amenities
+                </h2>
+                <p class="text-xl text-gray-200 max-w-3xl mx-auto">
+                    Indulge in our carefully curated collection of luxury amenities and services
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center scroll-reveal amenity-float">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-spa text-4xl text-elegant-gold"></i>
+                    </div>
+                    <h3 class="font-cinzel text-xl font-semibold text-white mb-3">Luxury Spa</h3>
+                    <p class="text-gray-200">Rejuvenate your senses with our award-winning spa treatments</p>
+                </div>
+                
+                <div class="text-center scroll-reveal amenity-float">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-swimming-pool text-4xl text-elegant-gold"></i>
+                    </div>
+                    <h3 class="font-cinzel text-xl font-semibold text-white mb-3">Infinity Pool</h3>
+                    <p class="text-gray-200">Swim in our stunning infinity pool overlooking the ocean</p>
+                </div>
+                
+                <div class="text-center scroll-reveal amenity-float">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-utensils text-4xl text-elegant-gold"></i>
+                    </div>
+                    <h3 class="font-cinzel text-xl font-semibold text-white mb-3">Fine Dining</h3>
+                    <p class="text-gray-200">Savor exquisite cuisine crafted by world-renowned chefs</p>
+                </div>
+                
+                <div class="text-center scroll-reveal amenity-float">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-concierge-bell text-4xl text-elegant-gold"></i>
+                    </div>
+                    <h3 class="font-cinzel text-xl font-semibold text-white mb-3">24/7 Concierge</h3>
+                    <p class="text-gray-200">Personal assistance to fulfill your every need and desire</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Calendar Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="font-cinzel text-4xl md:text-5xl font-bold text-royal-blue mb-4">
+                    Book Your Perfect Stay
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Find the best rates and availability for your luxury getaway
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="booking-calendar rounded-3xl p-8 scroll-reveal">
+                    <div class="grid md:grid-cols-4 gap-6 mb-8">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Check-in</label>
+                            <input type="date" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-elegant-gold focus:border-elegant-gold">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Check-out</label>
+                            <input type="date" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-elegant-gold focus:border-elegant-gold">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Guests</label>
+                            <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-elegant-gold focus:border-elegant-gold">
+                                <option>1 Guest</option>
+                                <option>2 Guests</option>
+                                <option>3 Guests</option>
+                                <option>4+ Guests</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Rooms</label>
+                            <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-elegant-gold focus:border-elegant-gold">
+                                <option>1 Room</option>
+                                <option>2 Rooms</option>
+                                <option>3+ Rooms</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Rate Comparison -->
+                    <div class="grid md:grid-cols-3 gap-6 mb-8">
+                        <div class="border border-gray-200 rounded-lg p-6 hover:border-elegant-gold transition-colors">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="font-semibold text-lg">Standard Rate</h3>
+                                <span class="text-2xl font-bold text-elegant-gold">$299</span>
+                            </div>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Free WiFi</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Daily Breakfast</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Pool Access</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="border-2 border-elegant-gold rounded-lg p-6 relative">
+                            <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-elegant-gold text-white px-4 py-1 rounded-full text-sm font-semibold">
+                                Best Value
+                            </div>
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="font-semibold text-lg">Premium Package</h3>
+                                <span class="text-2xl font-bold text-elegant-gold">$449</span>
+                            </div>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>All Standard Features</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Spa Credit $100</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Room Upgrade</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Late Checkout</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="border border-gray-200 rounded-lg p-6 hover:border-elegant-gold transition-colors">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="font-semibold text-lg">Luxury Experience</h3>
+                                <span class="text-2xl font-bold text-elegant-gold">$699</span>
+                            </div>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>All Premium Features</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Butler Service</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Private Dining</li>
+                                <li><i class="fas fa-check text-green-500 mr-2"></i>Helicopter Transfer</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button class="bg-elegant-gold text-white px-12 py-4 rounded-full text-lg font-semibold hover:bg-dark-gold transition-all transform hover:scale-105">
+                            <i class="fas fa-search mr-2"></i>
+                            Search Available Rooms
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destinations Section -->
+    <section id="destinations" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="font-cinzel text-4xl md:text-5xl font-bold text-royal-blue mb-4">
+                    Exclusive Destinations
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Discover our collection of luxury properties in the world's most sought-after locations
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="group cursor-pointer scroll-reveal">
+                    <div class="relative overflow-hidden rounded-2xl shadow-2xl">
+                        <div class="h-80 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                            <div class="text-center text-white">
+                                <i class="fas fa-island-tropical text-6xl mb-4"></i>
+                                <h3 class="font-cinzel text-2xl font-bold">Maldives Paradise</h3>
+                                <p class="text-lg">Overwater Villas</p>
+                            </div>
+                        </div>
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-1">Starting from $899/night</h4>
+                                    <p class="text-sm opacity-90">Private beach access</p>
+                                </div>
+                                <button class="bg-elegant-gold text-white px-4 py-2 rounded-full text-sm hover:bg-dark-gold transition-colors">
+                                    Explore
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="group cursor-pointer scroll-reveal">
+                    <div class="relative overflow-hidden rounded-2xl shadow-2xl">
+                        <div class="h-80 bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
+                            <div class="text-center text-white">
+                                <i class="fas fa-mountain text-6xl mb-4"></i>
+                                <h3 class="font-cinzel text-2xl font-bold">Swiss Alps Retreat</h3>
+                                <p class="text-lg">Mountain Chalets</p>
+                            </div>
+                        </div>
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-1">Starting from $749/night</h4>
+                                    <p class="text-sm opacity-90">Ski-in, ski-out access</p>
+                                </div>
+                                <button class="bg-elegant-gold text-white px-4 py-2 rounded-full text-sm hover:bg-dark-gold transition-colors">
+                                    Explore
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="group cursor-pointer scroll-reveal">
+                    <div class="relative overflow-hidden rounded-2xl shadow-2xl">
+                        <div class="h-80 bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
+                            <div class="text-center text-white">
+                                <i class="fas fa-city text-6xl mb-4"></i>
+                                <h3 class="font-cinzel text-2xl font-bold">Tokyo Metropolitan</h3>
+                                <p class="text-lg">Urban Luxury</p>
+                            </div>
+                        </div>
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-1">Starting from $599/night</h4>
+                                    <p class="text-sm opacity-90">City center location</p>
+                                </div>
+                                <button class="bg-elegant-gold text-white px-4 py-2 rounded-full text-sm hover:bg-dark-gold transition-colors">
+                                    Explore
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guest Testimonials -->
+    <section class="py-20 luxury-gradient">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="font-cinzel text-4xl md:text-5xl font-bold text-white mb-4">
+                    Guest Experiences
+                </h2>
+                <p class="text-xl text-gray-200 max-w-3xl mx-auto">
+                    Hear from our valued guests about their unforgettable stays
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="testimonial-card rounded-2xl p-8 scroll-reveal">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-elegant-gold rounded-full flex items-center justify-center text-white font-bold text-xl">
+                            SA
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold text-lg">Sarah Anderson</h4>
+                            <div class="flex items-center">
+                                <div class="flex text-yellow-400 mr-2">
+                                    <i class="fas fa-star text-sm"></i>
+                                    <i class="fas fa-star text-sm"></i>
+                                    <i class="fas fa-star text-sm"></i>
+                                    <i class="fas fa-star text-sm"></i>
+                                    <i class="fas fa-star text-sm"></i>
+                                </div>
+                                <span class="text-sm text-green-600 font-semibold">Verified Stay</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">
+                        "Absolutely exceptional service! The presidential suite was beyond our expectations. The butler service and attention to detail made our anniversary unforgettable."
+                    </p>
+                    <div class="text-sm text-gray-500">
+                        Presidential Suite • 5 nights • March 2024
+                    </div>
+                </div>
+                
+                <div class="testimonial-card rounded-2xl p-8 scroll-reveal">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-elegant-gold rounded-full flex items-center justify-center text-white font-bold text-xl">
+                            MR
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold text-lg">Michael Rodriguez</h4>
+                            <div class="flex items-center">
+                                <div class="flex text-yellow-400 mr-2">
+                                    <i class="fas fa-star text-sm"></i>
+                                    <i class="fas fa-star text-sm"></i>
+                                    <i class="fas fa-star text-sm"></i>
+                                    <i class="fas fa-star text-sm"></i>
+                                    <i class="fas fa-star text-sm"></i>
+                                </div>
+                                <span class="text-sm text-green-600 font-semibold">Verified Stay</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">
+                        "Perfect for business travel. The executive lounge and meeting facilities were top-notch. The staff anticipated every need before I even asked."
+                    </p>
+                    <div class="text-sm text-gray-500">
+                        Executive Suite • 3 nights • February 2024
+                    </div>
+                </div>
+                
+                <div class="testimonial-card rounded-2xl p-8 scroll-reveal">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-elegant-gold rounded-full flex items-center justify-center text-white font-bold text-xl">
+                            EL
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold text-lg">Emily Liu</h4>
+                            <div class="flex items-center">
+                                <div class="flex text-yellow-400 mr-2">
+                                    <i class="fas fa-star text-sm"></i>
+                                    <i class="fas fa-star text-sm"></i>
+                                    <i class="fas fa-star text-sm"></i>
+                                    <i class="fas fa-star text-sm"></i>
+                                    <i class="fas fa-star text-sm"></i>
+                                </div>
+                                <span class="text-sm text-green-600 font-semibold">Verified Stay</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">
+                        "The spa treatments were divine and the ocean view from our suite was breathtaking. Every moment felt like pure luxury. Already planning our next visit!"
+                    </p>
+                    <div class="text-sm text-gray-500">
+                        Ocean Suite • 7 nights • January 2024
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Loyalty Program -->
+    <section id="loyalty" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="font-cinzel text-4xl md:text-5xl font-bold text-royal-blue mb-4">
+                    GrandStay Elite Program
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Unlock exclusive benefits and rewards with our luxury loyalty program
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="loyalty-tier bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl p-8 text-center scroll-reveal">
+                    <div class="w-20 h-20 bg-gray-400 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-medal text-3xl text-white"></i>
+                    </div>
+                    <h3 class="font-cinzel text-2xl font-bold text-gray-700 mb-4">Silver Elite</h3>
+                    <p class="text-gray-600 mb-6">0-9 nights per year</p>
+                    <ul class="text-left space-y-3 mb-8">
+                        <li class="flex items-center"><i class="fas fa-check text-gray-500 mr-3"></i>Priority Check-in</li>
+                        <li class="flex items-center"><i class="fas fa-check text-gray-500 mr-3"></i>Wi-Fi Access</li>
+                        <li class="flex items-center"><i class="fas fa-check text-gray-500 mr-3"></i>Member Rates</li>
+                        <li class="flex items-center"><i class="fas fa-check text-gray-500 mr-3"></i>Welcome Amenity</li>
+                    </ul>
+                    <button class="w-full bg-gray-400 text-white py-3 rounded-lg hover:bg-gray-500 transition-colors">
+                        Join Silver Elite
+                    </button>
+                </div>
+                
+                <div class="loyalty-tier bg-gradient-to-br from-elegant-gold to-dark-gold rounded-2xl p-8 text-center scroll-reveal transform scale-105">
+                    <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-crown text-3xl text-elegant-gold"></i>
+                    </div>
+                    <h3 class="font-cinzel text-2xl font-bold text-white mb-4">Gold Elite</h3>
+                    <p class="text-yellow-100 mb-6">10-24 nights per year</p>
+                    <ul class="text-left space-y-3 mb-8 text-white">
+                        <li class="flex items-center"><i class="fas fa-check text-yellow-200 mr-3"></i>All Silver Benefits</li>
+                        <li class="flex items-center"><i class="fas fa-check text-yellow-200 mr-3"></i>Room Upgrades</li>
+                        <li class="flex items-center"><i class="fas fa-check text-yellow-200 mr-3"></i>Late Checkout</li>
+                        <li class="flex items-center"><i class="fas fa-check text-yellow-200 mr-3"></i>Bonus Points (25%)</li>
+                        <li class="flex items-center"><i class="fas fa-check text-yellow-200 mr-3"></i>Executive Lounge</li>
+                    </ul>
+                    <button class="w-full bg-white text-elegant-gold py-3 rounded-lg hover:bg-gray-100 transition-colors font-semibold">
+                        Join Gold Elite
+                    </button>
+                </div>
+                
+                <div class="loyalty-tier bg-gradient-to-br from-gray-800 to-black rounded-2xl p-8 text-center scroll-reveal">
+                    <div class="w-20 h-20 bg-elegant-gold rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-gem text-3xl text-white"></i>
+                    </div>
+                    <h3 class="font-cinzel text-2xl font-bold text-white mb-4">Platinum Elite</h3>
+                    <p class="text-gray-300 mb-6">25+ nights per year</p>
+                    <ul class="text-left space-y-3 mb-8 text-white">
+                        <li class="flex items-center"><i class="fas fa-check text-elegant-gold mr-3"></i>All Gold Benefits</li>
+                        <li class="flex items-center"><i class="fas fa-check text-elegant-gold mr-3"></i>Suite Upgrades</li>
+                        <li class="flex items-center"><i class="fas fa-check text-elegant-gold mr-3"></i>Personal Concierge</li>
+                        <li class="flex items-center"><i class="fas fa-check text-elegant-gold mr-3"></i>Bonus Points (50%)</li>
+                        <li class="flex items-center"><i class="fas fa-check text-elegant-gold mr-3"></i>Exclusive Events</li>
+                    </ul>
+                    <button class="w-full bg-elegant-gold text-white py-3 rounded-lg hover:bg-dark-gold transition-colors font-semibold">
+                        Join Platinum Elite
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Packages -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="font-cinzel text-4xl md:text-5xl font-bold text-royal-blue mb-4">
+                    Curated Experiences
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Discover our specially designed packages for unforgettable moments
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Romantic Getaway Package -->
+                <div class="scroll-reveal">
+                    <div class="bg-white rounded-3xl shadow-2xl overflow-hidden">
+                        <div class="relative h-64 bg-gradient-to-br from-pink-400 to-red-500">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="text-center text-white">
+                                    <i class="fas fa-heart text-6xl mb-4"></i>
+                                    <h3 class="font-cinzel text-3xl font-bold">Romantic Getaway</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <div class="flex items-center justify-between mb-6">
+                                <span class="text-3xl font-bold text-elegant-gold">$1,299</span>
+                                <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-semibold">
+                                    Perfect for Couples
+                                </span>
+                            </div>
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-center"><i class="fas fa-check text-elegant-gold mr-3"></i>3 nights in Ocean Suite</li>
+                                <li class="flex items-center"><i class="fas fa-check text-elegant-gold mr-3"></i>Couples massage at spa</li>
+                                <li class="flex items-center"><i class="fas fa-check text-elegant-gold mr-3"></i>Private beach dinner</li>
+                                <li class="flex items-center"><i class="fas fa-check text-elegant-gold mr-3"></i>Champagne & roses welcome</li>
+                                <li class="flex items-center"><i class="fas fa-check text-elegant-gold mr-3"></i>Late checkout until 2 PM</li>
+                                <li class="flex items-center"><i class="fas fa-check text-elegant-gold mr-3"></i>Professional photo session</li>
+                            </ul>
+                            <button class="w-full bg-gradient-to-r from-pink-500 to-red-500 text-white py-4 rounded-lg text-lg font-semibold hover:from-pink-600 hover:to-red-600 transition-all transform hover:scale-105">
+                                Book Romance Package
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Business Travel Package -->
+                <div class="scroll-reveal">
+                    <div class="bg-white rounded-3xl shadow-2xl overflow-hidden">
+                        <div class="relative h-64 bg-gradient-to-br from-blue-600 to-royal-blue">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="text-center text-white">
+                                    <i class="fas fa-briefcase text-6xl mb-4"></i>
+                                    <h3 class="font-cinzel text-3xl font-bold">Business Excellence</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <div class="flex items-center justify-between mb-6">
+                                <span class="text-3xl font-bold text-elegant-gold">$899</span>
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">
+                                    Perfect for Business
+                                </span>
+                            </div>
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-center"><i class="fas fa-check text-elegant-gold mr-3"></i>Executive Suite accommodation</li>
+                                <li class="flex items-center"><i class="fas fa-check text-elegant-gold mr-3"></i>Meeting room access (4 hours)</li>
+                                <li class="flex items-center"><i class="fas fa-check text-elegant-gold mr-3"></i>High-speed business internet</li>
+                                <li class="flex items-center"><i class="fas fa-check text-elegant-gold mr-3"></i>Executive lounge privileges</li>
+                                <li class="flex items-center"><i class="fas fa-check text-elegant-gold mr-3"></i>24/7 business center access</li>
+                                <li class="flex items-center"><i class="fas fa-check text-elegant-gold mr-3"></i>Airport transfer service</li>
+                            </ul>
+                            <button class="w-full bg-gradient-to-r from-blue-600 to-royal-blue text-white py-4 rounded-lg text-lg font-semibold hover:from-blue-700 hover:to-blue-900 transition-all transform hover:scale-105">
+                                Book Business Package
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="luxury-gradient text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="font-cinzel text-3xl font-bold mb-6">
+                        <i class="fas fa-crown text-elegant-gold mr-2"></i>
+                        GrandStay
+                    </div>
+                    <p class="text-gray-300 mb-6">
+                        Experience unparalleled luxury and hospitality at our world-class hotels and resorts.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-elegant-gold hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="#" class="text-elegant-gold hover:text-white transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-elegant-gold hover:text-white transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-elegant-gold hover:text-white transition-colors">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-cinzel text-xl font-semibold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#rooms" class="text-gray-300 hover:text-elegant-gold transition-colors">Rooms & Suites</a></li>
+                        <li><a href="#amenities" class="text-gray-300 hover:text-elegant-gold transition-colors">Amenities</a></li>
+                        <li><a href="#destinations" class="text-gray-300 hover:text-elegant-gold transition-colors">Destinations</a></li>
+                        <li><a href="#loyalty" class="text-gray-300 hover:text-elegant-gold transition-colors">Loyalty Program</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-cinzel text-xl font-semibold mb-6">Services</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-300 hover:text-elegant-gold transition-colors">Concierge</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-elegant-gold transition-colors">Spa & Wellness</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-elegant-gold transition-colors">Fine Dining</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-elegant-gold transition-colors">Event Planning</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-cinzel text-xl font-semibold mb-6">Contact</h3>
+                    <div class="space-y-3 text-gray-300">
+                        <p><i class="fas fa-phone text-elegant-gold mr-2"></i>+1 (555) 123-4567</p>
+                        <p><i class="fas fa-envelope text-elegant-gold mr-2"></i>reservations@grandstay.com</p>
+                        <p><i class="fas fa-map-marker-alt text-elegant-gold mr-2"></i>Luxury destinations worldwide</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/20 pt-8 text-center text-gray-300">
+                <p>&copy; 2024 GrandStay Hospitality. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Interactions -->
+    <script>
+        // Scroll reveal animation
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.scroll-reveal');
+            
+            reveals.forEach(reveal => {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveal.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('revealed');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', revealOnScroll);
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Virtual tour interaction
+        document.querySelectorAll('.virtual-tour-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const roomType = this.querySelector('.font-cinzel').textContent;
+                alert(`Starting virtual tour for ${roomType}. This would normally launch a 360° room experience.`);
+            });
+        });
+        
+        // Booking form interaction
+        document.querySelector('.booking-calendar').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Searching for available rooms... This would normally redirect to booking system.');
+        });
+        
+        // Package booking interaction
+        document.querySelectorAll('[class*="Book"]').forEach(button => {
+            if (button.textContent.includes('Package')) {
+                button.addEventListener('click', function() {
+                    const packageType = this.textContent.replace('Book ', '').replace(' Package', '');
+                    alert(`Booking ${packageType}... This would normally open booking details.`);
+                });
+            }
+        });
+        
+        // Loyalty program interaction
+        document.querySelectorAll('[class*="Join"]').forEach(button => {
+            if (button.textContent.includes('Elite')) {
+                button.addEventListener('click', function() {
+                    const tierType = this.textContent.replace('Join ', '');
+                    alert(`Joining ${tierType}... This would normally open registration form.`);
+                });
+            }
+        });
+        
+        // Destination exploration
+        document.querySelectorAll('.group button').forEach(button => {
+            if (button.textContent === 'Explore') {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const destination = this.closest('.group').querySelector('h3').textContent;
+                    alert(`Exploring ${destination}... This would show detailed destination information and booking options.`);
+                });
+            }
+        });
+        
+        // Initialize scroll reveal on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            revealOnScroll();
+            
+            // Add parallax effect to hero section
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const hero = document.querySelector('#home');
+                if (hero) {
+                    hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+                }
+            });
+        });
+        
+        // Mobile menu toggle (basic implementation)
+        document.querySelector('.md\\:hidden button').addEventListener('click', function() {
+            alert('Mobile menu would open here. This is a desktop-focused demo.');
+        });
+        
+        // Add loading state to booking buttons
+        document.querySelectorAll('button').forEach(button => {
+            if (button.textContent.includes('Book') || button.textContent.includes('Search')) {
+                button.addEventListener('click', function() {
+                    const originalText = this.textContent;
+                    this.textContent = 'Loading...';
+                    this.disabled = true;
+                    
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                        this.disabled = false;
+                    }, 2000);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
