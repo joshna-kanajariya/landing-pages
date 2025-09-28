@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShieldForce Pro - Enterprise Cybersecurity</title>
+    <meta name="description" content="ShieldForce Pro delivers cutting-edge cybersecurity solutions for enterprise clients. Protect your digital assets with our advanced threat detection and penetration testing services.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --cyber-green: #00ff00;
+            --dark-green: #00cc00;
+            --neon-green: #39ff14;
+            --warning-red: #ff0040;
+            --electric-blue: #0080ff;
+        }
+        
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: var(--cyber-green) #000;
+        }
+        
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--cyber-green);
+            border-radius: 4px;
+        }
+        
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        .brutalist-font {
+            font-family: 'Orbitron', monospace;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .cyber-green {
+            color: var(--cyber-green);
+        }
+        
+        .cyber-green-bg {
+            background-color: var(--cyber-green);
+        }
+        
+        .neon-green {
+            color: var(--neon-green);
+        }
+        
+        /* Code Rain Animation */
+        .code-rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .code-character {
+            position: absolute;
+            color: var(--cyber-green);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            opacity: 0.7;
+            animation: fall linear infinite;
+        }
+        
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+        
+        /* Glitch Animation */
+        .glitch {
+            position: relative;
+            animation: glitch 2s infinite;
+        }
+        
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .glitch::before {
+            animation: glitch-1 0.2s infinite;
+            color: #ff0040;
+            z-index: -1;
+        }
+        
+        .glitch::after {
+            animation: glitch-2 0.2s infinite;
+            color: #0080ff;
+            z-index: -2;
+        }
+        
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+        }
+        
+        @keyframes glitch-1 {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(2px, -2px); }
+            40% { transform: translate(-2px, 2px); }
+            60% { transform: translate(-2px, -2px); }
+            80% { transform: translate(2px, 2px); }
+        }
+        
+        @keyframes glitch-2 {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, -2px); }
+            40% { transform: translate(2px, 2px); }
+            60% { transform: translate(2px, -2px); }
+            80% { transform: translate(-2px, 2px); }
+        }
+        
+        /* Security Scanner Animation */
+        .scanner-line {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--cyber-green), transparent);
+            animation: scan 3s ease-in-out infinite;
+        }
+        
+        @keyframes scan {
+            0%, 100% { transform: translateY(-50px); opacity: 0; }
+            50% { transform: translateY(250px); opacity: 1; }
+        }
+        
+        /* Pulse Animation */
+        .pulse-danger {
+            animation: pulse-danger 2s infinite;
+        }
+        
+        @keyframes pulse-danger {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(255, 0, 64, 0.5);
+            }
+            50% { 
+                transform: scale(1.1);
+                box-shadow: 0 0 40px rgba(255, 0, 64, 0.8);
+            }
+        }
+        
+        /* Ripple Effect */
+        .ripple {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ripple::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(0, 255, 0, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .ripple:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+        
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--cyber-green);
+            color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 255, 0, 0.4);
+        }
+        
+        .fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(0, 255, 0, 0.6);
+        }
+        
+        /* Counter Animation */
+        .counter {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            color: var(--warning-red);
+            text-shadow: 0 0 10px var(--warning-red);
+        }
+        
+        /* Form Validation */
+        .form-input {
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #333;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            border-color: var(--cyber-green);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+            outline: none;
+        }
+        
+        .form-input.valid {
+            border-color: var(--cyber-green);
+        }
+        
+        .form-input.invalid {
+            border-color: var(--warning-red);
+        }
+        
+        /* Asymmetrical Grid */
+        .asymmetric-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 20px;
+            grid-template-areas: 
+                "main sidebar"
+                "footer footer";
+        }
+        
+        @media (max-width: 768px) {
+            .asymmetric-grid {
+                grid-template-columns: 1fr;
+                grid-template-areas: 
+                    "main"
+                    "sidebar"
+                    "footer";
+            }
+        }
+        
+        /* Client Logo Hover Effects */
+        .logo-transform {
+            transition: all 0.3s ease;
+            filter: grayscale(100%) brightness(0.5);
+        }
+        
+        .logo-transform:hover {
+            filter: grayscale(0%) brightness(1);
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        /* Scroll Animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Split Screen Layout */
+        .split-screen {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
+        }
+        
+        @media (max-width: 768px) {
+            .split-screen {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+        }
+        
+        /* Cyberpunk Border Effect */
+        .cyber-border {
+            position: relative;
+            border: 2px solid var(--cyber-green);
+        }
+        
+        .cyber-border::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            background: linear-gradient(45deg, var(--cyber-green), transparent, var(--cyber-green));
+            z-index: -1;
+            opacity: 0.5;
+        }
+        
+        /* Threat Map Styles */
+        .threat-map {
+            position: relative;
+            background: radial-gradient(circle at center, #001100, #000);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .threat-point {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--warning-red);
+            border-radius: 50%;
+            animation: pulse-threat 2s infinite;
+        }
+        
+        @keyframes pulse-threat {
+            0%, 100% { 
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% { 
+                transform: scale(2);
+                opacity: 0.3;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-black bg-opacity-90 backdrop-blur-sm z-50 border-b border-green-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="brutalist-font text-2xl cyber-green">
+                        <i class="fas fa-shield-alt mr-2"></i>
+                        SHIELDFORCE PRO
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#services" class="hover:text-green-400 transition-colors">SERVICES</a>
+                        <a href="#solutions" class="hover:text-green-400 transition-colors">SOLUTIONS</a>
+                        <a href="#threat-intel" class="hover:text-green-400 transition-colors">THREAT INTEL</a>
+                        <a href="#contact" class="hover:text-green-400 transition-colors">CONTACT</a>
+                    </div>
+                </div>
+                <button class="md:hidden text-green-500" id="mobile-menu-button">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Code Rain Background -->
+        <div class="code-rain" id="code-rain"></div>
+        
+        <!-- Hero Content -->
+        <div class="relative z-10 text-center px-4 max-w-6xl mx-auto">
+            <h1 class="brutalist-font text-5xl md:text-8xl mb-8 glitch" data-text="ENTERPRISE CYBER DEFENSE">
+                ENTERPRISE CYBER DEFENSE
+            </h1>
+            <p class="text-xl md:text-2xl mb-12 max-w-3xl mx-auto">
+                Advanced penetration testing, threat detection, and security consulting for Fortune 500 companies.
+                <span class="cyber-green">ZERO TOLERANCE FOR VULNERABILITIES.</span>
+            </p>
+            
+            <!-- Security Scanner Visualization -->
+            <div class="relative bg-black border-2 border-green-500 p-8 mb-12 max-w-4xl mx-auto cyber-border">
+                <div class="text-left font-mono text-sm">
+                    <div class="mb-2">
+                        <span class="cyber-green">root@shieldforce:~$</span> 
+                        <span class="text-white">initialize_security_scan --target enterprise_network</span>
+                    </div>
+                    <div class="mb-2">
+                        <span class="text-green-400">✓</span> Network discovery completed
+                    </div>
+                    <div class="mb-2">
+                        <span class="text-green-400">✓</span> Vulnerability assessment in progress...
+                    </div>
+                    <div class="mb-2">
+                        <span class="text-yellow-400">⚠</span> 3 critical vulnerabilities detected
+                    </div>
+                    <div class="mb-4">
+                        <span class="text-red-400">✗</span> Unauthorized access attempt blocked
+                    </div>
+                </div>
+                <div class="scanner-line"></div>
+            </div>
+            
+            <div class="flex justify-center space-x-4">
+                <button class="bg-green-500 text-black px-8 py-4 text-lg font-bold hover:bg-green-400 transition-colors ripple">
+                    START SECURITY AUDIT
+                </button>
+                <button class="border-2 border-green-500 text-green-500 px-8 py-4 text-lg font-bold hover:bg-green-500 hover:text-black transition-colors">
+                    VIEW THREAT INTEL
+                </button>
+            </div>
+        </div>
+        
+        <!-- Cyber Attack Counter -->
+        <div class="absolute top-20 right-4 bg-black border border-red-500 p-4">
+            <div class="text-sm text-red-400 mb-2">LIVE THREAT COUNTER</div>
+            <div class="counter text-2xl" id="attack-counter">1,337,420</div>
+            <div class="text-xs text-gray-400">Attacks blocked today</div>
+        </div>
+    </section>
+
+    <!-- Services Section - Split Screen -->
+    <section id="services" class="split-screen">
+        <div class="bg-black p-12 flex items-center">
+            <div class="max-w-lg">
+                <h2 class="brutalist-font text-4xl md:text-6xl mb-8 cyber-green">
+                    PENETRATION TESTING
+                </h2>
+                <p class="text-lg mb-6">
+                    Our elite red team simulates real-world attacks against your infrastructure, 
+                    identifying vulnerabilities before malicious actors do.
+                </p>
+                <ul class="space-y-4 mb-8">
+                    <li class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                        Network Infrastructure Testing
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                        Web Application Security
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                        Social Engineering Assessment
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                        Wireless Security Audit
+                    </li>
+                </ul>
+                <button class="bg-green-500 text-black px-6 py-3 font-bold hover:bg-green-400 transition-colors ripple">
+                    REQUEST PENTEST
+                </button>
+            </div>
+        </div>
+        <div class="bg-green-500 p-12 flex items-center justify-center">
+            <div class="text-black">
+                <div class="text-6xl font-bold mb-4">99.7%</div>
+                <div class="text-xl">SUCCESS RATE</div>
+                <div class="text-sm mt-2">Vulnerabilities identified and patched</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Threat Map -->
+    <section class="py-20 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="brutalist-font text-4xl md:text-6xl text-center mb-12 cyber-green">
+                GLOBAL THREAT INTELLIGENCE
+            </h2>
+            <div class="threat-map h-96 relative mb-8" id="threat-map">
+                <!-- Threat points will be dynamically added here -->
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-red-400 counter" id="active-threats">2,847</div>
+                    <div class="text-sm text-gray-400">Active Threats</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-yellow-400 counter" id="blocked-attacks">15,392</div>
+                    <div class="text-sm text-gray-400">Attacks Blocked</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-green-400 counter" id="secure-networks">1,249</div>
+                    <div class="text-sm text-gray-400">Networks Secured</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions - Asymmetric Grid -->
+    <section id="solutions" class="py-20 bg-black">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="brutalist-font text-4xl md:text-6xl text-center mb-16 cyber-green">
+                SECURITY SOLUTIONS
+            </h2>
+            <div class="asymmetric-grid">
+                <div class="space-y-8" style="grid-area: main;">
+                    <div class="border border-green-500 p-8 hover:bg-gray-900 transition-colors fade-in-up">
+                        <h3 class="text-2xl font-bold mb-4 cyber-green">
+                            <i class="fas fa-shield-virus mr-3"></i>
+                            ZERO-DAY PROTECTION
+                        </h3>
+                        <p class="mb-4">
+                            Advanced AI-powered threat detection that identifies and neutralizes 
+                            unknown threats in real-time.
+                        </p>
+                        <ul class="space-y-2">
+                            <li>• Machine Learning Anomaly Detection</li>
+                            <li>• Behavioral Analysis Engine</li>
+                            <li>• Automated Response System</li>
+                        </ul>
+                    </div>
+                    <div class="border border-green-500 p-8 hover:bg-gray-900 transition-colors fade-in-up">
+                        <h3 class="text-2xl font-bold mb-4 cyber-green">
+                            <i class="fas fa-user-secret mr-3"></i>
+                            INSIDER THREAT DETECTION
+                        </h3>
+                        <p class="mb-4">
+                            Monitor and analyze user behavior patterns to detect malicious 
+                            insider activities before they cause damage.
+                        </p>
+                        <ul class="space-y-2">
+                            <li>• User Activity Monitoring</li>
+                            <li>• Privilege Escalation Detection</li>
+                            <li>• Data Exfiltration Prevention</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-gray-900 p-8 border border-green-500" style="grid-area: sidebar;">
+                    <h4 class="text-xl font-bold mb-6 cyber-green">SECURITY METRICS</h4>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>Threat Detection</span>
+                                <span class="cyber-green">99.8%</span>
+                            </div>
+                            <div class="bg-gray-700 h-2">
+                                <div class="bg-green-500 h-2 w-full"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>Response Time</span>
+                                <span class="cyber-green">< 5min</span>
+                            </div>
+                            <div class="bg-gray-700 h-2">
+                                <div class="bg-green-500 h-2 w-5/6"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span>False Positives</span>
+                                <span class="cyber-green">0.02%</span>
+                            </div>
+                            <div class="bg-gray-700 h-2">
+                                <div class="bg-green-500 h-2 w-1/12"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Logos -->
+    <section class="py-20 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="brutalist-font text-3xl md:text-4xl text-center mb-12 cyber-green">
+                TRUSTED BY FORTUNE 500 COMPANIES
+            </h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
+                <div class="logo-transform bg-white p-4 text-center text-black font-bold text-xl">
+                    TECHCORP
+                </div>
+                <div class="logo-transform bg-white p-4 text-center text-black font-bold text-xl">
+                    GLOBALBANK
+                </div>
+                <div class="logo-transform bg-white p-4 text-center text-black font-bold text-xl">
+                    MEDIASYS
+                </div>
+                <div class="logo-transform bg-white p-4 text-center text-black font-bold text-xl">
+                    AUTOTECH
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section id="contact" class="py-20 bg-black">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="brutalist-font text-4xl md:text-6xl text-center mb-12 cyber-green">
+                SECURE YOUR ENTERPRISE
+            </h2>
+            <form class="space-y-6" id="contact-form">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-bold mb-2 cyber-green">COMPANY NAME</label>
+                        <input type="text" class="form-input w-full p-4" required id="company">
+                        <div class="validation-message text-sm mt-1"></div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold mb-2 cyber-green">CONTACT PERSON</label>
+                        <input type="text" class="form-input w-full p-4" required id="contact-person">
+                        <div class="validation-message text-sm mt-1"></div>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-2 cyber-green">EMAIL ADDRESS</label>
+                    <input type="email" class="form-input w-full p-4" required id="email">
+                    <div class="validation-message text-sm mt-1"></div>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-2 cyber-green">SECURITY REQUIREMENTS</label>
+                    <select class="form-input w-full p-4" required id="requirements">
+                        <option value="">Select Security Service</option>
+                        <option value="penetration-testing">Penetration Testing</option>
+                        <option value="vulnerability-assessment">Vulnerability Assessment</option>
+                        <option value="security-audit">Security Audit</option>
+                        <option value="incident-response">Incident Response</option>
+                        <option value="compliance-consulting">Compliance Consulting</option>
+                    </select>
+                    <div class="validation-message text-sm mt-1"></div>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-2 cyber-green">ADDITIONAL DETAILS</label>
+                    <textarea class="form-input w-full p-4 h-32" id="details" placeholder="Describe your security challenges and requirements..."></textarea>
+                </div>
+                <button type="submit" class="bg-green-500 text-black px-8 py-4 text-lg font-bold hover:bg-green-400 transition-colors ripple w-full">
+                    REQUEST SECURITY CONSULTATION
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-green-500 py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="brutalist-font text-2xl cyber-green mb-4">
+                        <i class="fas fa-shield-alt mr-2"></i>
+                        SHIELDFORCE PRO
+                    </div>
+                    <p class="text-gray-400">
+                        Enterprise-grade cybersecurity solutions for the digital age.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 cyber-green">SERVICES</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-green-400">Penetration Testing</a></li>
+                        <li><a href="#" class="hover:text-green-400">Vulnerability Assessment</a></li>
+                        <li><a href="#" class="hover:text-green-400">Security Consulting</a></li>
+                        <li><a href="#" class="hover:text-green-400">Incident Response</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 cyber-green">COMPANY</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-green-400">About Us</a></li>
+                        <li><a href="#" class="hover:text-green-400">Careers</a></li>
+                        <li><a href="#" class="hover:text-green-400">Case Studies</a></li>
+                        <li><a href="#" class="hover:text-green-400">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 cyber-green">CONTACT</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><i class="fas fa-envelope mr-2"></i> security@shieldforce.pro</li>
+                        <li><i class="fas fa-phone mr-2"></i> +1 (555) 123-HACK</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> Silicon Valley, CA</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 ShieldForce Pro. All rights reserved. | <span class="cyber-green">ZERO TOLERANCE FOR VULNERABILITIES</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <div class="fab ripple" id="fab">
+        <i class="fas fa-shield-alt"></i>
+    </div>
+
+    <script>
+        // Code Rain Effect
+        function createCodeRain() {
+            const codeRain = document.getElementById('code-rain');
+            const characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz<>/{}[]()';
+            
+            function createCharacter() {
+                const char = document.createElement('div');
+                char.className = 'code-character';
+                char.textContent = characters[Math.floor(Math.random() * characters.length)];
+                char.style.left = Math.random() * 100 + '%';
+                char.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                char.style.animationDelay = Math.random() * 2 + 's';
+                codeRain.appendChild(char);
+                
+                setTimeout(() => {
+                    if (char.parentNode) {
+                        char.parentNode.removeChild(char);
+                    }
+                }, 5000);
+            }
+            
+            setInterval(createCharacter, 100);
+        }
+
+        // Attack Counter Animation
+        function animateCounter() {
+            const counter = document.getElementById('attack-counter');
+            let count = 1337420;
+            
+            setInterval(() => {
+                count += Math.floor(Math.random() * 10) + 1;
+                counter.textContent = count.toLocaleString();
+            }, 2000);
+        }
+
+        // Threat Map Animation
+        function createThreatMap() {
+            const threatMap = document.getElementById('threat-map');
+            
+            function addThreatPoint() {
+                const point = document.createElement('div');
+                point.className = 'threat-point';
+                point.style.left = Math.random() * 90 + '%';
+                point.style.top = Math.random() * 90 + '%';
+                threatMap.appendChild(point);
+                
+                setTimeout(() => {
+                    if (point.parentNode) {
+                        point.parentNode.removeChild(point);
+                    }
+                }, 4000);
+            }
+            
+            setInterval(addThreatPoint, 500);
+        }
+
+        // Scroll Animations
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.fade-in-up');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            elements.forEach(el => observer.observe(el));
+        }
+
+        // Form Validation
+        function setupFormValidation() {
+            const form = document.getElementById('contact-form');
+            const inputs = form.querySelectorAll('input, select');
+            
+            inputs.forEach(input => {
+                input.addEventListener('blur', validateField);
+                input.addEventListener('input', validateField);
+            });
+            
+            function validateField(e) {
+                const field = e.target;
+                const value = field.value.trim();
+                const message = field.parentNode.querySelector('.validation-message');
+                
+                if (field.hasAttribute('required') && !value) {
+                    field.classList.add('invalid');
+                    field.classList.remove('valid');
+                    message.textContent = 'This field is required';
+                    message.className = 'validation-message text-sm mt-1 text-red-400';
+                } else if (field.type === 'email' && value && !isValidEmail(value)) {
+                    field.classList.add('invalid');
+                    field.classList.remove('valid');
+                    message.textContent = 'Please enter a valid email address';
+                    message.className = 'validation-message text-sm mt-1 text-red-400';
+                } else if (value) {
+                    field.classList.add('valid');
+                    field.classList.remove('invalid');
+                    message.textContent = '✓ Valid';
+                    message.className = 'validation-message text-sm mt-1 text-green-400';
+                } else {
+                    field.classList.remove('valid', 'invalid');
+                    message.textContent = '';
+                }
+            }
+            
+            function isValidEmail(email) {
+                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            }
+            
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Security consultation requested! Our team will contact you within 24 hours.');
+            });
+        }
+
+        // Mobile Menu Toggle
+        function setupMobileMenu() {
+            const button = document.getElementById('mobile-menu-button');
+            // Mobile menu functionality would go here
+        }
+
+        // Counter Animations for Statistics
+        function animateStatCounters() {
+            const counters = document.querySelectorAll('#active-threats, #blocked-attacks, #secure-networks');
+            
+            counters.forEach(counter => {
+                const updateCounter = () => {
+                    const id = counter.id;
+                    let baseValue, increment;
+                    
+                    switch(id) {
+                        case 'active-threats':
+                            baseValue = 2847;
+                            increment = Math.floor(Math.random() * 5) + 1;
+                            break;
+                        case 'blocked-attacks':
+                            baseValue = 15392;
+                            increment = Math.floor(Math.random() * 20) + 5;
+                            break;
+                        case 'secure-networks':
+                            baseValue = 1249;
+                            increment = Math.floor(Math.random() * 2);
+                            break;
+                    }
+                    
+                    const currentValue = parseInt(counter.textContent.replace(/,/g, ''));
+                    const newValue = currentValue + increment;
+                    counter.textContent = newValue.toLocaleString();
+                };
+                
+                setInterval(updateCounter, 3000);
+            });
+        }
+
+        // FAB Click Handler
+        function setupFAB() {
+            const fab = document.getElementById('fab');
+            fab.addEventListener('click', () => {
+                document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+            });
+        }
+
+        // Initialize all functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            createCodeRain();
+            animateCounter();
+            createThreatMap();
+            handleScrollAnimations();
+            setupFormValidation();
+            setupMobileMenu();
+            animateStatCounters();
+            setupFAB();
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Keyboard accessibility
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-focus');
+            }
+        });
+
+        document.addEventListener('mousedown', () => {
+            document.body.classList.remove('keyboard-focus');
+        });
+    </script>
+</body>
+</html>
