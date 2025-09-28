@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Pages Gallery</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .gallery {
+            display: grid;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .landing-page-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .landing-page-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .landing-page-card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #FFD700;
+        }
+        .landing-page-card p {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #333;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255,215,0,0.4);
+        }
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .feature {
+            background: rgba(255,255,255,0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Landing Pages Gallery</h1>
+        <p>A collection of beautifully crafted, responsive landing pages built with modern web technologies.</p>
+        
+        <div class="gallery">
+            <div class="landing-page-card">
+                <h2>🍽️ ChefTable Express</h2>
+                <p>A sophisticated gourmet delivery service landing page featuring animated chef demonstrations, interactive menu builders with dietary filters, wine pairing suggestions, and subscription plans. Built with a culinary color palette of truffle brown, herb green, and saffron gold.</p>
+                
+                <div class="features">
+                    <span class="feature">🎨 Culinary Design</span>
+                    <span class="feature">📱 Mobile Responsive</span>
+                    <span class="feature">🎯 Interactive Filters</span>
+                    <span class="feature">⚡ Smooth Animations</span>
+                    <span class="feature">🍷 Wine Pairings</span>
+                </div>
+                
+                <div style="margin-top: 2rem;">
+                    <a href="cheftable-express.html" class="btn">View Landing Page</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
