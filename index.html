@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScienceLab Virtual - STEM Platform for Future Scientists</title>
+    <meta name="description" content="Explore cutting-edge virtual laboratories, interactive experiments, and STEM education with ScienceLab Virtual. Join thousands of students and educators in revolutionary science learning.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'mono': ['JetBrains Mono', 'monospace'],
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        'lab-blue': {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#0066cc',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        },
+                        'experiment-green': {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            200: '#a7f3d0',
+                            300: '#6ee7b7',
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                        },
+                        'discovery-purple': {
+                            50: '#faf5ff',
+                            100: '#f3e8ff',
+                            200: '#e9d5ff',
+                            300: '#d8b4fe',
+                            400: '#c084fc',
+                            500: '#a855f7',
+                            600: '#9333ea',
+                            700: '#7c3aed',
+                            800: '#6b21a8',
+                            900: '#581c87',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite',
+                        'bounce-slow': 'bounce 3s ease-in-out infinite',
+                        'rotate-slow': 'rotate 20s linear infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'slide-up': 'slideUp 0.8s ease-out forwards',
+                        'fade-in': 'fadeIn 1s ease-out forwards',
+                        'scale-in': 'scaleIn 0.6s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 20px rgba(59, 130, 246, 0.5)' },
+                            '100%': { boxShadow: '0 0 30px rgba(59, 130, 246, 0.8)' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(100px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        scaleIn: {
+                            '0%': { transform: 'scale(0.8)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        },
+                        rotate: {
+                            '0%': { transform: 'rotate(0deg)' },
+                            '100%': { transform: 'rotate(360deg)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom CSS for advanced animations and effects */
+        .molecular-bg {
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
+            background-size: 300px 300px, 200px 200px, 400px 400px;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        .circuit-pattern {
+            background-image: 
+                linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+                linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        
+        .element-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+        
+        .element-card:hover {
+            transform: translateY(-10px) rotateX(10deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .experiment-animation {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .experiment-animation::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+            animation: rotate-slow infinite;
+        }
+        
+        .parallax-element {
+            will-change: transform;
+        }
+        
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Accessibility: Respect prefers-reduced-motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1e3a8a;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #3b82f6, #10b981);
+            border-radius: 4px;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="font-sans bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 text-white overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-effect transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-lab-blue-500 to-experiment-green-500 rounded-lg flex items-center justify-center">
+                        <i data-lucide="atom" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <span class="font-mono font-bold text-xl">ScienceLab Virtual</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#experiments" class="hover:text-lab-blue-400 transition-colors">Experiments</a>
+                    <a href="#periodic-table" class="hover:text-experiment-green-400 transition-colors">Elements</a>
+                    <a href="#projects" class="hover:text-discovery-purple-400 transition-colors">Projects</a>
+                    <a href="#educators" class="hover:text-lab-blue-400 transition-colors">Educators</a>
+                    <a href="#pricing" class="hover:text-experiment-green-400 transition-colors">Pricing</a>
+                    <button class="bg-gradient-to-r from-lab-blue-600 to-experiment-green-600 hover:from-lab-blue-700 hover:to-experiment-green-700 px-6 py-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105">
+                        Start Lab
+                    </button>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white hover:text-lab-blue-400">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 transform -translate-x-full transition-transform duration-300 md:hidden">
+        <div class="glass-effect h-full w-64 p-6">
+            <div class="flex justify-between items-center mb-8">
+                <span class="font-mono font-bold text-xl">Menu</span>
+                <button id="close-mobile-menu">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <nav class="space-y-6">
+                <a href="#experiments" class="block hover:text-lab-blue-400 transition-colors">Experiments</a>
+                <a href="#periodic-table" class="block hover:text-experiment-green-400 transition-colors">Elements</a>
+                <a href="#projects" class="block hover:text-discovery-purple-400 transition-colors">Projects</a>
+                <a href="#educators" class="block hover:text-lab-blue-400 transition-colors">Educators</a>
+                <a href="#pricing" class="block hover:text-experiment-green-400 transition-colors">Pricing</a>
+                <button class="w-full bg-gradient-to-r from-lab-blue-600 to-experiment-green-600 px-6 py-2 rounded-lg font-semibold">
+                    Start Lab
+                </button>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center molecular-bg overflow-hidden">
+        <div class="absolute inset-0 circuit-pattern opacity-30"></div>
+        
+        <!-- Floating Science Elements -->
+        <div class="absolute inset-0">
+            <div class="absolute top-20 left-10 animate-float">
+                <div class="w-16 h-16 bg-lab-blue-500/20 rounded-full flex items-center justify-center">
+                    <i data-lucide="microscope" class="w-8 h-8 text-lab-blue-400"></i>
+                </div>
+            </div>
+            <div class="absolute top-40 right-20 animate-float" style="animation-delay: 2s;">
+                <div class="w-12 h-12 bg-experiment-green-500/20 rounded-full flex items-center justify-center">
+                    <i data-lucide="flask-conical" class="w-6 h-6 text-experiment-green-400"></i>
+                </div>
+            </div>
+            <div class="absolute bottom-40 left-20 animate-float" style="animation-delay: 4s;">
+                <div class="w-14 h-14 bg-discovery-purple-500/20 rounded-full flex items-center justify-center">
+                    <i data-lucide="dna" class="w-7 h-7 text-discovery-purple-400"></i>
+                </div>
+            </div>
+            <div class="absolute top-1/2 right-10 animate-rotate-slow">
+                <div class="w-20 h-20 border-2 border-lab-blue-400/30 rounded-full flex items-center justify-center">
+                    <div class="w-12 h-12 border-2 border-experiment-green-400/50 rounded-full flex items-center justify-center">
+                        <div class="w-6 h-6 bg-discovery-purple-500 rounded-full"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="experiment-animation mb-8">
+                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in">
+                    <span class="font-mono text-lab-blue-400">Science</span>
+                    <span class="font-sans bg-gradient-to-r from-experiment-green-400 to-discovery-purple-400 bg-clip-text text-transparent">Lab</span>
+                    <span class="font-mono text-white">Virtual</span>
+                </h1>
+            </div>
+            
+            <p class="text-xl sm:text-2xl mb-8 text-gray-300 max-w-3xl mx-auto animate-slide-up" style="animation-delay: 0.3s;">
+                Explore cutting-edge virtual laboratories, conduct interactive experiments, and unlock the mysteries of science with our revolutionary STEM platform.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-6 animate-slide-up" style="animation-delay: 0.6s;">
+                <button class="group bg-gradient-to-r from-lab-blue-600 to-experiment-green-600 hover:from-lab-blue-700 hover:to-experiment-green-700 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 animate-glow">
+                    <span class="flex items-center space-x-2">
+                        <span>Start Experimenting</span>
+                        <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                    </span>
+                </button>
+                <button class="glass-effect hover:bg-white/20 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105">
+                    <span class="flex items-center space-x-2">
+                        <i data-lucide="play" class="w-5 h-5"></i>
+                        <span>Watch Demo</span>
+                    </span>
+                </button>
+            </div>
+            
+            <!-- Stats -->
+            <div class="grid grid-cols-3 gap-8 mt-16 animate-scale-in" style="animation-delay: 0.9s;">
+                <div class="text-center">
+                    <div class="text-3xl font-mono font-bold text-lab-blue-400 mb-2">500K+</div>
+                    <div class="text-gray-400">Experiments</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-mono font-bold text-experiment-green-400 mb-2">2M+</div>
+                    <div class="text-gray-400">Students</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-mono font-bold text-discovery-purple-400 mb-2">10K+</div>
+                    <div class="text-gray-400">Schools</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Virtual Laboratory Equipment Section -->
+    <section id="experiments" class="py-20 relative">
+        <div class="absolute inset-0 molecular-bg opacity-50"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl sm:text-5xl font-bold mb-6">
+                    <span class="font-mono text-lab-blue-400">Virtual</span>
+                    <span class="font-sans text-white">Laboratory</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Experience state-of-the-art scientific equipment and conduct experiments safely in our immersive virtual environment.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Equipment Card 1 -->
+                <div class="glass-effect rounded-2xl p-6 scroll-reveal group hover:bg-white/20 transition-all duration-300">
+                    <div class="w-16 h-16 bg-gradient-to-br from-lab-blue-500 to-experiment-green-500 rounded-xl flex items-center justify-center mb-6 group-hover:animate-bounce-slow">
+                        <i data-lucide="microscope" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 font-mono">Digital Microscope</h3>
+                    <p class="text-gray-300 mb-6">Explore cellular structures with zoom capabilities up to 40,000x magnification. Study bacteria, plant cells, and molecular interactions.</p>
+                    <div class="space-y-2">
+                        <div class="flex items-center text-sm text-experiment-green-400">
+                            <i data-lucide="check" class="w-4 h-4 mr-2"></i>
+                            <span>40K+ specimens library</span>
+                        </div>
+                        <div class="flex items-center text-sm text-experiment-green-400">
+                            <i data-lucide="check" class="w-4 h-4 mr-2"></i>
+                            <span>Real-time annotations</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Equipment Card 2 -->
+                <div class="glass-effect rounded-2xl p-6 scroll-reveal group hover:bg-white/20 transition-all duration-300" style="animation-delay: 0.2s;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-experiment-green-500 to-discovery-purple-500 rounded-xl flex items-center justify-center mb-6 group-hover:animate-bounce-slow">
+                        <i data-lucide="flask-conical" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 font-mono">Chemistry Lab</h3>
+                    <p class="text-gray-300 mb-6">Conduct safe chemical experiments with accurate reaction simulations. Mix compounds and observe real-world chemical behaviors.</p>
+                    <div class="space-y-2">
+                        <div class="flex items-center text-sm text-experiment-green-400">
+                            <i data-lucide="check" class="w-4 h-4 mr-2"></i>
+                            <span>500+ chemical reactions</span>
+                        </div>
+                        <div class="flex items-center text-sm text-experiment-green-400">
+                            <i data-lucide="check" class="w-4 h-4 mr-2"></i>
+                            <span>Safety protocols built-in</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Equipment Card 3 -->
+                <div class="glass-effect rounded-2xl p-6 scroll-reveal group hover:bg-white/20 transition-all duration-300" style="animation-delay: 0.4s;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-discovery-purple-500 to-lab-blue-500 rounded-xl flex items-center justify-center mb-6 group-hover:animate-bounce-slow">
+                        <i data-lucide="cpu" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 font-mono">Robotics Suite</h3>
+                    <p class="text-gray-300 mb-6">Program and control virtual robots. Learn coding principles while building autonomous systems and AI behaviors.</p>
+                    <div class="space-y-2">
+                        <div class="flex items-center text-sm text-experiment-green-400">
+                            <i data-lucide="check" class="w-4 h-4 mr-2"></i>
+                            <span>Multiple programming languages</span>
+                        </div>
+                        <div class="flex items-center text-sm text-experiment-green-400">
+                            <i data-lucide="check" class="w-4 h-4 mr-2"></i>
+                            <span>Real physics simulation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Equipment Card 4 -->
+                <div class="glass-effect rounded-2xl p-6 scroll-reveal group hover:bg-white/20 transition-all duration-300" style="animation-delay: 0.6s;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-lab-blue-500 to-discovery-purple-500 rounded-xl flex items-center justify-center mb-6 group-hover:animate-bounce-slow">
+                        <i data-lucide="dna" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 font-mono">DNA Sequencer</h3>
+                    <p class="text-gray-300 mb-6">Analyze genetic sequences and explore biotechnology. Understand gene expression and genetic engineering principles.</p>
+                    <div class="space-y-2">
+                        <div class="flex items-center text-sm text-experiment-green-400">
+                            <i data-lucide="check" class="w-4 h-4 mr-2"></i>
+                            <span>Real genome databases</span>
+                        </div>
+                        <div class="flex items-center text-sm text-experiment-green-400">
+                            <i data-lucide="check" class="w-4 h-4 mr-2"></i>
+                            <span>CRISPR simulations</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Equipment Card 5 -->
+                <div class="glass-effect rounded-2xl p-6 scroll-reveal group hover:bg-white/20 transition-all duration-300" style="animation-delay: 0.8s;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-experiment-green-500 to-lab-blue-500 rounded-xl flex items-center justify-center mb-6 group-hover:animate-bounce-slow">
+                        <i data-lucide="zap" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 font-mono">Physics Simulator</h3>
+                    <p class="text-gray-300 mb-6">Explore quantum mechanics, electromagnetism, and thermodynamics with interactive 3D models and real-time calculations.</p>
+                    <div class="space-y-2">
+                        <div class="flex items-center text-sm text-experiment-green-400">
+                            <i data-lucide="check" class="w-4 h-4 mr-2"></i>
+                            <span>Quantum visualization</span>
+                        </div>
+                        <div class="flex items-center text-sm text-experiment-green-400">
+                            <i data-lucide="check" class="w-4 h-4 mr-2"></i>
+                            <span>Interactive equations</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Equipment Card 6 -->
+                <div class="glass-effect rounded-2xl p-6 scroll-reveal group hover:bg-white/20 transition-all duration-300" style="animation-delay: 1s;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-discovery-purple-500 to-experiment-green-500 rounded-xl flex items-center justify-center mb-6 group-hover:animate-bounce-slow">
+                        <i data-lucide="satellite" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 font-mono">Space Observatory</h3>
+                    <p class="text-gray-300 mb-6">Study celestial objects and astronomical phenomena. Control virtual telescopes and analyze space data.</p>
+                    <div class="space-y-2">
+                        <div class="flex items-center text-sm text-experiment-green-400">
+                            <i data-lucide="check" class="w-4 h-4 mr-2"></i>
+                            <span>Real NASA datasets</span>
+                        </div>
+                        <div class="flex items-center text-sm text-experiment-green-400">
+                            <i data-lucide="check" class="w-4 h-4 mr-2"></i>
+                            <span>Live space missions</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Periodic Table Section -->
+    <section id="periodic-table" class="py-20 relative circuit-pattern">
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl sm:text-5xl font-bold mb-6">
+                    <span class="font-mono text-experiment-green-400">Interactive</span>
+                    <span class="font-sans text-white">Periodic Table</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Discover the elements that make up our universe. Click, explore, and learn about each element's properties, history, and applications.
+                </p>
+            </div>
+
+            <!-- Periodic Table Preview -->
+            <div class="mb-16 scroll-reveal">
+                <div class="glass-effect rounded-3xl p-8 max-w-4xl mx-auto">
+                    <div class="grid grid-cols-6 sm:grid-cols-10 lg:grid-cols-18 gap-1 sm:gap-2" id="periodic-table-preview">
+                        <!-- Sample elements - would normally be generated dynamically -->
+                        <div class="element-card bg-lab-blue-600 rounded-lg p-2 sm:p-3 text-center cursor-pointer" data-element="H">
+                            <div class="text-xs opacity-75">1</div>
+                            <div class="font-mono font-bold text-lg sm:text-xl">H</div>
+                            <div class="text-xs opacity-75">Hydrogen</div>
+                        </div>
+                        <div class="col-span-4 sm:col-span-8 lg:col-span-16"></div>
+                        <div class="element-card bg-discovery-purple-600 rounded-lg p-2 sm:p-3 text-center cursor-pointer" data-element="He">
+                            <div class="text-xs opacity-75">2</div>
+                            <div class="font-mono font-bold text-lg sm:text-xl">He</div>
+                            <div class="text-xs opacity-75">Helium</div>
+                        </div>
+                        
+                        <div class="element-card bg-experiment-green-600 rounded-lg p-2 sm:p-3 text-center cursor-pointer" data-element="Li">
+                            <div class="text-xs opacity-75">3</div>
+                            <div class="font-mono font-bold text-lg sm:text-xl">Li</div>
+                            <div class="text-xs opacity-75">Lithium</div>
+                        </div>
+                        <div class="element-card bg-lab-blue-600 rounded-lg p-2 sm:p-3 text-center cursor-pointer" data-element="Be">
+                            <div class="text-xs opacity-75">4</div>
+                            <div class="font-mono font-bold text-lg sm:text-xl">Be</div>
+                            <div class="text-xs opacity-75">Beryllium</div>
+                        </div>
+                        <div class="col-span-2 sm:col-span-4 lg:col-span-10"></div>
+                        <div class="element-card bg-discovery-purple-600 rounded-lg p-2 sm:p-3 text-center cursor-pointer" data-element="B">
+                            <div class="text-xs opacity-75">5</div>
+                            <div class="font-mono font-bold text-lg sm:text-xl">B</div>
+                            <div class="text-xs opacity-75">Boron</div>
+                        </div>
+                        <div class="element-card bg-discovery-purple-600 rounded-lg p-2 sm:p-3 text-center cursor-pointer" data-element="C">
+                            <div class="text-xs opacity-75">6</div>
+                            <div class="font-mono font-bold text-lg sm:text-xl">C</div>
+                            <div class="text-xs opacity-75">Carbon</div>
+                        </div>
+                        <div class="element-card bg-discovery-purple-600 rounded-lg p-2 sm:p-3 text-center cursor-pointer" data-element="N">
+                            <div class="text-xs opacity-75">7</div>
+                            <div class="font-mono font-bold text-lg sm:text-xl">N</div>
+                            <div class="text-xs opacity-75">Nitrogen</div>
+                        </div>
+                        <div class="element-card bg-discovery-purple-600 rounded-lg p-2 sm:p-3 text-center cursor-pointer" data-element="O">
+                            <div class="text-xs opacity-75">8</div>
+                            <div class="font-mono font-bold text-lg sm:text-xl">O</div>
+                            <div class="text-xs opacity-75">Oxygen</div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-8">
+                        <button class="bg-gradient-to-r from-experiment-green-600 to-discovery-purple-600 hover:from-experiment-green-700 hover:to-discovery-purple-700 px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105">
+                            Explore Full Periodic Table
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Element Discovery Features -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-effect rounded-2xl p-6 scroll-reveal text-center">
+                    <div class="w-16 h-16 bg-gradient-to-br from-lab-blue-500 to-experiment-green-500 rounded-xl flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="search" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 font-mono">Element Discovery</h3>
+                    <p class="text-gray-300">Learn about each element's discovery, properties, and applications through interactive animations and detailed explanations.</p>
+                </div>
+                
+                <div class="glass-effect rounded-2xl p-6 scroll-reveal text-center" style="animation-delay: 0.2s;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-experiment-green-500 to-discovery-purple-500 rounded-xl flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="atom" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 font-mono">Atomic Structure</h3>
+                    <p class="text-gray-300">Visualize electron configurations, atomic orbitals, and chemical bonding through 3D models and interactive simulations.</p>
+                </div>
+                
+                <div class="glass-effect rounded-2xl p-6 scroll-reveal text-center" style="animation-delay: 0.4s;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-discovery-purple-500 to-lab-blue-500 rounded-xl flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="beaker" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 font-mono">Chemical Reactions</h3>
+                    <p class="text-gray-300">Simulate chemical reactions in real-time, observe molecular interactions, and understand reaction mechanisms.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Student Projects & Coding Challenges -->
+    <section id="projects" class="py-20 relative molecular-bg">
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl sm:text-5xl font-bold mb-6">
+                    <span class="font-mono text-discovery-purple-400">Student</span>
+                    <span class="font-sans text-white">Projects</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Showcase your innovations and tackle coding challenges. Build real-world projects that solve scientific problems and advance human knowledge.
+                </p>
+            </div>
+
+            <!-- Project Categories -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+                <!-- Robotics Projects -->
+                <div class="scroll-reveal">
+                    <h3 class="text-2xl font-bold mb-8 font-mono text-lab-blue-400">Robotics & AI</h3>
+                    <div class="space-y-6">
+                        <div class="glass-effect rounded-xl p-6 group hover:bg-white/20 transition-all duration-300">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-lab-blue-500 to-experiment-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="bot" class="w-6 h-6 text-white"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="font-semibold mb-2">Autonomous Mars Rover</h4>
+                                    <p class="text-gray-300 text-sm mb-3">Build and program a Mars exploration rover using Python and computer vision. Navigate obstacles and collect samples.</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-2 py-1 bg-lab-blue-600/50 rounded text-xs">Python</span>
+                                        <span class="px-2 py-1 bg-experiment-green-600/50 rounded text-xs">OpenCV</span>
+                                        <span class="px-2 py-1 bg-discovery-purple-600/50 rounded text-xs">TensorFlow</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-effect rounded-xl p-6 group hover:bg-white/20 transition-all duration-300">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-experiment-green-500 to-discovery-purple-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="brain" class="w-6 h-6 text-white"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="font-semibold mb-2">Neural Network Classifier</h4>
+                                    <p class="text-gray-300 text-sm mb-3">Create an AI system that classifies medical images. Train models to detect diseases and assist diagnosis.</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-2 py-1 bg-lab-blue-600/50 rounded text-xs">JavaScript</span>
+                                        <span class="px-2 py-1 bg-experiment-green-600/50 rounded text-xs">ML5.js</span>
+                                        <span class="px-2 py-1 bg-discovery-purple-600/50 rounded text-xs">P5.js</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-effect rounded-xl p-6 group hover:bg-white/20 transition-all duration-300">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-discovery-purple-500 to-lab-blue-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="gamepad-2" class="w-6 h-6 text-white"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="font-semibold mb-2">Swarm Intelligence</h4>
+                                    <p class="text-gray-300 text-sm mb-3">Program multiple robots to work together. Implement swarm algorithms for search and rescue operations.</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-2 py-1 bg-lab-blue-600/50 rounded text-xs">C++</span>
+                                        <span class="px-2 py-1 bg-experiment-green-600/50 rounded text-xs">ROS</span>
+                                        <span class="px-2 py-1 bg-discovery-purple-600/50 rounded text-xs">Gazebo</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Biotechnology Projects -->
+                <div class="scroll-reveal" style="animation-delay: 0.3s;">
+                    <h3 class="text-2xl font-bold mb-8 font-mono text-experiment-green-400">Biotechnology & Data</h3>
+                    <div class="space-y-6">
+                        <div class="glass-effect rounded-xl p-6 group hover:bg-white/20 transition-all duration-300">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-experiment-green-500 to-lab-blue-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="dna" class="w-6 h-6 text-white"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="font-semibold mb-2">Gene Expression Analysis</h4>
+                                    <p class="text-gray-300 text-sm mb-3">Analyze real genomic data to understand disease patterns. Use bioinformatics tools to discover insights.</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-2 py-1 bg-lab-blue-600/50 rounded text-xs">R</span>
+                                        <span class="px-2 py-1 bg-experiment-green-600/50 rounded text-xs">Bioconductor</span>
+                                        <span class="px-2 py-1 bg-discovery-purple-600/50 rounded text-xs">BLAST</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-effect rounded-xl p-6 group hover:bg-white/20 transition-all duration-300">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-lab-blue-500 to-discovery-purple-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="activity" class="w-6 h-6 text-white"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="font-semibold mb-2">Climate Data Visualization</h4>
+                                    <p class="text-gray-300 text-sm mb-3">Create interactive dashboards showing climate change effects. Build predictive models for environmental impact.</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-2 py-1 bg-lab-blue-600/50 rounded text-xs">Python</span>
+                                        <span class="px-2 py-1 bg-experiment-green-600/50 rounded text-xs">Plotly</span>
+                                        <span class="px-2 py-1 bg-discovery-purple-600/50 rounded text-xs">Pandas</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-effect rounded-xl p-6 group hover:bg-white/20 transition-all duration-300">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-discovery-purple-500 to-experiment-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="microscope" class="w-6 h-6 text-white"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="font-semibold mb-2">Protein Structure Prediction</h4>
+                                    <p class="text-gray-300 text-sm mb-3">Use machine learning to predict protein folding patterns. Contribute to drug discovery and disease research.</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-2 py-1 bg-lab-blue-600/50 rounded text-xs">Python</span>
+                                        <span class="px-2 py-1 bg-experiment-green-600/50 rounded text-xs">PyMOL</span>
+                                        <span class="px-2 py-1 bg-discovery-purple-600/50 rounded text-xs">AlphaFold</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coding Challenge Preview -->
+            <div class="scroll-reveal">
+                <div class="glass-effect rounded-3xl p-8">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold mb-4 font-mono text-discovery-purple-400">Weekly Coding Challenges</h3>
+                        <p class="text-gray-300">Solve scientific problems through code. Compete with students worldwide and earn recognition.</p>
+                    </div>
+                    
+                    <div class="bg-gray-900/50 rounded-2xl p-6 font-mono text-sm">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-experiment-green-400">// Challenge: Simulate Planetary Motion</span>
+                            <div class="flex space-x-2">
+                                <button class="px-3 py-1 bg-lab-blue-600 rounded text-xs hover:bg-lab-blue-700 transition-colors">Python</button>
+                                <button class="px-3 py-1 bg-gray-600 rounded text-xs hover:bg-gray-700 transition-colors">JavaScript</button>
+                                <button class="px-3 py-1 bg-gray-600 rounded text-xs hover:bg-gray-700 transition-colors">Java</button>
+                            </div>
+                        </div>
+                        <div class="text-gray-300">
+                            <div class="mb-2"><span class="text-discovery-purple-400">def</span> <span class="text-experiment-green-400">simulate_orbit</span>(mass, distance, velocity):</div>
+                            <div class="ml-4 mb-2"><span class="text-lab-blue-400"># Calculate gravitational force and orbital mechanics</span></div>
+                            <div class="ml-4 mb-2"><span class="text-discovery-purple-400">return</span> orbital_parameters</div>
+                            <div class="mt-4 text-lab-blue-400"># Your mission: Complete the function to simulate planetary orbits</div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-6">
+                        <button class="bg-gradient-to-r from-discovery-purple-600 to-lab-blue-600 hover:from-discovery-purple-700 hover:to-lab-blue-700 px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105">
+                            Start Coding Challenge
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Educator Resources Section -->
+    <section id="educators" class="py-20 relative circuit-pattern">
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl sm:text-5xl font-bold mb-6">
+                    <span class="font-mono text-lab-blue-400">Educator</span>
+                    <span class="font-sans text-white">Resources</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Comprehensive curriculum support with alignment indicators, lesson plans, and assessment tools designed for modern STEM education.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Curriculum Alignment -->
+                <div class="scroll-reveal">
+                    <div class="glass-effect rounded-2xl p-8 h-full">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 bg-gradient-to-br from-lab-blue-500 to-experiment-green-500 rounded-lg flex items-center justify-center mr-4">
+                                <i data-lucide="book-open" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold font-mono">Curriculum Alignment</h3>
+                        </div>
+                        
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-center justify-between p-3 bg-gray-900/50 rounded-lg">
+                                <span class="text-gray-300">Next Generation Science Standards (NGSS)</span>
+                                <span class="text-experiment-green-400 font-mono">✓ 98%</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-gray-900/50 rounded-lg">
+                                <span class="text-gray-300">Common Core Mathematics</span>
+                                <span class="text-experiment-green-400 font-mono">✓ 95%</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-gray-900/50 rounded-lg">
+                                <span class="text-gray-300">AP Science Courses</span>
+                                <span class="text-experiment-green-400 font-mono">✓ 100%</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-gray-900/50 rounded-lg">
+                                <span class="text-gray-300">International Baccalaureate (IB)</span>
+                                <span class="text-experiment-green-400 font-mono">✓ 92%</span>
+                            </div>
+                        </div>
+                        
+                        <ul class="space-y-3">
+                            <li class="flex items-center text-gray-300">
+                                <i data-lucide="check" class="w-5 h-5 text-experiment-green-400 mr-3"></i>
+                                Automated curriculum mapping
+                            </li>
+                            <li class="flex items-center text-gray-300">
+                                <i data-lucide="check" class="w-5 h-5 text-experiment-green-400 mr-3"></i>
+                                Real-time standards tracking
+                            </li>
+                            <li class="flex items-center text-gray-300">
+                                <i data-lucide="check" class="w-5 h-5 text-experiment-green-400 mr-3"></i>
+                                Progress reporting tools
+                            </li>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 relative molecular-bg">
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-4xl sm:text-5xl font-bold mb-6">
+                    <span class="font-mono text-experiment-green-400">Lab Access</span>
+                    <span class="font-sans text-white">Levels</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Choose the perfect plan for your learning journey. All plans include access to our core virtual laboratory platform.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Student Plan -->
+                <div class="glass-effect rounded-2xl p-8 scroll-reveal group hover:scale-105 transition-all duration-300">
+                    <div class="text-center mb-8">
+                        <div class="w-16 h-16 bg-gradient-to-br from-lab-blue-500 to-experiment-green-500 rounded-xl flex items-center justify-center mx-auto mb-6">
+                            <i data-lucide="user" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 font-mono text-lab-blue-400">Student</h3>
+                        <div class="mb-4">
+                            <span class="text-4xl font-bold">$9</span>
+                            <span class="text-gray-300">/month</span>
+                        </div>
+                        <p class="text-gray-300">Perfect for individual learners</p>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-experiment-green-400 mr-3"></i>
+                            <span>100+ virtual experiments</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-experiment-green-400 mr-3"></i>
+                            <span>Basic periodic table explorer</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-experiment-green-400 mr-3"></i>
+                            <span>Weekly coding challenges</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-experiment-green-400 mr-3"></i>
+                            <span>Community forums</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-experiment-green-400 mr-3"></i>
+                            <span>Progress tracking</span>
+                        </li>
+                    </ul>
+                    
+                    <button class="w-full bg-gradient-to-r from-lab-blue-600 to-experiment-green-600 hover:from-lab-blue-700 hover:to-experiment-green-700 px-6 py-3 rounded-lg font-semibold transition-all duration-300">
+                        Start Student Plan
+                    </button>
+                </div>
+
+                <!-- Educator Plan -->
+                <div class="glass-effect rounded-2xl p-8 scroll-reveal group hover:scale-105 transition-all duration-300 border-2 border-experiment-green-500" style="animation-delay: 0.2s;">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                        <span class="bg-gradient-to-r from-experiment-green-600 to-discovery-purple-600 px-6 py-2 rounded-full text-sm font-semibold">Most Popular</span>
+                    </div>
+                    <div class="text-center mb-8">
+                        <div class="w-16 h-16 bg-gradient-to-br from-experiment-green-500 to-discovery-purple-500 rounded-xl flex items-center justify-center mx-auto mb-6">
+                            <i data-lucide="graduation-cap" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 font-mono text-experiment-green-400">Educator</h3>
+                        <div class="mb-4">
+                            <span class="text-4xl font-bold">$29</span>
+                            <span class="text-gray-300">/month</span>
+                        </div>
+                        <p class="text-gray-300">For teachers and schools</p>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-experiment-green-400 mr-3"></i>
+                            <span>Everything in Student +</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-experiment-green-400 mr-3"></i>
+                            <span>500+ experiments & simulations</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-experiment-green-400 mr-3"></i>
+                            <span>Curriculum alignment tools</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-experiment-green-400 mr-3"></i>
+                            <span>Student progress analytics</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-experiment-green-400 mr-3"></i>
+                            <span>Classroom management</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-experiment-green-400 mr-3"></i>
+                            <span>Priority support</span>
+                        </li>
+                    </ul>
+                    
+                    <button class="w-full bg-gradient-to-r from-experiment-green-600 to-discovery-purple-600 hover:from-experiment-green-700 hover:to-discovery-purple-700 px-6 py-3 rounded-lg font-semibold transition-all duration-300">
+                        Start Educator Plan
+                    </button>
+                </div>
+
+                <!-- Institution Plan -->
+                <div class="glass-effect rounded-2xl p-8 scroll-reveal group hover:scale-105 transition-all duration-300" style="animation-delay: 0.4s;">
+                    <div class="text-center mb-8">
+                        <div class="w-16 h-16 bg-gradient-to-br from-discovery-purple-500 to-lab-blue-500 rounded-xl flex items-center justify-center mx-auto mb-6">
+                            <i data-lucide="building" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 font-mono text-discovery-purple-400">Institution</h3>
+                        <div class="mb-4">
+                            <span class="text-4xl font-bold">Custom</span>
+                        </div>
+                        <p class="text-gray-300">For universities & districts</p>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-experiment-green-400 mr-3"></i>
+                            <span>Everything in Educator +</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-experiment-green-400 mr-3"></i>
+                            <span>Unlimited experiments</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-experiment-green-400 mr-3"></i>
+                            <span>Custom integrations</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-experiment-green-400 mr-3"></i>
+                            <span>Advanced analytics</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-experiment-green-400 mr-3"></i>
+                            <span>Dedicated support</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="check" class="w-5 h-5 text-experiment-green-400 mr-3"></i>
+                            <span>On-site training</span>
+                        </li>
+                    </ul>
+                    
+                    <button class="w-full bg-gradient-to-r from-discovery-purple-600 to-lab-blue-600 hover:from-discovery-purple-700 hover:to-lab-blue-700 px-6 py-3 rounded-lg font-semibold transition-all duration-300">
+                        Contact Sales
+                    </button>
+                </div>
+            </div>
+
+            <!-- Virtual Experiment Booking -->
+            <div class="mt-20 scroll-reveal">
+                <div class="glass-effect rounded-3xl p-8 max-w-4xl mx-auto">
+                    <div class="text-center mb-8">
+                        <h3 class="text-3xl font-bold mb-4 font-mono text-lab-blue-400">Virtual Experiment Booking</h3>
+                        <p class="text-xl text-gray-300">Schedule live sessions with expert scientists and educators</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-xl font-semibold mb-4 font-mono text-experiment-green-400">Available Sessions</h4>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between p-4 bg-gray-900/50 rounded-lg">
+                                    <div>
+                                        <div class="font-semibold">Quantum Physics Lab</div>
+                                        <div class="text-sm text-gray-400">Dr. Sarah Chen • 2 hrs</div>
+                                    </div>
+                                    <button class="bg-lab-blue-600 hover:bg-lab-blue-700 px-4 py-2 rounded text-sm transition-colors">
+                                        Book Now
+                                    </button>
+                                </div>
+                                <div class="flex items-center justify-between p-4 bg-gray-900/50 rounded-lg">
+                                    <div>
+                                        <div class="font-semibold">Organic Chemistry Workshop</div>
+                                        <div class="text-sm text-gray-400">Prof. Michael Torres • 3 hrs</div>
+                                    </div>
+                                    <button class="bg-experiment-green-600 hover:bg-experiment-green-700 px-4 py-2 rounded text-sm transition-colors">
+                                        Book Now
+                                    </button>
+                                </div>
+                                <div class="flex items-center justify-between p-4 bg-gray-900/50 rounded-lg">
+                                    <div>
+                                        <div class="font-semibold">Robotics Programming</div>
+                                        <div class="text-sm text-gray-400">Dr. Alex Kim • 1.5 hrs</div>
+                                    </div>
+                                    <button class="bg-discovery-purple-600 hover:bg-discovery-purple-700 px-4 py-2 rounded text-sm transition-colors">
+                                        Book Now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-xl font-semibold mb-4 font-mono text-discovery-purple-400">Quick Book</h4>
+                            <form class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Select Subject</label>
+                                    <select class="w-full bg-gray-900/50 border border-gray-700 rounded-lg px-4 py-2 text-white">
+                                        <option>Physics</option>
+                                        <option>Chemistry</option>
+                                        <option>Biology</option>
+                                        <option>Computer Science</option>
+                                        <option>Mathematics</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Preferred Date</label>
+                                    <input type="date" class="w-full bg-gray-900/50 border border-gray-700 rounded-lg px-4 py-2 text-white">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Duration</label>
+                                    <select class="w-full bg-gray-900/50 border border-gray-700 rounded-lg px-4 py-2 text-white">
+                                        <option>1 hour</option>
+                                        <option>2 hours</option>
+                                        <option>3 hours</option>
+                                        <option>Half day</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="w-full bg-gradient-to-r from-lab-blue-600 to-discovery-purple-600 hover:from-lab-blue-700 hover:to-discovery-purple-700 px-6 py-3 rounded-lg font-semibold transition-all duration-300">
+                                    Request Booking
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 bg-gray-900/50 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 bg-gradient-to-br from-lab-blue-500 to-experiment-green-500 rounded-lg flex items-center justify-center">
+                            <i data-lucide="atom" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <span class="font-mono font-bold text-xl">ScienceLab Virtual</span>
+                    </div>
+                    <p class="text-gray-400 mb-6 max-w-md">
+                        Revolutionizing STEM education through immersive virtual laboratories, 
+                        interactive experiments, and cutting-edge scientific simulations.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-lab-blue-400 transition-colors">
+                            <i data-lucide="twitter" class="w-6 h-6"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-experiment-green-400 transition-colors">
+                            <i data-lucide="linkedin" class="w-6 h-6"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-discovery-purple-400 transition-colors">
+                            <i data-lucide="youtube" class="w-6 h-6"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4 font-mono text-lab-blue-400">Platform</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#experiments" class="text-gray-400 hover:text-white transition-colors">Virtual Labs</a></li>
+                        <li><a href="#periodic-table" class="text-gray-400 hover:text-white transition-colors">Periodic Table</a></li>
+                        <li><a href="#projects" class="text-gray-400 hover:text-white transition-colors">Student Projects</a></li>
+                        <li><a href="#educators" class="text-gray-400 hover:text-white transition-colors">Educator Tools</a></li>
+                        <li><a href="#pricing" class="text-gray-400 hover:text-white transition-colors">Pricing</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4 font-mono text-experiment-green-400">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Documentation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Tutorials</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Community</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Status</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm">
+                        © 2024 ScienceLab Virtual. All rights reserved.
+                    </p>
+                    <div class="flex space-x-6 mt-4 md:mt-0">
+                        <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Interactions and Animations -->
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Mobile menu functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMobileMenu = document.getElementById('close-mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.remove('-translate-x-full');
+        });
+        
+        closeMobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.add('-translate-x-full');
+        });
+        
+        // Close mobile menu when clicking outside
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) {
+                mobileMenu.classList.add('-translate-x-full');
+            }
+        });
+        
+        // Navbar background on scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('backdrop-blur-xl', 'bg-gray-900/80');
+            } else {
+                navbar.classList.remove('backdrop-blur-xl', 'bg-gray-900/80');
+            }
+        });
+        
+        // Scroll reveal animation
+        const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+        
+        const scrollRevealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        scrollRevealElements.forEach(element => {
+            scrollRevealObserver.observe(element);
+        });
+        
+        // Periodic table element interactions
+        const elementCards = document.querySelectorAll('.element-card');
+        elementCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const element = card.dataset.element;
+                showElementModal(element);
+            });
+        });
+        
+        function showElementModal(element) {
+            // This would normally open a modal with detailed element information
+            alert(`Exploring ${element}! In a real implementation, this would show detailed element properties, electron configuration, and interactive 3D models.`);
+        }
+        
+        // Parallax effect for floating elements
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.parallax-element');
+            
+            parallaxElements.forEach(element => {
+                const speed = element.dataset.speed || 0.5;
+                const yPos = -(scrolled * speed);
+                element.style.transform = `translate3d(0, ${yPos}px, 0)`;
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('-translate-x-full');
+                }
+            });
+        });
+        
+        // Interactive coding challenge language selection
+        const languageButtons = document.querySelectorAll('[data-language]');
+        languageButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                languageButtons.forEach(btn => btn.classList.remove('bg-lab-blue-600'));
+                button.classList.add('bg-lab-blue-600');
+                // Update code example based on selected language
+                // This would normally update the code snippet
+            });
+        });
+        
+        // Virtual experiment booking form
+        const bookingForms = document.querySelectorAll('form');
+        bookingForms.forEach(form => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // This would normally send the booking request to the server
+                alert('Booking request submitted! You will receive a confirmation email shortly.');
+            });
+        });
+        
+        // Element hover effects with sound (disabled for this demo)
+        elementCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                // Add subtle animation or sound effect
+                card.style.transform = 'translateY(-5px) scale(1.05)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+        
+        // Initialize animations on page load
+        window.addEventListener('load', () => {
+            // Trigger initial animations
+            document.body.classList.add('loaded');
+            
+            // Initialize any particle systems or advanced animations
+            // This would normally include WebGL-based molecular visualizations
+        });
+        
+        // Accessibility: Keyboard navigation support
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                // Close any open modals or menus
+                mobileMenu.classList.add('-translate-x-full');
+            }
+        });
+        
+        // Performance: Debounce scroll events
+        let scrollTimeout;
+        function handleScroll() {
+            if (scrollTimeout) {
+                clearTimeout(scrollTimeout);
+            }
+            scrollTimeout = setTimeout(() => {
+                // Perform scroll-based calculations
+            }, 10);
+        }
+        
+        window.addEventListener('scroll', handleScroll, { passive: true });
+    </script>
+</body>
+</html>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Teaching Tools -->
+                <div class="scroll-reveal" style="animation-delay: 0.3s;">
+                    <div class="glass-effect rounded-2xl p-8 h-full">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 bg-gradient-to-br from-experiment-green-500 to-discovery-purple-500 rounded-lg flex items-center justify-center mr-4">
+                                <i data-lucide="presentation" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold font-mono">Teaching Tools</h3>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4 mb-8">
+                            <div class="text-center p-4 bg-gray-900/50 rounded-lg">
+                                <div class="text-2xl font-bold text-lab-blue-400 font-mono mb-2">5000+</div>
+                                <div class="text-sm text-gray-300">Lesson Plans</div>
+                            </div>
+                            <div class="text-center p-4 bg-gray-900/50 rounded-lg">
+                                <div class="text-2xl font-bold text-experiment-green-400 font-mono mb-2">2000+</div>
+                                <div class="text-sm text-gray-300">Lab Activities</div>
+                            </div>
+                            <div class="text-center p-4 bg-gray-900/50 rounded-lg">
+                                <div class="text-2xl font-bold text-discovery-purple-400 font-mono mb-2">1500+</div>
+                                <div class="text-sm text-gray-300">Assessments</div>
+                            </div>
+                            <div class="text-center p-4 bg-gray-900/50 rounded-lg">
+                                <div class="text-2xl font-bold text-lab-blue-400 font-mono mb-2">800+</div>
+                                <div class="text-sm text-gray-300">Video Guides</div>
+                            </div>
+                        </div>
+                        
+                        <ul class="space-y-3">
+                            <li class="flex items-center text-gray-300">
+                                <i data-lucide="check" class="w-5 h-5 text-experiment-green-400 mr-3"></i>
+                                Interactive whiteboards
+                            </li>
+                            <li class="flex items-center text-gray-300">
+                                <i data-lucide="check" class="w-5 h-5 text-experiment-green-400 mr-3"></i>
+                                Student progress analytics
+                            </li>
+                            <li class="flex items-center text-gray-300">
+                                <i data-lucide="check" class="w-5 h-5 text-experiment-green-400 mr-3"></i>
+                                Collaboration spaces
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
