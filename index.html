@@ -1,0 +1,1757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StrategyFirst Partners - Executive Business Consulting</title>
+    <meta name="description" content="Transform your business with StrategyFirst Partners - Premier consulting firm delivering strategic growth solutions and measurable results.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --executive-navy: #1a2b52;
+            --success-green: #10b981;
+            --premium-gold: #f59e0b;
+            --light-gray: #f8fafc;
+            --dark-gray: #334155;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        .font-serif {
+            font-family: 'Merriweather', serif;
+        }
+        
+        .bg-executive-navy { background-color: var(--executive-navy); }
+        .bg-success-green { background-color: var(--success-green); }
+        .bg-premium-gold { background-color: var(--premium-gold); }
+        .text-executive-navy { color: var(--executive-navy); }
+        .text-success-green { color: var(--success-green); }
+        .text-premium-gold { color: var(--premium-gold); }
+        .border-executive-navy { border-color: var(--executive-navy); }
+        .border-success-green { border-color: var(--success-green); }
+        .border-premium-gold { border-color: var(--premium-gold); }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes growWidth {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .animate-slideInLeft {
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+        
+        .animate-slideInRight {
+            animation: slideInRight 0.8s ease-out forwards;
+        }
+        
+        .animate-growWidth {
+            animation: growWidth 2s ease-out forwards;
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .animate-pulse-custom {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        /* Custom gradient backgrounds */
+        .gradient-executive {
+            background: linear-gradient(135deg, var(--executive-navy) 0%, #2d3748 100%);
+        }
+        
+        .gradient-success {
+            background: linear-gradient(135deg, var(--success-green) 0%, #065f46 100%);
+        }
+        
+        .gradient-premium {
+            background: linear-gradient(135deg, var(--premium-gold) 0%, #d97706 100%);
+        }
+        
+        /* Scroll reveal animations */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Business graph elements */
+        .graph-line {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: drawLine 3s ease-out forwards;
+        }
+        
+        @keyframes drawLine {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+        
+        /* Interactive elements */
+        .interactive-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .interactive-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        /* Progress bars */
+        .progress-bar {
+            background: linear-gradient(90deg, var(--success-green) 0%, var(--premium-gold) 100%);
+            height: 6px;
+            border-radius: 3px;
+            transform-origin: left;
+            animation: expandBar 2s ease-out forwards;
+        }
+        
+        @keyframes expandBar {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+        
+        /* Mobile-first responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+                line-height: 1.2;
+            }
+        }
+        
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="font-serif font-bold text-2xl text-executive-navy">
+                        StrategyFirst Partners
+                    </div>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#services" class="text-dark-gray hover:text-executive-navy transition-colors">Services</a>
+                    <a href="#expertise" class="text-dark-gray hover:text-executive-navy transition-colors">Expertise</a>
+                    <a href="#case-studies" class="text-dark-gray hover:text-executive-navy transition-colors">Case Studies</a>
+                    <a href="#assessment" class="text-dark-gray hover:text-executive-navy transition-colors">Assessment</a>
+                    <a href="#contact" class="bg-executive-navy text-white px-6 py-2 rounded-lg hover:bg-opacity-90 transition-all">Get Started</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-500 hover:text-gray-600">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+            <div class="px-4 py-3 space-y-3">
+                <a href="#services" class="block text-gray-700 hover:text-executive-navy">Services</a>
+                <a href="#expertise" class="block text-gray-700 hover:text-executive-navy">Expertise</a>
+                <a href="#case-studies" class="block text-gray-700 hover:text-executive-navy">Case Studies</a>
+                <a href="#assessment" class="block text-gray-700 hover:text-executive-navy">Assessment</a>
+                <a href="#contact" class="block bg-executive-navy text-white px-4 py-2 rounded-lg text-center">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-executive min-h-screen flex items-center pt-16 relative overflow-hidden">
+        <!-- Animated background elements -->
+        <div class="absolute inset-0 opacity-10">
+            <svg class="w-full h-full" viewBox="0 0 1200 800">
+                <path class="graph-line" stroke="url(#gradient1)" stroke-width="3" fill="none" 
+                      d="M100,600 Q300,400 500,300 T900,150 L1100,100"/>
+                <path class="graph-line" stroke="url(#gradient2)" stroke-width="2" fill="none" 
+                      d="M50,650 Q250,500 450,400 T850,250 L1050,200" style="animation-delay: 0.5s"/>
+                <defs>
+                    <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:1" />
+                    </linearGradient>
+                    <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-white">
+                    <h1 class="hero-title font-serif font-bold text-4xl lg:text-6xl mb-6 animate-fadeInUp">
+                        Transform Your Business Strategy
+                    </h1>
+                    <p class="text-xl lg:text-2xl mb-8 opacity-90 animate-fadeInUp" style="animation-delay: 0.2s">
+                        Drive measurable growth with data-driven insights and executive-level strategic consulting
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 animate-fadeInUp" style="animation-delay: 0.4s">
+                        <button class="bg-success-green text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-opacity-90 transition-all animate-pulse-custom">
+                            Start Free Assessment
+                        </button>
+                        <button class="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-executive-navy transition-all">
+                            View Case Studies
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Floating business metrics -->
+                <div class="relative">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-6 animate-float">
+                            <div class="text-premium-gold text-3xl font-bold">250%</div>
+                            <div class="text-white text-sm">Average ROI Increase</div>
+                        </div>
+                        <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-6 animate-float" style="animation-delay: 0.5s">
+                            <div class="text-success-green text-3xl font-bold">6 Months</div>
+                            <div class="text-white text-sm">Average Time to Results</div>
+                        </div>
+                        <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-6 animate-float" style="animation-delay: 1s">
+                            <div class="text-premium-gold text-3xl font-bold">500+</div>
+                            <div class="text-white text-sm">Successful Transformations</div>
+                        </div>
+                        <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-6 animate-float" style="animation-delay: 1.5s">
+                            <div class="text-success-green text-3xl font-bold">98%</div>
+                            <div class="text-white text-sm">Client Satisfaction Rate</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Consultation process flow -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 hidden lg:block">
+            <div class="flex items-center space-x-4 text-white opacity-75">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-success-green rounded-full flex items-center justify-center">1</div>
+                    <span class="text-sm">Assess</span>
+                </div>
+                <div class="w-8 h-0.5 bg-white opacity-50"></div>
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-premium-gold rounded-full flex items-center justify-center">2</div>
+                    <span class="text-sm">Strategize</span>
+                </div>
+                <div class="w-8 h-0.5 bg-white opacity-50"></div>
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-success-green rounded-full flex items-center justify-center">3</div>
+                    <span class="text-sm">Transform</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Assessment Tool -->
+    <section id="assessment" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="font-serif text-4xl font-bold text-executive-navy mb-4">
+                    Business Health Assessment
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Get instant insights into your business performance with our AI-powered diagnostic tool
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-gray-50 rounded-xl p-8 scroll-reveal">
+                    <div id="assessment-tool">
+                        <!-- Assessment Questions -->
+                        <div class="space-y-8">
+                            <div class="assessment-question">
+                                <label class="block text-lg font-semibold text-executive-navy mb-4">
+                                    What's your current annual revenue range?
+                                </label>
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                    <button class="assessment-option p-4 border-2 border-gray-200 rounded-lg hover:border-success-green transition-colors" data-value="under-1m">
+                                        Under $1M
+                                    </button>
+                                    <button class="assessment-option p-4 border-2 border-gray-200 rounded-lg hover:border-success-green transition-colors" data-value="1m-5m">
+                                        $1M - $5M
+                                    </button>
+                                    <button class="assessment-option p-4 border-2 border-gray-200 rounded-lg hover:border-success-green transition-colors" data-value="5m-20m">
+                                        $5M - $20M
+                                    </button>
+                                    <button class="assessment-option p-4 border-2 border-gray-200 rounded-lg hover:border-success-green transition-colors" data-value="over-20m">
+                                        Over $20M
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="assessment-question">
+                                <label class="block text-lg font-semibold text-executive-navy mb-4">
+                                    What's your biggest business challenge?
+                                </label>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                    <button class="assessment-option p-4 border-2 border-gray-200 rounded-lg hover:border-success-green transition-colors text-left" data-value="growth">
+                                        <i class="fas fa-chart-line text-success-green mr-2"></i>
+                                        Scaling and Growth
+                                    </button>
+                                    <button class="assessment-option p-4 border-2 border-gray-200 rounded-lg hover:border-success-green transition-colors text-left" data-value="efficiency">
+                                        <i class="fas fa-cogs text-premium-gold mr-2"></i>
+                                        Operational Efficiency
+                                    </button>
+                                    <button class="assessment-option p-4 border-2 border-gray-200 rounded-lg hover:border-success-green transition-colors text-left" data-value="market">
+                                        <i class="fas fa-bullseye text-executive-navy mr-2"></i>
+                                        Market Positioning
+                                    </button>
+                                    <button class="assessment-option p-4 border-2 border-gray-200 rounded-lg hover:border-success-green transition-colors text-left" data-value="digital">
+                                        <i class="fas fa-digital-tachograph text-success-green mr-2"></i>
+                                        Digital Transformation
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="assessment-question">
+                                <label class="block text-lg font-semibold text-executive-navy mb-4">
+                                    How would you rate your current strategy clarity? (1-10)
+                                </label>
+                                <div class="flex items-center space-x-4">
+                                    <span class="text-gray-500">1</span>
+                                    <input type="range" id="strategy-rating" min="1" max="10" value="5" 
+                                           class="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                                    <span class="text-gray-500">10</span>
+                                    <span id="rating-value" class="ml-4 text-xl font-bold text-success-green">5</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-12 text-center">
+                            <button id="generate-assessment" class="bg-executive-navy text-white px-12 py-4 rounded-lg text-lg font-semibold hover:bg-opacity-90 transition-all">
+                                Generate My Assessment Report
+                            </button>
+                        </div>
+                        
+                        <!-- Assessment Results -->
+                        <div id="assessment-results" class="hidden mt-12 p-8 bg-white rounded-xl border-2 border-success-green">
+                            <h3 class="text-2xl font-bold text-executive-navy mb-6">Your Business Health Score</h3>
+                            <div class="grid md:grid-cols-3 gap-6">
+                                <div class="text-center">
+                                    <div class="text-6xl font-bold text-success-green mb-2" id="health-score">85</div>
+                                    <div class="text-lg font-semibold text-gray-700">Overall Score</div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2 mt-3">
+                                        <div class="progress-bar h-2 rounded-full" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                                <div class="md:col-span-2">
+                                    <div class="space-y-4">
+                                        <div class="flex justify-between items-center">
+                                            <span class="font-semibold">Strategy Alignment</span>
+                                            <span class="text-success-green font-bold">Strong</span>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <span class="font-semibold">Growth Potential</span>
+                                            <span class="text-premium-gold font-bold">High</span>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <span class="font-semibold">Operational Efficiency</span>
+                                            <span class="text-success-green font-bold">Good</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-8 p-6 bg-gray-50 rounded-lg">
+                                <h4 class="font-bold text-executive-navy mb-3">Key Recommendations:</h4>
+                                <ul class="space-y-2 text-gray-700">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-success-green mr-2 mt-1"></i>
+                                        Focus on digital transformation to unlock 30% efficiency gains
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-success-green mr-2 mt-1"></i>
+                                        Implement data-driven decision making processes
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-success-green mr-2 mt-1"></i>
+                                        Develop strategic partnerships for market expansion
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mt-6 text-center">
+                                <button class="bg-success-green text-white px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all">
+                                    Get Detailed Analysis
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="font-serif text-4xl font-bold text-executive-navy mb-4">
+                    Strategic Services
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Comprehensive consulting services designed to drive transformational business results
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="interactive-card bg-white rounded-xl p-8 shadow-lg scroll-reveal">
+                    <div class="gradient-success w-16 h-16 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-executive-navy mb-4">Growth Strategy</h3>
+                    <p class="text-gray-600 mb-6">
+                        Develop scalable growth frameworks that drive sustainable revenue expansion and market penetration.
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-success-green mr-2"></i>
+                            Market analysis & opportunity identification
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-success-green mr-2"></i>
+                            Revenue optimization strategies
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-success-green mr-2"></i>
+                            Scalability planning & execution
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="interactive-card bg-white rounded-xl p-8 shadow-lg scroll-reveal">
+                    <div class="gradient-premium w-16 h-16 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-cogs text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-executive-navy mb-4">Operational Excellence</h3>
+                    <p class="text-gray-600 mb-6">
+                        Streamline operations and eliminate inefficiencies to maximize productivity and profitability.
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-success-green mr-2"></i>
+                            Process optimization & automation
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-success-green mr-2"></i>
+                            Performance measurement systems
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-success-green mr-2"></i>
+                            Cost reduction strategies
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="interactive-card bg-white rounded-xl p-8 shadow-lg scroll-reveal">
+                    <div class="gradient-executive w-16 h-16 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-digital-tachograph text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-executive-navy mb-4">Digital Transformation</h3>
+                    <p class="text-gray-600 mb-6">
+                        Leverage technology to modernize operations and create competitive advantages in the digital age.
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-success-green mr-2"></i>
+                            Technology strategy & roadmap
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-success-green mr-2"></i>
+                            Digital platform implementation
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-success-green mr-2"></i>
+                            Change management & training
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Service Package Comparison -->
+            <div class="mt-20">
+                <h3 class="text-3xl font-bold text-executive-navy text-center mb-12 scroll-reveal">
+                    Service Packages
+                </h3>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Starter Package -->
+                    <div class="bg-white rounded-xl p-8 shadow-lg border-2 border-gray-200 hover:border-success-green transition-all scroll-reveal">
+                        <div class="text-center">
+                            <h4 class="text-2xl font-bold text-executive-navy mb-2">Strategy Assessment</h4>
+                            <div class="text-4xl font-bold text-success-green mb-4">$15,000</div>
+                            <p class="text-gray-600 mb-8">Perfect for businesses seeking strategic clarity and direction</p>
+                        </div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-success-green mr-3"></i>
+                                Comprehensive business assessment
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-success-green mr-3"></i>
+                                Strategic roadmap development
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-success-green mr-3"></i>
+                                Priority action plan
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-success-green mr-3"></i>
+                                30-day implementation support
+                            </li>
+                        </ul>
+                        <div class="text-center">
+                            <div class="text-sm text-gray-600 mb-3">Projected ROI: <span class="font-bold text-success-green">200-300%</span></div>
+                            <button class="w-full bg-success-green text-white py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all">
+                                Get Started
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Growth Package -->
+                    <div class="bg-white rounded-xl p-8 shadow-xl border-2 border-premium-gold relative scroll-reveal">
+                        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                            <span class="bg-premium-gold text-white px-4 py-1 rounded-full text-sm font-semibold">Most Popular</span>
+                        </div>
+                        <div class="text-center">
+                            <h4 class="text-2xl font-bold text-executive-navy mb-2">Growth Acceleration</h4>
+                            <div class="text-4xl font-bold text-premium-gold mb-4">$45,000</div>
+                            <p class="text-gray-600 mb-8">Comprehensive transformation for scaling businesses</p>
+                        </div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-premium-gold mr-3"></i>
+                                Everything in Strategy Assessment
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-premium-gold mr-3"></i>
+                                Operational optimization
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-premium-gold mr-3"></i>
+                                Growth strategy implementation
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-premium-gold mr-3"></i>
+                                90-day hands-on support
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-premium-gold mr-3"></i>
+                                Performance tracking dashboard
+                            </li>
+                        </ul>
+                        <div class="text-center">
+                            <div class="text-sm text-gray-600 mb-3">Projected ROI: <span class="font-bold text-premium-gold">400-600%</span></div>
+                            <button class="w-full bg-premium-gold text-white py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all">
+                                Choose Growth
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Enterprise Package -->
+                    <div class="bg-white rounded-xl p-8 shadow-lg border-2 border-gray-200 hover:border-executive-navy transition-all scroll-reveal">
+                        <div class="text-center">
+                            <h4 class="text-2xl font-bold text-executive-navy mb-2">Enterprise Transformation</h4>
+                            <div class="text-4xl font-bold text-executive-navy mb-4">$125,000</div>
+                            <p class="text-gray-600 mb-8">Complete business transformation for large organizations</p>
+                        </div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-executive-navy mr-3"></i>
+                                Everything in Growth Acceleration
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-executive-navy mr-3"></i>
+                                Digital transformation roadmap
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-executive-navy mr-3"></i>
+                                Change management program
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-executive-navy mr-3"></i>
+                                6-month implementation support
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-executive-navy mr-3"></i>
+                                Dedicated senior consultant
+                            </li>
+                        </ul>
+                        <div class="text-center">
+                            <div class="text-sm text-gray-600 mb-3">Projected ROI: <span class="font-bold text-executive-navy">600-1000%</span></div>
+                            <button class="w-full bg-executive-navy text-white py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all">
+                                Contact Sales
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI Calculator -->
+    <section class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="font-serif text-4xl font-bold text-executive-navy mb-4">
+                    ROI Calculator
+                </h2>
+                <p class="text-xl text-gray-600">
+                    Calculate your potential return on investment with our consulting services
+                </p>
+            </div>
+            
+            <div class="bg-gray-50 rounded-xl p-8 scroll-reveal">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-executive-navy mb-6">Your Business Metrics</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Annual Revenue ($)</label>
+                                <input type="number" id="annual-revenue" placeholder="1000000" 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-success-green focus:border-success-green">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Current Profit Margin (%)</label>
+                                <input type="number" id="profit-margin" placeholder="15" 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-success-green focus:border-success-green">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Growth Rate Goal (%)</label>
+                                <input type="number" id="growth-goal" placeholder="25" 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-success-green focus:border-success-green">
+                            </div>
+                            <button id="calculate-roi" class="w-full bg-executive-navy text-white py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all">
+                                Calculate ROI
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="roi-results" class="hidden">
+                        <h3 class="text-xl font-semibold text-executive-navy mb-6">Projected Results</h3>
+                        <div class="space-y-6">
+                            <div class="bg-white rounded-lg p-6">
+                                <div class="text-3xl font-bold text-success-green mb-2" id="projected-revenue">$1,250,000</div>
+                                <div class="text-sm text-gray-600">Projected Annual Revenue</div>
+                            </div>
+                            <div class="bg-white rounded-lg p-6">
+                                <div class="text-3xl font-bold text-premium-gold mb-2" id="additional-profit">$37,500</div>
+                                <div class="text-sm text-gray-600">Additional Annual Profit</div>
+                            </div>
+                            <div class="bg-white rounded-lg p-6">
+                                <div class="text-3xl font-bold text-executive-navy mb-2" id="roi-percentage">750%</div>
+                                <div class="text-sm text-gray-600">Return on Investment</div>
+                            </div>
+                            <div class="bg-success-green text-white rounded-lg p-4 text-center">
+                                <div class="font-semibold">Payback Period: <span id="payback-period">3 months</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Consultant Expertise Showcase -->
+    <section id="expertise" class="py-20 bg-executive-navy text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="font-serif text-4xl font-bold mb-4">
+                    Expert Consultants
+                </h2>
+                <p class="text-xl opacity-90 max-w-3xl mx-auto">
+                    Industry-leading consultants with proven track records across multiple sectors
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-8 text-center scroll-reveal interactive-card">
+                    <div class="w-24 h-24 bg-gradient-to-br from-success-green to-premium-gold rounded-full mx-auto mb-6 flex items-center justify-center text-2xl font-bold">
+                        MS
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Michael Smith</h3>
+                    <p class="text-success-green font-semibold mb-2">Senior Strategy Partner</p>
+                    <p class="opacity-90 mb-6">20+ years transforming Fortune 500 companies with expertise in digital transformation and operational excellence.</p>
+                    
+                    <!-- Industry Specialization Indicators -->
+                    <div class="flex flex-wrap justify-center gap-2 mb-6">
+                        <span class="bg-success-green bg-opacity-20 text-success-green px-3 py-1 rounded-full text-sm">Technology</span>
+                        <span class="bg-premium-gold bg-opacity-20 text-premium-gold px-3 py-1 rounded-full text-sm">Healthcare</span>
+                        <span class="bg-white bg-opacity-20 text-white px-3 py-1 rounded-full text-sm">Manufacturing</span>
+                    </div>
+                    
+                    <div class="flex justify-center space-x-4 text-sm">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-success-green">150+</div>
+                            <div class="opacity-75">Projects</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-premium-gold">$2.5B</div>
+                            <div class="opacity-75">Value Created</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-8 text-center scroll-reveal interactive-card">
+                    <div class="w-24 h-24 bg-gradient-to-br from-premium-gold to-success-green rounded-full mx-auto mb-6 flex items-center justify-center text-2xl font-bold">
+                        JD
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Jennifer Davis</h3>
+                    <p class="text-premium-gold font-semibold mb-2">Growth Strategy Director</p>
+                    <p class="opacity-90 mb-6">Expert in scaling startups to unicorn status and helping established companies enter new markets.</p>
+                    
+                    <div class="flex flex-wrap justify-center gap-2 mb-6">
+                        <span class="bg-success-green bg-opacity-20 text-success-green px-3 py-1 rounded-full text-sm">FinTech</span>
+                        <span class="bg-premium-gold bg-opacity-20 text-premium-gold px-3 py-1 rounded-full text-sm">E-commerce</span>
+                        <span class="bg-white bg-opacity-20 text-white px-3 py-1 rounded-full text-sm">SaaS</span>
+                    </div>
+                    
+                    <div class="flex justify-center space-x-4 text-sm">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-success-green">85+</div>
+                            <div class="opacity-75">Companies</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-premium-gold">400%</div>
+                            <div class="opacity-75">Avg Growth</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-8 text-center scroll-reveal interactive-card">
+                    <div class="w-24 h-24 bg-gradient-to-br from-white to-success-green rounded-full mx-auto mb-6 flex items-center justify-center text-2xl font-bold text-executive-navy">
+                        RW
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Robert Wilson</h3>
+                    <p class="text-white font-semibold mb-2">Operations Excellence Lead</p>
+                    <p class="opacity-90 mb-6">Specialist in lean operations and process optimization with a track record of reducing costs by 30-50%.</p>
+                    
+                    <div class="flex flex-wrap justify-center gap-2 mb-6">
+                        <span class="bg-success-green bg-opacity-20 text-success-green px-3 py-1 rounded-full text-sm">Logistics</span>
+                        <span class="bg-premium-gold bg-opacity-20 text-premium-gold px-3 py-1 rounded-full text-sm">Energy</span>
+                        <span class="bg-white bg-opacity-20 text-white px-3 py-1 rounded-full text-sm">Automotive</span>
+                    </div>
+                    
+                    <div class="flex justify-center space-x-4 text-sm">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-success-green">200+</div>
+                            <div class="opacity-75">Processes</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-premium-gold">45%</div>
+                            <div class="opacity-75">Cost Reduction</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies with Scroll-triggered Reveals -->
+    <section id="case-studies" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="font-serif text-4xl font-bold text-executive-navy mb-4">
+                    Transformation Success Stories
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Real results from real businesses. See how we've helped companies achieve breakthrough performance.
+                </p>
+            </div>
+            
+            <div class="space-y-20">
+                <!-- Case Study 1 -->
+                <div class="grid lg:grid-cols-2 gap-12 items-center scroll-reveal">
+                    <div>
+                        <div class="inline-flex items-center bg-success-green bg-opacity-10 text-success-green px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                            <i class="fas fa-chart-line mr-2"></i>
+                            Technology Sector
+                        </div>
+                        <h3 class="font-serif text-3xl font-bold text-executive-navy mb-4">
+                            $50M SaaS Company Scales to $150M
+                        </h3>
+                        <p class="text-gray-600 mb-6">
+                            A mid-market software company struggling with operational inefficiencies and market positioning achieved 200% revenue growth in 18 months.
+                        </p>
+                        
+                        <!-- Transformation Timeline -->
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-center">
+                                <div class="w-4 h-4 bg-success-green rounded-full mr-4"></div>
+                                <div>
+                                    <div class="font-semibold text-executive-navy">Month 1-3: Strategic Assessment</div>
+                                    <div class="text-gray-600 text-sm">Identified key bottlenecks and growth opportunities</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-4 h-4 bg-premium-gold rounded-full mr-4"></div>
+                                <div>
+                                    <div class="font-semibold text-executive-navy">Month 4-8: Process Optimization</div>
+                                    <div class="text-gray-600 text-sm">Streamlined operations and implemented automation</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-4 h-4 bg-success-green rounded-full mr-4"></div>
+                                <div>
+                                    <div class="font-semibold text-executive-navy">Month 9-18: Market Expansion</div>
+                                    <div class="text-gray-600 text-sm">Launched in 3 new markets with targeted strategies</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-3 gap-4">
+                            <div class="text-center p-4 bg-gray-50 rounded-lg">
+                                <div class="text-2xl font-bold text-success-green">200%</div>
+                                <div class="text-sm text-gray-600">Revenue Growth</div>
+                            </div>
+                            <div class="text-center p-4 bg-gray-50 rounded-lg">
+                                <div class="text-2xl font-bold text-premium-gold">35%</div>
+                                <div class="text-sm text-gray-600">Cost Reduction</div>
+                            </div>
+                            <div class="text-center p-4 bg-gray-50 rounded-lg">
+                                <div class="text-2xl font-bold text-executive-navy">18</div>
+                                <div class="text-sm text-gray-600">Months to Results</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="relative">
+                        <div class="bg-gray-100 rounded-xl p-8">
+                            <canvas id="case-study-chart-1" width="400" height="300" class="w-full"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Case Study 2 -->
+                <div class="grid lg:grid-cols-2 gap-12 items-center scroll-reveal">
+                    <div class="lg:order-2">
+                        <div class="inline-flex items-center bg-premium-gold bg-opacity-10 text-premium-gold px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                            <i class="fas fa-industry mr-2"></i>
+                            Manufacturing
+                        </div>
+                        <h3 class="font-serif text-3xl font-bold text-executive-navy mb-4">
+                            Legacy Manufacturer Goes Digital
+                        </h3>
+                        <p class="text-gray-600 mb-6">
+                            A 50-year-old manufacturing company transformed their operations through digital adoption, achieving remarkable efficiency gains.
+                        </p>
+                        
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-center">
+                                <div class="w-4 h-4 bg-premium-gold rounded-full mr-4"></div>
+                                <div>
+                                    <div class="font-semibold text-executive-navy">Digital Infrastructure Overhaul</div>
+                                    <div class="text-gray-600 text-sm">Implemented IoT sensors and data analytics</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-4 h-4 bg-success-green rounded-full mr-4"></div>
+                                <div>
+                                    <div class="font-semibold text-executive-navy">Process Automation</div>
+                                    <div class="text-gray-600 text-sm">Automated 60% of manual quality checks</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-4 h-4 bg-premium-gold rounded-full mr-4"></div>
+                                <div>
+                                    <div class="font-semibold text-executive-navy">Workforce Training</div>
+                                    <div class="text-gray-600 text-sm">Upskilled 200+ employees on new technologies</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-3 gap-4">
+                            <div class="text-center p-4 bg-gray-50 rounded-lg">
+                                <div class="text-2xl font-bold text-premium-gold">50%</div>
+                                <div class="text-sm text-gray-600">Efficiency Gain</div>
+                            </div>
+                            <div class="text-center p-4 bg-gray-50 rounded-lg">
+                                <div class="text-2xl font-bold text-success-green">25%</div>
+                                <div class="text-sm text-gray-600">Quality Improvement</div>
+                            </div>
+                            <div class="text-center p-4 bg-gray-50 rounded-lg">
+                                <div class="text-2xl font-bold text-executive-navy">$5M</div>
+                                <div class="text-sm text-gray-600">Annual Savings</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:order-1 relative">
+                        <div class="bg-gray-100 rounded-xl p-8">
+                            <canvas id="case-study-chart-2" width="400" height="300" class="w-full"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Testimonials with Video Integration -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="font-serif text-4xl font-bold text-executive-navy mb-4">
+                    What Our Clients Say
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Trusted by industry leaders worldwide
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl p-8 shadow-lg scroll-reveal">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-success-green to-premium-gold rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
+                            TC
+                        </div>
+                        <div>
+                            <div class="font-bold text-executive-navy">Thomas Chen</div>
+                            <div class="text-gray-600 text-sm">CEO, TechVision Solutions</div>
+                            <div class="flex items-center mt-1">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Crect width='20' height='20' fill='%234A90E2'/%3E%3Ctext x='10' y='14' text-anchor='middle' fill='white' font-family='Arial' font-size='12' font-weight='bold'%3ETV%3C/text%3E%3C/svg%3E" alt="TechVision Logo" class="w-5 h-5">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex mb-4">
+                        <i class="fas fa-star text-premium-gold"></i>
+                        <i class="fas fa-star text-premium-gold"></i>
+                        <i class="fas fa-star text-premium-gold"></i>
+                        <i class="fas fa-star text-premium-gold"></i>
+                        <i class="fas fa-star text-premium-gold"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 italic">
+                        "StrategyFirst Partners transformed our entire business model. Their data-driven approach helped us identify opportunities we never knew existed. Revenue increased by 180% in just 12 months."
+                    </p>
+                    <button class="text-success-green font-semibold flex items-center hover:text-opacity-80 transition-colors">
+                        <i class="fas fa-play-circle mr-2"></i>
+                        Watch Full Interview
+                    </button>
+                </div>
+                
+                <div class="bg-white rounded-xl p-8 shadow-lg scroll-reveal">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-premium-gold to-executive-navy rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
+                            SM
+                        </div>
+                        <div>
+                            <div class="font-bold text-executive-navy">Sarah Martinez</div>
+                            <div class="text-gray-600 text-sm">COO, GlobalManufacturing Inc.</div>
+                            <div class="flex items-center mt-1">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Crect width='20' height='20' fill='%23E74C3C'/%3E%3Ctext x='10' y='14' text-anchor='middle' fill='white' font-family='Arial' font-size='10' font-weight='bold'%3EGM%3C/text%3E%3C/svg%3E" alt="GlobalManufacturing Logo" class="w-5 h-5">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex mb-4">
+                        <i class="fas fa-star text-premium-gold"></i>
+                        <i class="fas fa-star text-premium-gold"></i>
+                        <i class="fas fa-star text-premium-gold"></i>
+                        <i class="fas fa-star text-premium-gold"></i>
+                        <i class="fas fa-star text-premium-gold"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 italic">
+                        "The operational excellence program delivered beyond expectations. We reduced costs by 40% while improving quality metrics across all production lines. Exceptional expertise and execution."
+                    </p>
+                    <button class="text-success-green font-semibold flex items-center hover:text-opacity-80 transition-colors">
+                        <i class="fas fa-play-circle mr-2"></i>
+                        Watch Case Study
+                    </button>
+                </div>
+                
+                <div class="bg-white rounded-xl p-8 shadow-lg scroll-reveal">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-executive-navy to-success-green rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">
+                            DJ
+                        </div>
+                        <div>
+                            <div class="font-bold text-executive-navy">David Johnson</div>
+                            <div class="text-gray-600 text-sm">Founder, InnovateLabs</div>
+                            <div class="flex items-center mt-1">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Crect width='20' height='20' fill='%2310B981'/%3E%3Ctext x='10' y='14' text-anchor='middle' fill='white' font-family='Arial' font-size='12' font-weight='bold'%3EIL%3C/text%3E%3C/svg%3E" alt="InnovateLabs Logo" class="w-5 h-5">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex mb-4">
+                        <i class="fas fa-star text-premium-gold"></i>
+                        <i class="fas fa-star text-premium-gold"></i>
+                        <i class="fas fa-star text-premium-gold"></i>
+                        <i class="fas fa-star text-premium-gold"></i>
+                        <i class="fas fa-star text-premium-gold"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 italic">
+                        "From startup to unicorn status in 24 months. StrategyFirst's growth strategies and market positioning advice were instrumental in our success. They truly understand scaling challenges."
+                    </p>
+                    <button class="text-success-green font-semibold flex items-center hover:text-opacity-80 transition-colors">
+                        <i class="fas fa-play-circle mr-2"></i>
+                        Watch Success Story
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Health Check Tool with Insights -->
+    <section class="py-20 bg-executive-navy text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="font-serif text-4xl font-bold mb-4">
+                    Free Business Health Check
+                </h2>
+                <p class="text-xl opacity-90 max-w-3xl mx-auto">
+                    Get instant actionable insights with our AI-powered business diagnostic tool
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-8 scroll-reveal">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-6">Quick Health Scan</h3>
+                            <div class="space-y-6">
+                                <div>
+                                    <label class="block font-semibold mb-2">Industry Sector</label>
+                                    <select class="w-full px-4 py-3 bg-white bg-opacity-20 border border-white border-opacity-30 rounded-lg text-white">
+                                        <option>Technology</option>
+                                        <option>Manufacturing</option>
+                                        <option>Healthcare</option>
+                                        <option>Financial Services</option>
+                                        <option>Retail</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block font-semibold mb-2">Company Size</label>
+                                    <select class="w-full px-4 py-3 bg-white bg-opacity-20 border border-white border-opacity-30 rounded-lg text-white">
+                                        <option>1-10 employees</option>
+                                        <option>11-50 employees</option>
+                                        <option>51-200 employees</option>
+                                        <option>201-1000 employees</option>
+                                        <option>1000+ employees</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block font-semibold mb-2">Primary Challenge</label>
+                                    <select class="w-full px-4 py-3 bg-white bg-opacity-20 border border-white border-opacity-30 rounded-lg text-white">
+                                        <option>Growth Stagnation</option>
+                                        <option>Operational Inefficiency</option>
+                                        <option>Market Competition</option>
+                                        <option>Digital Transformation</option>
+                                        <option>Cost Management</option>
+                                    </select>
+                                </div>
+                                <button class="w-full bg-success-green text-white py-4 rounded-lg font-semibold hover:bg-opacity-90 transition-all">
+                                    Generate Health Report
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-2xl font-bold mb-6">Instant Insights Preview</h3>
+                            <div class="space-y-4">
+                                <div class="bg-white bg-opacity-10 rounded-lg p-4">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="font-semibold">Market Position</span>
+                                        <span class="text-premium-gold">Competitive</span>
+                                    </div>
+                                    <div class="w-full bg-white bg-opacity-20 rounded-full h-2">
+                                        <div class="bg-premium-gold h-2 rounded-full" style="width: 75%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white bg-opacity-10 rounded-lg p-4">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="font-semibold">Operational Efficiency</span>
+                                        <span class="text-success-green">Strong</span>
+                                    </div>
+                                    <div class="w-full bg-white bg-opacity-20 rounded-full h-2">
+                                        <div class="bg-success-green h-2 rounded-full" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white bg-opacity-10 rounded-lg p-4">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="font-semibold">Growth Potential</span>
+                                        <span class="text-premium-gold">High</span>
+                                    </div>
+                                    <div class="w-full bg-white bg-opacity-20 rounded-full h-2">
+                                        <div class="bg-premium-gold h-2 rounded-full" style="width: 90%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-success-green bg-opacity-20 border border-success-green rounded-lg p-4 mt-6">
+                                    <h4 class="font-bold text-success-green mb-2">Key Recommendation</h4>
+                                    <p class="text-sm">Focus on digital transformation initiatives to unlock 25-35% efficiency gains in the next 12 months.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Consultation Booking System -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="font-serif text-4xl font-bold text-executive-navy mb-4">
+                    Ready to Transform Your Business?
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Schedule a free strategic consultation with our expert team
+                </p>
+            </div>
+            
+            <div class="max-w-6xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-12">
+                    <!-- Booking Form -->
+                    <div class="bg-gray-50 rounded-xl p-8 scroll-reveal">
+                        <h3 class="text-2xl font-bold text-executive-navy mb-6">Book Your Consultation</h3>
+                        <form class="space-y-6">
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
+                                    <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-success-green focus:border-success-green">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
+                                    <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-success-green focus:border-success-green">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                                <input type="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-success-green focus:border-success-green">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Company Name *</label>
+                                <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-success-green focus:border-success-green">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                                <input type="tel" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-success-green focus:border-success-green">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Preferred Consultation Type</label>
+                                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-success-green focus:border-success-green">
+                                    <option>Strategy Assessment (30 min)</option>
+                                    <option>Growth Planning Session (45 min)</option>
+                                    <option>Operational Review (60 min)</option>
+                                    <option>Digital Transformation Consultation (45 min)</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Tell us about your business challenge</label>
+                                <textarea rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-success-green focus:border-success-green" placeholder="Describe your current business situation and what you'd like to achieve..."></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-executive-navy text-white py-4 rounded-lg text-lg font-semibold hover:bg-opacity-90 transition-all">
+                                Schedule Free Consultation
+                            </button>
+                        </form>
+                        
+                        <div class="mt-6 text-center text-sm text-gray-600">
+                            <i class="fas fa-shield-alt text-success-green mr-1"></i>
+                            Your information is secure and will never be shared
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Information & Features -->
+                    <div class="scroll-reveal">
+                        <div class="mb-8">
+                            <h3 class="text-2xl font-bold text-executive-navy mb-6">Why Choose StrategyFirst?</h3>
+                            <div class="space-y-6">
+                                <div class="flex items-start">
+                                    <div class="bg-success-green w-12 h-12 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                        <i class="fas fa-rocket text-white"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-executive-navy mb-2">Proven Results</h4>
+                                        <p class="text-gray-600">500+ successful transformations with an average 250% ROI increase</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="bg-premium-gold w-12 h-12 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                        <i class="fas fa-users text-white"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-executive-navy mb-2">Expert Team</h4>
+                                        <p class="text-gray-600">Senior consultants with 15+ years of industry experience</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="bg-executive-navy w-12 h-12 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                        <i class="fas fa-chart-line text-white"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-executive-navy mb-2">Data-Driven Approach</h4>
+                                        <p class="text-gray-600">Every recommendation backed by comprehensive analysis and benchmarking</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Contact Details -->
+                        <div class="bg-gray-50 rounded-xl p-6">
+                            <h4 class="font-bold text-executive-navy mb-4">Get in Touch</h4>
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <i class="fas fa-phone text-success-green mr-3"></i>
+                                    <span>+1 (555) 123-4567</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-envelope text-success-green mr-3"></i>
+                                    <span>hello@strategyfirstpartners.com</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-map-marker-alt text-success-green mr-3"></i>
+                                    <span>123 Business District, Suite 500<br>New York, NY 10001</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-clock text-success-green mr-3"></i>
+                                    <span>Mon-Fri: 9AM-6PM EST</span>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-6 pt-6 border-t border-gray-200">
+                                <p class="text-sm text-gray-600 mb-3">Follow us:</p>
+                                <div class="flex space-x-4">
+                                    <a href="#" class="w-10 h-10 bg-executive-navy text-white rounded-lg flex items-center justify-center hover:bg-opacity-80 transition-colors">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 bg-executive-navy text-white rounded-lg flex items-center justify-center hover:bg-opacity-80 transition-colors">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 bg-executive-navy text-white rounded-lg flex items-center justify-center hover:bg-opacity-80 transition-colors">
+                                        <i class="fab fa-youtube"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-executive-navy text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="font-serif font-bold text-2xl mb-4">StrategyFirst Partners</div>
+                    <p class="text-gray-300 mb-4">Transforming businesses through strategic excellence and proven methodologies.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-8 h-8 bg-white bg-opacity-20 text-white rounded-lg flex items-center justify-center hover:bg-opacity-30 transition-colors">
+                            <i class="fab fa-linkedin-in text-sm"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 bg-white bg-opacity-20 text-white rounded-lg flex items-center justify-center hover:bg-opacity-30 transition-colors">
+                            <i class="fab fa-twitter text-sm"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 bg-white bg-opacity-20 text-white rounded-lg flex items-center justify-center hover:bg-opacity-30 transition-colors">
+                            <i class="fab fa-youtube text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Services</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors">Growth Strategy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Operational Excellence</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Digital Transformation</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Change Management</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors">Case Studies</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">White Papers</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Webinars</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Our Team</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white border-opacity-20 mt-8 pt-8 text-center text-gray-300">
+                <p>&copy; 2024 StrategyFirst Partners. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for interactivity -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Scroll reveal animation
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.scroll-reveal');
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('revealed');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Initial check
+
+        // Assessment tool functionality
+        const assessmentOptions = document.querySelectorAll('.assessment-option');
+        assessmentOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove active class from siblings
+                this.parentElement.querySelectorAll('.assessment-option').forEach(sibling => {
+                    sibling.classList.remove('border-success-green', 'bg-success-green', 'text-white');
+                    sibling.classList.add('border-gray-200');
+                });
+                
+                // Add active class to clicked option
+                this.classList.remove('border-gray-200');
+                this.classList.add('border-success-green', 'bg-success-green', 'text-white');
+            });
+        });
+
+        // Strategy rating slider
+        const strategyRating = document.getElementById('strategy-rating');
+        const ratingValue = document.getElementById('rating-value');
+        
+        strategyRating.addEventListener('input', function() {
+            ratingValue.textContent = this.value;
+        });
+
+        // Generate assessment report
+        document.getElementById('generate-assessment').addEventListener('click', function() {
+            const results = document.getElementById('assessment-results');
+            results.classList.remove('hidden');
+            results.scrollIntoView({ behavior: 'smooth' });
+            
+            // Animate the score
+            const scoreElement = document.getElementById('health-score');
+            let currentScore = 0;
+            const targetScore = 85;
+            const increment = targetScore / 50;
+            
+            const scoreAnimation = setInterval(() => {
+                currentScore += increment;
+                if (currentScore >= targetScore) {
+                    currentScore = targetScore;
+                    clearInterval(scoreAnimation);
+                }
+                scoreElement.textContent = Math.round(currentScore);
+            }, 30);
+        });
+
+        // ROI Calculator
+        document.getElementById('calculate-roi').addEventListener('click', function() {
+            const revenue = parseFloat(document.getElementById('annual-revenue').value) || 1000000;
+            const profitMargin = parseFloat(document.getElementById('profit-margin').value) || 15;
+            const growthGoal = parseFloat(document.getElementById('growth-goal').value) || 25;
+            
+            const projectedRevenue = revenue * (1 + growthGoal / 100);
+            const currentProfit = revenue * (profitMargin / 100);
+            const projectedProfit = projectedRevenue * (profitMargin / 100);
+            const additionalProfit = projectedProfit - currentProfit;
+            const consultingInvestment = 45000; // Average package price
+            const roi = ((additionalProfit - consultingInvestment) / consultingInvestment) * 100;
+            const paybackMonths = Math.ceil(consultingInvestment / (additionalProfit / 12));
+            
+            // Update results
+            document.getElementById('projected-revenue').textContent = '$' + projectedRevenue.toLocaleString();
+            document.getElementById('additional-profit').textContent = '$' + additionalProfit.toLocaleString();
+            document.getElementById('roi-percentage').textContent = Math.round(roi) + '%';
+            document.getElementById('payback-period').textContent = paybackMonths + ' months';
+            
+            // Show results
+            document.getElementById('roi-results').classList.remove('hidden');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Interactive cards hover effect
+        const interactiveCards = document.querySelectorAll('.interactive-card');
+        interactiveCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+                this.style.boxShadow = '0 25px 50px rgba(0,0,0,0.15)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 10px 25px rgba(0,0,0,0.1)';
+            });
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-white', 'shadow-lg');
+                nav.classList.remove('bg-transparent');
+            } else {
+                nav.classList.remove('bg-white', 'shadow-lg');
+                nav.classList.add('bg-transparent');
+            }
+        });
+
+        // Case Study Charts
+        function drawCaseStudyChart(canvasId, data, color) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, width, height);
+            
+            // Draw background
+            ctx.fillStyle = '#f8fafc';
+            ctx.fillRect(0, 0, width, height);
+            
+            // Draw grid lines
+            ctx.strokeStyle = '#e2e8f0';
+            ctx.lineWidth = 1;
+            for (let i = 1; i < 5; i++) {
+                const y = (height / 5) * i;
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(width, y);
+                ctx.stroke();
+            }
+            
+            // Draw data line
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            
+            const stepX = width / (data.length - 1);
+            for (let i = 0; i < data.length; i++) {
+                const x = i * stepX;
+                const y = height - (data[i] / 100) * height;
+                
+                if (i === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            }
+            ctx.stroke();
+            
+            // Draw data points
+            ctx.fillStyle = color;
+            for (let i = 0; i < data.length; i++) {
+                const x = i * stepX;
+                const y = height - (data[i] / 100) * height;
+                
+                ctx.beginPath();
+                ctx.arc(x, y, 6, 0, 2 * Math.PI);
+                ctx.fill();
+            }
+            
+            // Add labels
+            ctx.fillStyle = '#334155';
+            ctx.font = '12px Open Sans';
+            ctx.textAlign = 'center';
+            
+            const labels = ['Start', 'Q1', 'Q2', 'Q3', 'Q4', 'End'];
+            for (let i = 0; i < labels.length; i++) {
+                const x = i * stepX;
+                ctx.fillText(labels[i], x, height - 10);
+            }
+        }
+
+        // Initialize charts when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Case Study 1 - Revenue Growth
+            const revenueData = [50, 60, 85, 120, 140, 150];
+            drawCaseStudyChart('case-study-chart-1', revenueData, '#10b981');
+            
+            // Case Study 2 - Efficiency Improvement
+            const efficiencyData = [45, 55, 70, 80, 85, 90];
+            drawCaseStudyChart('case-study-chart-2', efficiencyData, '#f59e0b');
+        });
+
+        // Enhanced scroll reveal with stagger effect
+        function enhancedRevealOnScroll() {
+            const reveals = document.querySelectorAll('.scroll-reveal');
+            reveals.forEach((element, index) => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    setTimeout(() => {
+                        element.classList.add('revealed');
+                    }, index * 100); // Stagger the animations
+                }
+            });
+        }
+
+        window.addEventListener('scroll', enhancedRevealOnScroll);
+        enhancedRevealOnScroll(); // Initial check
+
+        // Video testimonial modal simulation
+        document.querySelectorAll('button[class*="play-circle"]').forEach(button => {
+            button.addEventListener('click', function() {
+                // In a real implementation, this would open a video modal
+                alert('Video testimonial would open in a modal or new window');
+            });
+        });
+
+        // Form validation and submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simple validation
+            const requiredFields = this.querySelectorAll('input[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.style.borderColor = '#e74c3c';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = '#10b981';
+                }
+            });
+            
+            if (isValid) {
+                // Show success message
+                const button = this.querySelector('button[type="submit"]');
+                const originalText = button.textContent;
+                button.textContent = 'Consultation Request Sent!';
+                button.style.backgroundColor = '#10b981';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.backgroundColor = '';
+                    this.reset();
+                }, 3000);
+            } else {
+                alert('Please fill in all required fields');
+            }
+        });
+
+        // Smooth hover effects for interactive elements
+        document.querySelectorAll('.interactive-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+                this.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Animated counter for metrics
+        function animateCounter(element, target, duration = 2000) {
+            let current = 0;
+            const increment = target / (duration / 16); // 60fps
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                
+                if (element.textContent.includes('%')) {
+                    element.textContent = Math.round(current) + '%';
+                } else if (element.textContent.includes('$')) {
+                    element.textContent = '$' + Math.round(current).toLocaleString();
+                } else {
+                    element.textContent = Math.round(current).toLocaleString();
+                }
+            }, 16);
+        }
+
+        // Trigger counter animations when elements come into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const element = entry.target;
+                    const text = element.textContent;
+                    const number = parseInt(text.replace(/[^\d]/g, ''));
+                    
+                    if (number > 0) {
+                        animateCounter(element, number);
+                        observer.unobserve(element);
+                    }
+                }
+            });
+        });
+
+        // Observe metric elements
+        document.querySelectorAll('[class*="font-bold"][class*="text-"]').forEach(el => {
+            if (el.textContent.match(/\d+/)) {
+                observer.observe(el);
+            }
+        });
+
+        // Add loading states and micro-interactions
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function() {
+                if (!this.classList.contains('loading')) {
+                    this.classList.add('loading');
+                    this.style.transform = 'scale(0.98)';
+                    
+                    setTimeout(() => {
+                        this.classList.remove('loading');
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                }
+            });
+        });
+
+        // Keyboard navigation support
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-navigation');
+            }
+        });
+
+        document.addEventListener('mousedown', function() {
+            document.body.classList.remove('keyboard-navigation');
+        });
+
+        // Performance optimization - lazy load charts
+        const chartObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const canvas = entry.target;
+                    const canvasId = canvas.id;
+                    
+                    if (canvasId === 'case-study-chart-1') {
+                        const revenueData = [50, 60, 85, 120, 140, 150];
+                        drawCaseStudyChart(canvasId, revenueData, '#10b981');
+                    } else if (canvasId === 'case-study-chart-2') {
+                        const efficiencyData = [45, 55, 70, 80, 85, 90];
+                        drawCaseStudyChart(canvasId, efficiencyData, '#f59e0b');
+                    }
+                    
+                    chartObserver.unobserve(canvas);
+                }
+            });
+        });
+
+        // Observe chart canvases
+        document.querySelectorAll('canvas[id*="case-study-chart"]').forEach(canvas => {
+            chartObserver.observe(canvas);
+        });
+    </script>
+</body>
+</html>
