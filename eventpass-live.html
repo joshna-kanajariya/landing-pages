@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventPass Live - Your Gateway to Unforgettable Events</title>
+    <meta name="description" content="Discover amazing events, concerts, festivals, and theater shows. Get your tickets now with EventPass Live - the premier event ticketing platform.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --concert-purple: #6B46C1;
+            --festival-orange: #F97316;
+            --theater-red: #DC2626;
+            --stage-gold: #F59E0B;
+            --dark-bg: #1F1F1F;
+        }
+
+        * {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--dark-bg);
+            color: white;
+        }
+
+        .bebas {
+            font-family: 'Bebas Neue', cursive;
+        }
+
+        /* Stage Lighting Effects */
+        .stage-lighting {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stage-lighting::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: sweep 4s infinite;
+        }
+
+        @keyframes sweep {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* Floating Animation */
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Pulse Animation */
+        .pulse-glow {
+            animation: pulseGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            from { box-shadow: 0 0 20px rgba(107, 70, 193, 0.5); }
+            to { box-shadow: 0 0 40px rgba(107, 70, 193, 0.8); }
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(45deg, var(--concert-purple), var(--festival-orange), var(--theater-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--concert-purple);
+            border-radius: 4px;
+        }
+
+        /* Interactive Map Styles */
+        .event-pin {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .event-pin:hover {
+            transform: scale(1.5);
+        }
+
+        .concert-pin { background: var(--concert-purple); }
+        .festival-pin { background: var(--festival-orange); }
+        .theater-pin { background: var(--theater-red); }
+
+        /* Countdown Timer Styles */
+        .countdown-digit {
+            background: linear-gradient(135deg, var(--concert-purple), var(--theater-red));
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 0.25rem;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        /* Ticket Animation */
+        @keyframes ticketSlide {
+            0% { transform: translateX(-100px) rotate(-5deg); opacity: 0; }
+            100% { transform: translateX(0) rotate(0deg); opacity: 1; }
+        }
+
+        .ticket-demo {
+            animation: ticketSlide 1s ease-out;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .countdown-digit {
+                min-width: 60px;
+                padding: 0.75rem;
+            }
+        }
+
+        /* Venue Capacity Display */
+        .capacity-bubble {
+            position: absolute;
+            background: rgba(249, 115, 22, 0.9);
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 12px;
+            font-weight: bold;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Artist Showcase Animation */
+        .artist-card {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .artist-card:hover {
+            transform: translateY(-20px) scale(1.05);
+        }
+
+        /* Testimonial Card Styles */
+        .testimonial-card {
+            background: linear-gradient(135deg, rgba(107, 70, 193, 0.1), rgba(220, 38, 38, 0.1));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Group Booking Tier Visualization */
+        .tier-bar {
+            height: 40px;
+            background: linear-gradient(90deg, var(--theater-red), var(--festival-orange), var(--concert-purple));
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tier-indicator {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            transition: width 0.5s ease;
+        }
+    </style>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'concert-purple': '#6B46C1',
+                        'festival-orange': '#F97316',
+                        'theater-red': '#DC2626',
+                        'stage-gold': '#F59E0B',
+                        'dark-bg': '#1F1F1F',
+                    },
+                    fontFamily: {
+                        'bebas': ['Bebas Neue', 'cursive'],
+                        'lato': ['Lato', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-dark-bg text-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-dark-bg/90 backdrop-blur-sm border-b border-white/10">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-ticket-alt text-festival-orange text-2xl"></i>
+                    <span class="bebas text-2xl gradient-text">EventPass Live</span>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#events" class="hover:text-festival-orange transition-colors">Events</a>
+                    <a href="#discover" class="hover:text-festival-orange transition-colors">Discover</a>
+                    <a href="#artists" class="hover:text-festival-orange transition-colors">Artists</a>
+                    <a href="#testimonials" class="hover:text-festival-orange transition-colors">Reviews</a>
+                </div>
+                <div class="flex space-x-4">
+                    <button class="bg-concert-purple hover:bg-purple-700 px-4 py-2 rounded-lg transition-colors">Login</button>
+                    <button class="bg-festival-orange hover:bg-orange-600 px-4 py-2 rounded-lg transition-colors">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center stage-lighting relative overflow-hidden pt-20">
+        <!-- Background Stage Effects -->
+        <div class="absolute inset-0 opacity-30">
+            <div class="absolute top-20 left-10 w-32 h-32 bg-concert-purple rounded-full blur-3xl animate-pulse"></div>
+            <div class="absolute bottom-20 right-10 w-40 h-40 bg-festival-orange rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-theater-red rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+        </div>
+
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <h1 class="bebas text-6xl md:text-8xl mb-6 gradient-text">
+                EventPass Live
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+                Your Gateway to Unforgettable Experiences - Concerts, Festivals, Theater & More
+            </p>
+
+            <!-- Event Countdown Timers -->
+            <div class="mb-12">
+                <h3 class="bebas text-2xl mb-6">Next Big Event Starts In:</h3>
+                <div class="flex justify-center space-x-2 md:space-x-4 flex-wrap">
+                    <div class="countdown-digit">
+                        <div class="bebas text-3xl md:text-4xl" id="days">15</div>
+                        <div class="text-sm">DAYS</div>
+                    </div>
+                    <div class="countdown-digit">
+                        <div class="bebas text-3xl md:text-4xl" id="hours">08</div>
+                        <div class="text-sm">HOURS</div>
+                    </div>
+                    <div class="countdown-digit">
+                        <div class="bebas text-3xl md:text-4xl" id="minutes">42</div>
+                        <div class="text-sm">MINUTES</div>
+                    </div>
+                    <div class="countdown-digit">
+                        <div class="bebas text-3xl md:text-4xl" id="seconds">30</div>
+                        <div class="text-sm">SECONDS</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Floating Venue Capacity Displays -->
+            <div class="relative mb-12 hidden md:block">
+                <div class="capacity-bubble" style="top: 20px; left: 15%;">
+                    <i class="fas fa-users mr-1"></i> Madison Square Garden: 18,000/20,000
+                </div>
+                <div class="capacity-bubble" style="top: 60px; right: 20%; animation-delay: 1s;">
+                    <i class="fas fa-music mr-1"></i> Red Rocks: 8,500/9,525
+                </div>
+                <div class="capacity-bubble" style="top: 100px; left: 25%; animation-delay: 2s;">
+                    <i class="fas fa-theater-masks mr-1"></i> Broadway Theater: 1,200/1,400
+                </div>
+            </div>
+
+            <!-- Ticket Purchase Flow Demo -->
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 max-w-4xl mx-auto ticket-demo">
+                <h3 class="bebas text-2xl mb-4">Quick Ticket Purchase</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-concert-purple/20 rounded-lg p-4">
+                        <i class="fas fa-search text-2xl mb-2"></i>
+                        <div class="font-semibold">1. Find Event</div>
+                        <div class="text-sm opacity-80">Search & Filter</div>
+                    </div>
+                    <div class="bg-festival-orange/20 rounded-lg p-4">
+                        <i class="fas fa-ticket-alt text-2xl mb-2"></i>
+                        <div class="font-semibold">2. Select Tickets</div>
+                        <div class="text-sm opacity-80">Choose Seats</div>
+                    </div>
+                    <div class="bg-theater-red/20 rounded-lg p-4">
+                        <i class="fas fa-credit-card text-2xl mb-2"></i>
+                        <div class="font-semibold">3. Secure Payment</div>
+                        <div class="text-sm opacity-80">Instant Confirmation</div>
+                    </div>
+                </div>
+                <button class="bg-gradient-to-r from-concert-purple to-theater-red hover:from-purple-700 hover:to-red-700 px-8 py-3 rounded-full font-semibold text-lg pulse-glow transition-all">
+                    Start Exploring Events
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Event Discovery Map -->
+    <section id="discover" class="py-20 bg-gradient-to-b from-dark-bg to-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="bebas text-5xl text-center mb-4 gradient-text">Discover Events Near You</h2>
+            <p class="text-center text-gray-300 mb-12 max-w-2xl mx-auto">
+                Explore concerts, festivals, and theater shows happening in your area with our interactive event map
+            </p>
+
+            <div class="max-w-6xl mx-auto">
+                <!-- Location Filters -->
+                <div class="flex flex-wrap justify-center gap-4 mb-8">
+                    <button class="filter-btn bg-concert-purple hover:bg-purple-700 px-6 py-2 rounded-full transition-colors" data-filter="concert">
+                        <i class="fas fa-music mr-2"></i>Concerts
+                    </button>
+                    <button class="filter-btn bg-festival-orange hover:bg-orange-600 px-6 py-2 rounded-full transition-colors" data-filter="festival">
+                        <i class="fas fa-star mr-2"></i>Festivals
+                    </button>
+                    <button class="filter-btn bg-theater-red hover:bg-red-700 px-6 py-2 rounded-full transition-colors" data-filter="theater">
+                        <i class="fas fa-theater-masks mr-2"></i>Theater
+                    </button>
+                    <button class="filter-btn bg-stage-gold hover:bg-yellow-600 px-6 py-2 rounded-full transition-colors" data-filter="all">
+                        <i class="fas fa-globe mr-2"></i>All Events
+                    </button>
+                </div>
+
+                <!-- Interactive Map -->
+                <div class="bg-gray-800 rounded-2xl p-8 relative" style="height: 400px; background-image: url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 400\"><rect width=\"800\" height=\"400\" fill=\"%23374151\"/><path d=\"M100 100 Q200 50 300 100 T500 100 Q600 80 700 100\" stroke=\"%23555\" stroke-width=\"2\" fill=\"none\"/><path d=\"M150 200 Q250 150 350 200 T550 200 Q650 180 750 200\" stroke=\"%23555\" stroke-width=\"2\" fill=\"none\"/><circle cx=\"200\" cy=\"120\" r=\"3\" fill=\"%236B46C1\"/><circle cx=\"350\" cy=\"180\" r=\"3\" fill=\"%23F97316\"/><circle cx=\"500\" cy=\"140\" r=\"3\" fill=\"%23DC2626\"/><circle cx=\"600\" cy=\"220\" r=\"3\" fill=\"%236B46C1\"/></svg>');">
+                    <!-- Event Pins -->
+                    <div class="event-pin concert-pin" style="top: 30%; left: 25%;" data-event="Coldplay Live" data-venue="Madison Square Garden" data-date="Dec 15" data-capacity="18,000"></div>
+                    <div class="event-pin festival-pin" style="top: 45%; left: 44%;" data-event="Summer Music Fest" data-venue="Central Park" data-date="Dec 20" data-capacity="50,000"></div>
+                    <div class="event-pin theater-pin" style="top: 35%; left: 62%;" data-event="Hamilton" data-venue="Broadway Theater" data-date="Dec 18" data-capacity="1,400"></div>
+                    <div class="event-pin concert-pin" style="top: 55%; left: 75%;" data-event="Jazz Night" data-venue="Blue Note" data-date="Dec 22" data-capacity="300"></div>
+
+                    <!-- Event Info Popup -->
+                    <div id="event-popup" class="absolute bg-white text-black p-4 rounded-lg shadow-lg hidden z-20" style="top: 50%; left: 50%;">
+                        <h4 class="font-bold text-lg" id="popup-event"></h4>
+                        <p class="text-sm" id="popup-venue"></p>
+                        <p class="text-sm text-gray-600" id="popup-date"></p>
+                        <p class="text-sm text-green-600" id="popup-capacity"></p>
+                        <button class="bg-concert-purple text-white px-4 py-2 rounded mt-2 text-sm">Get Tickets</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Artist Showcase Section -->
+    <section id="artists" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="bebas text-5xl text-center mb-4 gradient-text">Featured Artists & Performers</h2>
+            <p class="text-center text-gray-300 mb-12 max-w-2xl mx-auto">
+                Discover amazing artists and performers coming to your city
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Artist Card 1 -->
+                <div class="artist-card bg-gradient-to-br from-concert-purple/20 to-theater-red/20 rounded-2xl overflow-hidden">
+                    <div class="h-64 bg-gradient-to-br from-concert-purple to-purple-800 relative">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-music text-6xl opacity-50"></i>
+                        </div>
+                        <div class="absolute bottom-4 left-4">
+                            <h3 class="bebas text-2xl">Coldplay</h3>
+                            <p class="text-sm opacity-80">Alternative Rock</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-festival-orange font-semibold">Next Show: Dec 15</span>
+                            <span class="text-sm bg-white/10 px-2 py-1 rounded">Madison Square Garden</span>
+                        </div>
+                        <p class="text-sm text-gray-300 mb-4">Experience the magic of Coldplay's Music of the Spheres tour with stunning visuals and unforgettable hits.</p>
+                        <button class="w-full bg-concert-purple hover:bg-purple-700 py-2 rounded-lg transition-colors">
+                            View Tour Dates
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Artist Card 2 -->
+                <div class="artist-card bg-gradient-to-br from-festival-orange/20 to-stage-gold/20 rounded-2xl overflow-hidden">
+                    <div class="h-64 bg-gradient-to-br from-festival-orange to-orange-800 relative">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-guitar text-6xl opacity-50"></i>
+                        </div>
+                        <div class="absolute bottom-4 left-4">
+                            <h3 class="bebas text-2xl">The Weeknd</h3>
+                            <p class="text-sm opacity-80">R&B / Pop</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-festival-orange font-semibold">Next Show: Dec 18</span>
+                            <span class="text-sm bg-white/10 px-2 py-1 rounded">Barclays Center</span>
+                        </div>
+                        <p class="text-sm text-gray-300 mb-4">Join The Weeknd for an electrifying performance featuring hits from After Hours and Dawn FM.</p>
+                        <button class="w-full bg-festival-orange hover:bg-orange-600 py-2 rounded-lg transition-colors">
+                            View Tour Dates
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Artist Card 3 -->
+                <div class="artist-card bg-gradient-to-br from-theater-red/20 to-pink-600/20 rounded-2xl overflow-hidden">
+                    <div class="h-64 bg-gradient-to-br from-theater-red to-red-800 relative">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-theater-masks text-6xl opacity-50"></i>
+                        </div>
+                        <div class="absolute bottom-4 left-4">
+                            <h3 class="bebas text-2xl">Hamilton Cast</h3>
+                            <p class="text-sm opacity-80">Broadway Musical</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-festival-orange font-semibold">Shows Daily</span>
+                            <span class="text-sm bg-white/10 px-2 py-1 rounded">Richard Rodgers Theatre</span>
+                        </div>
+                        <p class="text-sm text-gray-300 mb-4">Experience Lin-Manuel Miranda's revolutionary musical about the founding father who shaped America.</p>
+                        <button class="w-full bg-theater-red hover:bg-red-700 py-2 rounded-lg transition-colors">
+                            Book Tickets
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Early Bird Pricing -->
+    <section class="py-20 bg-gradient-to-r from-concert-purple/10 to-theater-red/10">
+        <div class="container mx-auto px-4">
+            <h2 class="bebas text-5xl text-center mb-4 gradient-text">Early Bird Specials</h2>
+            <p class="text-center text-gray-300 mb-12">Limited time offers - Don't miss out!</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <!-- Early Bird Offer 1 -->
+                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                    <div class="text-center mb-4">
+                        <div class="text-festival-orange text-sm font-semibold mb-2">EARLY BIRD SPECIAL</div>
+                        <h3 class="bebas text-2xl mb-2">Weekend Festival Pass</h3>
+                        <div class="text-3xl font-bold">
+                            <span class="text-gray-400 line-through text-xl">$299</span>
+                            <span class="text-festival-orange ml-2">$199</span>
+                        </div>
+                        <div class="text-sm text-gray-300">Save $100 - Offer ends in:</div>
+                    </div>
+                    <div class="flex justify-center space-x-2 mb-6">
+                        <div class="bg-theater-red rounded px-2 py-1 text-sm">
+                            <span class="block font-bold" id="early-days">7</span>
+                            <span class="block text-xs">DAYS</span>
+                        </div>
+                        <div class="bg-theater-red rounded px-2 py-1 text-sm">
+                            <span class="block font-bold" id="early-hours">12</span>
+                            <span class="block text-xs">HRS</span>
+                        </div>
+                        <div class="bg-theater-red rounded px-2 py-1 text-sm">
+                            <span class="block font-bold" id="early-mins">45</span>
+                            <span class="block text-xs">MIN</span>
+                        </div>
+                    </div>
+                    <button class="w-full bg-gradient-to-r from-festival-orange to-theater-red hover:from-orange-600 hover:to-red-700 py-3 rounded-lg font-semibold transition-all">
+                        Grab This Deal
+                    </button>
+                </div>
+
+                <!-- Early Bird Offer 2 -->
+                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                    <div class="text-center mb-4">
+                        <div class="text-concert-purple text-sm font-semibold mb-2">VIP EXPERIENCE</div>
+                        <h3 class="bebas text-2xl mb-2">Concert VIP Package</h3>
+                        <div class="text-3xl font-bold">
+                            <span class="text-gray-400 line-through text-xl">$599</span>
+                            <span class="text-concert-purple ml-2">$449</span>
+                        </div>
+                        <div class="text-sm text-gray-300">Includes backstage pass</div>
+                    </div>
+                    <div class="space-y-2 mb-6 text-sm">
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Front row seats
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Meet & greet
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Exclusive merchandise
+                        </div>
+                    </div>
+                    <button class="w-full bg-concert-purple hover:bg-purple-700 py-3 rounded-lg font-semibold transition-all">
+                        Book VIP Experience
+                    </button>
+                </div>
+
+                <!-- Early Bird Offer 3 -->
+                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                    <div class="text-center mb-4">
+                        <div class="text-theater-red text-sm font-semibold mb-2">BROADWAY SPECIAL</div>
+                        <h3 class="bebas text-2xl mb-2">Theater Season Pass</h3>
+                        <div class="text-3xl font-bold">
+                            <span class="text-gray-400 line-through text-xl">$899</span>
+                            <span class="text-theater-red ml-2">$649</span>
+                        </div>
+                        <div class="text-sm text-gray-300">5 shows included</div>
+                    </div>
+                    <div class="space-y-2 mb-6 text-sm">
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Premium orchestra seats
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Flexible booking
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Complimentary program
+                        </div>
+                    </div>
+                    <button class="w-full bg-theater-red hover:bg-red-700 py-3 rounded-lg font-semibold transition-all">
+                        Get Season Pass
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Group Booking Tools -->
+    <section class="py-20 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="bebas text-5xl text-center mb-4 gradient-text">Group Booking Discounts</h2>
+            <p class="text-center text-gray-300 mb-12">Save more when you bring more friends!</p>
+
+            <div class="max-w-4xl mx-auto">
+                <!-- Group Size Selector -->
+                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 mb-8">
+                    <h3 class="bebas text-2xl mb-6 text-center">Calculate Your Group Discount</h3>
+                    
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold mb-2">Group Size</label>
+                        <input type="range" id="group-size" min="2" max="50" value="10" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer">
+                        <div class="flex justify-between text-sm text-gray-400 mt-1">
+                            <span>2</span>
+                            <span id="group-size-display" class="text-festival-orange font-semibold">10 people</span>
+                            <span>50+</span>
+                        </div>
+                    </div>
+
+                    <!-- Discount Tier Visualization -->
+                    <div class="mb-6">
+                        <div class="tier-bar">
+                            <div class="tier-indicator" id="tier-indicator" style="width: 20%;"></div>
+                        </div>
+                        <div class="flex justify-between mt-2 text-sm">
+                            <span class="text-theater-red">5% off (5-9)</span>
+                            <span class="text-festival-orange">15% off (10-19)</span>
+                            <span class="text-concert-purple">25% off (20+)</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="text-center p-4 bg-white/5 rounded-lg">
+                            <div class="text-2xl font-bold mb-2">
+                                <span id="original-price" class="text-gray-400 line-through">$750</span>
+                            </div>
+                            <div class="text-sm text-gray-400">Original Total</div>
+                        </div>
+                        <div class="text-center p-4 bg-gradient-to-r from-concert-purple/20 to-theater-red/20 rounded-lg">
+                            <div class="text-2xl font-bold mb-2">
+                                <span id="discounted-price" class="text-green-400">$637.50</span>
+                            </div>
+                            <div class="text-sm">
+                                <span id="savings" class="text-green-400">Save $112.50</span>
+                                <span class="text-gray-400"> - </span>
+                                <span id="discount-percent" class="text-festival-orange">15% off</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="w-full mt-6 bg-gradient-to-r from-concert-purple to-theater-red hover:from-purple-700 hover:to-red-700 py-3 rounded-lg font-semibold transition-all">
+                        Book Group Tickets
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-20 bg-gradient-to-b from-gray-900 to-dark-bg">
+        <div class="container mx-auto px-4">
+            <h2 class="bebas text-5xl text-center mb-4 gradient-text">What Our Users Say</h2>
+            <p class="text-center text-gray-300 mb-12">Join millions of happy event-goers</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card rounded-2xl p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-concert-purple rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-white"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Sarah Johnson</h4>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4">"EventPass Live made booking tickets for Coachella so easy! The group booking feature saved us hundreds of dollars."</p>
+                    <div class="text-sm text-festival-orange">
+                        <i class="fas fa-ticket-alt mr-1"></i>
+                        32 events attended
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card rounded-2xl p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-festival-orange rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-white"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Mike Chen</h4>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4">"The interactive map helped me discover amazing local concerts I never would have found otherwise. Amazing platform!"</p>
+                    <div class="text-sm text-festival-orange">
+                        <i class="fas fa-music mr-1"></i>
+                        18 concerts this year
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card rounded-2xl p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-theater-red rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-white"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Emily Rodriguez</h4>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4">"Got early bird tickets to Hamilton at 40% off! The countdown timers create such excitement and urgency."</p>
+                    <div class="text-sm text-festival-orange">
+                        <i class="fas fa-theater-masks mr-1"></i>
+                        12 Broadway shows
+                    </div>
+                </div>
+            </div>
+
+            <!-- Success Metrics -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-concert-purple mb-2">2.5M+</div>
+                    <div class="text-sm text-gray-400">Happy Customers</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-festival-orange mb-2">50K+</div>
+                    <div class="text-sm text-gray-400">Events Listed</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-theater-red mb-2">98%</div>
+                    <div class="text-sm text-gray-400">Satisfaction Rate</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-stage-gold mb-2">24/7</div>
+                    <div class="text-sm text-gray-400">Customer Support</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Sharing & Friend Invitation -->
+    <section class="py-20 bg-dark-bg">
+        <div class="container mx-auto px-4">
+            <h2 class="bebas text-5xl text-center mb-4 gradient-text">Share The Experience</h2>
+            <p class="text-center text-gray-300 mb-12">Invite friends and coordinate your perfect night out</p>
+
+            <div class="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Friend Invitation Tool -->
+                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8">
+                    <h3 class="bebas text-2xl mb-6">Invite Your Squad</h3>
+                    <div class="space-y-4 mb-6">
+                        <input type="email" placeholder="friend@email.com" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-festival-orange focus:outline-none">
+                        <input type="email" placeholder="another@email.com" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-festival-orange focus:outline-none">
+                        <textarea placeholder="Hey! Found this amazing concert. Want to go together?" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-festival-orange focus:outline-none h-24 resize-none"></textarea>
+                    </div>
+                    <button class="w-full bg-gradient-to-r from-concert-purple to-festival-orange hover:from-purple-700 hover:to-orange-600 py-3 rounded-lg font-semibold transition-all">
+                        Send Invitations
+                    </button>
+                </div>
+
+                <!-- Social Sharing -->
+                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8">
+                    <h3 class="bebas text-2xl mb-6">Share On Social</h3>
+                    
+                    <!-- Event Preview Card -->
+                    <div class="bg-white/10 rounded-lg p-4 mb-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-16 h-16 bg-concert-purple rounded-lg flex items-center justify-center">
+                                <i class="fas fa-music text-2xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Coldplay - Music of the Spheres</h4>
+                                <p class="text-sm text-gray-400">Dec 15, 2024 • Madison Square Garden</p>
+                                <p class="text-xs text-festival-orange">Starting from $89</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Media Buttons -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <button class="flex items-center justify-center space-x-2 bg-blue-600 hover:bg-blue-700 py-3 rounded-lg transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                            <span>Facebook</span>
+                        </button>
+                        <button class="flex items-center justify-center space-x-2 bg-sky-500 hover:bg-sky-600 py-3 rounded-lg transition-colors">
+                            <i class="fab fa-twitter"></i>
+                            <span>Twitter</span>
+                        </button>
+                        <button class="flex items-center justify-center space-x-2 bg-pink-600 hover:bg-pink-700 py-3 rounded-lg transition-colors">
+                            <i class="fab fa-instagram"></i>
+                            <span>Instagram</span>
+                        </button>
+                        <button class="flex items-center justify-center space-x-2 bg-gray-700 hover:bg-gray-600 py-3 rounded-lg transition-colors">
+                            <i class="fas fa-link"></i>
+                            <span>Copy Link</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-ticket-alt text-festival-orange text-2xl"></i>
+                        <span class="bebas text-2xl gradient-text">EventPass Live</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">Your gateway to unforgettable experiences. Discover, book, and enjoy amazing events.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Events</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-festival-orange transition-colors">Concerts</a></li>
+                        <li><a href="#" class="hover:text-festival-orange transition-colors">Festivals</a></li>
+                        <li><a href="#" class="hover:text-festival-orange transition-colors">Theater</a></li>
+                        <li><a href="#" class="hover:text-festival-orange transition-colors">Sports</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-festival-orange transition-colors">Help Center</a></li>
+                        <li><a href="#" class="hover:text-festival-orange transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-festival-orange transition-colors">Refund Policy</a></li>
+                        <li><a href="#" class="hover:text-festival-orange transition-colors">Safety</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-festival-orange transition-colors">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-festival-orange transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-festival-orange transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-festival-orange transition-colors">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-400 text-sm">
+                <p>&copy; 2024 EventPass Live. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Countdown Timer Function
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const eventDate = new Date().getTime() + (15 * 24 * 60 * 60 * 1000) + (8 * 60 * 60 * 1000) + (42 * 60 * 1000) + (30 * 1000);
+            const distance = eventDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+
+        // Early Bird Countdown
+        function updateEarlyBirdCountdown() {
+            const now = new Date().getTime();
+            const endDate = now + (7 * 24 * 60 * 60 * 1000) + (12 * 60 * 60 * 1000) + (45 * 60 * 1000);
+            const distance = endDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+            document.getElementById('early-days').textContent = days;
+            document.getElementById('early-hours').textContent = hours;
+            document.getElementById('early-mins').textContent = minutes;
+        }
+
+        // Group Booking Calculator
+        function updateGroupBooking() {
+            const slider = document.getElementById('group-size');
+            const display = document.getElementById('group-size-display');
+            const indicator = document.getElementById('tier-indicator');
+            const originalPrice = document.getElementById('original-price');
+            const discountedPrice = document.getElementById('discounted-price');
+            const savings = document.getElementById('savings');
+            const discountPercent = document.getElementById('discount-percent');
+
+            const groupSize = parseInt(slider.value);
+            const basePrice = 75; // Base price per ticket
+            const originalTotal = basePrice * groupSize;
+
+            let discount = 0;
+            let tierWidth = 0;
+
+            if (groupSize >= 5 && groupSize < 10) {
+                discount = 0.05; // 5%
+                tierWidth = 20;
+            } else if (groupSize >= 10 && groupSize < 20) {
+                discount = 0.15; // 15%
+                tierWidth = 50;
+            } else if (groupSize >= 20) {
+                discount = 0.25; // 25%
+                tierWidth = 100;
+            }
+
+            const discountAmount = originalTotal * discount;
+            const finalPrice = originalTotal - discountAmount;
+
+            display.textContent = `${groupSize} people`;
+            indicator.style.width = `${tierWidth}%`;
+            originalPrice.textContent = `$${originalTotal}`;
+            discountedPrice.textContent = `$${finalPrice.toFixed(2)}`;
+            savings.textContent = `Save $${discountAmount.toFixed(2)}`;
+            discountPercent.textContent = `${(discount * 100)}% off`;
+        }
+
+        // Event Map Interactions
+        function initializeEventMap() {
+            const eventPins = document.querySelectorAll('.event-pin');
+            const popup = document.getElementById('event-popup');
+            
+            eventPins.forEach(pin => {
+                pin.addEventListener('mouseenter', (e) => {
+                    const event = e.target.dataset.event;
+                    const venue = e.target.dataset.venue;
+                    const date = e.target.dataset.date;
+                    const capacity = e.target.dataset.capacity;
+
+                    document.getElementById('popup-event').textContent = event;
+                    document.getElementById('popup-venue').textContent = venue;
+                    document.getElementById('popup-date').textContent = date;
+                    document.getElementById('popup-capacity').textContent = `${capacity} capacity`;
+
+                    popup.style.left = e.target.offsetLeft + 'px';
+                    popup.style.top = (e.target.offsetTop - 120) + 'px';
+                    popup.classList.remove('hidden');
+                });
+
+                pin.addEventListener('mouseleave', () => {
+                    popup.classList.add('hidden');
+                });
+            });
+        }
+
+        // Filter Events
+        function initializeFilters() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const eventPins = document.querySelectorAll('.event-pin');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const filter = button.dataset.filter;
+                    
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('opacity-50'));
+                    button.classList.add('opacity-50');
+
+                    // Filter pins
+                    eventPins.forEach(pin => {
+                        if (filter === 'all') {
+                            pin.style.display = 'block';
+                        } else if (pin.classList.contains(filter + '-pin')) {
+                            pin.style.display = 'block';
+                        } else {
+                            pin.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        }
+
+        // Scroll Animations
+        function initializeScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.artist-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(50px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Start countdowns
+            updateCountdown();
+            updateEarlyBirdCountdown();
+            setInterval(updateCountdown, 1000);
+            setInterval(updateEarlyBirdCountdown, 60000);
+
+            // Initialize group booking
+            updateGroupBooking();
+            document.getElementById('group-size').addEventListener('input', updateGroupBooking);
+
+            // Initialize map and filters
+            initializeEventMap();
+            initializeFilters();
+
+            // Initialize scroll animations
+            initializeScrollAnimations();
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
