@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChefTable Express - Gourmet Delivery Service</title>
+    <meta name="description" content="Premium gourmet meals delivered to your door. Experience restaurant-quality dining at home with ChefTable Express.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* Custom CSS with culinary color scheme */
+        :root {
+            --truffle-brown: #8B4513;
+            --herb-green: #6B8E23;
+            --saffron-gold: #F4A460;
+            --cream: #FFF8DC;
+            --dark-truffle: #654321;
+            --light-herb: #8FBC8F;
+            --light-saffron: #FFD700;
+        }
+        
+        /* Typography */
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .font-lato { font-family: 'Lato', sans-serif; }
+        
+        /* Custom Tailwind colors */
+        .text-truffle { color: var(--truffle-brown); }
+        .text-herb { color: var(--herb-green); }
+        .text-saffron { color: var(--saffron-gold); }
+        .bg-truffle { background-color: var(--truffle-brown); }
+        .bg-herb { background-color: var(--herb-green); }
+        .bg-saffron { background-color: var(--saffron-gold); }
+        .bg-cream { background-color: var(--cream); }
+        .border-truffle { border-color: var(--truffle-brown); }
+        .border-herb { border-color: var(--herb-green); }
+        .border-saffron { border-color: var(--saffron-gold); }
+        
+        /* Food texture patterns */
+        .texture-paper {
+            background-image: 
+                radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0);
+            background-size: 20px 20px;
+        }
+        
+        .texture-wood {
+            background-image: 
+                linear-gradient(90deg, rgba(139,69,19,0.1) 50%, transparent 50%),
+                linear-gradient(rgba(139,69,19,0.05) 50%, transparent 50%);
+            background-size: 2px 2px, 8px 8px;
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes cooking {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(5deg) scale(1.05); }
+            50% { transform: rotate(0deg) scale(1.1); }
+            75% { transform: rotate(-5deg) scale(1.05); }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        .animate-cooking { animation: cooking 2s ease-in-out infinite; }
+        .animate-fadeInUp { animation: fadeInUp 0.8s ease-out; }
+        .animate-slideInLeft { animation: slideInLeft 0.8s ease-out; }
+        .animate-slideInRight { animation: slideInRight 0.8s ease-out; }
+        
+        /* Custom scroll animations */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Interactive elements */
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        /* Progress tracking animation */
+        .progress-ring {
+            transition: stroke-dasharray 0.5s ease-in-out;
+        }
+        
+        /* Menu filter buttons */
+        .filter-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn.active {
+            background-color: var(--herb-green);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        /* Review star animation */
+        .star-rating {
+            display: inline-block;
+        }
+        
+        .star-rating .star {
+            transition: color 0.2s ease;
+        }
+        
+        .star-rating:hover .star {
+            color: var(--saffron-gold);
+        }
+        
+        /* Responsive utilities */
+        @media (max-width: 768px) {
+            .hero-height { height: 70vh; }
+            .text-hero { font-size: 2.5rem; }
+        }
+        
+        @media (min-width: 769px) {
+            .hero-height { height: 90vh; }
+            .text-hero { font-size: 4rem; }
+        }
+    </style>
+</head>
+
+<body class="font-lato bg-cream text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-lg z-50 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="font-playfair text-2xl font-bold text-truffle">
+                    ChefTable Express
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#menu" class="text-gray-700 hover:text-herb transition-colors">Menu</a>
+                    <a href="#chefs" class="text-gray-700 hover:text-herb transition-colors">Our Chefs</a>
+                    <a href="#reviews" class="text-gray-700 hover:text-herb transition-colors">Reviews</a>
+                    <a href="#subscriptions" class="text-gray-700 hover:text-herb transition-colors">Subscriptions</a>
+                    <a href="#contact" class="text-gray-700 hover:text-herb transition-colors">Contact</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <button class="bg-herb text-white px-6 py-2 rounded-full hover:bg-opacity-90 transition-all hover-lift">
+                        Order Now
+                    </button>
+                    <button class="md:hidden text-gray-700" id="mobile-menu-btn">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div class="md:hidden hidden py-4 border-t border-gray-200" id="mobile-menu">
+                <div class="flex flex-col space-y-4">
+                    <a href="#menu" class="text-gray-700 hover:text-herb transition-colors">Menu</a>
+                    <a href="#chefs" class="text-gray-700 hover:text-herb transition-colors">Our Chefs</a>
+                    <a href="#reviews" class="text-gray-700 hover:text-herb transition-colors">Reviews</a>
+                    <a href="#subscriptions" class="text-gray-700 hover:text-herb transition-colors">Subscriptions</a>
+                    <a href="#contact" class="text-gray-700 hover:text-herb transition-colors">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-height relative overflow-hidden bg-gradient-to-br from-cream via-white to-saffron texture-paper">
+        <div class="absolute inset-0 bg-black/10"></div>
+        
+        <div class="container mx-auto px-4 h-full flex items-center relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center w-full">
+                <!-- Hero Content -->
+                <div class="animate-slideInLeft">
+                    <h1 class="font-playfair text-hero font-bold text-truffle mb-6 leading-tight">
+                        Gourmet Dining,
+                        <span class="text-herb">Delivered</span>
+                    </h1>
+                    
+                    <p class="text-xl text-gray-700 mb-8 leading-relaxed">
+                        Experience restaurant-quality meals crafted by world-class chefs, 
+                        delivered fresh to your doorstep. Every dish tells a story of passion, 
+                        precision, and culinary excellence.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                        <button class="bg-herb text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-opacity-90 transition-all hover-lift">
+                            <i class="fas fa-utensils mr-2"></i>
+                            Explore Menu
+                        </button>
+                        <button class="border-2 border-truffle text-truffle px-8 py-4 rounded-full text-lg font-semibold hover:bg-truffle hover:text-white transition-all">
+                            <i class="fas fa-play mr-2"></i>
+                            Watch Our Story
+                        </button>
+                    </div>
+                    
+                    <!-- Floating Quality Indicators -->
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-white/90 px-4 py-2 rounded-full shadow-md animate-float" style="animation-delay: 0s;">
+                            <i class="fas fa-leaf text-herb mr-2"></i>
+                            <span class="text-sm font-semibold">Fresh Ingredients</span>
+                        </div>
+                        <div class="bg-white/90 px-4 py-2 rounded-full shadow-md animate-float" style="animation-delay: 0.5s;">
+                            <i class="fas fa-star text-saffron mr-2"></i>
+                            <span class="text-sm font-semibold">5-Star Chefs</span>
+                        </div>
+                        <div class="bg-white/90 px-4 py-2 rounded-full shadow-md animate-float" style="animation-delay: 1s;">
+                            <i class="fas fa-clock text-truffle mr-2"></i>
+                            <span class="text-sm font-semibold">30min Delivery</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hero Visual -->
+                <div class="relative animate-slideInRight">
+                    <!-- Main Chef Animation -->
+                    <div class="relative w-full max-w-lg mx-auto">
+                        <div class="bg-white/20 backdrop-blur-sm rounded-3xl p-8 shadow-2xl">
+                            <div class="text-center mb-6">
+                                <div class="w-32 h-32 mx-auto bg-gradient-to-br from-truffle to-dark-truffle rounded-full flex items-center justify-center mb-4 animate-cooking">
+                                    <i class="fas fa-chef-hat text-4xl text-white"></i>
+                                </div>
+                                <h3 class="font-playfair text-2xl font-bold text-truffle">Chef Marco</h3>
+                                <p class="text-gray-600">Creating Your Perfect Meal</p>
+                            </div>
+                            
+                            <!-- Cooking Process Animation -->
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-3 bg-white/50 rounded-lg p-3">
+                                    <div class="w-3 h-3 bg-herb rounded-full animate-pulse"></div>
+                                    <span class="text-sm">Selecting premium ingredients...</span>
+                                </div>
+                                <div class="flex items-center gap-3 bg-white/50 rounded-lg p-3" style="animation-delay: 1s;">
+                                    <div class="w-3 h-3 bg-saffron rounded-full animate-pulse"></div>
+                                    <span class="text-sm">Expertly seasoning & preparing...</span>
+                                </div>
+                                <div class="flex items-center gap-3 bg-white/50 rounded-lg p-3" style="animation-delay: 2s;">
+                                    <div class="w-3 h-3 bg-truffle rounded-full animate-pulse"></div>
+                                    <span class="text-sm">Final plating & presentation...</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Floating Ingredients -->
+                        <div class="absolute -top-4 -left-4 w-16 h-16 bg-herb rounded-full flex items-center justify-center shadow-lg animate-float">
+                            <i class="fas fa-seedling text-white text-xl"></i>
+                        </div>
+                        <div class="absolute -top-8 -right-8 w-20 h-20 bg-saffron rounded-full flex items-center justify-center shadow-lg animate-float" style="animation-delay: 0.5s;">
+                            <i class="fas fa-pepper-hot text-white text-xl"></i>
+                        </div>
+                        <div class="absolute -bottom-4 -left-8 w-14 h-14 bg-truffle rounded-full flex items-center justify-center shadow-lg animate-float" style="animation-delay: 1s;">
+                            <i class="fas fa-fish text-white"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-2xl text-truffle opacity-70"></i>
+        </div>
+    </section>
+
+    <!-- Interactive Menu Builder Section -->
+    <section id="menu" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold text-truffle mb-6">
+                    Craft Your Perfect Menu
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Build your ideal dining experience with our interactive menu builder. 
+                    Filter by dietary preferences, allergies, and taste profiles.
+                </p>
+            </div>
+            
+            <!-- Menu Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12 scroll-animate">
+                <button class="filter-btn bg-gray-100 text-gray-700 px-6 py-3 rounded-full font-semibold active" data-filter="all">
+                    All Dishes
+                </button>
+                <button class="filter-btn bg-gray-100 text-gray-700 px-6 py-3 rounded-full font-semibold" data-filter="vegetarian">
+                    🥗 Vegetarian
+                </button>
+                <button class="filter-btn bg-gray-100 text-gray-700 px-6 py-3 rounded-full font-semibold" data-filter="vegan">
+                    🌱 Vegan
+                </button>
+                <button class="filter-btn bg-gray-100 text-gray-700 px-6 py-3 rounded-full font-semibold" data-filter="gluten-free">
+                    🌾 Gluten-Free
+                </button>
+                <button class="filter-btn bg-gray-100 text-gray-700 px-6 py-3 rounded-full font-semibold" data-filter="keto">
+                    🥑 Keto
+                </button>
+            </div>
+            
+            <!-- Menu Items Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 scroll-animate" id="menu-grid">
+                <!-- Menu Item 1 -->
+                <div class="menu-item bg-white rounded-2xl shadow-lg overflow-hidden hover-lift" data-categories="vegetarian gluten-free">
+                    <div class="h-48 bg-gradient-to-br from-herb to-light-herb flex items-center justify-center">
+                        <div class="text-6xl">🥗</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-playfair text-2xl font-bold text-truffle mb-2">Mediterranean Quinoa Bowl</h3>
+                        <p class="text-gray-600 mb-4">Fresh quinoa with roasted vegetables, feta cheese, and herb-infused olive oil</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-2xl font-bold text-herb">$18.99</span>
+                            <div class="flex gap-2">
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Vegetarian</span>
+                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">Gluten-Free</span>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex items-center gap-2 text-sm text-gray-600 mb-1">
+                                <span>⚠️ Allergens:</span>
+                                <span>Dairy</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm text-gray-600">
+                                <span>📊 Calories:</span>
+                                <span>420 kcal</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-herb text-white py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Menu Item 2 -->
+                <div class="menu-item bg-white rounded-2xl shadow-lg overflow-hidden hover-lift" data-categories="keto">
+                    <div class="h-48 bg-gradient-to-br from-saffron to-light-saffron flex items-center justify-center">
+                        <div class="text-6xl">🥩</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-playfair text-2xl font-bold text-truffle mb-2">Truffle Ribeye Steak</h3>
+                        <p class="text-gray-600 mb-4">Premium ribeye with truffle butter, served with roasted asparagus</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-2xl font-bold text-herb">$45.99</span>
+                            <div class="flex gap-2">
+                                <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs">Keto</span>
+                                <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs">Premium</span>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex items-center gap-2 text-sm text-gray-600 mb-1">
+                                <span>⚠️ Allergens:</span>
+                                <span>None</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm text-gray-600">
+                                <span>📊 Calories:</span>
+                                <span>680 kcal</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-herb text-white py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Menu Item 3 -->
+                <div class="menu-item bg-white rounded-2xl shadow-lg overflow-hidden hover-lift" data-categories="vegan gluten-free">
+                    <div class="h-48 bg-gradient-to-br from-truffle to-dark-truffle flex items-center justify-center">
+                        <div class="text-6xl">🍜</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-playfair text-2xl font-bold text-truffle mb-2">Coconut Thai Curry</h3>
+                        <p class="text-gray-600 mb-4">Rich coconut curry with vegetables and jasmine rice</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-2xl font-bold text-herb">$22.99</span>
+                            <div class="flex gap-2">
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Vegan</span>
+                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">Gluten-Free</span>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex items-center gap-2 text-sm text-gray-600 mb-1">
+                                <span>⚠️ Allergens:</span>
+                                <span>None</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm text-gray-600">
+                                <span>📊 Calories:</span>
+                                <span>350 kcal</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-herb text-white py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chef Profiles Section -->
+    <section id="chefs" class="py-20 bg-cream texture-wood">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold text-truffle mb-6">
+                    Meet Our Master Chefs
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Our culinary team brings decades of experience from the world's finest restaurants.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Chef 1 -->
+                <div class="chef-profile bg-white rounded-2xl p-8 shadow-lg hover-lift scroll-animate">
+                    <div class="text-center mb-6">
+                        <div class="w-32 h-32 mx-auto bg-gradient-to-br from-truffle to-dark-truffle rounded-full flex items-center justify-center mb-4">
+                            <div class="text-4xl">👨‍🍳</div>
+                        </div>
+                        <h3 class="font-playfair text-2xl font-bold text-truffle mb-2">Chef Marco Rossi</h3>
+                        <p class="text-herb font-semibold mb-4">Executive Chef</p>
+                    </div>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 bg-saffron rounded-full flex items-center justify-center">
+                                <span class="text-white text-sm">🏆</span>
+                            </div>
+                            <span class="text-sm">Michelin Star Experience</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 bg-herb rounded-full flex items-center justify-center">
+                                <span class="text-white text-sm">🇮🇹</span>
+                            </div>
+                            <span class="text-sm">Italian Cuisine Specialist</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 bg-truffle rounded-full flex items-center justify-center">
+                                <span class="text-white text-sm">⭐</span>
+                            </div>
+                            <span class="text-sm">15+ Years Experience</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        "Every dish is a canvas where I paint with flavors, creating memorable experiences one bite at a time."
+                    </p>
+                </div>
+
+                <!-- Chef 2 -->
+                <div class="chef-profile bg-white rounded-2xl p-8 shadow-lg hover-lift scroll-animate">
+                    <div class="text-center mb-6">
+                        <div class="w-32 h-32 mx-auto bg-gradient-to-br from-herb to-light-herb rounded-full flex items-center justify-center mb-4">
+                            <div class="text-4xl">👩‍🍳</div>
+                        </div>
+                        <h3 class="font-playfair text-2xl font-bold text-truffle mb-2">Chef Sarah Chen</h3>
+                        <p class="text-herb font-semibold mb-4">Pastry Chef</p>
+                    </div>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 bg-saffron rounded-full flex items-center justify-center">
+                                <span class="text-white text-sm">🥇</span>
+                            </div>
+                            <span class="text-sm">World Pastry Champion</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 bg-herb rounded-full flex items-center justify-center">
+                                <span class="text-white text-sm">🍰</span>
+                            </div>
+                            <span class="text-sm">Molecular Gastronomy Expert</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 bg-truffle rounded-full flex items-center justify-center">
+                                <span class="text-white text-sm">⭐</span>
+                            </div>
+                            <span class="text-sm">12+ Years Experience</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        "Desserts are the perfect ending to any meal - they should surprise, delight, and leave lasting memories."
+                    </p>
+                </div>
+
+                <!-- Chef 3 -->
+                <div class="chef-profile bg-white rounded-2xl p-8 shadow-lg hover-lift scroll-animate">
+                    <div class="text-center mb-6">
+                        <div class="w-32 h-32 mx-auto bg-gradient-to-br from-saffron to-light-saffron rounded-full flex items-center justify-center mb-4">
+                            <div class="text-4xl">👨‍🍳</div>
+                        </div>
+                        <h3 class="font-playfair text-2xl font-bold text-truffle mb-2">Chef James Wilson</h3>
+                        <p class="text-herb font-semibold mb-4">Sous Chef</p>
+                    </div>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 bg-saffron rounded-full flex items-center justify-center">
+                                <span class="text-white text-sm">🌿</span>
+                            </div>
+                            <span class="text-sm">Farm-to-Table Advocate</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 bg-herb rounded-full flex items-center justify-center">
+                                <span class="text-white text-sm">🔥</span>
+                            </div>
+                            <span class="text-sm">Grill Master</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 bg-truffle rounded-full flex items-center justify-center">
+                                <span class="text-white text-sm">⭐</span>
+                            </div>
+                            <span class="text-sm">10+ Years Experience</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        "Great cooking starts with great ingredients. I source the finest produce to create unforgettable flavors."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Reviews Section -->
+    <section id="reviews" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold text-truffle mb-6">
+                    What Our Customers Say
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Join thousands of satisfied customers who have experienced culinary excellence.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="review-card bg-cream rounded-2xl p-8 shadow-lg hover-lift scroll-animate">
+                    <div class="mb-6">
+                        <div class="flex gap-1 mb-4">
+                            <span class="star text-saffron text-2xl">★</span>
+                            <span class="star text-saffron text-2xl">★</span>
+                            <span class="star text-saffron text-2xl">★</span>
+                            <span class="star text-saffron text-2xl">★</span>
+                            <span class="star text-saffron text-2xl">★</span>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            "Absolutely incredible! The truffle risotto was restaurant-quality and arrived perfectly warm. 
+                            This is now my go-to for special occasions."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-herb rounded-full flex items-center justify-center">
+                            <span class="text-white font-bold">MS</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-truffle">Maria Santos</h4>
+                            <p class="text-sm text-gray-600">Verified Customer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="review-card bg-cream rounded-2xl p-8 shadow-lg hover-lift scroll-animate">
+                    <div class="mb-6">
+                        <div class="flex gap-1 mb-4">
+                            <span class="star text-saffron text-2xl">★</span>
+                            <span class="star text-saffron text-2xl">★</span>
+                            <span class="star text-saffron text-2xl">★</span>
+                            <span class="star text-saffron text-2xl">★</span>
+                            <span class="star text-saffron text-2xl">★</span>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            "The vegan options are amazing! As someone with dietary restrictions, I was thrilled to find 
+                            such delicious and carefully prepared meals."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-saffron rounded-full flex items-center justify-center">
+                            <span class="text-white font-bold">DJ</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-truffle">David Johnson</h4>
+                            <p class="text-sm text-gray-600">Verified Customer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="review-card bg-cream rounded-2xl p-8 shadow-lg hover-lift scroll-animate">
+                    <div class="mb-6">
+                        <div class="flex gap-1 mb-4">
+                            <span class="star text-saffron text-2xl">★</span>
+                            <span class="star text-saffron text-2xl">★</span>
+                            <span class="star text-saffron text-2xl">★</span>
+                            <span class="star text-saffron text-2xl">★</span>
+                            <span class="star text-saffron text-2xl">★</span>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            "Fast delivery, beautiful presentation, and incredible taste. ChefTable Express has 
+                            completely changed how I think about food delivery."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-truffle rounded-full flex items-center justify-center">
+                            <span class="text-white font-bold">AL</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-truffle">Anna Lee</h4>
+                            <p class="text-sm text-gray-600">Verified Customer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subscription Plans Section -->
+    <section id="subscriptions" class="py-20 bg-gradient-to-br from-cream to-white texture-paper">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold text-truffle mb-6">
+                    Choose Your Culinary Journey
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Flexible subscription plans designed to fit your lifestyle and taste preferences.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Starter Plan -->
+                <div class="subscription-card bg-white rounded-2xl p-8 shadow-lg hover-lift scroll-animate">
+                    <div class="text-center mb-8">
+                        <h3 class="font-playfair text-2xl font-bold text-truffle mb-2">Starter</h3>
+                        <div class="text-4xl mb-4">🍽️</div>
+                        <div class="text-3xl font-bold text-herb mb-2">$89</div>
+                        <p class="text-gray-600">per week</p>
+                    </div>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center gap-3">
+                            <div class="w-6 h-6 bg-herb rounded-full flex items-center justify-center">
+                                <span class="text-white text-xs">✓</span>
+                            </div>
+                            <span class="text-sm">3 meals per week</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-6 h-6 bg-herb rounded-full flex items-center justify-center">
+                                <span class="text-white text-xs">✓</span>
+                            </div>
+                            <span class="text-sm">2-3 servings per meal</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-6 h-6 bg-herb rounded-full flex items-center justify-center">
+                                <span class="text-white text-xs">✓</span>
+                            </div>
+                            <span class="text-sm">Free delivery</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-6 h-6 bg-herb rounded-full flex items-center justify-center">
+                                <span class="text-white text-xs">✓</span>
+                            </div>
+                            <span class="text-sm">Flexible menu choices</span>
+                        </div>
+                    </div>
+                    
+                    <button class="w-full bg-herb text-white py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all">
+                        Get Started
+                    </button>
+                </div>
+
+                <!-- Premium Plan -->
+                <div class="subscription-card bg-gradient-to-br from-herb to-light-herb text-white rounded-2xl p-8 shadow-lg hover-lift scroll-animate transform scale-105">
+                    <div class="text-center mb-8">
+                        <div class="bg-saffron text-truffle px-3 py-1 rounded-full text-sm font-bold mb-4">
+                            MOST POPULAR
+                        </div>
+                        <h3 class="font-playfair text-2xl font-bold mb-2">Premium</h3>
+                        <div class="text-4xl mb-4">👑</div>
+                        <div class="text-3xl font-bold mb-2">$159</div>
+                        <p class="opacity-90">per week</p>
+                    </div>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center gap-3">
+                            <div class="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                                <span class="text-herb text-xs">✓</span>
+                            </div>
+                            <span class="text-sm">5 meals per week</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                                <span class="text-herb text-xs">✓</span>
+                            </div>
+                            <span class="text-sm">3-4 servings per meal</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                                <span class="text-herb text-xs">✓</span>
+                            </div>
+                            <span class="text-sm">Priority delivery</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                                <span class="text-herb text-xs">✓</span>
+                            </div>
+                            <span class="text-sm">Wine pairing suggestions</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                                <span class="text-herb text-xs">✓</span>
+                            </div>
+                            <span class="text-sm">Exclusive chef specials</span>
+                        </div>
+                    </div>
+                    
+                    <button class="w-full bg-white text-herb py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all">
+                        Choose Premium
+                    </button>
+                </div>
+
+                <!-- Gourmet Plan -->
+                <div class="subscription-card bg-white rounded-2xl p-8 shadow-lg hover-lift scroll-animate">
+                    <div class="text-center mb-8">
+                        <h3 class="font-playfair text-2xl font-bold text-truffle mb-2">Gourmet</h3>
+                        <div class="text-4xl mb-4">⭐</div>
+                        <div class="text-3xl font-bold text-herb mb-2">$229</div>
+                        <p class="text-gray-600">per week</p>
+                    </div>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center gap-3">
+                            <div class="w-6 h-6 bg-herb rounded-full flex items-center justify-center">
+                                <span class="text-white text-xs">✓</span>
+                            </div>
+                            <span class="text-sm">7 meals per week</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-6 h-6 bg-herb rounded-full flex items-center justify-center">
+                                <span class="text-white text-xs">✓</span>
+                            </div>
+                            <span class="text-sm">4-6 servings per meal</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-6 h-6 bg-herb rounded-full flex items-center justify-center">
+                                <span class="text-white text-xs">✓</span>
+                            </div>
+                            <span class="text-sm">White-glove delivery</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-6 h-6 bg-herb rounded-full flex items-center justify-center">
+                                <span class="text-white text-xs">✓</span>
+                            </div>
+                            <span class="text-sm">Personal chef consultation</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-6 h-6 bg-herb rounded-full flex items-center justify-center">
+                                <span class="text-white text-xs">✓</span>
+                            </div>
+                            <span class="text-sm">Premium ingredients</span>
+                        </div>
+                    </div>
+                    
+                    <button class="w-full bg-herb text-white py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all">
+                        Go Gourmet
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Delivery Tracking Section -->
+    <section class="py-20 bg-truffle text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold mb-6">
+                    Track Your Culinary Journey
+                </h2>
+                <p class="text-xl opacity-90 max-w-3xl mx-auto">
+                    From kitchen to your doorstep - follow your meal's preparation and delivery in real-time.
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-4 gap-8">
+                    <!-- Step 1 -->
+                    <div class="text-center scroll-animate">
+                        <div class="relative mb-6">
+                            <div class="w-20 h-20 bg-saffron rounded-full flex items-center justify-center mx-auto mb-4">
+                                <div class="text-3xl">👨‍🍳</div>
+                            </div>
+                            <div class="absolute -top-2 -right-2 w-8 h-8 bg-herb rounded-full flex items-center justify-center">
+                                <span class="text-white text-sm font-bold">1</span>
+                            </div>
+                        </div>
+                        <h3 class="font-playfair text-xl font-bold mb-3">Chef Preparation</h3>
+                        <p class="text-sm opacity-80">Our chefs begin crafting your meal with premium ingredients</p>
+                        <div class="mt-4">
+                            <div class="w-full bg-white/20 rounded-full h-2">
+                                <div class="bg-saffron h-2 rounded-full w-full"></div>
+                            </div>
+                            <p class="text-xs mt-2 opacity-70">Estimated: 15-20 min</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="text-center scroll-animate">
+                        <div class="relative mb-6">
+                            <div class="w-20 h-20 bg-saffron rounded-full flex items-center justify-center mx-auto mb-4">
+                                <div class="text-3xl">📦</div>
+                            </div>
+                            <div class="absolute -top-2 -right-2 w-8 h-8 bg-herb rounded-full flex items-center justify-center">
+                                <span class="text-white text-sm font-bold">2</span>
+                            </div>
+                        </div>
+                        <h3 class="font-playfair text-xl font-bold mb-3">Quality Packaging</h3>
+                        <p class="text-sm opacity-80">Carefully packaged to maintain temperature and presentation</p>
+                        <div class="mt-4">
+                            <div class="w-full bg-white/20 rounded-full h-2">
+                                <div class="bg-saffron h-2 rounded-full w-3/4"></div>
+                            </div>
+                            <p class="text-xs mt-2 opacity-70">Estimated: 5 min</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="text-center scroll-animate">
+                        <div class="relative mb-6">
+                            <div class="w-20 h-20 bg-saffron rounded-full flex items-center justify-center mx-auto mb-4">
+                                <div class="text-3xl">🚗</div>
+                            </div>
+                            <div class="absolute -top-2 -right-2 w-8 h-8 bg-herb rounded-full flex items-center justify-center">
+                                <span class="text-white text-sm font-bold">3</span>
+                            </div>
+                        </div>
+                        <h3 class="font-playfair text-xl font-bold mb-3">Express Delivery</h3>
+                        <p class="text-sm opacity-80">Our professional drivers ensure safe and swift delivery</p>
+                        <div class="mt-4">
+                            <div class="w-full bg-white/20 rounded-full h-2">
+                                <div class="bg-saffron h-2 rounded-full w-1/2"></div>
+                            </div>
+                            <p class="text-xs mt-2 opacity-70">Estimated: 15-25 min</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="text-center scroll-animate">
+                        <div class="relative mb-6">
+                            <div class="w-20 h-20 bg-saffron rounded-full flex items-center justify-center mx-auto mb-4">
+                                <div class="text-3xl">🏠</div>
+                            </div>
+                            <div class="absolute -top-2 -right-2 w-8 h-8 bg-herb rounded-full flex items-center justify-center">
+                                <span class="text-white text-sm font-bold">4</span>
+                            </div>
+                        </div>
+                        <h3 class="font-playfair text-xl font-bold mb-3">Delivered Fresh</h3>
+                        <p class="text-sm opacity-80">Your gourmet meal arrives fresh and ready to enjoy</p>
+                        <div class="mt-4">
+                            <div class="w-full bg-white/20 rounded-full h-2">
+                                <div class="bg-white/40 h-2 rounded-full w-full"></div>
+                            </div>
+                            <p class="text-xs mt-2 opacity-70">Total: 35-50 min</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wine Pairing Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold text-truffle mb-6">
+                    Perfect Wine Pairings
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Elevate your dining experience with our expertly curated wine recommendations.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Pairing 1 -->
+                <div class="wine-pairing bg-cream rounded-2xl p-8 shadow-lg hover-lift scroll-animate">
+                    <div class="text-center mb-6">
+                        <div class="text-6xl mb-4">🍷</div>
+                        <h3 class="font-playfair text-2xl font-bold text-truffle mb-2">Truffle Ribeye</h3>
+                        <p class="text-herb font-semibold">+ Cabernet Sauvignon</p>
+                    </div>
+                    <div class="space-y-4">
+                        <p class="text-gray-700 text-sm leading-relaxed">
+                            The bold tannins and rich fruit flavors of Cabernet Sauvignon complement the earthy truffle and robust beef perfectly.
+                        </p>
+                        <div class="flex items-center gap-2">
+                            <span class="text-saffron">🌟</span>
+                            <span class="text-sm font-semibold">Sommelier's Choice</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-truffle">📍</span>
+                            <span class="text-sm">Napa Valley, California</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pairing 2 -->
+                <div class="wine-pairing bg-cream rounded-2xl p-8 shadow-lg hover-lift scroll-animate">
+                    <div class="text-center mb-6">
+                        <div class="text-6xl mb-4">🥂</div>
+                        <h3 class="font-playfair text-2xl font-bold text-truffle mb-2">Mediterranean Bowl</h3>
+                        <p class="text-herb font-semibold">+ Sauvignon Blanc</p>
+                    </div>
+                    <div class="space-y-4">
+                        <p class="text-gray-700 text-sm leading-relaxed">
+                            Crisp acidity and citrus notes enhance the fresh herbs and vegetables in this healthy Mediterranean creation.
+                        </p>
+                        <div class="flex items-center gap-2">
+                            <span class="text-saffron">🌟</span>
+                            <span class="text-sm font-semibold">Light & Fresh</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-truffle">📍</span>
+                            <span class="text-sm">Loire Valley, France</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pairing 3 -->
+                <div class="wine-pairing bg-cream rounded-2xl p-8 shadow-lg hover-lift scroll-animate">
+                    <div class="text-center mb-6">
+                        <div class="text-6xl mb-4">🍾</div>
+                        <h3 class="font-playfair text-2xl font-bold text-truffle mb-2">Thai Coconut Curry</h3>
+                        <p class="text-herb font-semibold">+ Gewürztraminer</p>
+                    </div>
+                    <div class="space-y-4">
+                        <p class="text-gray-700 text-sm leading-relaxed">
+                            The aromatic spice profile and slight sweetness balance beautifully with the curry's heat and coconut richness.
+                        </p>
+                        <div class="flex items-center gap-2">
+                            <span class="text-saffron">🌟</span>
+                            <span class="text-sm font-semibold">Exotic Match</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-truffle">📍</span>
+                            <span class="text-sm">Alsace, France</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dietary Accommodations Section -->
+    <section class="py-20 bg-gradient-to-br from-herb to-light-herb text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold mb-6">
+                    Dietary Accommodations
+                </h2>
+                <p class="text-xl opacity-90 max-w-3xl mx-auto">
+                    We believe everyone deserves exceptional food, regardless of dietary needs or restrictions.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Vegan -->
+                <div class="dietary-card bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover-lift scroll-animate">
+                    <div class="text-4xl mb-4">🌱</div>
+                    <h3 class="font-playfair text-xl font-bold mb-3">Plant-Based</h3>
+                    <p class="text-sm opacity-90 mb-4">100% vegan options with complete protein profiles and essential nutrients</p>
+                    <div class="space-y-2 text-xs">
+                        <div class="flex justify-between">
+                            <span>Protein</span>
+                            <span>25-30g</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Fiber</span>
+                            <span>12-15g</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Vitamin B12</span>
+                            <span>Fortified</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Keto -->
+                <div class="dietary-card bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover-lift scroll-animate">
+                    <div class="text-4xl mb-4">🥑</div>
+                    <h3 class="font-playfair text-xl font-bold mb-3">Ketogenic</h3>
+                    <p class="text-sm opacity-90 mb-4">High-fat, low-carb meals to maintain ketosis and energy levels</p>
+                    <div class="space-y-2 text-xs">
+                        <div class="flex justify-between">
+                            <span>Net Carbs</span>
+                            <span>&lt;10g</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Fat</span>
+                            <span>70-80%</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Protein</span>
+                            <span>20-25%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gluten-Free -->
+                <div class="dietary-card bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover-lift scroll-animate">
+                    <div class="text-4xl mb-4">🌾</div>
+                    <h3 class="font-playfair text-xl font-bold mb-3">Gluten-Free</h3>
+                    <p class="text-sm opacity-90 mb-4">Certified gluten-free ingredients prepared in dedicated facilities</p>
+                    <div class="space-y-2 text-xs">
+                        <div class="flex justify-between">
+                            <span>Gluten</span>
+                            <span>&lt;20ppm</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Cross-contamination</span>
+                            <span>Prevented</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Certification</span>
+                            <span>GFCO</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Low Sodium -->
+                <div class="dietary-card bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover-lift scroll-animate">
+                    <div class="text-4xl mb-4">🧂</div>
+                    <h3 class="font-playfair text-xl font-bold mb-3">Low Sodium</h3>
+                    <p class="text-sm opacity-90 mb-4">Heart-healthy meals with reduced sodium and enhanced natural flavors</p>
+                    <div class="space-y-2 text-xs">
+                        <div class="flex justify-between">
+                            <span>Sodium</span>
+                            <span>&lt;600mg</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Potassium</span>
+                            <span>Enhanced</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Herbs & Spices</span>
+                            <span>Natural</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Footer Section -->
+    <footer id="contact" class="py-20 bg-truffle text-white">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- Company Info -->
+                <div class="scroll-animate">
+                    <div class="font-playfair text-2xl font-bold mb-6">ChefTable Express</div>
+                    <p class="opacity-90 mb-6 leading-relaxed">
+                        Bringing restaurant-quality gourmet meals to your doorstep. 
+                        Experience culinary excellence in the comfort of your home.
+                    </p>
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 bg-saffron rounded-full flex items-center justify-center hover-lift cursor-pointer">
+                            <span class="text-truffle font-bold">f</span>
+                        </div>
+                        <div class="w-10 h-10 bg-saffron rounded-full flex items-center justify-center hover-lift cursor-pointer">
+                            <span class="text-truffle font-bold">@</span>
+                        </div>
+                        <div class="w-10 h-10 bg-saffron rounded-full flex items-center justify-center hover-lift cursor-pointer">
+                            <span class="text-truffle font-bold">in</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="scroll-animate">
+                    <h3 class="font-playfair text-xl font-bold mb-6">Quick Links</h3>
+                    <div class="space-y-3">
+                        <a href="#menu" class="block opacity-90 hover:opacity-100 hover:text-saffron transition-colors">Menu</a>
+                        <a href="#chefs" class="block opacity-90 hover:opacity-100 hover:text-saffron transition-colors">Our Chefs</a>
+                        <a href="#subscriptions" class="block opacity-90 hover:opacity-100 hover:text-saffron transition-colors">Subscriptions</a>
+                        <a href="#reviews" class="block opacity-90 hover:opacity-100 hover:text-saffron transition-colors">Reviews</a>
+                        <a href="#" class="block opacity-90 hover:opacity-100 hover:text-saffron transition-colors">About Us</a>
+                    </div>
+                </div>
+
+                <!-- Customer Service -->
+                <div class="scroll-animate">
+                    <h3 class="font-playfair text-xl font-bold mb-6">Support</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3">
+                            <span class="text-saffron">📞</span>
+                            <span class="opacity-90">1-800-CHEF-TABLE</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-saffron">✉️</span>
+                            <span class="opacity-90">hello@cheftable.com</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-saffron">🕒</span>
+                            <span class="opacity-90">24/7 Support</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-saffron">💬</span>
+                            <span class="opacity-90">Live Chat Available</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="scroll-animate">
+                    <h3 class="font-playfair text-xl font-bold mb-6">Stay Updated</h3>
+                    <p class="opacity-90 mb-4">Get the latest recipes, offers, and culinary tips delivered to your inbox.</p>
+                    <div class="space-y-3">
+                        <input type="email" placeholder="Enter your email" class="w-full px-4 py-3 rounded-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-saffron">
+                        <button class="w-full bg-saffron text-truffle py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all">
+                            Subscribe
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-white/20 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="opacity-70 text-sm">
+                        © 2024 ChefTable Express. All rights reserved.
+                    </p>
+                    <div class="flex gap-6 text-sm">
+                        <a href="#" class="opacity-70 hover:opacity-100 hover:text-saffron transition-colors">Privacy Policy</a>
+                        <a href="#" class="opacity-70 hover:opacity-100 hover:text-saffron transition-colors">Terms of Service</a>
+                        <a href="#" class="opacity-70 hover:opacity-100 hover:text-saffron transition-colors">Accessibility</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for interactive features
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Menu filter functionality
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const menuItems = document.querySelectorAll('.menu-item');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    menuItems.forEach(item => {
+                        if (filterValue === 'all') {
+                            item.style.display = 'block';
+                        } else {
+                            const categories = item.getAttribute('data-categories');
+                            if (categories && categories.includes(filterValue)) {
+                                item.style.display = 'block';
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+            
+            // Scroll animations
+            const scrollElements = document.querySelectorAll('.scroll-animate');
+            
+            const elementInView = (el, dividend = 1) => {
+                const elementTop = el.getBoundingClientRect().top;
+                return (
+                    elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+                );
+            };
+            
+            const displayScrollElement = (element) => {
+                element.classList.add('visible');
+            };
+            
+            const hideScrollElement = (element) => {
+                element.classList.remove('visible');
+            };
+            
+            const handleScrollAnimation = () => {
+                scrollElements.forEach((el) => {
+                    if (elementInView(el, 1.25)) {
+                        displayScrollElement(el);
+                    } else {
+                        hideScrollElement(el);
+                    }
+                });
+            };
+            
+            window.addEventListener('scroll', handleScrollAnimation);
+            
+            // Navbar background on scroll
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+                } else {
+                    navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                }
+            });
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Review star hover effects
+            const starRatings = document.querySelectorAll('.star-rating');
+            starRatings.forEach(rating => {
+                rating.addEventListener('mouseenter', function() {
+                    const stars = this.querySelectorAll('.star');
+                    stars.forEach(star => star.style.color = '#F4A460');
+                });
+                
+                rating.addEventListener('mouseleave', function() {
+                    const stars = this.querySelectorAll('.star');
+                    stars.forEach(star => star.style.color = '#F4A460');
+                });
+            });
+            
+            // Newsletter subscription
+            const subscribeBtn = document.querySelector('button:contains("Subscribe")');
+            if (subscribeBtn) {
+                subscribeBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const email = this.previousElementSibling.value;
+                    if (email && email.includes('@')) {
+                        this.textContent = 'Subscribed!';
+                        this.style.backgroundColor = '#6B8E23';
+                        setTimeout(() => {
+                            this.textContent = 'Subscribe';
+                            this.style.backgroundColor = '';
+                        }, 2000);
+                    }
+                });
+            }
+            
+            // Initial scroll animation check
+            handleScrollAnimation();
+        });
+    </script>
+</body>
+</html>
