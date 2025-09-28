@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnPlay Adventures - Fun Educational Games for Kids</title>
+    <meta name="description" content="Interactive educational games platform for children with age-appropriate learning paths, parental controls, and curriculum-aligned content.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom styles and animations -->
+    <style>
+        :root {
+            --sunshine-yellow: #FFD700;
+            --sky-blue: #87CEEB;
+            --grass-green: #90EE90;
+            --bubblegum-pink: #FF69B4;
+        }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+        }
+        
+        .font-fredoka {
+            font-family: 'Fredoka One', cursive;
+        }
+        
+        .bounce-gentle {
+            animation: bounceGentle 2s ease-in-out infinite;
+        }
+        
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .float-delayed {
+            animation: float 3s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+        
+        .pulse-color {
+            animation: pulseColor 2s ease-in-out infinite;
+        }
+        
+        .wiggle {
+            animation: wiggle 0.5s ease-in-out;
+        }
+        
+        @keyframes bounceGentle {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-5px) rotate(1deg); }
+            50% { transform: translateY(-10px) rotate(0deg); }
+            75% { transform: translateY(-5px) rotate(-1deg); }
+        }
+        
+        @keyframes pulseColor {
+            0%, 100% { background-color: var(--sunshine-yellow); }
+            50% { background-color: var(--bubblegum-pink); }
+        }
+        
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(3deg); }
+            75% { transform: rotate(-3deg); }
+        }
+        
+        .bg-sunshine { background-color: var(--sunshine-yellow); }
+        .bg-sky { background-color: var(--sky-blue); }
+        .bg-grass { background-color: var(--grass-green); }
+        .bg-bubblegum { background-color: var(--bubblegum-pink); }
+        
+        .text-sunshine { color: var(--sunshine-yellow); }
+        .text-sky { color: var(--sky-blue); }
+        .text-grass { color: var(--grass-green); }
+        .text-bubblegum { color: var(--bubblegum-pink); }
+        
+        .mascot {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .mascot:hover {
+            transform: scale(1.1);
+        }
+        
+        .game-preview {
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .game-preview:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .age-selector {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .age-selector:hover {
+            transform: scale(1.05);
+        }
+        
+        .age-selector.active {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        
+        .testimonial-card {
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.6s ease;
+        }
+        
+        .testimonial-card.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--sky-blue) 0%, var(--grass-green) 100%);
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--sunshine-yellow) 0%, var(--sky-blue) 50%, var(--grass-green) 100%);
+        }
+        
+        .card-shadow {
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="mascot bg-sunshine mr-3">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <span class="font-fredoka text-2xl text-gray-800">LearnPlay Adventures</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#games" class="text-gray-700 hover:text-bubblegum transition-colors">Games</a>
+                    <a href="#learning-paths" class="text-gray-700 hover:text-bubblegum transition-colors">Learning Paths</a>
+                    <a href="#parents" class="text-gray-700 hover:text-bubblegum transition-colors">For Parents</a>
+                    <a href="#educators" class="text-gray-700 hover:text-bubblegum transition-colors">Educators</a>
+                    <button class="bg-bubblegum text-white px-6 py-2 rounded-full font-semibold hover:bg-pink-600 transition-colors">
+                        Start Free Trial
+                    </button>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-700">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto text-center relative z-10">
+            <h1 class="font-fredoka text-5xl md:text-7xl text-white mb-6 bounce-gentle">
+                Welcome to LearnPlay Adventures!
+            </h1>
+            <p class="text-xl md:text-2xl text-white mb-8 font-semibold">
+                Where learning becomes an exciting adventure for young minds!
+            </p>
+            
+            <!-- Animated Mascot Characters -->
+            <div class="flex justify-center space-x-8 mb-12">
+                <div class="mascot bg-grass float" title="Math Wizard">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="mascot bg-bubblegum float-delayed" title="Reading Hero">
+                    <i class="fas fa-book"></i>
+                </div>
+                <div class="mascot bg-sky float" title="Science Explorer">
+                    <i class="fas fa-flask"></i>
+                </div>
+            </div>
+            
+            <button class="bg-white text-bubblegum px-8 py-4 rounded-full font-bold text-xl hover:bg-gray-100 transition-colors wiggle-on-hover shadow-lg">
+                Start Learning Adventure
+            </button>
+        </div>
+        
+        <!-- Floating Game Previews -->
+        <div class="absolute top-20 left-10 game-preview bg-white p-4 shadow-lg float" style="width: 120px;">
+            <div class="bg-grass rounded-lg p-3 text-center">
+                <i class="fas fa-plus text-white text-2xl mb-2"></i>
+                <p class="text-xs font-semibold">Math Fun</p>
+            </div>
+        </div>
+        
+        <div class="absolute top-40 right-10 game-preview bg-white p-4 shadow-lg float-delayed" style="width: 120px;">
+            <div class="bg-bubblegum rounded-lg p-3 text-center">
+                <i class="fas fa-spell-check text-white text-2xl mb-2"></i>
+                <p class="text-xs font-semibold">Word Play</p>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-20 left-1/4 game-preview bg-white p-4 shadow-lg float" style="width: 120px;">
+            <div class="bg-sky rounded-lg p-3 text-center">
+                <i class="fas fa-atom text-white text-2xl mb-2"></i>
+                <p class="text-xs font-semibold">Science Lab</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Child Progress Celebration -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="font-fredoka text-4xl text-center text-gray-800 mb-12">
+                Celebrate Every Learning Milestone! 🎉
+            </h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center p-6 bg-sunshine rounded-3xl card-shadow">
+                    <div class="text-6xl mb-4">🏆</div>
+                    <h3 class="font-bold text-xl mb-2">Achievement Badges</h3>
+                    <p class="text-gray-700">Earn colorful badges for completing lessons and reaching milestones!</p>
+                </div>
+                <div class="text-center p-6 bg-grass rounded-3xl card-shadow">
+                    <div class="text-6xl mb-4">⭐</div>
+                    <h3 class="font-bold text-xl mb-2">Star Collector</h3>
+                    <p class="text-gray-700">Collect stars for every correct answer and unlock new adventures!</p>
+                </div>
+                <div class="text-center p-6 bg-bubblegum rounded-3xl card-shadow text-white">
+                    <div class="text-6xl mb-4">🎨</div>
+                    <h3 class="font-bold text-xl mb-2">Creative Rewards</h3>
+                    <p>Unlock art tools, stickers, and fun customizations as you learn!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Learning Paths -->
+    <section id="learning-paths" class="py-16 gradient-bg">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="font-fredoka text-4xl text-center text-white mb-4">
+                Choose Your Learning Adventure!
+            </h2>
+            <p class="text-center text-white mb-12 text-xl">Select your age group to start learning</p>
+            
+            <!-- Age Selectors -->
+            <div class="flex justify-center space-x-6 mb-12">
+                <div class="age-selector bg-white rounded-2xl p-6 text-center" data-age="3-5">
+                    <div class="text-4xl mb-2">🐣</div>
+                    <h3 class="font-bold text-lg">Ages 3-5</h3>
+                    <p class="text-sm text-gray-600">Early Learning</p>
+                </div>
+                <div class="age-selector active bg-white rounded-2xl p-6 text-center" data-age="6-8">
+                    <div class="text-4xl mb-2">🌟</div>
+                    <h3 class="font-bold text-lg">Ages 6-8</h3>
+                    <p class="text-sm text-gray-600">Elementary</p>
+                </div>
+                <div class="age-selector bg-white rounded-2xl p-6 text-center" data-age="9-12">
+                    <div class="text-4xl mb-2">🚀</div>
+                    <h3 class="font-bold text-lg">Ages 9-12</h3>
+                    <p class="text-sm text-gray-600">Advanced</p>
+                </div>
+            </div>
+            
+            <!-- Subject Categories -->
+            <div id="subjects-container" class="grid md:grid-cols-4 gap-6">
+                <div class="subject-card bg-sunshine rounded-2xl p-6 text-center cursor-pointer hover:scale-105 transition-transform">
+                    <div class="text-5xl mb-4">🔢</div>
+                    <h3 class="font-bold text-xl mb-2">Math Adventures</h3>
+                    <p class="text-sm">Numbers, counting, addition, and problem-solving fun!</p>
+                </div>
+                <div class="subject-card bg-grass rounded-2xl p-6 text-center cursor-pointer hover:scale-105 transition-transform">
+                    <div class="text-5xl mb-4">📚</div>
+                    <h3 class="font-bold text-xl mb-2">Reading Quest</h3>
+                    <p class="text-sm">Phonics, vocabulary, and storytelling adventures!</p>
+                </div>
+                <div class="subject-card bg-sky rounded-2xl p-6 text-center cursor-pointer hover:scale-105 transition-transform">
+                    <div class="text-5xl mb-4">🔬</div>
+                    <h3 class="font-bold text-xl mb-2">Science Lab</h3>
+                    <p class="text-sm">Experiments, discovery, and STEM exploration!</p>
+                </div>
+                <div class="subject-card bg-bubblegum rounded-2xl p-6 text-center cursor-pointer hover:scale-105 transition-transform text-white">
+                    <div class="text-5xl mb-4">🎨</div>
+                    <h3 class="font-bold text-xl mb-2">Creative Arts</h3>
+                    <p class="text-sm">Drawing, music, and creative expression!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parent Testimonials with Child Development Milestones -->
+    <section id="parents" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="font-fredoka text-4xl text-center text-gray-800 mb-12">
+                Parents Love Our Results! 💕
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-16">
+                <div class="testimonial-card bg-gradient-to-br from-sunshine to-yellow-300 rounded-3xl p-8 text-center">
+                    <div class="text-6xl mb-4">👩‍👧</div>
+                    <blockquote class="text-lg mb-4 italic">
+                        "Emma's reading skills improved by 40% in just 3 months! She looks forward to learning time every day."
+                    </blockquote>
+                    <p class="font-bold">Sarah M., Parent</p>
+                    <div class="mt-4 bg-white rounded-full px-4 py-2 inline-block">
+                        <span class="text-sm font-semibold">📈 Reading Level: +2 grades</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card bg-gradient-to-br from-grass to-green-300 rounded-3xl p-8 text-center">
+                    <div class="text-6xl mb-4">👨‍👦</div>
+                    <blockquote class="text-lg mb-4 italic">
+                        "Jake went from struggling with math to solving problems with confidence. The progress tracking helps me support his learning."
+                    </blockquote>
+                    <p class="font-bold">Mike R., Parent</p>
+                    <div class="mt-4 bg-white rounded-full px-4 py-2 inline-block">
+                        <span class="text-sm font-semibold">🎯 Math Skills: +3 levels</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Development Milestones -->
+            <div class="bg-gray-50 rounded-3xl p-8">
+                <h3 class="font-fredoka text-2xl text-center mb-8">Track Your Child's Development Milestones</h3>
+                <div class="grid md:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="bg-sunshine w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-brain text-white text-xl"></i>
+                        </div>
+                        <h4 class="font-bold mb-2">Cognitive Growth</h4>
+                        <p class="text-sm text-gray-600">Problem-solving and critical thinking skills</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="bg-grass w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-comments text-white text-xl"></i>
+                        </div>
+                        <h4 class="font-bold mb-2">Language Development</h4>
+                        <p class="text-sm text-gray-600">Vocabulary and communication skills</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="bg-sky w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-users text-white text-xl"></i>
+                        </div>
+                        <h4 class="font-bold mb-2">Social Skills</h4>
+                        <p class="text-sm text-gray-600">Collaboration and empathy building</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="bg-bubblegum w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-heart text-white text-xl"></i>
+                        </div>
+                        <h4 class="font-bold mb-2">Emotional Intelligence</h4>
+                        <p class="text-sm text-gray-600">Self-awareness and confidence</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Educator Approval & Curriculum Standards -->
+    <section id="educators" class="py-16 gradient-bg">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="font-fredoka text-4xl text-center text-white mb-12">
+                Trusted by Educators Worldwide 🏫
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="bg-white rounded-3xl p-8 card-shadow">
+                        <h3 class="font-bold text-2xl mb-6">Curriculum Standards Alignment</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <div class="bg-grass w-8 h-8 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fas fa-check text-white"></i>
+                                </div>
+                                <span>Common Core State Standards</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="bg-sky w-8 h-8 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fas fa-check text-white"></i>
+                                </div>
+                                <span>Next Generation Science Standards</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="bg-sunshine w-8 h-8 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fas fa-check text-white"></i>
+                                </div>
+                                <span>State Learning Standards</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="bg-bubblegum w-8 h-8 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fas fa-check text-white"></i>
+                                </div>
+                                <span>International Curriculum Standards</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="space-y-6">
+                    <div class="bg-white rounded-2xl p-6 card-shadow">
+                        <div class="flex items-center mb-4">
+                            <div class="text-4xl mr-4">👩‍🏫</div>
+                            <div>
+                                <h4 class="font-bold text-lg">Dr. Jennifer Smith</h4>
+                                <p class="text-gray-600">Elementary Education Specialist</p>
+                            </div>
+                        </div>
+                        <p class="italic">"LearnPlay Adventures perfectly balances fun and education. My students are more engaged than ever!"</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-6 card-shadow">
+                        <div class="flex items-center mb-4">
+                            <div class="text-4xl mr-4">👨‍🏫</div>
+                            <div>
+                                <h4 class="font-bold text-lg">Prof. Michael Brown</h4>
+                                <p class="text-gray-600">Educational Technology Expert</p>
+                            </div>
+                        </div>
+                        <p class="italic">"The adaptive learning technology is exceptional. It truly meets each child where they are."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gameplay Previews with Parental Controls -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="font-fredoka text-4xl text-center text-gray-800 mb-12">
+                See Learning in Action! 🎮
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="bg-gray-200 rounded-3xl aspect-video flex items-center justify-center">
+                        <div class="text-center">
+                            <div class="text-6xl mb-4">📹</div>
+                            <p class="text-xl font-bold text-gray-600">Math Adventure Preview</p>
+                            <button class="bg-bubblegum text-white px-6 py-3 rounded-full mt-4 hover:bg-pink-600 transition-colors">
+                                <i class="fas fa-play mr-2"></i>Watch Demo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-2xl mb-6">Complete Parental Control</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="bg-grass w-8 h-8 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-clock text-white text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Screen Time Management</h4>
+                                <p class="text-gray-600 text-sm">Set daily limits and break reminders</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-sky w-8 h-8 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-chart-line text-white text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Progress Monitoring</h4>
+                                <p class="text-gray-600 text-sm">Detailed reports and insights</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-sunshine w-8 h-8 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-shield-alt text-white text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Safe Environment</h4>
+                                <p class="text-gray-600 text-sm">No ads, no chat, complete safety</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-bubblegum w-8 h-8 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <i class="fas fa-cog text-white text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Difficulty Adjustment</h4>
+                                <p class="text-gray-600 text-sm">Customize challenge levels</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subscription Plans with Learning Outcomes -->
+    <section class="py-16 gradient-bg">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="font-fredoka text-4xl text-center text-white mb-12">
+                Choose Your Adventure Plan! 🌟
+            </h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Starter Plan -->
+                <div class="bg-white rounded-3xl p-8 text-center card-shadow">
+                    <h3 class="font-fredoka text-2xl mb-4">Little Explorer</h3>
+                    <div class="text-4xl mb-4">🌱</div>
+                    <div class="text-3xl font-bold mb-2">$9.99<span class="text-lg text-gray-600">/month</span></div>
+                    <p class="text-gray-600 mb-6">Perfect for getting started</p>
+                    
+                    <div class="space-y-3 mb-8 text-left">
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-grass mr-3"></i>
+                            <span>Access to 100+ games</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-grass mr-3"></i>
+                            <span>2 learning subjects</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-grass mr-3"></i>
+                            <span>Progress tracking</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-grass mr-3"></i>
+                            <span>Parent dashboard</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                        <h4 class="font-semibold mb-2">Learning Outcomes:</h4>
+                        <p class="text-sm text-gray-600">20-30% improvement in targeted skills within 3 months</p>
+                    </div>
+                    
+                    <button class="w-full bg-grass text-white py-3 rounded-full font-semibold hover:bg-green-600 transition-colors">
+                        Start Free Trial
+                    </button>
+                </div>
+                
+                <!-- Premium Plan -->
+                <div class="bg-white rounded-3xl p-8 text-center card-shadow transform scale-105 border-4 border-bubblegum">
+                    <div class="bg-bubblegum text-white px-4 py-1 rounded-full text-sm font-semibold mb-4">
+                        Most Popular
+                    </div>
+                    <h3 class="font-fredoka text-2xl mb-4">Super Learner</h3>
+                    <div class="text-4xl mb-4">⭐</div>
+                    <div class="text-3xl font-bold mb-2">$19.99<span class="text-lg text-gray-600">/month</span></div>
+                    <p class="text-gray-600 mb-6">Complete learning experience</p>
+                    
+                    <div class="space-y-3 mb-8 text-left">
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-bubblegum mr-3"></i>
+                            <span>Access to 500+ games</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-bubblegum mr-3"></i>
+                            <span>All learning subjects</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-bubblegum mr-3"></i>
+                            <span>Advanced analytics</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-bubblegum mr-3"></i>
+                            <span>Personalized learning paths</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-bubblegum mr-3"></i>
+                            <span>Priority support</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-bubblegum bg-opacity-10 rounded-lg p-4 mb-6">
+                        <h4 class="font-semibold mb-2">Learning Outcomes:</h4>
+                        <p class="text-sm text-gray-600">40-60% improvement in all skills within 3 months</p>
+                    </div>
+                    
+                    <button class="w-full bg-bubblegum text-white py-3 rounded-full font-semibold hover:bg-pink-600 transition-colors">
+                        Start Free Trial
+                    </button>
+                </div>
+                
+                <!-- Family Plan -->
+                <div class="bg-white rounded-3xl p-8 text-center card-shadow">
+                    <h3 class="font-fredoka text-2xl mb-4">Family Adventure</h3>
+                    <div class="text-4xl mb-4">👨‍👩‍👧‍👦</div>
+                    <div class="text-3xl font-bold mb-2">$29.99<span class="text-lg text-gray-600">/month</span></div>
+                    <p class="text-gray-600 mb-6">For multiple children</p>
+                    
+                    <div class="space-y-3 mb-8 text-left">
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-sky mr-3"></i>
+                            <span>Up to 4 child profiles</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-sky mr-3"></i>
+                            <span>All Premium features</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-sky mr-3"></i>
+                            <span>Family challenges</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-sky mr-3"></i>
+                            <span>Sibling progress comparison</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-sky mr-3"></i>
+                            <span>Educator resources</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-sky bg-opacity-10 rounded-lg p-4 mb-6">
+                        <h4 class="font-semibold mb-2">Learning Outcomes:</h4>
+                        <p class="text-sm text-gray-600">Comprehensive family learning development</p>
+                    </div>
+                    
+                    <button class="w-full bg-sky text-white py-3 rounded-full font-semibold hover:bg-blue-600 transition-colors">
+                        Start Free Trial
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parent Dashboard Preview -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="font-fredoka text-4xl text-center text-gray-800 mb-12">
+                Your Parent Dashboard 📊
+            </h2>
+            
+            <div class="bg-gray-100 rounded-3xl p-8">
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-white rounded-2xl p-6 card-shadow">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-bold text-lg">Weekly Progress</h3>
+                            <div class="bg-grass text-white px-3 py-1 rounded-full text-sm">+15%</div>
+                        </div>
+                        <div class="text-3xl font-bold text-grass mb-2">85%</div>
+                        <p class="text-gray-600 text-sm">Learning goals completed</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-6 card-shadow">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-bold text-lg">Time Spent</h3>
+                            <div class="bg-sky text-white px-3 py-1 rounded-full text-sm">Today</div>
+                        </div>
+                        <div class="text-3xl font-bold text-sky mb-2">2h 15m</div>
+                        <p class="text-gray-600 text-sm">Educational screen time</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-6 card-shadow">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-bold text-lg">Achievements</h3>
+                            <div class="bg-sunshine px-3 py-1 rounded-full text-sm">New!</div>
+                        </div>
+                        <div class="text-3xl font-bold text-bubblegum mb-2">12</div>
+                        <p class="text-gray-600 text-sm">Badges earned this week</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-6 card-shadow">
+                    <h3 class="font-bold text-xl mb-4">Subject Progress</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold">Mathematics</span>
+                                <span class="text-grass font-bold">92%</span>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-3">
+                                <div class="bg-grass h-3 rounded-full" style="width: 92%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold">Reading</span>
+                                <span class="text-sky font-bold">78%</span>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-3">
+                                <div class="bg-sky h-3 rounded-full" style="width: 78%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold">Science</span>
+                                <span class="text-bubblegum font-bold">65%</span>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-3">
+                                <div class="bg-bubblegum h-3 rounded-full" style="width: 65%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Child Safety Features -->
+    <section class="py-16 gradient-bg">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="font-fredoka text-4xl text-center text-white mb-12">
+                Your Child's Safety is Our Priority 🛡️
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <div class="bg-white rounded-2xl p-6 card-shadow">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-grass w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-shield-alt text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-xl">Ad-Free Environment</h3>
+                        </div>
+                        <p class="text-gray-600">Zero advertisements or external links. Pure learning experience.</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-6 card-shadow">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-sky w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-user-secret text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-xl">Privacy Protected</h3>
+                        </div>
+                        <p class="text-gray-600">COPPA compliant with no personal data collection from children.</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-6 card-shadow">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-sunshine w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-comments-slash text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-xl">No Social Features</h3>
+                        </div>
+                        <p class="text-gray-600">No chat, no sharing, no interaction with strangers.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-3xl p-8 card-shadow">
+                    <h3 class="font-bold text-2xl mb-6 text-center">Safety Certifications</h3>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="text-center">
+                            <div class="bg-grass w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-certificate text-white text-xl"></i>
+                            </div>
+                            <h4 class="font-semibold mb-1">COPPA</h4>
+                            <p class="text-sm text-gray-600">Compliant</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="bg-sky w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-lock text-white text-xl"></i>
+                            </div>
+                            <h4 class="font-semibold mb-1">SSL</h4>
+                            <p class="text-sm text-gray-600">Encrypted</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="bg-sunshine w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-check-circle text-white text-xl"></i>
+                            </div>
+                            <h4 class="font-semibold mb-1">Age</h4>
+                            <p class="text-sm text-gray-600">Appropriate</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="bg-bubblegum w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-heart text-white text-xl"></i>
+                            </div>
+                            <h4 class="font-semibold mb-1">Parent</h4>
+                            <p class="text-sm text-gray-600">Approved</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="font-fredoka text-5xl text-gray-800 mb-6">
+                Ready for the Adventure? 🚀
+            </h2>
+            <p class="text-xl text-gray-600 mb-8">
+                Join thousands of families making learning fun and effective!
+            </p>
+            <button class="bg-bubblegum text-white px-12 py-4 rounded-full font-bold text-2xl hover:bg-pink-600 transition-colors wiggle-on-hover mb-4">
+                Start Free 7-Day Trial
+            </button>
+            <p class="text-gray-500">No credit card required • Cancel anytime • Safe & secure</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="mascot bg-sunshine mr-3">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <span class="font-fredoka text-xl">LearnPlay Adventures</span>
+                    </div>
+                    <p class="text-gray-400">Making learning an adventure for young minds worldwide.</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Learning</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Math Games</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Reading Adventures</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Science Lab</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Creative Arts</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Parents</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Dashboard</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Progress Reports</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Safety Features</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Support</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 LearnPlay Adventures. All rights reserved. Making learning magical for children everywhere.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for interactivity -->
+    <script>
+        // Age selector functionality
+        document.querySelectorAll('.age-selector').forEach(selector => {
+            selector.addEventListener('click', function() {
+                // Remove active class from all selectors
+                document.querySelectorAll('.age-selector').forEach(s => s.classList.remove('active'));
+                // Add active class to clicked selector
+                this.classList.add('active');
+                
+                // Add wiggle animation
+                this.classList.add('wiggle');
+                setTimeout(() => this.classList.remove('wiggle'), 500);
+                
+                // Update subjects based on age (simple example)
+                const age = this.dataset.age;
+                updateSubjects(age);
+            });
+        });
+        
+        function updateSubjects(age) {
+            const subjects = document.querySelectorAll('.subject-card');
+            subjects.forEach(subject => {
+                subject.style.transform = 'scale(0.9)';
+                subject.style.opacity = '0.7';
+                
+                setTimeout(() => {
+                    subject.style.transform = 'scale(1)';
+                    subject.style.opacity = '1';
+                }, 200);
+            });
+        }
+        
+        // Scroll-triggered testimonial animations
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+        
+        function handleScrollAnimations() {
+            const testimonials = document.querySelectorAll('.testimonial-card');
+            testimonials.forEach(testimonial => {
+                if (isElementInViewport(testimonial)) {
+                    testimonial.classList.add('visible');
+                }
+            });
+        }
+        
+        // Add wiggle effect on hover for buttons
+        document.querySelectorAll('.wiggle-on-hover').forEach(element => {
+            element.addEventListener('mouseenter', function() {
+                this.classList.add('wiggle');
+                setTimeout(() => this.classList.remove('wiggle'), 500);
+            });
+        });
+        
+        // Mascot interactions
+        document.querySelectorAll('.mascot').forEach(mascot => {
+            mascot.addEventListener('click', function() {
+                this.classList.add('wiggle');
+                setTimeout(() => this.classList.remove('wiggle'), 500);
+                
+                // Add fun sound effect simulation (visual feedback)
+                const originalBg = this.style.backgroundColor;
+                this.style.backgroundColor = 'var(--bubblegum-pink)';
+                setTimeout(() => {
+                    this.style.backgroundColor = originalBg;
+                }, 200);
+            });
+        });
+        
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            // Simple mobile menu toggle (would need additional HTML structure in real implementation)
+            alert('Mobile menu would open here!');
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Initialize scroll animations
+        window.addEventListener('scroll', handleScrollAnimations);
+        window.addEventListener('load', handleScrollAnimations);
+        
+        // Add loading animation complete
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+        });
+        
+        // Demo video play functionality
+        document.querySelectorAll('button').forEach(button => {
+            if (button.textContent.includes('Watch Demo')) {
+                button.addEventListener('click', function() {
+                    alert('Demo video would play here! This would integrate with a video player.');
+                });
+            }
+        });
+        
+        // Plan selection tracking
+        document.querySelectorAll('button').forEach(button => {
+            if (button.textContent.includes('Start Free Trial')) {
+                button.addEventListener('click', function() {
+                    const planCard = this.closest('.bg-white');
+                    const planName = planCard ? planCard.querySelector('h3').textContent : 'Unknown Plan';
+                    console.log(`Selected plan: ${planName}`);
+                    alert(`Starting ${planName} free trial! This would redirect to signup.`);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
