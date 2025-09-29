@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PixelCraft Studios - Creative Design Agency</title>
+    <meta name="description" content="Bold, innovative design solutions that push creative boundaries. PixelCraft Studios delivers stunning visual experiences for forward-thinking brands.">
+    
+    <!-- Fallback Google Fonts (with offline backup) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome (with fallback) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS CDN (with fallback styles) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Config and Fallback CSS -->
+    <script>
+        // Fallback for when Tailwind CDN is blocked
+        if (typeof tailwind === 'undefined') {
+            window.tailwind = {
+                config: {
+                    theme: {
+                        extend: {
+                            colors: {
+                                'hot-pink': '#FF1493',
+                                'electric-blue': '#0080FF',
+                                'neon-yellow': '#FFFF00',
+                                'cyber-purple': '#8A2BE2'
+                            }
+                        }
+                    }
+                }
+            };
+        } else {
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            'hot-pink': '#FF1493',
+                            'electric-blue': '#0080FF',
+                            'neon-yellow': '#FFFF00',
+                            'cyber-purple': '#8A2BE2',
+                            'gradient-start': '#FF1493',
+                            'gradient-end': '#0080FF'
+                        },
+                        fontFamily: {
+                            'oswald': ['Oswald', 'Arial Black', 'sans-serif'],
+                            'comfortaa': ['Comfortaa', 'Arial', 'sans-serif']
+                        },
+                        animation: {
+                            'morph': 'morph 4s ease-in-out infinite',
+                            'float': 'float 3s ease-in-out infinite',
+                            'pulse-glow': 'pulse-glow 2s ease-in-out infinite alternate',
+                            'slide-up': 'slide-up 0.8s ease-out',
+                            'fade-in': 'fade-in 1s ease-out',
+                            'rotate-3d': 'rotate-3d 20s linear infinite'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Fallback fonts and basic styling */
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Comfortaa:wght@300;400;500;600;700&display=swap');
+        
+        /* Fallback CSS when Tailwind is blocked */
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #FF1493, #0080FF, #FFFF00);
+            color: white;
+            font-family: 'Comfortaa', Arial, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .font-oswald { font-family: 'Oswald', Arial Black, sans-serif; }
+        .font-comfortaa { font-family: 'Comfortaa', Arial, sans-serif; }
+        
+        /* Utility classes fallback */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .text-center { text-align: center; }
+        .text-white { color: white; }
+        .text-black { color: black; }
+        .bg-black { background-color: rgba(0,0,0,0.9); }
+        .bg-gray-900 { background-color: rgba(31, 41, 55, 0.9); }
+        .rounded-lg { border-radius: 12px; }
+        .rounded-xl { border-radius: 16px; }
+        .rounded-2xl { border-radius: 24px; }
+        .rounded-full { border-radius: 50%; }
+        .p-4 { padding: 16px; }
+        .p-6 { padding: 24px; }
+        .p-8 { padding: 32px; }
+        .py-4 { padding-top: 16px; padding-bottom: 16px; }
+        .py-8 { padding-top: 32px; padding-bottom: 32px; }
+        .py-12 { padding-top: 48px; padding-bottom: 48px; }
+        .py-20 { padding-top: 80px; padding-bottom: 80px; }
+        .px-4 { padding-left: 16px; padding-right: 16px; }
+        .px-6 { padding-left: 24px; padding-right: 24px; }
+        .px-8 { padding-left: 32px; padding-right: 32px; }
+        .mb-4 { margin-bottom: 16px; }
+        .mb-6 { margin-bottom: 24px; }
+        .mb-8 { margin-bottom: 32px; }
+        .mb-12 { margin-bottom: 48px; }
+        .mb-16 { margin-bottom: 64px; }
+        .mt-8 { margin-top: 32px; }
+        .w-full { width: 100%; }
+        .h-full { height: 100%; }
+        .min-h-screen { min-height: 100vh; }
+        .flex { display: flex; }
+        .grid { display: grid; }
+        .hidden { display: none; }
+        .items-center { align-items: center; }
+        .justify-center { justify-content: center; }
+        .justify-between { justify-content: space-between; }
+        .space-x-4 > * + * { margin-left: 16px; }
+        .space-x-8 > * + * { margin-left: 32px; }
+        .space-y-4 > * + * { margin-top: 16px; }
+        .space-y-6 > * + * { margin-top: 24px; }
+        .space-y-8 > * + * { margin-top: 32px; }
+        .fixed { position: fixed; }
+        .absolute { position: absolute; }
+        .relative { position: relative; }
+        .top-0 { top: 0; }
+        .left-0 { left: 0; }
+        .right-0 { right: 0; }
+        .bottom-0 { bottom: 0; }
+        .z-50 { z-index: 50; }
+        .z-10 { z-index: 10; }
+        .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+        .border { border-width: 1px; border-style: solid; }
+        .border-2 { border-width: 2px; border-style: solid; }
+        .cursor-pointer { cursor: pointer; }
+        .transition-all { transition: all 0.3s ease; }
+        .duration-300 { transition-duration: 300ms; }
+        .hover\:scale-105:hover { transform: scale(1.05); }
+        .hover\:bg-opacity-40:hover { background-opacity: 0.4; }
+        .group:hover .group-hover\:scale-110 { transform: scale(1.1); }
+        .group:hover .group-hover\:bg-opacity-30 { background-opacity: 0.3; }
+        
+        /* Grid layouts */
+        .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+        .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .gap-4 { gap: 16px; }
+        .gap-6 { gap: 24px; }
+        .gap-8 { gap: 32px; }
+        .gap-12 { gap: 48px; }
+        
+        /* Typography */
+        .text-sm { font-size: 14px; }
+        .text-lg { font-size: 18px; }
+        .text-xl { font-size: 20px; }
+        .text-2xl { font-size: 24px; }
+        .text-3xl { font-size: 30px; }
+        .text-4xl { font-size: 36px; }
+        .text-5xl { font-size: 48px; }
+        .text-6xl { font-size: 60px; }
+        .text-8xl { font-size: 96px; }
+        .font-light { font-weight: 300; }
+        .font-bold { font-weight: 700; }
+        .font-black { font-weight: 900; }
+        .italic { font-style: italic; }
+        
+        /* Colors */
+        .text-hot-pink { color: #FF1493; }
+        .text-electric-blue { color: #0080FF; }
+        .text-neon-yellow { color: #FFFF00; }
+        .text-cyber-purple { color: #8A2BE2; }
+        .text-gray-300 { color: #d1d5db; }
+        .text-gray-400 { color: #9ca3af; }
+        .bg-hot-pink { background-color: #FF1493; }
+        .bg-electric-blue { background-color: #0080FF; }
+        .bg-neon-yellow { background-color: #FFFF00; }
+        .bg-cyber-purple { background-color: #8A2BE2; }
+        .bg-gray-700 { background-color: #374151; }
+        .bg-gray-800 { background-color: #1f2937; }
+        .border-hot-pink { border-color: #FF1493; }
+        .border-electric-blue { border-color: #0080FF; }
+        .border-neon-yellow { border-color: #FFFF00; }
+        .border-gray-600 { border-color: #4b5563; }
+        .border-gray-700 { border-color: #374151; }
+        
+        /* Background gradients */
+        .bg-gradient-to-r { background-image: linear-gradient(to right, var(--tw-gradient-stops)); }
+        .bg-gradient-to-br { background-image: linear-gradient(to bottom right, var(--tw-gradient-stops)); }
+        .from-hot-pink { --tw-gradient-from: #FF1493; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 20, 147, 0)); }
+        .to-electric-blue { --tw-gradient-to: #0080FF; }
+        .via-electric-blue { --tw-gradient-stops: var(--tw-gradient-from), #0080FF, var(--tw-gradient-to, rgba(0, 128, 255, 0)); }
+        .to-neon-yellow { --tw-gradient-to: #FFFF00; }
+        
+        /* Form elements */
+        input, select, textarea, button {
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid #4b5563;
+            background-color: #1f2937;
+            color: white;
+            font-size: 16px;
+        }
+        
+        button {
+            background: linear-gradient(45deg, #FF1493, #0080FF);
+            border: none;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        button:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 50;
+            background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 20, 147, 0.2);
+            padding: 16px 0;
+        }
+        
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: #FF1493;
+        }
+        
+        /* Hero section */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(135deg, #FF1493, #0080FF, #FFFF00);
+        }
+        
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+        
+        section:nth-child(even) {
+            background: linear-gradient(135deg, rgba(31, 41, 55, 0.9), rgba(0,0,0,0.9));
+        }
+        
+        section:nth-child(odd) {
+            background: rgba(0,0,0,0.9);
+        }
+        
+        /* Cards */
+        .card {
+            background: rgba(31, 41, 55, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 20, 147, 0.2);
+            border-radius: 24px;
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            border-color: rgba(255, 20, 147, 0.5);
+            transform: translateY(-5px);
+        }
+        
+        /* Icon fallbacks */
+        .icon::before {
+            content: "●";
+            font-size: 24px;
+            color: #FF1493;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .grid-cols-3 { grid-template-columns: 1fr; }
+            .grid-cols-2 { grid-template-columns: 1fr; }
+            .text-8xl { font-size: 48px; }
+            .text-6xl { font-size: 36px; }
+            .text-5xl { font-size: 30px; }
+            .hidden { display: block; }
+            nav .space-x-8 { display: none; }
+        }
+        
+        @media (min-width: 768px) {
+            .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .md\:text-8xl { font-size: 96px; }
+            .md\:text-5xl { font-size: 48px; }
+            .md\:flex { display: flex; }
+            .md\:hidden { display: none; }
+        }
+        
+        @media (min-width: 1024px) {
+            .lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .lg\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        /* Custom animations */
+        @keyframes morph {
+            0%, 100% { 
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+                transform: rotate(0deg) scale(1);
+            }
+            25% { 
+                border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+                transform: rotate(90deg) scale(1.1);
+            }
+            50% { 
+                border-radius: 70% 30% 40% 60% / 40% 70% 60% 30%;
+                transform: rotate(180deg) scale(0.9);
+            }
+            75% { 
+                border-radius: 40% 70% 60% 30% / 70% 40% 50% 70%;
+                transform: rotate(270deg) scale(1.05);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(120deg); }
+            66% { transform: translateY(10px) rotate(240deg); }
+        }
+        
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 20px #FF1493; }
+            100% { box-shadow: 0 0 40px #0080FF, 0 0 60px #FFFF00; }
+        }
+        
+        @keyframes slide-up {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes rotate-3d {
+            0% { transform: rotateX(0deg) rotateY(0deg); }
+            25% { transform: rotateX(90deg) rotateY(0deg); }
+            50% { transform: rotateX(90deg) rotateY(90deg); }
+            75% { transform: rotateX(0deg) rotateY(90deg); }
+            100% { transform: rotateX(0deg) rotateY(0deg); }
+        }
+        
+        /* Geometric shapes */
+        .geometric-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 20, 147, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(0, 128, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(255, 255, 0, 0.05) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #FF1493, #0080FF);
+            border-radius: 4px;
+        }
+        
+        /* Text effects */
+        .text-gradient {
+            background: linear-gradient(45deg, #FF1493, #0080FF, #FFFF00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .text-neon {
+            color: #FFFF00;
+            text-shadow: 
+                0 0 5px #FFFF00,
+                0 0 10px #FFFF00,
+                0 0 15px #FFFF00,
+                0 0 20px #FF1493;
+        }
+        
+        /* Capability meter animations */
+        @keyframes fill-meter {
+            from { width: 0%; }
+        }
+        
+        .capability-meter {
+            animation: fill-meter 2s ease-out forwards;
+        }
+        
+        /* Reduced motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        /* Focus styles for accessibility */
+        .keyboard-nav *:focus {
+            outline: 2px solid #FF1493;
+            outline-offset: 2px;
+        }
+        
+        /* Loading state */
+        body:not(.loaded) {
+            overflow: hidden;
+        }
+        
+        body:not(.loaded)::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #FF1493, #0080FF, #FFFF00);
+            z-index: 9999;
+            animation: loading-pulse 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes loading-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .text-gradient {
+                background: none;
+                -webkit-text-fill-color: white;
+                color: white;
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            }
+        }
+        
+        /* Print styles */
+        @media print {
+            .animate-morph,
+            .animate-float,
+            .animate-pulse-glow {
+                animation: none;
+            }
+            
+            nav,
+            footer {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-black text-white font-comfortaa overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-hot-pink/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-r from-hot-pink to-electric-blue rounded-lg animate-pulse-glow"></div>
+                    <span class="text-xl font-oswald font-bold text-gradient">PixelCraft Studios</span>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#portfolio" class="text-white hover:text-hot-pink transition-colors duration-300">Portfolio</a>
+                    <a href="#services" class="text-white hover:text-electric-blue transition-colors duration-300">Services</a>
+                    <a href="#team" class="text-white hover:text-neon-yellow transition-colors duration-300">Team</a>
+                    <a href="#contact" class="text-white hover:text-hot-pink transition-colors duration-300">Contact</a>
+                </div>
+                
+                <button class="md:hidden text-white hover:text-hot-pink">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen flex items-center justify-center relative geometric-bg">
+        <!-- Floating geometric shapes -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-20 left-20 w-20 h-20 bg-hot-pink/20 rounded-full animate-float"></div>
+            <div class="absolute top-40 right-32 w-16 h-16 bg-electric-blue/20 rotate-45 animate-float" style="animation-delay: -1s;"></div>
+            <div class="absolute bottom-32 left-40 w-24 h-12 bg-neon-yellow/20 rounded-full animate-float" style="animation-delay: -2s;"></div>
+            <div class="absolute top-60 left-1/2 w-32 h-32 border-2 border-hot-pink/30 rounded-full animate-rotate-3d"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <!-- Morphing Logo -->
+            <div class="mb-12 flex justify-center">
+                <div class="w-32 h-32 bg-gradient-to-r from-hot-pink via-electric-blue to-neon-yellow animate-morph flex items-center justify-center">
+                    <i class="fas fa-palette text-4xl text-white"></i>
+                </div>
+            </div>
+            
+            <h1 class="text-6xl md:text-8xl font-oswald font-bold mb-6 text-gradient animate-slide-up">
+                PIXEL<span class="text-neon">CRAFT</span>
+            </h1>
+            <h2 class="text-3xl md:text-5xl font-oswald font-light mb-8 text-white animate-slide-up" style="animation-delay: 0.2s;">
+                STUDIOS
+            </h2>
+            
+            <p class="text-lg md:text-xl text-gray-300 mb-12 max-w-3xl mx-auto animate-fade-in" style="animation-delay: 0.4s;">
+                We craft <span class="text-hot-pink font-bold">bold</span>, 
+                <span class="text-electric-blue font-bold">innovative</span> design solutions that 
+                <span class="text-neon-yellow font-bold">push creative boundaries</span>
+            </p>
+            
+            <!-- Floating Design Tool Icons -->
+            <div class="flex justify-center space-x-8 mb-12">
+                <div class="group cursor-pointer">
+                    <div class="w-16 h-16 bg-hot-pink/20 rounded-xl flex items-center justify-center animate-float hover:bg-hot-pink/40 transition-all duration-300">
+                        <i class="fab fa-adobe text-2xl text-hot-pink group-hover:scale-125 transition-transform duration-300"></i>
+                    </div>
+                </div>
+                <div class="group cursor-pointer">
+                    <div class="w-16 h-16 bg-electric-blue/20 rounded-xl flex items-center justify-center animate-float hover:bg-electric-blue/40 transition-all duration-300" style="animation-delay: -0.5s;">
+                        <i class="fas fa-pencil-ruler text-2xl text-electric-blue group-hover:scale-125 transition-transform duration-300"></i>
+                    </div>
+                </div>
+                <div class="group cursor-pointer">
+                    <div class="w-16 h-16 bg-neon-yellow/20 rounded-xl flex items-center justify-center animate-float hover:bg-neon-yellow/40 transition-all duration-300" style="animation-delay: -1s;">
+                        <i class="fas fa-magic text-2xl text-neon-yellow group-hover:scale-125 transition-transform duration-300"></i>
+                    </div>
+                </div>
+                <div class="group cursor-pointer">
+                    <div class="w-16 h-16 bg-cyber-purple/20 rounded-xl flex items-center justify-center animate-float hover:bg-cyber-purple/40 transition-all duration-300" style="animation-delay: -1.5s;">
+                        <i class="fas fa-laptop-code text-2xl text-cyber-purple group-hover:scale-125 transition-transform duration-300"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in" style="animation-delay: 0.6s;">
+                <button class="px-8 py-4 bg-gradient-to-r from-hot-pink to-electric-blue rounded-full font-oswald font-bold text-lg hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-hot-pink/50">
+                    Start Your Project
+                </button>
+                <button class="px-8 py-4 border-2 border-neon-yellow text-neon-yellow rounded-full font-oswald font-bold text-lg hover:bg-neon-yellow hover:text-black transition-all duration-300">
+                    View Portfolio
+                </button>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-2xl text-hot-pink"></i>
+        </div>
+    </section>
+
+    <!-- Portfolio Showcase Section -->
+    <section id="portfolio" class="py-20 bg-gradient-to-br from-gray-900 to-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-oswald font-bold text-gradient mb-6">Our Creative Portfolio</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Explore our collection of bold, innovative designs that have transformed brands and captivated audiences worldwide.
+                </p>
+            </div>
+            
+            <!-- Portfolio Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Portfolio Item 1 -->
+                <div class="portfolio-item group cursor-pointer">
+                    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-hot-pink/20 to-electric-blue/20 h-80 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <div class="text-center">
+                                <h3 class="text-2xl font-oswald font-bold text-white mb-2">Brand Revolution</h3>
+                                <p class="text-gray-300 mb-4">Complete brand transformation for tech startup</p>
+                                <button class="px-6 py-2 bg-hot-pink rounded-full text-white font-bold hover:scale-105 transition-transform duration-300">
+                                    View Case Study
+                                </button>
+                            </div>
+                        </div>
+                        <i class="fas fa-rocket text-6xl text-hot-pink group-hover:scale-110 transition-transform duration-300"></i>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 2 -->
+                <div class="portfolio-item group cursor-pointer">
+                    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-electric-blue/20 to-neon-yellow/20 h-80 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <div class="text-center">
+                                <h3 class="text-2xl font-oswald font-bold text-white mb-2">Digital Experience</h3>
+                                <p class="text-gray-300 mb-4">Award-winning e-commerce platform design</p>
+                                <button class="px-6 py-2 bg-electric-blue rounded-full text-white font-bold hover:scale-105 transition-transform duration-300">
+                                    View Case Study
+                                </button>
+                            </div>
+                        </div>
+                        <i class="fas fa-shopping-cart text-6xl text-electric-blue group-hover:scale-110 transition-transform duration-300"></i>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 3 -->
+                <div class="portfolio-item group cursor-pointer">
+                    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-neon-yellow/20 to-cyber-purple/20 h-80 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <div class="text-center">
+                                <h3 class="text-2xl font-oswald font-bold text-white mb-2">Mobile Innovation</h3>
+                                <p class="text-gray-300 mb-4">Revolutionary fitness app interface</p>
+                                <button class="px-6 py-2 bg-neon-yellow text-black rounded-full font-bold hover:scale-105 transition-transform duration-300">
+                                    View Case Study
+                                </button>
+                            </div>
+                        </div>
+                        <i class="fas fa-mobile-alt text-6xl text-neon-yellow group-hover:scale-110 transition-transform duration-300"></i>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Items 4-6 (similar structure) -->
+                <div class="portfolio-item group cursor-pointer">
+                    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-cyber-purple/20 to-hot-pink/20 h-80 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <div class="text-center">
+                                <h3 class="text-2xl font-oswald font-bold text-white mb-2">Creative Campaign</h3>
+                                <p class="text-gray-300 mb-4">Viral social media campaign design</p>
+                                <button class="px-6 py-2 bg-cyber-purple rounded-full text-white font-bold hover:scale-105 transition-transform duration-300">
+                                    View Case Study
+                                </button>
+                            </div>
+                        </div>
+                        <i class="fas fa-bullhorn text-6xl text-cyber-purple group-hover:scale-110 transition-transform duration-300"></i>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item group cursor-pointer">
+                    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-hot-pink/20 to-neon-yellow/20 h-80 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <div class="text-center">
+                                <h3 class="text-2xl font-oswald font-bold text-white mb-2">Web Experience</h3>
+                                <p class="text-gray-300 mb-4">Interactive portfolio website</p>
+                                <button class="px-6 py-2 bg-hot-pink rounded-full text-white font-bold hover:scale-105 transition-transform duration-300">
+                                    View Case Study
+                                </button>
+                            </div>
+                        </div>
+                        <i class="fas fa-globe text-6xl text-hot-pink group-hover:scale-110 transition-transform duration-300"></i>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item group cursor-pointer">
+                    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-electric-blue/20 to-cyber-purple/20 h-80 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <div class="text-center">
+                                <h3 class="text-2xl font-oswald font-bold text-white mb-2">Print Design</h3>
+                                <p class="text-gray-300 mb-4">Luxury brand packaging design</p>
+                                <button class="px-6 py-2 bg-electric-blue rounded-full text-white font-bold hover:scale-105 transition-transform duration-300">
+                                    View Case Study
+                                </button>
+                            </div>
+                        </div>
+                        <i class="fas fa-box text-6xl text-electric-blue group-hover:scale-110 transition-transform duration-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design Process Timeline -->
+    <section id="process" class="py-20 bg-black relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-oswald font-bold text-gradient mb-6">Our Creative Process</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    From concept to creation, discover how we transform ideas into stunning visual experiences.
+                </p>
+            </div>
+            
+            <!-- Timeline -->
+            <div class="relative">
+                <!-- Timeline line -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-hot-pink via-electric-blue to-neon-yellow h-full"></div>
+                
+                <!-- Timeline items -->
+                <div class="space-y-16">
+                    <!-- Step 1 -->
+                    <div class="flex items-center relative">
+                        <div class="w-1/2 pr-8 text-right">
+                            <div class="bg-gray-900 p-6 rounded-2xl border border-hot-pink/20 hover:border-hot-pink/50 transition-colors duration-300">
+                                <div class="flex items-center justify-end space-x-4 mb-4">
+                                    <h3 class="text-2xl font-oswald font-bold text-hot-pink">Discovery</h3>
+                                    <i class="fas fa-search text-2xl text-hot-pink"></i>
+                                </div>
+                                <p class="text-gray-300">We dive deep into your brand, audience, and goals to understand the creative challenge.</p>
+                            </div>
+                        </div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-12 h-12 bg-hot-pink rounded-full flex items-center justify-center z-10">
+                            <span class="text-black font-bold">1</span>
+                        </div>
+                        <div class="w-1/2 pl-8"></div>
+                    </div>
+                    
+                    <!-- Step 2 -->
+                    <div class="flex items-center relative">
+                        <div class="w-1/2 pr-8"></div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-12 h-12 bg-electric-blue rounded-full flex items-center justify-center z-10">
+                            <span class="text-white font-bold">2</span>
+                        </div>
+                        <div class="w-1/2 pl-8">
+                            <div class="bg-gray-900 p-6 rounded-2xl border border-electric-blue/20 hover:border-electric-blue/50 transition-colors duration-300">
+                                <div class="flex items-center space-x-4 mb-4">
+                                    <i class="fas fa-lightbulb text-2xl text-electric-blue"></i>
+                                    <h3 class="text-2xl font-oswald font-bold text-electric-blue">Ideation</h3>
+                                </div>
+                                <p class="text-gray-300">Brainstorming sessions where wild ideas meet strategic thinking to create innovative concepts.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3 -->
+                    <div class="flex items-center relative">
+                        <div class="w-1/2 pr-8 text-right">
+                            <div class="bg-gray-900 p-6 rounded-2xl border border-neon-yellow/20 hover:border-neon-yellow/50 transition-colors duration-300">
+                                <div class="flex items-center justify-end space-x-4 mb-4">
+                                    <h3 class="text-2xl font-oswald font-bold text-neon-yellow">Design</h3>
+                                    <i class="fas fa-palette text-2xl text-neon-yellow"></i>
+                                </div>
+                                <p class="text-gray-300">Bringing concepts to life with bold visuals, innovative layouts, and stunning aesthetics.</p>
+                            </div>
+                        </div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-12 h-12 bg-neon-yellow rounded-full flex items-center justify-center z-10">
+                            <span class="text-black font-bold">3</span>
+                        </div>
+                        <div class="w-1/2 pl-8"></div>
+                    </div>
+                    
+                    <!-- Step 4 -->
+                    <div class="flex items-center relative">
+                        <div class="w-1/2 pr-8"></div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-12 h-12 bg-cyber-purple rounded-full flex items-center justify-center z-10">
+                            <span class="text-white font-bold">4</span>
+                        </div>
+                        <div class="w-1/2 pl-8">
+                            <div class="bg-gray-900 p-6 rounded-2xl border border-cyber-purple/20 hover:border-cyber-purple/50 transition-colors duration-300">
+                                <div class="flex items-center space-x-4 mb-4">
+                                    <i class="fas fa-rocket text-2xl text-cyber-purple"></i>
+                                    <h3 class="text-2xl font-oswald font-bold text-cyber-purple">Launch</h3>
+                                </div>
+                                <p class="text-gray-300">Delivering pixel-perfect results and ensuring your brand makes a bold impact in the world.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gradient-to-br from-gray-900 via-black to-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-oswald font-bold text-gradient mb-6">Our Creative Services</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Comprehensive design solutions that transform brands and create unforgettable experiences.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1: Brand Identity -->
+                <div class="service-card bg-gray-900/50 backdrop-blur-md p-8 rounded-2xl border border-hot-pink/20 hover:border-hot-pink/50 transition-all duration-300 group">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-hot-pink/20 rounded-xl mx-auto flex items-center justify-center mb-4 group-hover:bg-hot-pink/40 transition-colors duration-300">
+                            <i class="fas fa-palette text-2xl text-hot-pink"></i>
+                        </div>
+                        <h3 class="text-2xl font-oswald font-bold text-white mb-4">Brand Identity</h3>
+                        <p class="text-gray-300 mb-6">Complete brand transformation from concept to execution</p>
+                    </div>
+                    
+                    <!-- Capability Meters -->
+                    <div class="space-y-4">
+                        <div class="capability-item">
+                            <div class="flex justify-between text-sm mb-2">
+                                <span class="text-gray-300">Logo Design</span>
+                                <span class="text-hot-pink">95%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="capability-meter bg-gradient-to-r from-hot-pink to-electric-blue h-2 rounded-full" style="width: 95%;"></div>
+                            </div>
+                        </div>
+                        <div class="capability-item">
+                            <div class="flex justify-between text-sm mb-2">
+                                <span class="text-gray-300">Brand Strategy</span>
+                                <span class="text-electric-blue">90%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="capability-meter bg-gradient-to-r from-electric-blue to-neon-yellow h-2 rounded-full" style="width: 90%; animation-delay: 0.2s;"></div>
+                            </div>
+                        </div>
+                        <div class="capability-item">
+                            <div class="flex justify-between text-sm mb-2">
+                                <span class="text-gray-300">Visual Systems</span>
+                                <span class="text-neon-yellow">88%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="capability-meter bg-gradient-to-r from-neon-yellow to-cyber-purple h-2 rounded-full" style="width: 88%; animation-delay: 0.4s;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 2: Web Design -->
+                <div class="service-card bg-gray-900/50 backdrop-blur-md p-8 rounded-2xl border border-electric-blue/20 hover:border-electric-blue/50 transition-all duration-300 group">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-electric-blue/20 rounded-xl mx-auto flex items-center justify-center mb-4 group-hover:bg-electric-blue/40 transition-colors duration-300">
+                            <i class="fas fa-laptop-code text-2xl text-electric-blue"></i>
+                        </div>
+                        <h3 class="text-2xl font-oswald font-bold text-white mb-4">Web Design</h3>
+                        <p class="text-gray-300 mb-6">Cutting-edge websites that captivate and convert</p>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="capability-item">
+                            <div class="flex justify-between text-sm mb-2">
+                                <span class="text-gray-300">UI/UX Design</span>
+                                <span class="text-electric-blue">92%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="capability-meter bg-gradient-to-r from-electric-blue to-hot-pink h-2 rounded-full" style="width: 92%;"></div>
+                            </div>
+                        </div>
+                        <div class="capability-item">
+                            <div class="flex justify-between text-sm mb-2">
+                                <span class="text-gray-300">Responsive Design</span>
+                                <span class="text-hot-pink">96%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="capability-meter bg-gradient-to-r from-hot-pink to-neon-yellow h-2 rounded-full" style="width: 96%; animation-delay: 0.2s;"></div>
+                            </div>
+                        </div>
+                        <div class="capability-item">
+                            <div class="flex justify-between text-sm mb-2">
+                                <span class="text-gray-300">Interactive Elements</span>
+                                <span class="text-neon-yellow">89%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="capability-meter bg-gradient-to-r from-neon-yellow to-cyber-purple h-2 rounded-full" style="width: 89%; animation-delay: 0.4s;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 3: Digital Marketing -->
+                <div class="service-card bg-gray-900/50 backdrop-blur-md p-8 rounded-2xl border border-neon-yellow/20 hover:border-neon-yellow/50 transition-all duration-300 group">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-neon-yellow/20 rounded-xl mx-auto flex items-center justify-center mb-4 group-hover:bg-neon-yellow/40 transition-colors duration-300">
+                            <i class="fas fa-bullhorn text-2xl text-neon-yellow"></i>
+                        </div>
+                        <h3 class="text-2xl font-oswald font-bold text-white mb-4">Digital Marketing</h3>
+                        <p class="text-gray-300 mb-6">Strategic campaigns that drive engagement and growth</p>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="capability-item">
+                            <div class="flex justify-between text-sm mb-2">
+                                <span class="text-gray-300">Social Media</span>
+                                <span class="text-neon-yellow">91%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="capability-meter bg-gradient-to-r from-neon-yellow to-electric-blue h-2 rounded-full" style="width: 91%;"></div>
+                            </div>
+                        </div>
+                        <div class="capability-item">
+                            <div class="flex justify-between text-sm mb-2">
+                                <span class="text-gray-300">Content Strategy</span>
+                                <span class="text-electric-blue">87%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="capability-meter bg-gradient-to-r from-electric-blue to-hot-pink h-2 rounded-full" style="width: 87%; animation-delay: 0.2s;"></div>
+                            </div>
+                        </div>
+                        <div class="capability-item">
+                            <div class="flex justify-between text-sm mb-2">
+                                <span class="text-gray-300">Campaign Design</span>
+                                <span class="text-hot-pink">93%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="capability-meter bg-gradient-to-r from-hot-pink to-cyber-purple h-2 rounded-full" style="width: 93%; animation-delay: 0.4s;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-20 bg-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-oswald font-bold text-gradient mb-6">Meet Our Creative Team</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Passionate designers, strategists, and innovators who bring bold ideas to life.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Team Member 1 -->
+                <div class="team-member bg-gray-900/50 backdrop-blur-md p-8 rounded-2xl border border-hot-pink/20 hover:border-hot-pink/50 transition-all duration-300 group text-center">
+                    <div class="w-24 h-24 bg-gradient-to-r from-hot-pink to-electric-blue rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <i class="fas fa-user text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-oswald font-bold text-white mb-2">Alex Rivera</h3>
+                    <p class="text-hot-pink font-bold mb-4">Creative Director</p>
+                    <p class="text-gray-300 mb-6">Visionary leader with 10+ years of bold design experience</p>
+                    
+                    <!-- Skill Visualization -->
+                    <div class="space-y-3">
+                        <div class="skill-item">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-gray-300">Creative Vision</span>
+                                <span class="text-hot-pink">98%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="capability-meter bg-hot-pink h-2 rounded-full" style="width: 98%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-gray-300">Brand Strategy</span>
+                                <span class="text-electric-blue">95%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="capability-meter bg-electric-blue h-2 rounded-full" style="width: 95%; animation-delay: 0.1s;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-gray-300">Team Leadership</span>
+                                <span class="text-neon-yellow">92%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="capability-meter bg-neon-yellow h-2 rounded-full" style="width: 92%; animation-delay: 0.2s;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 2 -->
+                <div class="team-member bg-gray-900/50 backdrop-blur-md p-8 rounded-2xl border border-electric-blue/20 hover:border-electric-blue/50 transition-all duration-300 group text-center">
+                    <div class="w-24 h-24 bg-gradient-to-r from-electric-blue to-neon-yellow rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <i class="fas fa-user text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-oswald font-bold text-white mb-2">Maya Chen</h3>
+                    <p class="text-electric-blue font-bold mb-4">UX/UI Designer</p>
+                    <p class="text-gray-300 mb-6">Digital experience architect who crafts intuitive interfaces</p>
+                    
+                    <div class="space-y-3">
+                        <div class="skill-item">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-gray-300">User Experience</span>
+                                <span class="text-electric-blue">96%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="capability-meter bg-electric-blue h-2 rounded-full" style="width: 96%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-gray-300">Interface Design</span>
+                                <span class="text-neon-yellow">94%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="capability-meter bg-neon-yellow h-2 rounded-full" style="width: 94%; animation-delay: 0.1s;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-gray-300">Prototyping</span>
+                                <span class="text-hot-pink">89%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="capability-meter bg-hot-pink h-2 rounded-full" style="width: 89%; animation-delay: 0.2s;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 3 -->
+                <div class="team-member bg-gray-900/50 backdrop-blur-md p-8 rounded-2xl border border-neon-yellow/20 hover:border-neon-yellow/50 transition-all duration-300 group text-center">
+                    <div class="w-24 h-24 bg-gradient-to-r from-neon-yellow to-cyber-purple rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <i class="fas fa-user text-3xl text-black"></i>
+                    </div>
+                    <h3 class="text-2xl font-oswald font-bold text-white mb-2">Jordan Kim</h3>
+                    <p class="text-neon-yellow font-bold mb-4">Brand Strategist</p>
+                    <p class="text-gray-300 mb-6">Strategic thinker who transforms brands into movements</p>
+                    
+                    <div class="space-y-3">
+                        <div class="skill-item">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-gray-300">Brand Development</span>
+                                <span class="text-neon-yellow">93%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="capability-meter bg-neon-yellow h-2 rounded-full" style="width: 93%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-gray-300">Market Analysis</span>
+                                <span class="text-cyber-purple">91%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="capability-meter bg-cyber-purple h-2 rounded-full" style="width: 91%; animation-delay: 0.1s;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-gray-300">Creative Strategy</span>
+                                <span class="text-hot-pink">88%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="capability-meter bg-hot-pink h-2 rounded-full" style="width: 88%; animation-delay: 0.2s;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-gradient-to-br from-gray-900 to-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-oswald font-bold text-gradient mb-6">What Our Clients Say</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Hear from the brands we've transformed with our bold creative vision.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card bg-gray-900/50 backdrop-blur-md p-8 rounded-2xl border border-hot-pink/20 hover:border-hot-pink/50 transition-all duration-300">
+                    <div class="mb-6">
+                        <div class="flex items-center space-x-1 mb-4">
+                            <i class="fas fa-star text-neon-yellow"></i>
+                            <i class="fas fa-star text-neon-yellow"></i>
+                            <i class="fas fa-star text-neon-yellow"></i>
+                            <i class="fas fa-star text-neon-yellow"></i>
+                            <i class="fas fa-star text-neon-yellow"></i>
+                        </div>
+                        <p class="text-gray-300 text-lg italic mb-6">
+                            "PixelCraft Studios completely transformed our brand identity. Their bold approach and creative vision exceeded all our expectations."
+                        </p>
+                    </div>
+                    
+                    <!-- Video Testimonial Mockup -->
+                    <div class="relative bg-black rounded-lg overflow-hidden mb-6 group cursor-pointer">
+                        <div class="aspect-video flex items-center justify-center bg-gradient-to-br from-hot-pink/20 to-electric-blue/20">
+                            <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors duration-300">
+                                <i class="fas fa-play text-white text-xl ml-1"></i>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <div class="bg-black/50 backdrop-blur-sm rounded px-3 py-1">
+                                <span class="text-white text-sm">Sarah Johnson, CEO</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-hot-pink to-electric-blue rounded-full flex items-center justify-center">
+                            <span class="text-white font-bold">SJ</span>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold">Sarah Johnson</h4>
+                            <p class="text-gray-400 text-sm">CEO, TechFlow Solutions</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card bg-gray-900/50 backdrop-blur-md p-8 rounded-2xl border border-electric-blue/20 hover:border-electric-blue/50 transition-all duration-300">
+                    <div class="mb-6">
+                        <div class="flex items-center space-x-1 mb-4">
+                            <i class="fas fa-star text-neon-yellow"></i>
+                            <i class="fas fa-star text-neon-yellow"></i>
+                            <i class="fas fa-star text-neon-yellow"></i>
+                            <i class="fas fa-star text-neon-yellow"></i>
+                            <i class="fas fa-star text-neon-yellow"></i>
+                        </div>
+                        <p class="text-gray-300 text-lg italic mb-6">
+                            "The team's innovative approach to our web design project resulted in a 300% increase in user engagement. Absolutely phenomenal work!"
+                        </p>
+                    </div>
+                    
+                    <div class="relative bg-black rounded-lg overflow-hidden mb-6 group cursor-pointer">
+                        <div class="aspect-video flex items-center justify-center bg-gradient-to-br from-electric-blue/20 to-neon-yellow/20">
+                            <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors duration-300">
+                                <i class="fas fa-play text-white text-xl ml-1"></i>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <div class="bg-black/50 backdrop-blur-sm rounded px-3 py-1">
+                                <span class="text-white text-sm">Marcus Rodriguez, CMO</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-electric-blue to-neon-yellow rounded-full flex items-center justify-center">
+                            <span class="text-white font-bold">MR</span>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold">Marcus Rodriguez</h4>
+                            <p class="text-gray-400 text-sm">CMO, InnovateCorp</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card bg-gray-900/50 backdrop-blur-md p-8 rounded-2xl border border-neon-yellow/20 hover:border-neon-yellow/50 transition-all duration-300">
+                    <div class="mb-6">
+                        <div class="flex items-center space-x-1 mb-4">
+                            <i class="fas fa-star text-neon-yellow"></i>
+                            <i class="fas fa-star text-neon-yellow"></i>
+                            <i class="fas fa-star text-neon-yellow"></i>
+                            <i class="fas fa-star text-neon-yellow"></i>
+                            <i class="fas fa-star text-neon-yellow"></i>
+                        </div>
+                        <p class="text-gray-300 text-lg italic mb-6">
+                            "PixelCraft Studios doesn't just design - they create experiences. Our brand has never looked so bold and distinctive."
+                        </p>
+                    </div>
+                    
+                    <div class="relative bg-black rounded-lg overflow-hidden mb-6 group cursor-pointer">
+                        <div class="aspect-video flex items-center justify-center bg-gradient-to-br from-neon-yellow/20 to-cyber-purple/20">
+                            <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors duration-300">
+                                <i class="fas fa-play text-white text-xl ml-1"></i>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <div class="bg-black/50 backdrop-blur-sm rounded px-3 py-1">
+                                <span class="text-white text-sm">Emma Thompson, Founder</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-neon-yellow to-cyber-purple rounded-full flex items-center justify-center">
+                            <span class="text-black font-bold">ET</span>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold">Emma Thompson</h4>
+                            <p class="text-gray-400 text-sm">Founder, Creative Collective</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Creative Brief Form & Pricing Calculator -->
+    <section id="contact" class="py-20 bg-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-oswald font-bold text-gradient mb-6">Start Your Creative Journey</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Tell us about your project and get an instant creative concept preview with pricing estimate.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Creative Brief Form -->
+                <div class="bg-gray-900/50 backdrop-blur-md p-8 rounded-2xl border border-hot-pink/20">
+                    <h3 class="text-3xl font-oswald font-bold text-hot-pink mb-6">Creative Brief</h3>
+                    
+                    <form id="creative-brief-form" class="space-y-6">
+                        <div>
+                            <label class="block text-white font-bold mb-2">Project Type</label>
+                            <select id="project-type" class="w-full bg-gray-800 border border-gray-600 rounded-lg px-4 py-3 text-white focus:border-hot-pink focus:outline-none transition-colors duration-300">
+                                <option value="">Select project type</option>
+                                <option value="brand-identity">Brand Identity</option>
+                                <option value="web-design">Web Design</option>
+                                <option value="digital-marketing">Digital Marketing</option>
+                                <option value="print-design">Print Design</option>
+                                <option value="mobile-app">Mobile App Design</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-white font-bold mb-2">Company Name</label>
+                            <input type="text" id="company-name" class="w-full bg-gray-800 border border-gray-600 rounded-lg px-4 py-3 text-white focus:border-hot-pink focus:outline-none transition-colors duration-300" placeholder="Your company name">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-white font-bold mb-2">Project Description</label>
+                            <textarea id="project-description" rows="4" class="w-full bg-gray-800 border border-gray-600 rounded-lg px-4 py-3 text-white focus:border-hot-pink focus:outline-none transition-colors duration-300" placeholder="Describe your project vision..."></textarea>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-white font-bold mb-2">Preferred Style</label>
+                            <div class="grid grid-cols-2 gap-4">
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="radio" name="style" value="bold" class="text-hot-pink focus:ring-hot-pink">
+                                    <span class="text-white">Bold & Vibrant</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="radio" name="style" value="minimal" class="text-electric-blue focus:ring-electric-blue">
+                                    <span class="text-white">Clean & Minimal</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="radio" name="style" value="creative" class="text-neon-yellow focus:ring-neon-yellow">
+                                    <span class="text-white">Creative & Unique</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="radio" name="style" value="luxury" class="text-cyber-purple focus:ring-cyber-purple">
+                                    <span class="text-white">Luxury & Premium</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-gradient-to-r from-hot-pink to-electric-blue py-4 rounded-lg font-oswald font-bold text-lg hover:scale-105 transition-transform duration-300">
+                            Generate Creative Concept
+                        </button>
+                    </form>
+                    
+                    <!-- Real-time Design Concept Generator -->
+                    <div id="concept-preview" class="mt-8 p-6 bg-gray-800 rounded-lg border border-gray-600" style="display: none;">
+                        <h4 class="text-xl font-oswald font-bold text-neon-yellow mb-4">AI-Generated Concept Preview</h4>
+                        <div id="concept-content" class="space-y-4">
+                            <!-- Dynamic content will be generated here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pricing Calculator -->
+                <div class="bg-gray-900/50 backdrop-blur-md p-8 rounded-2xl border border-electric-blue/20">
+                    <h3 class="text-3xl font-oswald font-bold text-electric-blue mb-6">Project Pricing Calculator</h3>
+                    
+                    <div class="space-y-8">
+                        <!-- Project Scope Sliders -->
+                        <div>
+                            <label class="block text-white font-bold mb-4">Project Complexity</label>
+                            <input type="range" id="complexity-slider" min="1" max="10" value="5" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer slider">
+                            <div class="flex justify-between text-sm text-gray-400 mt-2">
+                                <span>Simple</span>
+                                <span>Complex</span>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-white font-bold mb-4">Timeline Urgency</label>
+                            <input type="range" id="urgency-slider" min="1" max="10" value="5" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer slider">
+                            <div class="flex justify-between text-sm text-gray-400 mt-2">
+                                <span>3+ Months</span>
+                                <span>Rush (1 Week)</span>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-white font-bold mb-4">Design Revisions</label>
+                            <input type="range" id="revisions-slider" min="1" max="10" value="3" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer slider">
+                            <div class="flex justify-between text-sm text-gray-400 mt-2">
+                                <span>1-2 Rounds</span>
+                                <span>Unlimited</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Additional Services -->
+                        <div>
+                            <label class="block text-white font-bold mb-4">Additional Services</label>
+                            <div class="space-y-3">
+                                <label class="flex items-center space-x-3 cursor-pointer">
+                                    <input type="checkbox" class="additional-service" data-price="500" class="text-hot-pink focus:ring-hot-pink">
+                                    <span class="text-white">Brand Guidelines (+$500)</span>
+                                </label>
+                                <label class="flex items-center space-x-3 cursor-pointer">
+                                    <input type="checkbox" class="additional-service" data-price="800" class="text-electric-blue focus:ring-electric-blue">
+                                    <span class="text-white">Social Media Kit (+$800)</span>
+                                </label>
+                                <label class="flex items-center space-x-3 cursor-pointer">
+                                    <input type="checkbox" class="additional-service" data-price="1200" class="text-neon-yellow focus:ring-neon-yellow">
+                                    <span class="text-white">Website Development (+$1,200)</span>
+                                </label>
+                                <label class="flex items-center space-x-3 cursor-pointer">
+                                    <input type="checkbox" class="additional-service" data-price="600" class="text-cyber-purple focus:ring-cyber-purple">
+                                    <span class="text-white">Print Materials (+$600)</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Price Display -->
+                        <div class="bg-gradient-to-r from-hot-pink/20 to-electric-blue/20 p-6 rounded-lg border border-neon-yellow/30">
+                            <div class="text-center">
+                                <div class="text-sm text-gray-300 mb-2">Estimated Project Cost</div>
+                                <div id="estimated-price" class="text-4xl font-oswald font-bold text-neon-yellow">$2,500</div>
+                                <div class="text-sm text-gray-400 mt-2">*Final price may vary based on specific requirements</div>
+                            </div>
+                        </div>
+                        
+                        <button class="w-full bg-gradient-to-r from-electric-blue to-neon-yellow py-4 rounded-lg font-oswald font-bold text-lg text-black hover:scale-105 transition-transform duration-300">
+                            Request Detailed Quote
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-gray-900 to-black py-12 border-t border-hot-pink/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 bg-gradient-to-r from-hot-pink to-electric-blue rounded-lg animate-pulse-glow"></div>
+                        <span class="text-2xl font-oswald font-bold text-gradient">PixelCraft Studios</span>
+                    </div>
+                    <p class="text-gray-300 mb-6 max-w-md">
+                        We craft bold, innovative design solutions that push creative boundaries and transform brands into movements.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-hot-pink/20 rounded-lg flex items-center justify-center hover:bg-hot-pink/40 transition-colors duration-300">
+                            <i class="fab fa-instagram text-hot-pink"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-electric-blue/20 rounded-lg flex items-center justify-center hover:bg-electric-blue/40 transition-colors duration-300">
+                            <i class="fab fa-twitter text-electric-blue"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-neon-yellow/20 rounded-lg flex items-center justify-center hover:bg-neon-yellow/40 transition-colors duration-300">
+                            <i class="fab fa-linkedin text-neon-yellow"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-cyber-purple/20 rounded-lg flex items-center justify-center hover:bg-cyber-purple/40 transition-colors duration-300">
+                            <i class="fab fa-dribbble text-cyber-purple"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-white font-oswald font-bold text-lg mb-4">Services</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-hot-pink transition-colors duration-300">Brand Identity</a></li>
+                        <li><a href="#" class="hover:text-electric-blue transition-colors duration-300">Web Design</a></li>
+                        <li><a href="#" class="hover:text-neon-yellow transition-colors duration-300">Digital Marketing</a></li>
+                        <li><a href="#" class="hover:text-cyber-purple transition-colors duration-300">Print Design</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-white font-oswald font-bold text-lg mb-4">Contact</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>hello@pixelcraftstudios.com</li>
+                        <li>+1 (555) 123-4567</li>
+                        <li>123 Creative Street<br>Design City, DC 12345</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center">
+                <p class="text-gray-400">&copy; 2024 PixelCraft Studios. All rights reserved. Built with bold creativity and innovative design.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Intersection Observer for scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-slide-up');
+                    
+                    // Trigger capability meter animations
+                    const meters = entry.target.querySelectorAll('.capability-meter');
+                    meters.forEach((meter, index) => {
+                        setTimeout(() => {
+                            meter.style.animationPlayState = 'running';
+                        }, index * 200);
+                    });
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all animated elements
+        document.querySelectorAll('.portfolio-item, .service-card, .team-member, .testimonial-card').forEach(item => {
+            observer.observe(item);
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Morphing logo interaction
+        const morphingLogo = document.querySelector('.animate-morph');
+        if (morphingLogo) {
+            morphingLogo.addEventListener('mouseenter', () => {
+                morphingLogo.style.animationDuration = '1s';
+            });
+            morphingLogo.addEventListener('mouseleave', () => {
+                morphingLogo.style.animationDuration = '4s';
+            });
+        }
+        
+        // Floating icons interaction
+        document.querySelectorAll('.animate-float').forEach(icon => {
+            icon.addEventListener('mouseenter', () => {
+                icon.style.animationPlayState = 'paused';
+                icon.style.transform = 'translateY(-10px) scale(1.1)';
+            });
+            icon.addEventListener('mouseleave', () => {
+                icon.style.animationPlayState = 'running';
+                icon.style.transform = '';
+            });
+        });
+        
+        // Creative Brief Form Handler
+        const creativeBriefForm = document.getElementById('creative-brief-form');
+        const conceptPreview = document.getElementById('concept-preview');
+        const conceptContent = document.getElementById('concept-content');
+        
+        creativeBriefForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            generateCreativeConcept();
+        });
+        
+        // Real-time concept generation
+        function generateCreativeConcept() {
+            const projectType = document.getElementById('project-type').value;
+            const companyName = document.getElementById('company-name').value;
+            const description = document.getElementById('project-description').value;
+            const style = document.querySelector('input[name="style"]:checked')?.value;
+            
+            if (!projectType || !companyName) {
+                alert('Please fill in the required fields');
+                return;
+            }
+            
+            // Generate AI-like concept preview
+            const concepts = {
+                'brand-identity': {
+                    title: 'Brand Identity Concept',
+                    elements: ['Logo Design', 'Color Palette', 'Typography', 'Brand Guidelines'],
+                    description: 'A bold and memorable brand identity that captures your unique vision.'
+                },
+                'web-design': {
+                    title: 'Web Design Concept',
+                    elements: ['Homepage Layout', 'Navigation System', 'Interactive Elements', 'Mobile Experience'],
+                    description: 'A cutting-edge website that converts visitors into customers.'
+                },
+                'digital-marketing': {
+                    title: 'Digital Marketing Concept',
+                    elements: ['Campaign Strategy', 'Visual Assets', 'Social Media Content', 'Ad Creatives'],
+                    description: 'A comprehensive marketing strategy that amplifies your brand reach.'
+                }
+            };
+            
+            const concept = concepts[projectType] || concepts['brand-identity'];
+            
+            conceptContent.innerHTML = `
+                <div class="text-center mb-4">
+                    <h5 class="text-lg font-oswald font-bold text-white">${concept.title} for ${companyName}</h5>
+                </div>
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    ${concept.elements.map(element => `
+                        <div class="bg-gray-700 p-3 rounded-lg text-center">
+                            <span class="text-sm text-gray-300">${element}</span>
+                        </div>
+                    `).join('')}
+                </div>
+                <p class="text-gray-300 text-sm text-center mb-4">${concept.description}</p>
+                <div class="text-center">
+                    <button class="px-6 py-2 bg-gradient-to-r from-hot-pink to-electric-blue rounded-lg text-white font-bold text-sm hover:scale-105 transition-transform duration-300">
+                        Refine This Concept
+                    </button>
+                </div>
+            `;
+            
+            conceptPreview.style.display = 'block';
+            conceptPreview.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Pricing Calculator
+        const complexitySlider = document.getElementById('complexity-slider');
+        const urgencySlider = document.getElementById('urgency-slider');
+        const revisionsSlider = document.getElementById('revisions-slider');
+        const additionalServices = document.querySelectorAll('.additional-service');
+        const estimatedPrice = document.getElementById('estimated-price');
+        
+        function calculatePrice() {
+            const basePrice = 1500;
+            const complexity = parseInt(complexitySlider.value);
+            const urgency = parseInt(urgencySlider.value);
+            const revisions = parseInt(revisionsSlider.value);
+            
+            // Calculate base price adjustments
+            let totalPrice = basePrice;
+            totalPrice += (complexity - 1) * 250; // Complexity multiplier
+            totalPrice += (urgency - 1) * 150; // Urgency multiplier
+            totalPrice += (revisions - 1) * 100; // Revisions multiplier
+            
+            // Add additional services
+            additionalServices.forEach(service => {
+                if (service.checked) {
+                    totalPrice += parseInt(service.dataset.price);
+                }
+            });
+            
+            // Update price display with animation
+            const currentPrice = parseInt(estimatedPrice.textContent.replace(/[$,]/g, ''));
+            animateNumber(currentPrice, totalPrice, estimatedPrice);
+        }
+        
+        function animateNumber(start, end, element) {
+            const duration = 500;
+            const startTime = performance.now();
+            
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const currentValue = Math.round(start + (end - start) * progress);
+                
+                element.textContent = `$${currentValue.toLocaleString()}`;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+            
+            requestAnimationFrame(update);
+        }
+        
+        // Add event listeners for pricing calculator
+        [complexitySlider, urgencySlider, revisionsSlider].forEach(slider => {
+            slider.addEventListener('input', calculatePrice);
+        });
+        
+        additionalServices.forEach(service => {
+            service.addEventListener('change', calculatePrice);
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('.md\\:hidden button');
+        if (mobileMenuButton) {
+            const mobileMenu = document.createElement('div');
+            mobileMenu.className = 'md:hidden bg-black/95 backdrop-blur-md absolute top-full left-0 right-0 border-t border-hot-pink/20';
+            mobileMenu.style.display = 'none';
+            mobileMenu.innerHTML = `
+                <div class="px-4 py-6 space-y-4">
+                    <a href="#portfolio" class="block text-white hover:text-hot-pink transition-colors duration-300">Portfolio</a>
+                    <a href="#services" class="block text-white hover:text-electric-blue transition-colors duration-300">Services</a>
+                    <a href="#team" class="block text-white hover:text-neon-yellow transition-colors duration-300">Team</a>
+                    <a href="#contact" class="block text-white hover:text-hot-pink transition-colors duration-300">Contact</a>
+                </div>
+            `;
+            
+            const navContainer = document.querySelector('nav > div');
+            if (navContainer) {
+                navContainer.appendChild(mobileMenu);
+            }
+            
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.style.display = mobileMenu.style.display === 'none' ? 'block' : 'none';
+            });
+        }
+        
+        // Video testimonial interactions
+        document.querySelectorAll('.testimonial-card .group').forEach(video => {
+            video.addEventListener('click', () => {
+                // Simulate video play functionality
+                const playButton = video.querySelector('.fas.fa-play');
+                if (playButton) {
+                    playButton.className = 'fas fa-pause text-white text-xl';
+                    setTimeout(() => {
+                        playButton.className = 'fas fa-play text-white text-xl ml-1';
+                    }, 3000);
+                }
+            });
+        });
+        
+        // Custom slider styling
+        const sliders = document.querySelectorAll('.slider');
+        sliders.forEach(slider => {
+            slider.style.background = `linear-gradient(to right, #FF1493 0%, #0080FF 50%, #FFFF00 100%)`;
+            
+            slider.addEventListener('input', function() {
+                const value = (this.value - this.min) / (this.max - this.min) * 100;
+                this.style.background = `linear-gradient(to right, #FF1493 0%, #FF1493 ${value}%, #374151 ${value}%, #374151 100%)`;
+            });
+        });
+        
+        // Parallax effect for geometric shapes
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.geometric-bg > div');
+            
+            parallaxElements.forEach((element, index) => {
+                const speed = 0.5 + (index * 0.1);
+                element.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+        
+        // Loading animation
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+            
+            // Initialize pricing calculator
+            calculatePrice();
+            
+            // Initialize capability meters
+            setTimeout(() => {
+                document.querySelectorAll('.capability-meter').forEach(meter => {
+                    meter.style.animationPlayState = 'paused';
+                });
+            }, 100);
+        });
+        
+        // Keyboard navigation support
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-nav');
+            }
+        });
+        
+        document.addEventListener('mousedown', () => {
+            document.body.classList.remove('keyboard-nav');
+        });
+        
+        console.log('PixelCraft Studios - Creative Design Agency loaded successfully!');
+        console.log('🎨 Bold designs, innovative solutions, creative boundaries pushed!');
+    </script>
+</body>
+</html>
