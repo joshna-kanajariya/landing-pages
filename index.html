@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CertifyPro Mastery - Your Career Certification Hub</title>
+    <meta name="description" content="Advance your career with industry-recognized certifications. Professional training programs with expert instructors and job placement assistance.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Merriweather+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --achievement-blue: #1e40af;
+            --certification-gold: #f59e0b;
+            --career-green: #10b981;
+            --deep-blue: #1e3a8a;
+            --light-gold: #fbbf24;
+            --success-green: #059669;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #374151;
+            overflow-x: hidden;
+        }
+        
+        .font-heading {
+            font-family: 'Merriweather Sans', sans-serif;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--achievement-blue);
+            border-radius: 4px;
+        }
+        
+        /* Achievement Blue gradient */
+        .bg-achievement-blue {
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+        }
+        
+        /* Certification Gold gradient */
+        .bg-certification-gold {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+        
+        /* Career Green gradient */
+        .bg-career-green {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+        
+        /* Floating animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes floatReverse {
+            0%, 100% { transform: translateY(-10px); }
+            50% { transform: translateY(10px); }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(249, 115, 22, 0.4); }
+            50% { box-shadow: 0 0 40px rgba(249, 115, 22, 0.8); }
+        }
+        
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .animate-float-reverse {
+            animation: floatReverse 3s ease-in-out infinite;
+        }
+        
+        .animate-pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Badge patterns */
+        .badge-pattern {
+            background-image: 
+                radial-gradient(circle at 25% 25%, #f59e0b 2px, transparent 2px),
+                radial-gradient(circle at 75% 75%, #10b981 2px, transparent 2px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+        }
+        
+        /* Career progression pathway */
+        .career-path {
+            position: relative;
+        }
+        
+        .career-path::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--certification-gold) 0%, var(--career-green) 100%);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .career-step {
+            position: relative;
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .career-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .career-step::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -60px;
+            width: 20px;
+            height: 20px;
+            background: var(--certification-gold);
+            border-radius: 50%;
+            transform: translateY(-50%);
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px var(--certification-gold);
+        }
+        
+        /* Interactive elements */
+        .interactive-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .interactive-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Progress bars */
+        .progress-bar {
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--achievement-blue), var(--career-green));
+            border-radius: 4px;
+            transition: width 2s ease-out;
+        }
+        
+        /* Stats counter animation */
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--achievement-blue);
+        }
+        
+        /* Certification badges */
+        .cert-badge {
+            position: relative;
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--certification-gold), var(--light-gold));
+            border-radius: 25px;
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+        
+        .cert-badge:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+        }
+        
+        .cert-badge::before {
+            content: '🏆';
+            margin-right: 8px;
+        }
+        
+        /* Testimonial cards */
+        .testimonial-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--achievement-blue), var(--career-green));
+        }
+        
+        /* Roadmap builder styles */
+        .roadmap-node {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--achievement-blue), var(--deep-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .roadmap-node:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(30, 64, 175, 0.4);
+        }
+        
+        .roadmap-connection {
+            height: 2px;
+            background: linear-gradient(90deg, var(--achievement-blue), var(--career-green));
+            flex-grow: 1;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 shadow-lg" role="navigation">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <div class="bg-achievement-blue text-white p-2 rounded-lg mr-3">
+                        <i class="fas fa-certificate text-xl" aria-hidden="true"></i>
+                    </div>
+                    <span class="font-heading text-2xl font-bold text-gray-900">CertifyPro Mastery</span>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#certifications" class="text-gray-700 hover:text-blue-600 transition-colors">Certifications</a>
+                    <a href="#roadmap" class="text-gray-700 hover:text-blue-600 transition-colors">Roadmap</a>
+                    <a href="#instructors" class="text-gray-700 hover:text-blue-600 transition-colors">Instructors</a>
+                    <a href="#testimonials" class="text-gray-700 hover:text-blue-600 transition-colors">Success Stories</a>
+                    <a href="#packages" class="text-gray-700 hover:text-blue-600 transition-colors">Packages</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <button class="bg-career-green text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-600 transition-colors">
+                        Start Assessment
+                    </button>
+                    <button class="md:hidden text-gray-700" id="mobile-menu-btn" aria-label="Toggle mobile menu">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden bg-white border-t" id="mobile-menu">
+            <div class="px-4 py-3 space-y-2">
+                <a href="#certifications" class="block py-2 text-gray-700">Certifications</a>
+                <a href="#roadmap" class="block py-2 text-gray-700">Roadmap</a>
+                <a href="#instructors" class="block py-2 text-gray-700">Instructors</a>
+                <a href="#testimonials" class="block py-2 text-gray-700">Success Stories</a>
+                <a href="#packages" class="block py-2 text-gray-700">Packages</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 overflow-hidden">
+        <!-- Background patterns -->
+        <div class="absolute inset-0 badge-pattern opacity-10"></div>
+        
+        <!-- Floating certification badges -->
+        <div class="absolute top-20 left-10 animate-float">
+            <div class="bg-certification-gold text-white p-4 rounded-full shadow-lg">
+                <i class="fas fa-aws text-2xl" aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="absolute top-40 right-20 animate-float-reverse">
+            <div class="bg-career-green text-white p-4 rounded-full shadow-lg">
+                <i class="fab fa-microsoft text-2xl" aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="absolute bottom-40 left-20 animate-float">
+            <div class="bg-red-500 text-white p-4 rounded-full shadow-lg">
+                <i class="fab fa-google text-2xl" aria-hidden="true"></i>
+            </div>
+        </div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Hero Content -->
+                <div class="text-white">
+                    <h1 class="font-heading text-5xl lg:text-7xl font-bold leading-tight mb-6 animate-on-scroll">
+                        Master Your
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">
+                            Career Path
+                        </span>
+                    </h1>
+                    
+                    <p class="text-xl lg:text-2xl mb-8 text-blue-100 animate-on-scroll">
+                        Unlock industry-recognized certifications that accelerate your career growth. 
+                        Join thousands of professionals who've transformed their careers with our expert-led programs.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 mb-12 animate-on-scroll">
+                        <button class="bg-certification-gold text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-yellow-500 transition-all transform hover:scale-105 shadow-lg">
+                            <i class="fas fa-rocket mr-2"></i>
+                            Start Your Journey
+                        </button>
+                        <button class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-blue-900 transition-all">
+                            <i class="fas fa-play mr-2"></i>
+                            Watch Demo
+                        </button>
+                    </div>
+                    
+                    <!-- Quick stats -->
+                    <div class="grid grid-cols-3 gap-6 animate-on-scroll">
+                        <div class="text-center">
+                            <div class="stat-number" data-target="50000">0</div>
+                            <p class="text-blue-200">Certified Professionals</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="stat-number" data-target="98">0</div>
+                            <p class="text-blue-200">% Success Rate</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="stat-number" data-target="150">0</div>
+                            <p class="text-blue-200">Industry Partners</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Career Progression Pathway -->
+                <div class="relative">
+                    <div class="career-path">
+                        <div class="career-step animate-on-scroll" style="margin-left: 60px;">
+                            <div class="flex items-center">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-user-graduate text-blue-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-lg">Start Learning</h3>
+                                    <p class="text-gray-600">Choose your certification path</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="career-step animate-on-scroll" style="margin-left: 60px;">
+                            <div class="flex items-center">
+                                <div class="bg-yellow-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-tasks text-yellow-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-lg">Build Skills</h3>
+                                    <p class="text-gray-600">Expert-led training programs</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="career-step animate-on-scroll" style="margin-left: 60px;">
+                            <div class="flex items-center">
+                                <div class="bg-green-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-certificate text-green-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-lg">Get Certified</h3>
+                                    <p class="text-gray-600">Earn industry recognition</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="career-step animate-on-scroll" style="margin-left: 60px;">
+                            <div class="flex items-center">
+                                <div class="bg-purple-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-briefcase text-purple-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-lg">Advance Career</h3>
+                                    <p class="text-gray-600">Land your dream job</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industry Demand Statistics -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-heading text-4xl lg:text-5xl font-bold text-gray-900 mb-6 animate-on-scroll">
+                    Industry Demand is 
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-green-600">Skyrocketing</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-on-scroll">
+                    The job market is evolving rapidly. Stay ahead with certifications that employers actively seek.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                <div class="bg-white p-8 rounded-2xl shadow-lg text-center interactive-card animate-on-scroll">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-chart-line text-blue-600 text-2xl"></i>
+                    </div>
+                    <div class="stat-number text-2xl mb-2" data-target="73">0</div>
+                    <p class="text-gray-600 font-semibold">% Job Growth</p>
+                    <p class="text-sm text-gray-500 mt-2">Cloud Computing Roles</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl shadow-lg text-center interactive-card animate-on-scroll">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-dollar-sign text-green-600 text-2xl"></i>
+                    </div>
+                    <div class="stat-number text-2xl mb-2" data-target="125">0</div>
+                    <p class="text-gray-600 font-semibold">K Average Salary</p>
+                    <p class="text-sm text-gray-500 mt-2">Certified Professionals</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl shadow-lg text-center interactive-card animate-on-scroll">
+                    <div class="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-building text-yellow-600 text-2xl"></i>
+                    </div>
+                    <div class="stat-number text-2xl mb-2" data-target="89">0</div>
+                    <p class="text-gray-600 font-semibold">% of Companies</p>
+                    <p class="text-sm text-gray-500 mt-2">Prefer Certified Candidates</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl shadow-lg text-center interactive-card animate-on-scroll">
+                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-clock text-purple-600 text-2xl"></i>
+                    </div>
+                    <div class="stat-number text-2xl mb-2" data-target="45">0</div>
+                    <p class="text-gray-600 font-semibold">% Faster Hiring</p>
+                    <p class="text-sm text-gray-500 mt-2">With Certifications</p>
+                </div>
+            </div>
+            
+            <!-- Job Market Animation -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg animate-on-scroll">
+                <h3 class="font-heading text-2xl font-bold text-center mb-8">Most In-Demand Certifications</h3>
+                <div class="space-y-6">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-orange-100 p-2 rounded-lg mr-4">
+                                <i class="fab fa-aws text-orange-600"></i>
+                            </div>
+                            <span class="font-semibold">AWS Solutions Architect</span>
+                        </div>
+                        <div class="flex-1 mx-4">
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="92"></div>
+                            </div>
+                        </div>
+                        <span class="font-bold text-blue-600">92%</span>
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-blue-100 p-2 rounded-lg mr-4">
+                                <i class="fab fa-microsoft text-blue-600"></i>
+                            </div>
+                            <span class="font-semibold">Azure Fundamentals</span>
+                        </div>
+                        <div class="flex-1 mx-4">
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="88"></div>
+                            </div>
+                        </div>
+                        <span class="font-bold text-blue-600">88%</span>
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-red-100 p-2 rounded-lg mr-4">
+                                <i class="fab fa-google text-red-600"></i>
+                            </div>
+                            <span class="font-semibold">Google Cloud Professional</span>
+                        </div>
+                        <div class="flex-1 mx-4">
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="85"></div>
+                            </div>
+                        </div>
+                        <span class="font-bold text-blue-600">85%</span>
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-green-100 p-2 rounded-lg mr-4">
+                                <i class="fas fa-shield-alt text-green-600"></i>
+                            </div>
+                            <span class="font-semibold">Cybersecurity Analyst</span>
+                        </div>
+                        <div class="flex-1 mx-4">
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="82"></div>
+                            </div>
+                        </div>
+                        <span class="font-bold text-blue-600">82%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Certification Roadmap -->
+    <section id="roadmap" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-heading text-4xl lg:text-5xl font-bold text-gray-900 mb-6 animate-on-scroll">
+                    Build Your 
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-green-600">Certification Roadmap</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-on-scroll">
+                    Choose your career path and let us guide you through the perfect certification journey.
+                </p>
+            </div>
+            
+            <!-- Roadmap Builder -->
+            <div class="mb-16">
+                <div class="flex flex-wrap justify-center gap-4 mb-12">
+                    <button class="roadmap-tab bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold" data-path="cloud">
+                        <i class="fas fa-cloud mr-2"></i>Cloud Computing
+                    </button>
+                    <button class="roadmap-tab bg-gray-200 text-gray-700 px-6 py-3 rounded-lg font-semibold" data-path="security">
+                        <i class="fas fa-shield-alt mr-2"></i>Cybersecurity
+                    </button>
+                    <button class="roadmap-tab bg-gray-200 text-gray-700 px-6 py-3 rounded-lg font-semibold" data-path="data">
+                        <i class="fas fa-database mr-2"></i>Data Science
+                    </button>
+                    <button class="roadmap-tab bg-gray-200 text-gray-700 px-6 py-3 rounded-lg font-semibold" data-path="devops">
+                        <i class="fas fa-cogs mr-2"></i>DevOps
+                    </button>
+                </div>
+                
+                <!-- Cloud Computing Roadmap -->
+                <div class="roadmap-content active" id="cloud-roadmap">
+                    <div class="flex flex-col lg:flex-row items-center justify-center space-y-8 lg:space-y-0">
+                        <div class="roadmap-node animate-on-scroll">
+                            <span>1</span>
+                        </div>
+                        <div class="roadmap-connection hidden lg:block"></div>
+                        <div class="bg-white p-6 rounded-2xl shadow-lg max-w-xs text-center animate-on-scroll">
+                            <h4 class="font-bold text-lg mb-2">Cloud Fundamentals</h4>
+                            <p class="text-gray-600 mb-4">Learn the basics of cloud computing</p>
+                            <span class="cert-badge">AWS Cloud Practitioner</span>
+                        </div>
+                        
+                        <div class="roadmap-connection hidden lg:block"></div>
+                        <div class="roadmap-node animate-on-scroll">
+                            <span>2</span>
+                        </div>
+                        <div class="roadmap-connection hidden lg:block"></div>
+                        <div class="bg-white p-6 rounded-2xl shadow-lg max-w-xs text-center animate-on-scroll">
+                            <h4 class="font-bold text-lg mb-2">Solutions Architecture</h4>
+                            <p class="text-gray-600 mb-4">Design scalable cloud solutions</p>
+                            <span class="cert-badge">AWS Solutions Architect</span>
+                        </div>
+                        
+                        <div class="roadmap-connection hidden lg:block"></div>
+                        <div class="roadmap-node animate-on-scroll">
+                            <span>3</span>
+                        </div>
+                        <div class="roadmap-connection hidden lg:block"></div>
+                        <div class="bg-white p-6 rounded-2xl shadow-lg max-w-xs text-center animate-on-scroll">
+                            <h4 class="font-bold text-lg mb-2">Professional Level</h4>
+                            <p class="text-gray-600 mb-4">Master advanced cloud concepts</p>
+                            <span class="cert-badge">AWS Professional</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Other roadmaps would go here (hidden by default) -->
+                <div class="roadmap-content hidden" id="security-roadmap">
+                    <div class="flex flex-col lg:flex-row items-center justify-center space-y-8 lg:space-y-0">
+                        <div class="roadmap-node animate-on-scroll">
+                            <span>1</span>
+                        </div>
+                        <div class="roadmap-connection hidden lg:block"></div>
+                        <div class="bg-white p-6 rounded-2xl shadow-lg max-w-xs text-center animate-on-scroll">
+                            <h4 class="font-bold text-lg mb-2">Security Fundamentals</h4>
+                            <p class="text-gray-600 mb-4">Learn cybersecurity basics</p>
+                            <span class="cert-badge">Security+</span>
+                        </div>
+                        
+                        <div class="roadmap-connection hidden lg:block"></div>
+                        <div class="roadmap-node animate-on-scroll">
+                            <span>2</span>
+                        </div>
+                        <div class="roadmap-connection hidden lg:block"></div>
+                        <div class="bg-white p-6 rounded-2xl shadow-lg max-w-xs text-center animate-on-scroll">
+                            <h4 class="font-bold text-lg mb-2">Ethical Hacking</h4>
+                            <p class="text-gray-600 mb-4">Penetration testing skills</p>
+                            <span class="cert-badge">CEH</span>
+                        </div>
+                        
+                        <div class="roadmap-connection hidden lg:block"></div>
+                        <div class="roadmap-node animate-on-scroll">
+                            <span>3</span>
+                        </div>
+                        <div class="roadmap-connection hidden lg:block"></div>
+                        <div class="bg-white p-6 rounded-2xl shadow-lg max-w-xs text-center animate-on-scroll">
+                            <h4 class="font-bold text-lg mb-2">Security Management</h4>
+                            <p class="text-gray-600 mb-4">Lead security initiatives</p>
+                            <span class="cert-badge">CISSP</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expert Instructors Section -->
+    <section id="instructors" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-heading text-4xl lg:text-5xl font-bold text-gray-900 mb-6 animate-on-scroll">
+                    Learn from 
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-green-600">Industry Experts</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-on-scroll">
+                    Our instructors bring real-world experience from top tech companies and have helped thousands advance their careers.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Instructor 1 -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg interactive-card animate-on-scroll">
+                    <div class="text-center mb-6">
+                        <div class="w-24 h-24 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold">
+                            MJ
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-gray-900">Michael Johnson</h3>
+                        <p class="text-blue-600 font-semibold">AWS Solutions Architect</p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-briefcase text-gray-400 mr-2"></i>
+                            <span class="text-sm text-gray-600">15+ years at Amazon, Microsoft</span>
+                        </div>
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-users text-gray-400 mr-2"></i>
+                            <span class="text-sm text-gray-600">10,000+ students trained</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-yellow-400 mr-2"></i>
+                            <span class="text-sm text-gray-600">4.9/5 rating</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Experience Timeline -->
+                    <div class="space-y-3">
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
+                            <div>
+                                <p class="font-semibold text-sm">2023-Present: Senior Instructor</p>
+                                <p class="text-xs text-gray-600">CertifyPro Mastery</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
+                            <div>
+                                <p class="font-semibold text-sm">2018-2023: Principal Architect</p>
+                                <p class="text-xs text-gray-600">Microsoft Azure</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-yellow-500 rounded-full mr-3"></div>
+                            <div>
+                                <p class="font-semibold text-sm">2010-2018: Senior Engineer</p>
+                                <p class="text-xs text-gray-600">Amazon Web Services</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">AWS</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 text-xs rounded-full">Azure</span>
+                            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Cloud Architecture</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Instructor 2 -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg interactive-card animate-on-scroll">
+                    <div class="text-center mb-6">
+                        <div class="w-24 h-24 bg-gradient-to-br from-green-400 to-green-600 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold">
+                            SC
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-gray-900">Sarah Chen</h3>
+                        <p class="text-green-600 font-semibold">Cybersecurity Expert</p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-briefcase text-gray-400 mr-2"></i>
+                            <span class="text-sm text-gray-600">12+ years at Google, IBM</span>
+                        </div>
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-users text-gray-400 mr-2"></i>
+                            <span class="text-sm text-gray-600">8,500+ students trained</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-yellow-400 mr-2"></i>
+                            <span class="text-sm text-gray-600">4.8/5 rating</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Experience Timeline -->
+                    <div class="space-y-3">
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
+                            <div>
+                                <p class="font-semibold text-sm">2022-Present: Lead Security Instructor</p>
+                                <p class="text-xs text-gray-600">CertifyPro Mastery</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-red-500 rounded-full mr-3"></div>
+                            <div>
+                                <p class="font-semibold text-sm">2017-2022: Security Architect</p>
+                                <p class="text-xs text-gray-600">Google Cloud Security</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
+                            <div>
+                                <p class="font-semibold text-sm">2012-2017: Security Consultant</p>
+                                <p class="text-xs text-gray-600">IBM Security</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-red-100 text-red-800 text-xs rounded-full">CISSP</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 text-xs rounded-full">CEH</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Penetration Testing</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Instructor 3 -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg interactive-card animate-on-scroll">
+                    <div class="text-center mb-6">
+                        <div class="w-24 h-24 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold">
+                            RP
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-gray-900">Raj Patel</h3>
+                        <p class="text-purple-600 font-semibold">Data Science Leader</p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-briefcase text-gray-400 mr-2"></i>
+                            <span class="text-sm text-gray-600">10+ years at Meta, Netflix</span>
+                        </div>
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-users text-gray-400 mr-2"></i>
+                            <span class="text-sm text-gray-600">7,200+ students trained</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-yellow-400 mr-2"></i>
+                            <span class="text-sm text-gray-600">4.9/5 rating</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Experience Timeline -->
+                    <div class="space-y-3">
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-purple-500 rounded-full mr-3"></div>
+                            <div>
+                                <p class="font-semibold text-sm">2021-Present: Data Science Instructor</p>
+                                <p class="text-xs text-gray-600">CertifyPro Mastery</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
+                            <div>
+                                <p class="font-semibold text-sm">2018-2021: ML Engineering Manager</p>
+                                <p class="text-xs text-gray-600">Meta (Facebook)</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-red-500 rounded-full mr-3"></div>
+                            <div>
+                                <p class="font-semibold text-sm">2014-2018: Senior Data Scientist</p>
+                                <p class="text-xs text-gray-600">Netflix</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">Machine Learning</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Python</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 text-xs rounded-full">TensorFlow</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <div class="bg-achievement-blue text-white p-2 rounded-lg mr-3">
+                            <i class="fas fa-certificate text-xl"></i>
+                        </div>
+                        <span class="font-heading text-2xl font-bold">CertifyPro Mastery</span>
+                    </div>
+                    <p class="text-gray-400 mb-6">
+                        Empowering professionals with industry-recognized certifications for career advancement.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold text-lg mb-6">Certifications</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">AWS Certifications</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Azure Certifications</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Google Cloud</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Cybersecurity</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Data Science</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold text-lg mb-6">Resources</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Career Guide</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Salary Reports</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Practice Exams</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Study Materials</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Community Forum</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold text-lg mb-6">Support</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Live Chat</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Schedule Call</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Success Stories</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 mb-4 md:mb-0">
+                        © 2024 CertifyPro Mastery. All rights reserved.
+                    </p>
+                    <div class="flex space-x-6 text-gray-400">
+                        <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                        <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                        <a href="#" class="hover:text-white transition-colors">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Counter animation
+        function animateCounter(element, target, duration = 2000) {
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current).toLocaleString();
+            }, 16);
+        }
+
+        // Trigger counters when visible
+        const counterObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = parseInt(entry.target.getAttribute('data-target'));
+                    animateCounter(entry.target, target);
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.stat-number').forEach(counter => {
+            counterObserver.observe(counter);
+        });
+
+        // Progress bar animation
+        const progressObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const width = entry.target.getAttribute('data-width');
+                    entry.target.style.width = width + '%';
+                    progressObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.progress-fill').forEach(bar => {
+            progressObserver.observe(bar);
+        });
+
+        // Roadmap tab switching
+        document.querySelectorAll('.roadmap-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs
+                document.querySelectorAll('.roadmap-tab').forEach(t => {
+                    t.classList.remove('bg-blue-600', 'text-white');
+                    t.classList.add('bg-gray-200', 'text-gray-700');
+                });
+                
+                // Add active class to clicked tab
+                this.classList.remove('bg-gray-200', 'text-gray-700');
+                this.classList.add('bg-blue-600', 'text-white');
+                
+                // Hide all roadmap content
+                document.querySelectorAll('.roadmap-content').forEach(content => {
+                    content.classList.add('hidden');
+                    content.classList.remove('active');
+                });
+                
+                // Show selected roadmap content
+                const path = this.getAttribute('data-path');
+                const targetContent = document.getElementById(path + '-roadmap');
+                if (targetContent) {
+                    targetContent.classList.remove('hidden');
+                    targetContent.classList.add('active');
+                }
+            });
+        });
+
+        // Floating animation delay for certification badges
+        document.querySelectorAll('.animate-float').forEach((element, index) => {
+            element.style.animationDelay = (index * 0.5) + 's';
+        });
+
+        document.querySelectorAll('.animate-float-reverse').forEach((element, index) => {
+            element.style.animationDelay = (index * 0.7) + 's';
+        });
+
+        // Interactive card hover effects
+        document.querySelectorAll('.interactive-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Scroll to top functionality
+        let scrollToTopBtn = document.createElement('button');
+        scrollToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+        scrollToTopBtn.className = 'fixed bottom-8 right-8 bg-blue-600 text-white p-3 rounded-full shadow-lg opacity-0 transition-all duration-300 hover:bg-blue-700 z-50';
+        scrollToTopBtn.style.transform = 'translateY(100px)';
+        document.body.appendChild(scrollToTopBtn);
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.style.opacity = '1';
+                scrollToTopBtn.style.transform = 'translateY(0)';
+            } else {
+                scrollToTopBtn.style.opacity = '0';
+                scrollToTopBtn.style.transform = 'translateY(100px)';
+            }
+        });
+
+        // Prefers reduced motion support
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.querySelectorAll('.animate-float, .animate-float-reverse').forEach(element => {
+                element.style.animation = 'none';
+            });
+        }
+    </script>
+</body>
+</html>
