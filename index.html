@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlowState Mastery - Transform Your Productivity</title>
+    <meta name="description" content="Master your productivity with FlowState Mastery. Scientific methods, expert coaching, and personalized optimization for peak performance.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --focus-blue: #2563eb;
+            --energy-orange: #ea580c;
+            --efficiency-green: #16a34a;
+        }
+        
+        * {
+            font-family: 'Roboto', 'Source Sans Pro', sans-serif;
+        }
+        
+        .workflow-bg {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232563eb' fill-opacity='0.05'%3E%3Cpath d='m30 30 18-18v36l-18-18zm0 0L12 12v36l18-18z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .time-optimization-bg {
+            background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2316a34a' fill-opacity='0.03'%3E%3Cpath d='M40 40c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm20 0c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20z'/%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .floating-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-delay-1 {
+            animation-delay: -2s;
+        }
+        
+        .floating-delay-2 {
+            animation-delay: -4s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .workflow-step {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .workflow-step.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .metric-counter {
+            font-family: 'Roboto', monospace;
+            font-weight: 700;
+        }
+        
+        .assessment-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .assessment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .technique-card {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .technique-card.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .coach-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .coach-card:hover {
+            transform: scale(1.02);
+        }
+        
+        .tier-card {
+            transition: all 0.3s ease;
+        }
+        
+        .tier-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .tier-popular {
+            border: 2px solid var(--energy-orange);
+            position: relative;
+        }
+        
+        .tier-popular::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--energy-orange);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            .floating-animation, .workflow-step, .technique-card {
+                animation: none;
+                transition: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold text-blue-600">FlowState Mastery</h1>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#features" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Features</a>
+                        <a href="#assessment" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Assessment</a>
+                        <a href="#coaches" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Coaches</a>
+                        <a href="#pricing" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Pricing</a>
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">Get Started</button>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button class="mobile-menu-button text-gray-700 hover:text-blue-600">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-br from-blue-50 via-white to-green-50 pt-20 pb-20 workflow-bg overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-center lg:text-left">
+                    <h1 class="text-5xl lg:text-6xl font-black text-gray-900 mb-6 leading-tight">
+                        Master Your 
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-green-600">FlowState</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8 font-light leading-relaxed">
+                        Transform your productivity with science-backed methods, expert coaching, and personalized optimization tools that help you achieve peak performance and consistent results.
+                    </p>
+                    
+                    <!-- Efficiency Metrics -->
+                    <div class="grid grid-cols-3 gap-6 mb-8">
+                        <div class="text-center">
+                            <div class="metric-counter text-3xl font-black text-blue-600" data-target="89">0</div>
+                            <div class="text-sm text-gray-600 font-medium">% Efficiency Boost</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="metric-counter text-3xl font-black text-orange-600" data-target="4.2">0</div>
+                            <div class="text-sm text-gray-600 font-medium">Hours Saved Daily</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="metric-counter text-3xl font-black text-green-600" data-target="95">0</div>
+                            <div class="text-sm text-gray-600 font-medium">% Goal Achievement</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <button class="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-700 transform hover:scale-105 transition-all shadow-lg">
+                            Start Free Assessment
+                        </button>
+                        <button class="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg font-semibold text-lg hover:border-blue-600 hover:text-blue-600 transition-all">
+                            Watch Demo
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Floating Productivity Tools -->
+                <div class="relative h-96 lg:h-[500px]">
+                    <div class="absolute inset-0 time-optimization-bg opacity-30"></div>
+                    
+                    <!-- Floating Tool Cards -->
+                    <div class="floating-animation absolute top-10 left-10 bg-white rounded-xl shadow-lg p-4 max-w-48">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-clock text-blue-600 mr-2"></i>
+                            <span class="font-semibold text-sm">Time Tracker</span>
+                        </div>
+                        <div class="text-xs text-gray-600">Focus Session: 45 min</div>
+                        <div class="bg-blue-100 rounded-full h-2 mt-2">
+                            <div class="bg-blue-600 h-2 rounded-full w-3/4"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="floating-animation floating-delay-1 absolute top-32 right-16 bg-white rounded-xl shadow-lg p-4 max-w-48">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-chart-line text-green-600 mr-2"></i>
+                            <span class="font-semibold text-sm">Progress Tracker</span>
+                        </div>
+                        <div class="text-xs text-gray-600">Weekly Goal: 87%</div>
+                        <div class="bg-green-100 rounded-full h-2 mt-2">
+                            <div class="bg-green-600 h-2 rounded-full w-5/6"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="floating-animation floating-delay-2 absolute bottom-20 left-20 bg-white rounded-xl shadow-lg p-4 max-w-48">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-brain text-orange-600 mr-2"></i>
+                            <span class="font-semibold text-sm">FlowState Mode</span>
+                        </div>
+                        <div class="text-xs text-gray-600">Deep Work: Active</div>
+                        <div class="flex space-x-1 mt-2">
+                            <div class="w-2 h-2 bg-orange-600 rounded-full animate-pulse"></div>
+                            <div class="w-2 h-2 bg-orange-400 rounded-full animate-pulse" style="animation-delay: 0.2s;"></div>
+                            <div class="w-2 h-2 bg-orange-300 rounded-full animate-pulse" style="animation-delay: 0.4s;"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Central Workflow Diagram -->
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl shadow-xl p-6 max-w-64">
+                        <div class="text-center mb-4">
+                            <h3 class="font-bold text-lg text-gray-900">Workflow Optimization</h3>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="workflow-step flex items-center">
+                                <div class="w-3 h-3 bg-blue-600 rounded-full mr-3"></div>
+                                <span class="text-sm font-medium">Plan & Prioritize</span>
+                            </div>
+                            <div class="workflow-step flex items-center">
+                                <div class="w-3 h-3 bg-orange-600 rounded-full mr-3"></div>
+                                <span class="text-sm font-medium">Execute with Focus</span>
+                            </div>
+                            <div class="workflow-step flex items-center">
+                                <div class="w-3 h-3 bg-green-600 rounded-full mr-3"></div>
+                                <span class="text-sm font-medium">Track & Optimize</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Productivity Techniques Section -->
+    <section id="features" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black text-gray-900 mb-4">Science-Backed Productivity Methods</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Compare and master proven techniques that transform how you work, focus, and achieve your goals.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="technique-card bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 border border-blue-200">
+                    <div class="w-16 h-16 bg-blue-600 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-stopwatch text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Pomodoro Technique</h3>
+                    <p class="text-gray-600 mb-6">25-minute focused work sessions with 5-minute breaks. Proven to increase concentration and reduce mental fatigue.</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center text-sm">
+                            <i class="fas fa-check-circle text-green-600 mr-2"></i>
+                            <span>+40% focus improvement</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <i class="fas fa-check-circle text-green-600 mr-2"></i>
+                            <span>Reduces burnout risk</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <i class="fas fa-check-circle text-green-600 mr-2"></i>
+                            <span>Built-in progress tracking</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="technique-card bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 border border-green-200">
+                    <div class="w-16 h-16 bg-green-600 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-brain text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Deep Work Protocol</h3>
+                    <p class="text-gray-600 mb-6">Extended periods of cognitively demanding work without distractions. Maximizes cognitive output and skill development.</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center text-sm">
+                            <i class="fas fa-check-circle text-green-600 mr-2"></i>
+                            <span>3x higher quality output</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <i class="fas fa-check-circle text-green-600 mr-2"></i>
+                            <span>Accelerated skill building</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <i class="fas fa-check-circle text-green-600 mr-2"></i>
+                            <span>Enhanced flow states</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="technique-card bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-8 border border-orange-200">
+                    <div class="w-16 h-16 bg-orange-600 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-layer-group text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Time Blocking</h3>
+                    <p class="text-gray-600 mb-6">Assign specific time slots to different activities. Eliminates decision fatigue and ensures priority tasks get attention.</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center text-sm">
+                            <i class="fas fa-check-circle text-green-600 mr-2"></i>
+                            <span>+60% task completion rate</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <i class="fas fa-check-circle text-green-600 mr-2"></i>
+                            <span>Better work-life balance</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <i class="fas fa-check-circle text-green-600 mr-2"></i>
+                            <span>Reduced context switching</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Assessment Section -->
+    <section id="assessment" class="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-black text-gray-900 mb-4">Productivity Assessment</h2>
+                <p class="text-xl text-gray-600">Discover your productivity type and get personalized recommendations</p>
+            </div>
+            
+            <div class="assessment-card rounded-2xl p-8 shadow-lg">
+                <div id="assessment-step-1" class="assessment-step">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">What's your biggest productivity challenge?</h3>
+                    <div class="grid gap-4">
+                        <button class="assessment-option text-left p-4 border-2 border-gray-200 rounded-lg hover:border-blue-600 hover:bg-blue-50 transition-all" data-value="focus">
+                            <div class="flex items-center">
+                                <i class="fas fa-eye text-blue-600 mr-3 text-xl"></i>
+                                <div>
+                                    <div class="font-semibold">Staying Focused</div>
+                                    <div class="text-sm text-gray-600">I get easily distracted and struggle to maintain concentration</div>
+                                </div>
+                            </div>
+                        </button>
+                        <button class="assessment-option text-left p-4 border-2 border-gray-200 rounded-lg hover:border-blue-600 hover:bg-blue-50 transition-all" data-value="time">
+                            <div class="flex items-center">
+                                <i class="fas fa-clock text-orange-600 mr-3 text-xl"></i>
+                                <div>
+                                    <div class="font-semibold">Time Management</div>
+                                    <div class="text-sm text-gray-600">I have trouble prioritizing and managing my time effectively</div>
+                                </div>
+                            </div>
+                        </button>
+                        <button class="assessment-option text-left p-4 border-2 border-gray-200 rounded-lg hover:border-blue-600 hover:bg-blue-50 transition-all" data-value="overwhelm">
+                            <div class="flex items-center">
+                                <i class="fas fa-mountain text-green-600 mr-3 text-xl"></i>
+                                <div>
+                                    <div class="font-semibold">Feeling Overwhelmed</div>
+                                    <div class="text-sm text-gray-600">I have too many tasks and don't know where to start</div>
+                                </div>
+                            </div>
+                        </button>
+                        <button class="assessment-option text-left p-4 border-2 border-gray-200 rounded-lg hover:border-blue-600 hover:bg-blue-50 transition-all" data-value="consistency">
+                            <div class="flex items-center">
+                                <i class="fas fa-chart-line text-purple-600 mr-3 text-xl"></i>
+                                <div>
+                                    <div class="font-semibold">Maintaining Consistency</div>
+                                    <div class="text-sm text-gray-600">I start strong but struggle to maintain productive habits</div>
+                                </div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="assessment-results" class="assessment-step hidden">
+                    <div class="text-center">
+                        <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-chart-pie text-green-600 text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Your Productivity Profile</h3>
+                        <div id="result-content" class="space-y-4">
+                            <!-- Results will be populated by JavaScript -->
+                        </div>
+                        <button class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold mt-6 hover:bg-blue-700 transition-colors">
+                            Get Your Personalized Plan
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expert Coaches Section -->
+    <section id="coaches" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black text-gray-900 mb-4">Learn from Productivity Experts</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Our certified coaches combine neuroscience, psychology, and proven methodologies to optimize your performance.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="coach-card rounded-2xl p-8 shadow-lg border border-gray-100">
+                    <div class="text-center mb-6">
+                        <div class="w-24 h-24 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <span class="text-white text-2xl font-bold">DS</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900">Dr. Sarah Chen</h3>
+                        <p class="text-gray-600 text-sm">Neuroscience & Flow States</p>
+                    </div>
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-center text-sm">
+                            <i class="fas fa-medal text-gold-500 mr-2"></i>
+                            <span>15+ years research experience</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <i class="fas fa-users text-blue-600 mr-2"></i>
+                            <span>2,000+ clients optimized</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <i class="fas fa-brain text-purple-600 mr-2"></i>
+                            <span>Deep Work & Flow specialist</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed">"I help professionals unlock their cognitive potential through scientifically-proven attention training and flow state optimization."</p>
+                </div>
+                
+                <div class="coach-card rounded-2xl p-8 shadow-lg border border-gray-100">
+                    <div class="text-center mb-6">
+                        <div class="w-24 h-24 bg-gradient-to-br from-green-400 to-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <span class="text-white text-2xl font-bold">MR</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900">Marcus Rodriguez</h3>
+                        <p class="text-gray-600 text-sm">Time Management & Systems</p>
+                    </div>
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-center text-sm">
+                            <i class="fas fa-award text-gold-500 mr-2"></i>
+                            <span>Executive coach certification</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <i class="fas fa-building text-green-600 mr-2"></i>
+                            <span>Fortune 500 consultant</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <i class="fas fa-cogs text-orange-600 mr-2"></i>
+                            <span>Systems optimization expert</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed">"I transform chaotic schedules into streamlined systems that maximize impact while reducing stress and overwhelm."</p>
+                </div>
+                
+                <div class="coach-card rounded-2xl p-8 shadow-lg border border-gray-100">
+                    <div class="text-center mb-6">
+                        <div class="w-24 h-24 bg-gradient-to-br from-orange-400 to-orange-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <span class="text-white text-2xl font-bold">AK</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900">Ana Kowalski</h3>
+                        <p class="text-gray-600 text-sm">Habit Formation & Mindset</p>
+                    </div>
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-center text-sm">
+                            <i class="fas fa-graduation-cap text-gold-500 mr-2"></i>
+                            <span>Psychology PhD</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <i class="fas fa-heart text-red-500 mr-2"></i>
+                            <span>Behavioral change specialist</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <i class="fas fa-seedling text-green-600 mr-2"></i>
+                            <span>Sustainable habits expert</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed">"I help you build lasting productivity habits through behavioral psychology and mindful goal achievement strategies."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-gradient-to-br from-blue-50 to-green-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black text-gray-900 mb-4">Transformation Stories</h2>
+                <p class="text-xl text-gray-600">Real results from real professionals who mastered their productivity</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-blue-600 font-bold">JM</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Jennifer Martinez</h4>
+                            <p class="text-sm text-gray-600">Software Engineer</p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="flex text-yellow-400 mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">"FlowState Mastery helped me eliminate distractions and focus on deep work. My code quality improved dramatically and I now ship features 40% faster."</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 text-center">
+                        <div>
+                            <div class="text-2xl font-bold text-blue-600">40%</div>
+                            <div class="text-xs text-gray-600">Faster Delivery</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-green-600">3.5hrs</div>
+                            <div class="text-xs text-gray-600">Time Saved Daily</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-green-600 font-bold">DL</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">David Liu</h4>
+                            <p class="text-sm text-gray-600">Marketing Director</p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="flex text-yellow-400 mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">"The time blocking methodology transformed my chaotic days into structured success. I achieved all my quarterly goals 3 weeks early."</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 text-center">
+                        <div>
+                            <div class="text-2xl font-bold text-blue-600">120%</div>
+                            <div class="text-xs text-gray-600">Goal Achievement</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-green-600">2.8hrs</div>
+                            <div class="text-xs text-gray-600">Time Saved Daily</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-orange-600 font-bold">ST</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Sarah Thompson</h4>
+                            <p class="text-sm text-gray-600">Entrepreneur</p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="flex text-yellow-400 mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">"The habit formation coaching helped me build sustainable routines. My startup revenue grew 200% in 6 months with better focus and execution."</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 text-center">
+                        <div>
+                            <div class="text-2xl font-bold text-blue-600">200%</div>
+                            <div class="text-xs text-gray-600">Revenue Growth</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-green-600">5hrs</div>
+                            <div class="text-xs text-gray-600">Time Saved Daily</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black text-gray-900 mb-4">Choose Your Productivity Journey</h2>
+                <p class="text-xl text-gray-600">Flexible plans designed to fit your goals and growth trajectory</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Starter Tier -->
+                <div class="tier-card bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Starter</h3>
+                        <div class="text-4xl font-black text-gray-900 mb-2">$29<span class="text-lg font-normal text-gray-600">/month</span></div>
+                        <p class="text-gray-600">Perfect for individuals starting their productivity journey</p>
+                    </div>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-600 mr-3"></i>
+                            <span>Basic productivity assessment</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-600 mr-3"></i>
+                            <span>3 core technique tutorials</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-600 mr-3"></i>
+                            <span>Simple habit tracker</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-600 mr-3"></i>
+                            <span>Weekly progress reports</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-600 mr-3"></i>
+                            <span>Community forum access</span>
+                        </div>
+                    </div>
+                    
+                    <button class="w-full bg-gray-200 text-gray-800 py-3 rounded-lg font-semibold hover:bg-gray-300 transition-colors">
+                        Start Free Trial
+                    </button>
+                </div>
+                
+                <!-- Professional Tier (Popular) -->
+                <div class="tier-card tier-popular bg-white rounded-2xl p-8 shadow-xl">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Professional</h3>
+                        <div class="text-4xl font-black text-gray-900 mb-2">$79<span class="text-lg font-normal text-gray-600">/month</span></div>
+                        <p class="text-gray-600">Comprehensive solution for serious productivity optimization</p>
+                    </div>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-600 mr-3"></i>
+                            <span>Advanced productivity assessment</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-600 mr-3"></i>
+                            <span>All technique masterclasses</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-600 mr-3"></i>
+                            <span>AI-powered habit optimization</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-600 mr-3"></i>
+                            <span>Personal productivity coach</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-600 mr-3"></i>
+                            <span>Tool integrations (Notion, Todoist, etc.)</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-600 mr-3"></i>
+                            <span>Priority support</span>
+                        </div>
+                    </div>
+                    
+                    <button class="w-full bg-orange-600 text-white py-3 rounded-lg font-semibold hover:bg-orange-700 transition-colors">
+                        Start Free Trial
+                    </button>
+                </div>
+                
+                <!-- Enterprise Tier -->
+                <div class="tier-card bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Enterprise</h3>
+                        <div class="text-4xl font-black text-gray-900 mb-2">$149<span class="text-lg font-normal text-gray-600">/month</span></div>
+                        <p class="text-gray-600">Ultimate productivity mastery with team features</p>
+                    </div>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-600 mr-3"></i>
+                            <span>Everything in Professional</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-600 mr-3"></i>
+                            <span>1-on-1 expert coaching sessions</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-600 mr-3"></i>
+                            <span>Team productivity analytics</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-600 mr-3"></i>
+                            <span>Custom workflow design</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-600 mr-3"></i>
+                            <span>Advanced API integrations</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-600 mr-3"></i>
+                            <span>24/7 priority support</span>
+                        </div>
+                    </div>
+                    
+                    <button class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                        Contact Sales
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Habit Tracking & Analytics Section -->
+    <section class="py-20 bg-gradient-to-br from-green-50 to-blue-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black text-gray-900 mb-4">Track Your Progress</h2>
+                <p class="text-xl text-gray-600">Advanced analytics and habit tracking to optimize your productivity journey</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="space-y-8">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-chart-bar text-blue-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Real-time Analytics</h3>
+                                <p class="text-gray-600">Monitor your productivity patterns, focus sessions, and goal achievement rates with detailed insights and trends.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-target text-green-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Goal Setting & Tracking</h3>
+                                <p class="text-gray-600">Set SMART goals, track milestones, and celebrate achievements with our intelligent goal management system.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-seedling text-orange-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Habit Formation</h3>
+                                <p class="text-gray-600">Build lasting habits with our science-backed tracking system that adapts to your schedule and preferences.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-trophy text-purple-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Achievement System</h3>
+                                <p class="text-gray-600">Unlock badges, complete challenges, and compete with yourself to maintain motivation and momentum.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <!-- Mock Dashboard -->
+                    <div class="bg-white rounded-2xl shadow-xl p-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-lg font-bold text-gray-900">Weekly Dashboard</h3>
+                            <span class="text-sm text-gray-600">Last 7 days</span>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="text-center p-4 bg-blue-50 rounded-lg">
+                                <div class="text-2xl font-bold text-blue-600">42h</div>
+                                <div class="text-sm text-gray-600">Focus Time</div>
+                            </div>
+                            <div class="text-center p-4 bg-green-50 rounded-lg">
+                                <div class="text-2xl font-bold text-green-600">87%</div>
+                                <div class="text-sm text-gray-600">Goal Progress</div>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm font-medium">Deep Work Sessions</span>
+                                <span class="text-sm text-gray-600">12/15</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-blue-600 h-2 rounded-full w-4/5"></div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm font-medium">Habit Streak</span>
+                                <span class="text-sm text-gray-600">23 days</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-green-600 h-2 rounded-full w-full"></div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm font-medium">Weekly Challenge</span>
+                                <span class="text-sm text-gray-600">8/10</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-orange-600 h-2 rounded-full w-4/5"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">FlowState Mastery</h3>
+                    <p class="text-gray-400 mb-4">Transform your productivity with science-backed methods and expert coaching.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Features</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Productivity Assessment</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Technique Masterclasses</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Habit Tracking</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Progress Analytics</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Community Forum</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">API Documentation</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 FlowState Mastery. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Metric Counter Animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.metric-counter');
+            
+            counters.forEach(counter => {
+                const target = parseFloat(counter.getAttribute('data-target'));
+                const increment = target / 100;
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    
+                    if (target === 4.2) {
+                        counter.textContent = current.toFixed(1);
+                    } else {
+                        counter.textContent = Math.floor(current);
+                    }
+                }, 20);
+            });
+        }
+
+        // Workflow Step Animation
+        function animateWorkflowSteps() {
+            const steps = document.querySelectorAll('.workflow-step');
+            steps.forEach((step, index) => {
+                setTimeout(() => {
+                    step.classList.add('animate');
+                }, index * 200);
+            });
+        }
+
+        // Technique Cards Scroll Animation
+        function animateTechniqueCards() {
+            const cards = document.querySelectorAll('.technique-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('in-view');
+                        }, index * 100);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            cards.forEach(card => observer.observe(card));
+        }
+
+        // Assessment Functionality
+        function initAssessment() {
+            const options = document.querySelectorAll('.assessment-option');
+            const step1 = document.getElementById('assessment-step-1');
+            const results = document.getElementById('assessment-results');
+            const resultContent = document.getElementById('result-content');
+            
+            const assessmentResults = {
+                focus: {
+                    title: "Focus-Driven Achiever",
+                    description: "You work best with structured focus sessions and minimal distractions.",
+                    recommendations: [
+                        "Deep Work Protocol (2-4 hour blocks)",
+                        "Pomodoro Technique for shorter tasks",
+                        "Digital detox during focus periods"
+                    ],
+                    color: "blue"
+                },
+                time: {
+                    title: "Strategic Time Optimizer",
+                    description: "You excel when your time is well-planned and priorities are clear.",
+                    recommendations: [
+                        "Time blocking methodology",
+                        "Priority matrix (Eisenhower Method)",
+                        "Weekly planning sessions"
+                    ],
+                    color: "orange"
+                },
+                overwhelm: {
+                    title: "Systematic Organizer",
+                    description: "You thrive with clear systems and step-by-step approaches.",
+                    recommendations: [
+                        "Getting Things Done (GTD) system",
+                        "Task batching techniques",
+                        "Mind mapping for clarity"
+                    ],
+                    color: "green"
+                },
+                consistency: {
+                    title: "Habit-Focused Builder",
+                    description: "You benefit from sustainable routines and gradual improvements.",
+                    recommendations: [
+                        "Habit stacking method",
+                        "21-day challenge approach",
+                        "Progress tracking systems"
+                    ],
+                    color: "purple"
+                }
+            };
+            
+            options.forEach(option => {
+                option.addEventListener('click', () => {
+                    const value = option.getAttribute('data-value');
+                    const result = assessmentResults[value];
+                    
+                    // Show results
+                    step1.classList.add('hidden');
+                    results.classList.remove('hidden');
+                    
+                    // Populate results
+                    resultContent.innerHTML = `
+                        <div class="mb-4">
+                            <h4 class="text-xl font-bold text-${result.color}-600 mb-2">${result.title}</h4>
+                            <p class="text-gray-600">${result.description}</p>
+                        </div>
+                        <div class="text-left">
+                            <h5 class="font-semibold text-gray-900 mb-3">Recommended Techniques:</h5>
+                            <ul class="space-y-2">
+                                ${result.recommendations.map(rec => `
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-green-600 mr-2"></i>
+                                        <span class="text-sm">${rec}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    `;
+                });
+            });
+        }
+
+        // Mobile Menu
+        function initMobileMenu() {
+            const button = document.querySelector('.mobile-menu-button');
+            const nav = document.querySelector('nav');
+            
+            if (button) {
+                button.addEventListener('click', () => {
+                    // Toggle mobile menu (implement as needed)
+                    console.log('Mobile menu toggled');
+                });
+            }
+        }
+
+        // Smooth Scrolling
+        function initSmoothScrolling() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            
+            links.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const target = document.querySelector(link.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Initialize all functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(animateCounters, 1000);
+            setTimeout(animateWorkflowSteps, 2000);
+            animateTechniqueCards();
+            initAssessment();
+            initMobileMenu();
+            initSmoothScrolling();
+        });
+
+        // Respect reduced motion preferences
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.documentElement.style.setProperty('--animation-duration', '0s');
+        }
+    </script>
+</body>
+</html>
