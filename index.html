@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriSense Pro - Smart Nutrition Tracking</title>
+    <meta name="description" content="Transform your health journey with NutriSense Pro's intelligent nutrition tracking, meal planning, and personalized guidance.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'avocado': {
+                            50: '#f7fee7',
+                            100: '#ecfccb',
+                            200: '#d9f99d',
+                            300: '#bef264',
+                            400: '#a3e635',
+                            500: '#84cc16',
+                            600: '#65a30d',
+                            700: '#4d7c0f',
+                            800: '#365314',
+                            900: '#1a2e05'
+                        },
+                        'citrus': {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            200: '#fed7aa',
+                            300: '#fdba74',
+                            400: '#fb923c',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12'
+                        },
+                        'berry': {
+                            50: '#faf5ff',
+                            100: '#f3e8ff',
+                            200: '#e9d5ff',
+                            300: '#d8b4fe',
+                            400: '#c084fc',
+                            500: '#a855f7',
+                            600: '#9333ea',
+                            700: '#7c3aed',
+                            800: '#6b21a8',
+                            900: '#581c87'
+                        }
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif']
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite',
+                        'bounce-slow': 'bounce 2s infinite',
+                        'scan': 'scan 2s ease-in-out infinite',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                        'fade-in': 'fadeIn 0.8s ease-out',
+                        'zoom-in': 'zoomIn 0.5s ease-out',
+                        'rotate-slow': 'rotate 8s linear infinite'
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        },
+                        scan: {
+                            '0%': { transform: 'translateX(-100%)' },
+                            '100%': { transform: 'translateX(100%)' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(100%)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        zoomIn: {
+                            '0%': { transform: 'scale(0.8)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #84cc16 0%, #f97316 50%, #a855f7 100%);
+        }
+        
+        .food-particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            animation: float 4s infinite ease-in-out;
+        }
+        
+        .scan-line {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .scan-line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(132, 204, 22, 0.4), transparent);
+            animation: scan 2s infinite;
+        }
+        
+        .nutrition-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .progress-ring {
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        
+        .progress-ring-fill {
+            transition: stroke-dasharray 1s ease-in-out;
+        }
+        
+        .typewriter {
+            overflow: hidden;
+            border-right: 2px solid #84cc16;
+            white-space: nowrap;
+            animation: typing 3s steps(30, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #84cc16 }
+        }
+        
+        .ingredient-animation {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .ingredient-animation:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+    </style>
+</head>
+<body class="font-inter bg-gradient-to-br from-avocado-50 to-citrus-50">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-r from-avocado-500 to-citrus-500 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-leaf text-white text-sm"></i>
+                    </div>
+                    <span class="font-bold text-xl text-gray-900">NutriSense Pro</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-700 hover:text-avocado-600 transition-colors">Features</a>
+                    <a href="#experts" class="text-gray-700 hover:text-avocado-600 transition-colors">Experts</a>
+                    <a href="#community" class="text-gray-700 hover:text-avocado-600 transition-colors">Community</a>
+                    <a href="#pricing" class="text-gray-700 hover:text-avocado-600 transition-colors">Pricing</a>
+                    <button class="bg-gradient-to-r from-avocado-500 to-citrus-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all">
+                        Get Started
+                    </button>
+                </div>
+                
+                <button class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="relative pt-20 pb-16 overflow-hidden">
+        <div class="absolute inset-0 gradient-bg opacity-10"></div>
+        
+        <!-- Floating Food Particles -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="food-particle bg-citrus-400" style="top: 10%; left: 10%; animation-delay: 0s;"></div>
+            <div class="food-particle bg-avocado-400" style="top: 20%; right: 15%; animation-delay: 1s;"></div>
+            <div class="food-particle bg-berry-400" style="top: 60%; left: 20%; animation-delay: 2s;"></div>
+            <div class="food-particle bg-citrus-500" style="top: 70%; right: 10%; animation-delay: 3s;"></div>
+            <div class="food-particle bg-avocado-500" style="top: 40%; left: 5%; animation-delay: 1.5s;"></div>
+            <div class="food-particle bg-berry-500" style="top: 80%; right: 25%; animation-delay: 2.5s;"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Hero Content -->
+                <div class="text-center lg:text-left animate-fade-in">
+                    <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                        Smart Nutrition
+                        <span class="bg-gradient-to-r from-avocado-500 via-citrus-500 to-berry-500 bg-clip-text text-transparent">
+                            Tracking
+                        </span>
+                        Made Simple
+                    </h1>
+                    
+                    <p class="text-xl text-gray-600 mb-8 max-w-2xl typewriter">
+                        Transform your health journey with AI-powered nutrition insights, personalized meal plans, and expert guidance.
+                    </p>
+                    
+                    <!-- Floating Nutrition Facts -->
+                    <div class="flex flex-wrap gap-4 mb-8 justify-center lg:justify-start">
+                        <div class="nutrition-card rounded-full px-4 py-2 animate-float" style="animation-delay: 0s;">
+                            <span class="text-sm font-medium text-avocado-700">🥑 Healthy Fats</span>
+                        </div>
+                        <div class="nutrition-card rounded-full px-4 py-2 animate-float" style="animation-delay: 0.5s;">
+                            <span class="text-sm font-medium text-citrus-700">🍊 Vitamin C</span>
+                        </div>
+                        <div class="nutrition-card rounded-full px-4 py-2 animate-float" style="animation-delay: 1s;">
+                            <span class="text-sm font-medium text-berry-700">🫐 Antioxidants</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <button class="bg-gradient-to-r from-avocado-500 to-citrus-500 text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl transition-all hover:scale-105">
+                            <i class="fas fa-mobile-alt mr-2"></i>
+                            Download Free
+                        </button>
+                        <button class="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-full text-lg font-semibold hover:border-avocado-500 hover:text-avocado-600 transition-all">
+                            <i class="fas fa-play mr-2"></i>
+                            Watch Demo
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Hero Animation -->
+                <div class="relative">
+                    <div class="scan-line bg-white rounded-3xl p-8 shadow-2xl max-w-md mx-auto">
+                        <div class="text-center mb-6">
+                            <div class="w-24 h-24 bg-gradient-to-r from-avocado-400 to-citrus-400 rounded-full mx-auto mb-4 flex items-center justify-center animate-pulse-slow">
+                                <i class="fas fa-camera text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Scan Your Food</h3>
+                            <p class="text-gray-600">AI-powered nutrition analysis</p>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between bg-avocado-50 rounded-lg p-3">
+                                <span class="text-avocado-700 font-medium">Calories</span>
+                                <span class="text-avocado-800 font-bold">245</span>
+                            </div>
+                            <div class="flex items-center justify-between bg-citrus-50 rounded-lg p-3">
+                                <span class="text-citrus-700 font-medium">Protein</span>
+                                <span class="text-citrus-800 font-bold">12g</span>
+                            </div>
+                            <div class="flex items-center justify-between bg-berry-50 rounded-lg p-3">
+                                <span class="text-berry-700 font-medium">Fiber</span>
+                                <span class="text-berry-800 font-bold">8g</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Floating Elements -->
+                    <div class="absolute -top-4 -right-4 w-16 h-16 bg-citrus-400 rounded-full animate-bounce-slow opacity-80"></div>
+                    <div class="absolute -bottom-4 -left-4 w-12 h-12 bg-berry-400 rounded-full animate-float opacity-80"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Interactive Food Database Search -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    Discover Your
+                    <span class="bg-gradient-to-r from-avocado-500 to-citrus-500 bg-clip-text text-transparent">Perfect Foods</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Search through our comprehensive database of over 1 million foods with intelligent auto-complete
+                </p>
+            </div>
+            
+            <div class="max-w-2xl mx-auto mb-12">
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <i class="fas fa-search text-gray-400"></i>
+                    </div>
+                    <input type="text" 
+                           class="w-full pl-12 pr-4 py-4 text-lg border-2 border-gray-200 rounded-full focus:border-avocado-500 focus:outline-none transition-colors" 
+                           placeholder="Search for foods, recipes, ingredients..."
+                           id="foodSearch">
+                    <div class="absolute inset-y-0 right-0 pr-4 flex items-center">
+                        <div class="w-8 h-8 bg-gradient-to-r from-avocado-500 to-citrus-500 rounded-full animate-pulse-slow"></div>
+                    </div>
+                </div>
+                
+                <!-- Auto-complete Results -->
+                <div id="searchResults" class="mt-4 bg-white rounded-2xl shadow-lg border border-gray-100 hidden">
+                    <div class="p-4 space-y-2">
+                        <div class="flex items-center p-3 hover:bg-avocado-50 rounded-lg cursor-pointer transition-colors">
+                            <div class="w-12 h-12 bg-avocado-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-apple-alt text-avocado-600"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="font-semibold text-gray-900">Green Apple</div>
+                                <div class="text-sm text-gray-500">52 calories per 100g</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-3 hover:bg-citrus-50 rounded-lg cursor-pointer transition-colors">
+                            <div class="w-12 h-12 bg-citrus-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-carrot text-citrus-600"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="font-semibold text-gray-900">Organic Carrots</div>
+                                <div class="text-sm text-gray-500">41 calories per 100g</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-3 hover:bg-berry-50 rounded-lg cursor-pointer transition-colors">
+                            <div class="w-12 h-12 bg-berry-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-seedling text-berry-600"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="font-semibold text-gray-900">Blueberries</div>
+                                <div class="text-sm text-gray-500">57 calories per 100g</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Popular Categories -->
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <div class="bg-avocado-50 rounded-2xl p-6 text-center hover-lift cursor-pointer">
+                    <div class="w-16 h-16 bg-avocado-200 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <i class="fas fa-leaf text-avocado-600 text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-avocado-800">Vegetables</h3>
+                </div>
+                
+                <div class="bg-citrus-50 rounded-2xl p-6 text-center hover-lift cursor-pointer">
+                    <div class="w-16 h-16 bg-citrus-200 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <i class="fas fa-apple-alt text-citrus-600 text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-citrus-800">Fruits</h3>
+                </div>
+                
+                <div class="bg-berry-50 rounded-2xl p-6 text-center hover-lift cursor-pointer">
+                    <div class="w-16 h-16 bg-berry-200 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <i class="fas fa-drumstick-bite text-berry-600 text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-berry-800">Proteins</h3>
+                </div>
+                
+                <div class="bg-yellow-50 rounded-2xl p-6 text-center hover-lift cursor-pointer">
+                    <div class="w-16 h-16 bg-yellow-200 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <i class="fas fa-bread-slice text-yellow-600 text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-yellow-800">Grains</h3>
+                </div>
+                
+                <div class="bg-blue-50 rounded-2xl p-6 text-center hover-lift cursor-pointer">
+                    <div class="w-16 h-16 bg-blue-200 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <i class="fas fa-fish text-blue-600 text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-blue-800">Seafood</h3>
+                </div>
+                
+                <div class="bg-purple-50 rounded-2xl p-6 text-center hover-lift cursor-pointer">
+                    <div class="w-16 h-16 bg-purple-200 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <i class="fas fa-cheese text-purple-600 text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-purple-800">Dairy</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Meal Planning Calendar -->
+    <section class="py-16 bg-gradient-to-r from-avocado-50 to-citrus-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    Smart
+                    <span class="bg-gradient-to-r from-berry-500 to-citrus-500 bg-clip-text text-transparent">Meal Planning</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    AI-powered meal planning that adapts to your goals, preferences, and schedule
+                </p>
+            </div>
+            
+            <div class="bg-white rounded-3xl shadow-2xl p-8 max-w-6xl mx-auto">
+                <div class="grid grid-cols-7 gap-4 mb-8">
+                    <div class="text-center font-semibold text-gray-600 py-2">Mon</div>
+                    <div class="text-center font-semibold text-gray-600 py-2">Tue</div>
+                    <div class="text-center font-semibold text-gray-600 py-2">Wed</div>
+                    <div class="text-center font-semibold text-gray-600 py-2">Thu</div>
+                    <div class="text-center font-semibold text-gray-600 py-2">Fri</div>
+                    <div class="text-center font-semibold text-gray-600 py-2">Sat</div>
+                    <div class="text-center font-semibold text-gray-600 py-2">Sun</div>
+                </div>
+                
+                <div class="grid grid-cols-7 gap-4">
+                    <!-- Week 1 -->
+                    <div class="bg-avocado-50 rounded-2xl p-4 min-h-32 hover-lift cursor-pointer">
+                        <div class="text-center">
+                            <div class="text-lg font-bold text-avocado-800 mb-2">15</div>
+                            <div class="space-y-1">
+                                <div class="bg-avocado-200 rounded-full px-2 py-1 text-xs text-avocado-800">🥗 Salad</div>
+                                <div class="bg-citrus-200 rounded-full px-2 py-1 text-xs text-citrus-800">🍗 Chicken</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-citrus-50 rounded-2xl p-4 min-h-32 hover-lift cursor-pointer">
+                        <div class="text-center">
+                            <div class="text-lg font-bold text-citrus-800 mb-2">16</div>
+                            <div class="space-y-1">
+                                <div class="bg-berry-200 rounded-full px-2 py-1 text-xs text-berry-800">🍓 Smoothie</div>
+                                <div class="bg-avocado-200 rounded-full px-2 py-1 text-xs text-avocado-800">🥑 Toast</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-berry-50 rounded-2xl p-4 min-h-32 hover-lift cursor-pointer">
+                        <div class="text-center">
+                            <div class="text-lg font-bold text-berry-800 mb-2">17</div>
+                            <div class="space-y-1">
+                                <div class="bg-citrus-200 rounded-full px-2 py-1 text-xs text-citrus-800">🍊 Orange</div>
+                                <div class="bg-green-200 rounded-full px-2 py-1 text-xs text-green-800">🥬 Kale</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-yellow-50 rounded-2xl p-4 min-h-32 hover-lift cursor-pointer">
+                        <div class="text-center">
+                            <div class="text-lg font-bold text-yellow-800 mb-2">18</div>
+                            <div class="space-y-1">
+                                <div class="bg-yellow-200 rounded-full px-2 py-1 text-xs text-yellow-800">🌽 Corn</div>
+                                <div class="bg-red-200 rounded-full px-2 py-1 text-xs text-red-800">🍅 Tomato</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-blue-50 rounded-2xl p-4 min-h-32 hover-lift cursor-pointer">
+                        <div class="text-center">
+                            <div class="text-lg font-bold text-blue-800 mb-2">19</div>
+                            <div class="space-y-1">
+                                <div class="bg-blue-200 rounded-full px-2 py-1 text-xs text-blue-800">🐟 Fish</div>
+                                <div class="bg-green-200 rounded-full px-2 py-1 text-xs text-green-800">🥒 Cucumber</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-purple-50 rounded-2xl p-4 min-h-32 hover-lift cursor-pointer">
+                        <div class="text-center">
+                            <div class="text-lg font-bold text-purple-800 mb-2">20</div>
+                            <div class="space-y-1">
+                                <div class="bg-purple-200 rounded-full px-2 py-1 text-xs text-purple-800">🍇 Grapes</div>
+                                <div class="bg-indigo-200 rounded-full px-2 py-1 text-xs text-indigo-800">🫐 Berries</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-pink-50 rounded-2xl p-4 min-h-32 hover-lift cursor-pointer">
+                        <div class="text-center">
+                            <div class="text-lg font-bold text-pink-800 mb-2">21</div>
+                            <div class="space-y-1">
+                                <div class="bg-pink-200 rounded-full px-2 py-1 text-xs text-pink-800">🥩 Steak</div>
+                                <div class="bg-orange-200 rounded-full px-2 py-1 text-xs text-orange-800">🥕 Carrot</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 flex justify-center">
+                    <button class="bg-gradient-to-r from-avocado-500 to-citrus-500 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all">
+                        <i class="fas fa-magic mr-2"></i>
+                        Generate Smart Plan
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Nutrition Goal Visualizations -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    Track Your
+                    <span class="bg-gradient-to-r from-avocado-500 via-citrus-500 to-berry-500 bg-clip-text text-transparent">Progress</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Visualize your nutrition goals with beautiful, interactive charts and real-time progress tracking
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Macro Tracking -->
+                <div class="bg-gradient-to-br from-avocado-50 to-avocado-100 rounded-3xl p-8 hover-lift">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-avocado-800 mb-2">Daily Macros</h3>
+                        <p class="text-avocado-600">Track your protein, carbs, and fats</p>
+                    </div>
+                    
+                    <!-- Circular Progress Rings -->
+                    <div class="flex justify-center mb-8">
+                        <div class="relative w-48 h-48">
+                            <svg class="w-full h-full progress-ring" viewBox="0 0 100 100">
+                                <!-- Protein Ring -->
+                                <circle cx="50" cy="50" r="35" fill="none" stroke="#e5e7eb" stroke-width="8"/>
+                                <circle cx="50" cy="50" r="35" fill="none" stroke="#84cc16" stroke-width="8" 
+                                        stroke-dasharray="164 220" stroke-linecap="round" class="progress-ring-fill"/>
+                                
+                                <!-- Carbs Ring -->
+                                <circle cx="50" cy="50" r="25" fill="none" stroke="#e5e7eb" stroke-width="6"/>
+                                <circle cx="50" cy="50" r="25" fill="none" stroke="#f97316" stroke-width="6" 
+                                        stroke-dasharray="110 157" stroke-linecap="round" class="progress-ring-fill"/>
+                                
+                                <!-- Fats Ring -->
+                                <circle cx="50" cy="50" r="15" fill="none" stroke="#e5e7eb" stroke-width="4"/>
+                                <circle cx="50" cy="50" r="15" fill="none" stroke="#a855f7" stroke-width="4" 
+                                        stroke-dasharray="65 94" stroke-linecap="round" class="progress-ring-fill"/>
+                            </svg>
+                            
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-gray-900">1,847</div>
+                                    <div class="text-sm text-gray-600">calories</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-avocado-500 rounded-full mr-3"></div>
+                                <span class="text-gray-700">Protein</span>
+                            </div>
+                            <span class="text-gray-900 font-semibold">120g / 150g</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-citrus-500 rounded-full mr-3"></div>
+                                <span class="text-gray-700">Carbs</span>
+                            </div>
+                            <span class="text-gray-900 font-semibold">180g / 250g</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-berry-500 rounded-full mr-3"></div>
+                                <span class="text-gray-700">Fats</span>
+                            </div>
+                            <span class="text-gray-900 font-semibold">65g / 90g</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Before/After Health Metrics -->
+                <div class="bg-gradient-to-br from-citrus-50 to-citrus-100 rounded-3xl p-8 hover-lift">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-citrus-800 mb-2">Health Metrics</h3>
+                        <p class="text-citrus-600">Your transformation journey</p>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-white rounded-2xl p-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-gray-700 font-medium">Weight</span>
+                                <span class="text-sm text-green-600 font-semibold">-12 lbs</span>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="text-center">
+                                    <div class="text-gray-500 text-sm">Before</div>
+                                    <div class="text-xl font-bold text-gray-900">185</div>
+                                </div>
+                                <div class="flex-1 bg-gray-200 rounded-full h-2">
+                                    <div class="bg-gradient-to-r from-citrus-500 to-avocado-500 h-2 rounded-full" style="width: 70%;"></div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-gray-500 text-sm">Now</div>
+                                    <div class="text-xl font-bold text-citrus-600">173</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-2xl p-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-gray-700 font-medium">Energy Level</span>
+                                <span class="text-sm text-green-600 font-semibold">+25%</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <div class="flex space-x-1">
+                                    <div class="w-4 h-8 bg-gray-200 rounded-full"></div>
+                                    <div class="w-4 h-8 bg-gray-200 rounded-full"></div>
+                                    <div class="w-4 h-8 bg-gray-200 rounded-full"></div>
+                                    <div class="w-4 h-8 bg-citrus-400 rounded-full"></div>
+                                    <div class="w-4 h-8 bg-citrus-500 rounded-full"></div>
+                                    <div class="w-4 h-8 bg-citrus-600 rounded-full"></div>
+                                    <div class="w-4 h-8 bg-avocado-500 rounded-full"></div>
+                                    <div class="w-4 h-8 bg-avocado-600 rounded-full"></div>
+                                </div>
+                                <span class="text-avocado-600 font-bold">8/10</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-2xl p-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-gray-700 font-medium">Sleep Quality</span>
+                                <span class="text-sm text-green-600 font-semibold">Improved</span>
+                            </div>
+                            <div class="flex space-x-2">
+                                <div class="flex-1 text-center">
+                                    <div class="text-2xl mb-1">😴</div>
+                                    <div class="text-sm text-gray-500">Before: 6h</div>
+                                </div>
+                                <div class="flex-1 text-center">
+                                    <div class="text-2xl mb-1">😊</div>
+                                    <div class="text-sm text-avocado-600">Now: 8h</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Community Progress -->
+                <div class="bg-gradient-to-br from-berry-50 to-berry-100 rounded-3xl p-8 hover-lift">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-berry-800 mb-2">Community Challenges</h3>
+                        <p class="text-berry-600">Join thousands in healthy habits</p>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-white rounded-2xl p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <h4 class="font-semibold text-gray-900">30-Day Veggie Challenge</h4>
+                                <span class="text-sm bg-green-100 text-green-800 px-2 py-1 rounded-full">Day 18</span>
+                            </div>
+                            <div class="mb-4">
+                                <div class="bg-gray-200 rounded-full h-3">
+                                    <div class="bg-gradient-to-r from-avocado-500 to-citrus-500 h-3 rounded-full animate-pulse" style="width: 60%;"></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-gray-600">Progress</span>
+                                <span class="text-berry-600 font-semibold">18/30 days</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-2xl p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <h4 class="font-semibold text-gray-900">Hydration Hero</h4>
+                                <span class="text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded-full">6/8 cups</span>
+                            </div>
+                            <div class="flex space-x-1 mb-4">
+                                <div class="flex-1 h-2 bg-blue-500 rounded-full"></div>
+                                <div class="flex-1 h-2 bg-blue-500 rounded-full"></div>
+                                <div class="flex-1 h-2 bg-blue-500 rounded-full"></div>
+                                <div class="flex-1 h-2 bg-blue-500 rounded-full"></div>
+                                <div class="flex-1 h-2 bg-blue-500 rounded-full"></div>
+                                <div class="flex-1 h-2 bg-blue-500 rounded-full"></div>
+                                <div class="flex-1 h-2 bg-gray-200 rounded-full"></div>
+                                <div class="flex-1 h-2 bg-gray-200 rounded-full"></div>
+                            </div>
+                            <p class="text-sm text-gray-600">Almost there! 2 more cups to go 💧</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-2xl p-6">
+                            <h4 class="font-semibold text-gray-900 mb-4">Leaderboard</h4>
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <div class="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center mr-3">
+                                        <span class="text-yellow-800 font-bold text-sm">1</span>
+                                    </div>
+                                    <span class="text-gray-700">You</span>
+                                    <span class="ml-auto text-berry-600 font-semibold">2,847 pts</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center mr-3">
+                                        <span class="text-gray-600 font-bold text-sm">2</span>
+                                    </div>
+                                    <span class="text-gray-700">Sarah M.</span>
+                                    <span class="ml-auto text-gray-600 font-semibold">2,743 pts</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-8 h-8 bg-orange-300 rounded-full flex items-center justify-center mr-3">
+                                        <span class="text-orange-600 font-bold text-sm">3</span>
+                                    </div>
+                                    <span class="text-gray-700">Mike R.</span>
+                                    <span class="ml-auto text-gray-600 font-semibold">2,651 pts</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Nutritionist Expert Cards -->
+    <section id="experts" class="py-16 bg-gradient-to-r from-berry-50 to-avocado-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    Meet Our
+                    <span class="bg-gradient-to-r from-berry-500 to-avocado-500 bg-clip-text text-transparent">Expert Team</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Certified nutritionists and dietitians ready to guide your health journey
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Expert Card 1 -->
+                <div class="bg-white rounded-3xl p-8 shadow-lg hover-lift">
+                    <div class="text-center mb-6">
+                        <div class="relative">
+                            <div class="w-24 h-24 bg-gradient-to-r from-avocado-400 to-citrus-400 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                <i class="fas fa-user-md text-white text-2xl"></i>
+                            </div>
+                            <div class="absolute -top-2 -right-2">
+                                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-check text-white text-sm"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-1">Dr. Sarah Johnson</h3>
+                        <p class="text-gray-600 mb-2">Registered Dietitian</p>
+                        <div class="flex justify-center space-x-2 mb-4">
+                            <span class="bg-avocado-100 text-avocado-800 px-3 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-certificate mr-1"></i>RD
+                            </span>
+                            <span class="bg-citrus-100 text-citrus-800 px-3 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-medal mr-1"></i>CDE
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-yellow-400 mr-2"></i>
+                            <span class="text-gray-700">15+ years experience</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-users text-avocado-500 mr-2"></i>
+                            <span class="text-gray-700">2,500+ clients helped</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-heart text-red-500 mr-2"></i>
+                            <span class="text-gray-700">Diabetes & heart health</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 pt-6 border-t border-gray-100">
+                        <p class="text-gray-600 text-sm italic mb-4">
+                            "Personalized nutrition is the key to sustainable health transformation."
+                        </p>
+                        <button class="w-full bg-gradient-to-r from-avocado-500 to-citrus-500 text-white py-3 rounded-full font-semibold hover:shadow-lg transition-all">
+                            Book Consultation
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Expert Card 2 -->
+                <div class="bg-white rounded-3xl p-8 shadow-lg hover-lift">
+                    <div class="text-center mb-6">
+                        <div class="relative">
+                            <div class="w-24 h-24 bg-gradient-to-r from-berry-400 to-citrus-400 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                <i class="fas fa-dumbbell text-white text-2xl"></i>
+                            </div>
+                            <div class="absolute -top-2 -right-2">
+                                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-check text-white text-sm"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-1">Mike Chen</h3>
+                        <p class="text-gray-600 mb-2">Sports Nutritionist</p>
+                        <div class="flex justify-center space-x-2 mb-4">
+                            <span class="bg-berry-100 text-berry-800 px-3 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-certificate mr-1"></i>CSSD
+                            </span>
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-trophy mr-1"></i>ACSM
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-running text-blue-500 mr-2"></i>
+                            <span class="text-gray-700">Athletic performance</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-chart-line text-green-500 mr-2"></i>
+                            <span class="text-gray-700">Body composition</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-fire text-orange-500 mr-2"></i>
+                            <span class="text-gray-700">Metabolic optimization</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 pt-6 border-t border-gray-100">
+                        <p class="text-gray-600 text-sm italic mb-4">
+                            "Fuel your body right, and it will take you places you never imagined."
+                        </p>
+                        <button class="w-full bg-gradient-to-r from-berry-500 to-citrus-500 text-white py-3 rounded-full font-semibold hover:shadow-lg transition-all">
+                            Book Consultation
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Expert Card 3 -->
+                <div class="bg-white rounded-3xl p-8 shadow-lg hover-lift">
+                    <div class="text-center mb-6">
+                        <div class="relative">
+                            <div class="w-24 h-24 bg-gradient-to-r from-citrus-400 to-avocado-400 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                <i class="fas fa-baby text-white text-2xl"></i>
+                            </div>
+                            <div class="absolute -top-2 -right-2">
+                                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-check text-white text-sm"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-1">Dr. Lisa Martinez</h3>
+                        <p class="text-gray-600 mb-2">Pediatric Nutritionist</p>
+                        <div class="flex justify-center space-x-2 mb-4">
+                            <span class="bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-certificate mr-1"></i>PhD
+                            </span>
+                            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-heart mr-1"></i>PED
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-child text-pink-500 mr-2"></i>
+                            <span class="text-gray-700">Child nutrition</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-female text-purple-500 mr-2"></i>
+                            <span class="text-gray-700">Maternal health</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-graduation-cap text-indigo-500 mr-2"></i>
+                            <span class="text-gray-700">Nutrition education</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 pt-6 border-t border-gray-100">
+                        <p class="text-gray-600 text-sm italic mb-4">
+                            "Building healthy habits early creates a lifetime of wellness."
+                        </p>
+                        <button class="w-full bg-gradient-to-r from-citrus-500 to-avocado-500 text-white py-3 rounded-full font-semibold hover:shadow-lg transition-all">
+                            Book Consultation
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Meal Plan Previews with Ingredient Animations -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    Delicious
+                    <span class="bg-gradient-to-r from-citrus-500 to-berry-500 bg-clip-text text-transparent">Meal Plans</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Discover perfectly balanced meals with interactive ingredient breakdowns
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Mediterranean Bowl -->
+                <div class="bg-gradient-to-br from-avocado-50 to-green-50 rounded-3xl p-8 hover-lift">
+                    <div class="text-center mb-6">
+                        <div class="w-full h-48 bg-gradient-to-r from-avocado-200 to-green-200 rounded-2xl mb-4 flex items-center justify-center relative overflow-hidden">
+                            <div class="text-6xl animate-float">🥗</div>
+                            <div class="absolute top-4 right-4 ingredient-animation cursor-pointer">🫒</div>
+                            <div class="absolute bottom-4 left-4 ingredient-animation cursor-pointer" style="animation-delay: 0.5s;">🍅</div>
+                            <div class="absolute top-1/2 left-4 ingredient-animation cursor-pointer" style="animation-delay: 1s;">🥒</div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-avocado-800 mb-2">Mediterranean Power Bowl</h3>
+                        <p class="text-avocado-600">Fresh, vibrant, and nutritionally complete</p>
+                    </div>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">Calories</span>
+                            <span class="font-bold text-avocado-700">485</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">Protein</span>
+                            <span class="font-bold text-avocado-700">22g</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">Prep Time</span>
+                            <span class="font-bold text-avocado-700">15 min</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-semibold text-gray-900 mb-3">Ingredients:</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="ingredient-animation bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm cursor-pointer">🥬 Spinach</span>
+                            <span class="ingredient-animation bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm cursor-pointer">�� Tomatoes</span>
+                            <span class="ingredient-animation bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm cursor-pointer">🧀 Feta</span>
+                            <span class="ingredient-animation bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm cursor-pointer">🫒 Olives</span>
+                        </div>
+                    </div>
+                    
+                    <button class="w-full bg-gradient-to-r from-avocado-500 to-green-500 text-white py-3 rounded-full font-semibold hover:shadow-lg transition-all">
+                        <i class="fas fa-utensils mr-2"></i>
+                        View Recipe
+                    </button>
+                </div>
+                
+                <!-- Protein Power Plate -->
+                <div class="bg-gradient-to-br from-citrus-50 to-orange-50 rounded-3xl p-8 hover-lift">
+                    <div class="text-center mb-6">
+                        <div class="w-full h-48 bg-gradient-to-r from-citrus-200 to-orange-200 rounded-2xl mb-4 flex items-center justify-center relative overflow-hidden">
+                            <div class="text-6xl animate-float">🍗</div>
+                            <div class="absolute top-4 right-4 ingredient-animation cursor-pointer">🥕</div>
+                            <div class="absolute bottom-4 left-4 ingredient-animation cursor-pointer" style="animation-delay: 0.5s;">🥔</div>
+                            <div class="absolute top-1/2 left-4 ingredient-animation cursor-pointer" style="animation-delay: 1s;">🌿</div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-citrus-800 mb-2">Protein Power Plate</h3>
+                        <p class="text-citrus-600">Muscle-building nutrition perfection</p>
+                    </div>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">Calories</span>
+                            <span class="font-bold text-citrus-700">620</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">Protein</span>
+                            <span class="font-bold text-citrus-700">45g</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">Prep Time</span>
+                            <span class="font-bold text-citrus-700">25 min</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-semibold text-gray-900 mb-3">Ingredients:</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="ingredient-animation bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm cursor-pointer">🍗 Chicken</span>
+                            <span class="ingredient-animation bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm cursor-pointer">🥕 Carrots</span>
+                            <span class="ingredient-animation bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm cursor-pointer">🥔 Sweet Potato</span>
+                            <span class="ingredient-animation bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm cursor-pointer">🌿 Herbs</span>
+                        </div>
+                    </div>
+                    
+                    <button class="w-full bg-gradient-to-r from-citrus-500 to-orange-500 text-white py-3 rounded-full font-semibold hover:shadow-lg transition-all">
+                        <i class="fas fa-utensils mr-2"></i>
+                        View Recipe
+                    </button>
+                </div>
+                
+                <!-- Berry Antioxidant Bowl -->
+                <div class="bg-gradient-to-br from-berry-50 to-purple-50 rounded-3xl p-8 hover-lift">
+                    <div class="text-center mb-6">
+                        <div class="w-full h-48 bg-gradient-to-r from-berry-200 to-purple-200 rounded-2xl mb-4 flex items-center justify-center relative overflow-hidden">
+                            <div class="text-6xl animate-float">🍓</div>
+                            <div class="absolute top-4 right-4 ingredient-animation cursor-pointer">🫐</div>
+                            <div class="absolute bottom-4 left-4 ingredient-animation cursor-pointer" style="animation-delay: 0.5s;">🥥</div>
+                            <div class="absolute top-1/2 left-4 ingredient-animation cursor-pointer" style="animation-delay: 1s;">🌰</div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-berry-800 mb-2">Berry Antioxidant Bowl</h3>
+                        <p class="text-berry-600">Nature's superfood powerhouse</p>
+                    </div>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">Calories</span>
+                            <span class="font-bold text-berry-700">365</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">Protein</span>
+                            <span class="font-bold text-berry-700">18g</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">Prep Time</span>
+                            <span class="font-bold text-berry-700">10 min</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-semibold text-gray-900 mb-3">Ingredients:</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="ingredient-animation bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm cursor-pointer">🍓 Strawberries</span>
+                            <span class="ingredient-animation bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm cursor-pointer">🫐 Blueberries</span>
+                            <span class="ingredient-animation bg-white text-gray-800 px-3 py-1 rounded-full text-sm cursor-pointer border">🥥 Coconut</span>
+                            <span class="ingredient-animation bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-sm cursor-pointer">🌰 Almonds</span>
+                        </div>
+                    </div>
+                    
+                    <button class="w-full bg-gradient-to-r from-berry-500 to-purple-500 text-white py-3 rounded-full font-semibold hover:shadow-lg transition-all">
+                        <i class="fas fa-utensils mr-2"></i>
+                        View Recipe
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Community & Social Proof -->
+    <section id="community" class="py-16 bg-gradient-to-r from-avocado-50 via-citrus-50 to-berry-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    Join Our
+                    <span class="bg-gradient-to-r from-avocado-500 via-citrus-500 to-berry-500 bg-clip-text text-transparent">Healthy Community</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Over 100,000 users have transformed their lives with NutriSense Pro
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-3 gap-8 mb-12">
+                <!-- Community Stats -->
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-gradient-to-r from-avocado-400 to-citrus-400 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <i class="fas fa-users text-white text-2xl"></i>
+                    </div>
+                    <div class="text-3xl font-bold text-gray-900 mb-2" id="userCount">100,000+</div>
+                    <p class="text-gray-600">Active Users</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-gradient-to-r from-citrus-400 to-berry-400 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <i class="fas fa-heart text-white text-2xl"></i>
+                    </div>
+                    <div class="text-3xl font-bold text-gray-900 mb-2" id="successCount">50M+</div>
+                    <p class="text-gray-600">Meals Tracked</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-gradient-to-r from-berry-400 to-avocado-400 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <i class="fas fa-star text-white text-2xl"></i>
+                    </div>
+                    <div class="text-3xl font-bold text-gray-900 mb-2">4.9/5</div>
+                    <p class="text-gray-600">App Store Rating</p>
+                </div>
+            </div>
+            
+            <!-- Testimonials -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover-lift">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-avocado-400 to-citrus-400 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">JM</span>
+                        </div>
+                        <div>
+                            <div class="font-semibold text-gray-900">Jessica M.</div>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">
+                        "Lost 25 pounds in 3 months! The meal planning feature is a game-changer. Love how easy it makes healthy eating."
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover-lift">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-citrus-400 to-berry-400 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">DR</span>
+                        </div>
+                        <div>
+                            <div class="font-semibold text-gray-900">David R.</div>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">
+                        "As an athlete, precise nutrition tracking is crucial. NutriSense Pro gives me exactly what I need to perform at my best."
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-6 shadow-lg hover-lift">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-berry-400 to-avocado-400 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">SM</span>
+                        </div>
+                        <div>
+                            <div class="font-semibold text-gray-900">Sarah M.</div>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">
+                        "The AI recommendations are spot-on! My energy levels have never been better. Highly recommend to anyone serious about health."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-avocado-500 via-citrus-500 to-berry-500">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+                Start Your Health Journey Today
+            </h2>
+            <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+                Join thousands who have transformed their lives with smart nutrition tracking and personalized guidance.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+                <button class="bg-white text-gray-900 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl transition-all hover:scale-105 flex items-center justify-center">
+                    <i class="fab fa-apple mr-2"></i>
+                    Download for iOS
+                </button>
+                <button class="bg-white text-gray-900 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl transition-all hover:scale-105 flex items-center justify-center">
+                    <i class="fab fa-google-play mr-2"></i>
+                    Download for Android
+                </button>
+            </div>
+            
+            <p class="text-white/80 text-sm">
+                Free download • No credit card required • Premium features available
+            </p>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-r from-avocado-500 to-citrus-500 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-leaf text-white text-sm"></i>
+                        </div>
+                        <span class="font-bold text-xl">NutriSense Pro</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Transforming lives through intelligent nutrition tracking and personalized guidance.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-avocado-400 transition-colors">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-citrus-400 transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-berry-400 transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-avocado-400 transition-colors">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold text-lg mb-4">Features</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Food Scanning</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Meal Planning</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Macro Tracking</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Expert Consultation</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold text-lg mb-4">Support</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold text-lg mb-4">Newsletter</h3>
+                    <p class="text-gray-400 mb-4">Get nutrition tips and updates delivered to your inbox.</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Enter your email" 
+                               class="flex-1 px-4 py-2 bg-gray-800 border border-gray-700 rounded-l-lg focus:outline-none focus:border-avocado-500">
+                        <button class="bg-gradient-to-r from-avocado-500 to-citrus-500 px-4 py-2 rounded-r-lg hover:shadow-lg transition-all">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 NutriSense Pro. All rights reserved. Made with 💚 for your health journey.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript for Interactions -->
+    <script>
+        // Search functionality
+        const searchInput = document.getElementById('foodSearch');
+        const searchResults = document.getElementById('searchResults');
+        
+        searchInput.addEventListener('focus', () => {
+            searchResults.classList.remove('hidden');
+        });
+        
+        searchInput.addEventListener('blur', () => {
+            setTimeout(() => {
+                searchResults.classList.add('hidden');
+            }, 200);
+        });
+        
+        // Animated counters
+        function animateCounter(element, target, duration = 2000) {
+            const start = 0;
+            const startTime = performance.now();
+            
+            function updateCounter(currentTime) {
+                const elapsedTime = currentTime - startTime;
+                const progress = Math.min(elapsedTime / duration, 1);
+                const currentValue = Math.floor(progress * target);
+                
+                if (element.id === 'userCount') {
+                    element.textContent = currentValue.toLocaleString() + '+';
+                } else if (element.id === 'successCount') {
+                    element.textContent = Math.floor(currentValue / 1000000) + 'M+';
+                } else {
+                    element.textContent = currentValue.toLocaleString();
+                }
+                
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                }
+            }
+            
+            requestAnimationFrame(updateCounter);
+        }
+        
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-slide-up');
+                    
+                    // Animate counters
+                    if (entry.target.id === 'userCount') {
+                        animateCounter(entry.target, 100000);
+                    } else if (entry.target.id === 'successCount') {
+                        animateCounter(entry.target, 50000000);
+                    }
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for scroll animations
+        document.querySelectorAll('.hover-lift, #userCount, #successCount').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Progress ring animations
+        function animateProgressRings() {
+            const rings = document.querySelectorAll('.progress-ring-fill');
+            rings.forEach((ring, index) => {
+                setTimeout(() => {
+                    ring.style.strokeDasharray = ring.getAttribute('stroke-dasharray');
+                }, index * 500);
+            });
+        }
+        
+        // Initialize animations on load
+        window.addEventListener('load', () => {
+            animateProgressRings();
+        });
+        
+        // Ingredient animation interactions
+        document.querySelectorAll('.ingredient-animation').forEach(ingredient => {
+            ingredient.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.2) rotate(10deg)';
+            });
+            
+            ingredient.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+        
+        // Mobile menu toggle (if needed)
+        const mobileMenuToggle = document.querySelector('.md\\:hidden button');
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', () => {
+                // Add mobile menu functionality here
+                console.log('Mobile menu clicked');
+            });
+        }
+        
+        // Add loading states for buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                if (this.textContent.includes('Download') || this.textContent.includes('Get Started')) {
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Loading...';
+                    this.disabled = true;
+                    
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        this.disabled = false;
+                    }, 2000);
+                }
+            });
+        });
+        
+        // Parallax effect for floating elements
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.food-particle');
+            
+            parallaxElements.forEach((element, index) => {
+                const speed = 0.5 + (index * 0.1);
+                const yPos = -(scrolled * speed);
+                element.style.transform = `translateY(${yPos}px)`;
+            });
+        });
+        
+        // Form validation for newsletter signup
+        const newsletterForm = document.querySelector('footer input[type="email"]');
+        const newsletterButton = document.querySelector('footer button');
+        
+        if (newsletterButton) {
+            newsletterButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                const email = newsletterForm.value;
+                
+                if (email && email.includes('@')) {
+                    newsletterButton.innerHTML = '<i class="fas fa-check"></i>';
+                    newsletterButton.classList.add('bg-green-500');
+                    newsletterForm.value = '';
+                    
+                    setTimeout(() => {
+                        newsletterButton.innerHTML = '<i class="fas fa-arrow-right"></i>';
+                        newsletterButton.classList.remove('bg-green-500');
+                    }, 2000);
+                } else {
+                    newsletterForm.style.borderColor = '#ef4444';
+                    setTimeout(() => {
+                        newsletterForm.style.borderColor = '';
+                    }, 2000);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
