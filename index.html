@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeIQ Connect - Smart Home IoT Platform</title>
+    <meta name="description" content="Transform your home into a smart sanctuary with HomeIQ Connect. Control, monitor, and optimize your home's energy efficiency with our advanced IoT platform.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'warm-orange': '#FF8A65',
+                        'soft-orange': '#FFB74D',
+                        'sage-green': '#81C784',
+                        'deep-sage': '#66BB6A',
+                        'cream': '#FFF8E1',
+                        'warm-cream': '#FFFDE7',
+                        'soft-gray': '#F5F5F5',
+                        'charcoal': '#2C2C2C'
+                    },
+                    fontFamily: {
+                        'primary': ['Inter', 'sans-serif'],
+                        'secondary': ['Poppins', 'sans-serif']
+                    },
+                    animation: {
+                        'pulse-glow': 'pulse-glow 2s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'slide-up': 'slide-up 0.5s ease-out',
+                        'fade-in': 'fade-in 0.6s ease-out',
+                        'scale-in': 'scale-in 0.4s ease-out'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        @keyframes pulse-glow {
+            0%, 100% { 
+                opacity: 1;
+                filter: drop-shadow(0 0 8px rgba(255, 138, 101, 0.6));
+            }
+            50% { 
+                opacity: 0.7;
+                filter: drop-shadow(0 0 16px rgba(255, 138, 101, 0.8));
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes slide-up {
+            from { 
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes scale-in {
+            from { 
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to { 
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .connection-line {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .connection-line::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #FF8A65, transparent);
+            animation: data-flow 3s infinite;
+        }
+        
+        @keyframes data-flow {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .device-panel {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .device-panel:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .day-night-toggle {
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .night-mode {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: #ffffff;
+        }
+        
+        .chart-bar {
+            transition: height 0.8s ease-in-out;
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body class="font-primary bg-warm-cream text-charcoal overflow-x-hidden">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-soft-orange/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-warm-orange to-deep-sage rounded-lg flex items-center justify-center">
+                        <i class="fas fa-home text-white text-lg"></i>
+                    </div>
+                    <span class="text-xl font-secondary font-bold text-charcoal">HomeIQ Connect</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-charcoal hover:text-warm-orange transition-colors">Features</a>
+                    <a href="#devices" class="text-charcoal hover:text-warm-orange transition-colors">Devices</a>
+                    <a href="#pricing" class="text-charcoal hover:text-warm-orange transition-colors">Pricing</a>
+                    <a href="#testimonials" class="text-charcoal hover:text-warm-orange transition-colors">Reviews</a>
+                    <button class="bg-gradient-to-r from-warm-orange to-soft-orange text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-300">
+                        Get Started
+                    </button>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <button class="md:hidden" id="mobile-menu-btn">
+                    <i class="fas fa-bars text-2xl text-charcoal"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 bg-white border-t border-soft-orange/20">
+                <a href="#features" class="block px-3 py-2 text-charcoal hover:text-warm-orange">Features</a>
+                <a href="#devices" class="block px-3 py-2 text-charcoal hover:text-warm-orange">Devices</a>
+                <a href="#pricing" class="block px-3 py-2 text-charcoal hover:text-warm-orange">Pricing</a>
+                <a href="#testimonials" class="block px-3 py-2 text-charcoal hover:text-warm-orange">Reviews</a>
+                <button class="w-full text-left bg-gradient-to-r from-warm-orange to-soft-orange text-white px-3 py-2 rounded-lg mt-2">
+                    Get Started
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Animated Smart Home Cross-section -->
+    <section class="pt-20 pb-16 bg-gradient-to-br from-warm-cream via-cream to-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Hero Content -->
+                <div class="space-y-8 animate-fade-in">
+                    <h1 class="text-4xl md:text-6xl font-secondary font-bold leading-tight">
+                        Transform Your Home Into a 
+                        <span class="bg-gradient-to-r from-warm-orange to-deep-sage bg-clip-text text-transparent">
+                            Smart Sanctuary
+                        </span>
+                    </h1>
+                    
+                    <p class="text-xl text-gray-600 leading-relaxed">
+                        Experience the perfect harmony of comfort and technology with HomeIQ Connect. 
+                        Control, monitor, and optimize your home's energy efficiency with our advanced IoT platform.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="bg-gradient-to-r from-warm-orange to-soft-orange text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                            Start Free Trial
+                        </button>
+                        <button class="border-2 border-sage-green text-sage-green px-8 py-4 rounded-full text-lg font-semibold hover:bg-sage-green hover:text-white transition-all duration-300">
+                            Watch Demo
+                        </button>
+                    </div>
+                    
+                    <div class="flex items-center space-x-8 pt-4">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-warm-orange">50K+</div>
+                            <div class="text-sm text-gray-600">Connected Homes</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-sage-green">25%</div>
+                            <div class="text-sm text-gray-600">Energy Savings</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-soft-orange">4.9★</div>
+                            <div class="text-sm text-gray-600">User Rating</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Animated Smart Home Cross-section -->
+                <div class="relative animate-scale-in">
+                    <div class="bg-white rounded-3xl shadow-2xl p-8 relative overflow-hidden" id="smart-home-display">
+                        <!-- House Structure -->
+                        <div class="relative h-96 w-full">
+                            <!-- Roof -->
+                            <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-32 border-r-32 border-b-20 border-transparent border-b-gray-400"></div>
+                            
+                            <!-- Main House Body -->
+                            <div class="absolute top-20 left-1/2 transform -translate-x-1/2 w-64 h-64 bg-gradient-to-b from-gray-100 to-gray-200 rounded-lg shadow-inner">
+                                
+                                <!-- Living Room -->
+                                <div class="absolute top-4 left-4 w-24 h-24 bg-cream rounded-lg border-2 border-gray-300">
+                                    <div class="p-2">
+                                        <div class="text-xs text-gray-600 mb-1">Living Room</div>
+                                        <!-- Smart TV -->
+                                        <div class="w-8 h-5 bg-black rounded-sm mb-1 device-item animate-pulse-glow" data-device="tv">
+                                            <i class="fas fa-tv text-white text-xs"></i>
+                                        </div>
+                                        <!-- Temperature Display -->
+                                        <div class="text-xs text-warm-orange font-semibold" id="temp-display">72°F</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Kitchen -->
+                                <div class="absolute top-4 right-4 w-24 h-24 bg-cream rounded-lg border-2 border-gray-300">
+                                    <div class="p-2">
+                                        <div class="text-xs text-gray-600 mb-1">Kitchen</div>
+                                        <!-- Smart Appliances -->
+                                        <div class="flex space-x-1 mb-1">
+                                            <div class="w-3 h-3 bg-sage-green rounded device-item animate-pulse-glow" data-device="fridge">
+                                                <i class="fas fa-snowflake text-white text-xs"></i>
+                                            </div>
+                                            <div class="w-3 h-3 bg-warm-orange rounded device-item animate-pulse-glow" data-device="oven">
+                                                <i class="fas fa-fire text-white text-xs"></i>
+                                            </div>
+                                        </div>
+                                        <div class="text-xs text-sage-green font-semibold">Active</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Bedroom -->
+                                <div class="absolute bottom-4 left-4 w-24 h-24 bg-cream rounded-lg border-2 border-gray-300">
+                                    <div class="p-2">
+                                        <div class="text-xs text-gray-600 mb-1">Bedroom</div>
+                                        <!-- Smart Lights -->
+                                        <div class="flex space-x-1 mb-1">
+                                            <div class="w-2 h-2 bg-yellow-400 rounded-full device-item animate-pulse-glow" data-device="light1"></div>
+                                            <div class="w-2 h-2 bg-yellow-400 rounded-full device-item animate-pulse-glow" data-device="light2"></div>
+                                        </div>
+                                        <div class="text-xs text-yellow-600 font-semibold" id="light-status">Dim 40%</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Bathroom -->
+                                <div class="absolute bottom-4 right-4 w-24 h-24 bg-cream rounded-lg border-2 border-gray-300">
+                                    <div class="p-2">
+                                        <div class="text-xs text-gray-600 mb-1">Bathroom</div>
+                                        <!-- Smart Mirror & Water -->
+                                        <div class="w-8 h-4 bg-blue-200 rounded mb-1 device-item animate-pulse-glow" data-device="mirror">
+                                            <i class="fas fa-mirror text-blue-600 text-xs"></i>
+                                        </div>
+                                        <div class="text-xs text-blue-600 font-semibold">Smart</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Connection Lines -->
+                                <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 256 256">
+                                    <line x1="64" y1="64" x2="128" y2="128" stroke="#FF8A65" stroke-width="2" class="connection-line" opacity="0.7"/>
+                                    <line x1="192" y1="64" x2="128" y2="128" stroke="#FF8A65" stroke-width="2" class="connection-line" opacity="0.7"/>
+                                    <line x1="64" y1="192" x2="128" y2="128" stroke="#FF8A65" stroke-width="2" class="connection-line" opacity="0.7"/>
+                                    <line x1="192" y1="192" x2="128" y2="128" stroke="#FF8A65" stroke-width="2" class="connection-line" opacity="0.7"/>
+                                </svg>
+                                
+                                <!-- Central Hub -->
+                                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-gradient-to-br from-warm-orange to-deep-sage rounded-full flex items-center justify-center animate-pulse-glow">
+                                    <i class="fas fa-wifi text-white text-sm"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Day/Night Toggle -->
+                        <div class="absolute top-4 right-4">
+                            <button class="flex items-center space-x-2 bg-gray-100 rounded-full p-2 hover:bg-gray-200 transition-colors" id="day-night-toggle">
+                                <i class="fas fa-sun text-yellow-500 text-sm"></i>
+                                <div class="w-8 h-4 bg-gray-300 rounded-full relative">
+                                    <div class="absolute top-0.5 left-0.5 w-3 h-3 bg-white rounded-full transition-transform" id="toggle-slider"></div>
+                                </div>
+                                <i class="fas fa-moon text-gray-400 text-sm"></i>
+                            </button>
+                        </div>
+                        
+                        <!-- Data Flow Visualization -->
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <div class="bg-gray-50 rounded-lg p-3">
+                                <div class="text-xs text-gray-600 mb-2">Real-time Data Flow</div>
+                                <div class="flex space-x-1">
+                                    <div class="w-2 h-6 bg-sage-green rounded animate-pulse"></div>
+                                    <div class="w-2 h-4 bg-warm-orange rounded animate-pulse" style="animation-delay: 0.2s"></div>
+                                    <div class="w-2 h-8 bg-soft-orange rounded animate-pulse" style="animation-delay: 0.4s"></div>
+                                    <div class="w-2 h-5 bg-sage-green rounded animate-pulse" style="animation-delay: 0.6s"></div>
+                                    <div class="w-2 h-7 bg-warm-orange rounded animate-pulse" style="animation-delay: 0.8s"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    <!-- Interactive Device Control Panels -->
+    <section id="devices" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-secondary font-bold text-charcoal mb-4">
+                    Control Every Device 
+                    <span class="bg-gradient-to-r from-sage-green to-warm-orange bg-clip-text text-transparent">
+                        Effortlessly
+                    </span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Interactive control panels that respond to your touch. Manage all your smart devices 
+                    from one intuitive interface.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Smart Lighting Panel -->
+                <div class="device-panel bg-gradient-to-br from-cream to-white rounded-2xl p-6 shadow-lg border border-soft-orange/20">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-lightbulb text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-charcoal">Smart Lighting</h3>
+                                <p class="text-sm text-gray-600">Living Room</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-2xl font-bold text-yellow-600" id="brightness-value">75%</div>
+                            <div class="text-xs text-gray-500">Brightness</div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Power</span>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" class="sr-only peer" checked id="light-power">
+                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-yellow-400"></div>
+                            </label>
+                        </div>
+                        
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm text-gray-600">Brightness</span>
+                                <span class="text-sm font-medium text-yellow-600">75%</span>
+                            </div>
+                            <input type="range" min="0" max="100" value="75" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider" id="brightness-slider">
+                        </div>
+                        
+                        <div class="flex space-x-2">
+                            <button class="flex-1 py-2 px-3 bg-yellow-100 text-yellow-800 rounded-lg text-sm font-medium hover:bg-yellow-200 transition-colors scene-btn" data-scene="warm">
+                                Warm
+                            </button>
+                            <button class="flex-1 py-2 px-3 bg-blue-100 text-blue-800 rounded-lg text-sm font-medium hover:bg-blue-200 transition-colors scene-btn" data-scene="cool">
+                                Cool
+                            </button>
+                            <button class="flex-1 py-2 px-3 bg-purple-100 text-purple-800 rounded-lg text-sm font-medium hover:bg-purple-200 transition-colors scene-btn" data-scene="party">
+                                Party
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Climate Control Panel -->
+                <div class="device-panel bg-gradient-to-br from-cream to-white rounded-2xl p-6 shadow-lg border border-sage-green/20">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-gradient-to-br from-sage-green to-deep-sage rounded-xl flex items-center justify-center">
+                                <i class="fas fa-thermometer-half text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-charcoal">Climate Control</h3>
+                                <p class="text-sm text-gray-600">Whole House</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-2xl font-bold text-sage-green" id="temp-value">72°F</div>
+                            <div class="text-xs text-gray-500">Current</div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="text-center">
+                            <div class="relative w-32 h-32 mx-auto mb-4">
+                                <svg class="w-32 h-32 transform -rotate-90" viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="45" fill="none" stroke="#e5e7eb" stroke-width="8"/>
+                                    <circle cx="50" cy="50" r="45" fill="none" stroke="#81C784" stroke-width="8" stroke-linecap="round" 
+                                            stroke-dasharray="283" stroke-dashoffset="85" class="transition-all duration-500" id="temp-circle"/>
+                                </svg>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div class="text-center">
+                                        <div class="text-xl font-bold text-sage-green" id="target-temp">72</div>
+                                        <div class="text-xs text-gray-500">Target</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-center space-x-4">
+                            <button class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors temp-btn" data-action="decrease">
+                                <i class="fas fa-minus text-gray-600"></i>
+                            </button>
+                            <button class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors temp-btn" data-action="increase">
+                                <i class="fas fa-plus text-gray-600"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="flex space-x-2">
+                            <button class="flex-1 py-2 px-3 bg-blue-100 text-blue-800 rounded-lg text-sm font-medium hover:bg-blue-200 transition-colors mode-btn" data-mode="cool">
+                                Cool
+                            </button>
+                            <button class="flex-1 py-2 px-3 bg-orange-100 text-orange-800 rounded-lg text-sm font-medium hover:bg-orange-200 transition-colors mode-btn" data-mode="heat">
+                                Heat
+                            </button>
+                            <button class="flex-1 py-2 px-3 bg-green-100 text-green-800 rounded-lg text-sm font-medium hover:bg-green-200 transition-colors mode-btn" data-mode="auto">
+                                Auto
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Security Panel -->
+                <div class="device-panel bg-gradient-to-br from-cream to-white rounded-2xl p-6 shadow-lg border border-warm-orange/20">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-gradient-to-br from-warm-orange to-red-500 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-shield-alt text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-charcoal">Home Security</h3>
+                                <p class="text-sm text-gray-600">All Zones</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-sm font-bold text-green-600" id="security-status">ARMED</div>
+                            <div class="text-xs text-gray-500">Status</div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="text-center p-3 bg-green-50 rounded-lg">
+                                <i class="fas fa-door-closed text-green-600 text-lg mb-1"></i>
+                                <div class="text-xs text-green-800 font-medium">Front Door</div>
+                                <div class="text-xs text-green-600">Locked</div>
+                            </div>
+                            <div class="text-center p-3 bg-green-50 rounded-lg">
+                                <i class="fas fa-window-maximize text-green-600 text-lg mb-1"></i>
+                                <div class="text-xs text-green-800 font-medium">Windows</div>
+                                <div class="text-xs text-green-600">Secure</div>
+                            </div>
+                            <div class="text-center p-3 bg-blue-50 rounded-lg">
+                                <i class="fas fa-video text-blue-600 text-lg mb-1"></i>
+                                <div class="text-xs text-blue-800 font-medium">Cameras</div>
+                                <div class="text-xs text-blue-600">Recording</div>
+                            </div>
+                            <div class="text-center p-3 bg-yellow-50 rounded-lg">
+                                <i class="fas fa-exclamation-triangle text-yellow-600 text-lg mb-1"></i>
+                                <div class="text-xs text-yellow-800 font-medium">Motion</div>
+                                <div class="text-xs text-yellow-600">Detected</div>
+                            </div>
+                        </div>
+                        
+                        <button class="w-full py-3 bg-gradient-to-r from-warm-orange to-red-500 text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-300" id="arm-disarm-btn">
+                            Disarm System
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Energy Efficiency Visualization -->
+    <section id="energy" class="py-20 bg-gradient-to-br from-soft-gray to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-secondary font-bold text-charcoal mb-4">
+                    Track Your 
+                    <span class="bg-gradient-to-r from-sage-green to-warm-orange bg-clip-text text-transparent">
+                        Energy Savings
+                    </span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Real-time energy monitoring and intelligent optimization suggestions 
+                    to reduce your carbon footprint and save money.
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Energy Chart -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-xl font-semibold text-charcoal">Monthly Energy Usage</h3>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-3 h-3 bg-sage-green rounded-full"></div>
+                            <span class="text-sm text-gray-600">This Year</span>
+                            <div class="w-3 h-3 bg-gray-300 rounded-full ml-4"></div>
+                            <span class="text-sm text-gray-600">Last Year</span>
+                        </div>
+                    </div>
+                    
+                    <div class="h-64 flex items-end justify-between space-x-2" id="energy-chart">
+                        <div class="flex flex-col items-center space-y-2">
+                            <div class="relative w-8">
+                                <div class="chart-bar bg-gray-300 w-full rounded-t" style="height: 120px"></div>
+                                <div class="chart-bar bg-sage-green w-full rounded-t absolute bottom-0" style="height: 80px"></div>
+                            </div>
+                            <span class="text-xs text-gray-600">Jan</span>
+                        </div>
+                        <div class="flex flex-col items-center space-y-2">
+                            <div class="relative w-8">
+                                <div class="chart-bar bg-gray-300 w-full rounded-t" style="height: 140px"></div>
+                                <div class="chart-bar bg-sage-green w-full rounded-t absolute bottom-0" style="height: 85px"></div>
+                            </div>
+                            <span class="text-xs text-gray-600">Feb</span>
+                        </div>
+                        <div class="flex flex-col items-center space-y-2">
+                            <div class="relative w-8">
+                                <div class="chart-bar bg-gray-300 w-full rounded-t" style="height: 100px"></div>
+                                <div class="chart-bar bg-sage-green w-full rounded-t absolute bottom-0" style="height: 70px"></div>
+                            </div>
+                            <span class="text-xs text-gray-600">Mar</span>
+                        </div>
+                        <div class="flex flex-col items-center space-y-2">
+                            <div class="relative w-8">
+                                <div class="chart-bar bg-gray-300 w-full rounded-t" style="height: 90px"></div>
+                                <div class="chart-bar bg-sage-green w-full rounded-t absolute bottom-0" style="height: 60px"></div>
+                            </div>
+                            <span class="text-xs text-gray-600">Apr</span>
+                        </div>
+                        <div class="flex flex-col items-center space-y-2">
+                            <div class="relative w-8">
+                                <div class="chart-bar bg-gray-300 w-full rounded-t" style="height: 110px"></div>
+                                <div class="chart-bar bg-sage-green w-full rounded-t absolute bottom-0" style="height: 75px"></div>
+                            </div>
+                            <span class="text-xs text-gray-600">May</span>
+                        </div>
+                        <div class="flex flex-col items-center space-y-2">
+                            <div class="relative w-8">
+                                <div class="chart-bar bg-gray-300 w-full rounded-t" style="height: 160px"></div>
+                                <div class="chart-bar bg-sage-green w-full rounded-t absolute bottom-0" style="height: 100px"></div>
+                            </div>
+                            <span class="text-xs text-gray-600">Jun</span>
+                        </div>
+                        <div class="flex flex-col items-center space-y-2">
+                            <div class="relative w-8">
+                                <div class="chart-bar bg-gray-300 w-full rounded-t" style="height: 180px"></div>
+                                <div class="chart-bar bg-sage-green w-full rounded-t absolute bottom-0" style="height: 110px"></div>
+                            </div>
+                            <span class="text-xs text-gray-600">Jul</span>
+                        </div>
+                        <div class="flex flex-col items-center space-y-2">
+                            <div class="relative w-8">
+                                <div class="chart-bar bg-gray-300 w-full rounded-t" style="height: 170px"></div>
+                                <div class="chart-bar bg-sage-green w-full rounded-t absolute bottom-0" style="height: 105px"></div>
+                            </div>
+                            <span class="text-xs text-gray-600">Aug</span>
+                        </div>
+                        <div class="flex flex-col items-center space-y-2">
+                            <div class="relative w-8">
+                                <div class="chart-bar bg-gray-300 w-full rounded-t" style="height: 130px"></div>
+                                <div class="chart-bar bg-sage-green w-full rounded-t absolute bottom-0" style="height: 90px"></div>
+                            </div>
+                            <span class="text-xs text-gray-600">Sep</span>
+                        </div>
+                        <div class="flex flex-col items-center space-y-2">
+                            <div class="relative w-8">
+                                <div class="chart-bar bg-gray-300 w-full rounded-t" style="height: 115px"></div>
+                                <div class="chart-bar bg-sage-green w-full rounded-t absolute bottom-0" style="height: 80px"></div>
+                            </div>
+                            <span class="text-xs text-gray-600">Oct</span>
+                        </div>
+                        <div class="flex flex-col items-center space-y-2">
+                            <div class="relative w-8">
+                                <div class="chart-bar bg-gray-300 w-full rounded-t" style="height: 125px"></div>
+                                <div class="chart-bar bg-sage-green w-full rounded-t absolute bottom-0" style="height: 85px"></div>
+                            </div>
+                            <span class="text-xs text-gray-600">Nov</span>
+                        </div>
+                        <div class="flex flex-col items-center space-y-2">
+                            <div class="relative w-8">
+                                <div class="chart-bar bg-gray-300 w-full rounded-t" style="height: 135px"></div>
+                                <div class="chart-bar bg-sage-green w-full rounded-t absolute bottom-0" style="height: 90px"></div>
+                            </div>
+                            <span class="text-xs text-gray-600">Dec</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 grid grid-cols-3 gap-4">
+                        <div class="text-center p-4 bg-green-50 rounded-lg">
+                            <div class="text-2xl font-bold text-green-600">25%</div>
+                            <div class="text-sm text-green-800">Savings</div>
+                        </div>
+                        <div class="text-center p-4 bg-blue-50 rounded-lg">
+                            <div class="text-2xl font-bold text-blue-600">$247</div>
+                            <div class="text-sm text-blue-800">This Month</div>
+                        </div>
+                        <div class="text-center p-4 bg-orange-50 rounded-lg">
+                            <div class="text-2xl font-bold text-orange-600">2.1T</div>
+                            <div class="text-sm text-orange-800">CO₂ Saved</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Efficiency Tips -->
+                <div class="space-y-6">
+                    <div class="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-sage-green">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-sage-green/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-leaf text-sage-green text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-charcoal mb-2">Optimal Temperature Settings</h4>
+                                <p class="text-gray-600 text-sm mb-3">
+                                    Set your thermostat to 68°F in winter and 78°F in summer to maximize efficiency.
+                                </p>
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-xs bg-sage-green/10 text-sage-green px-2 py-1 rounded-full">Potential Savings: $45/month</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-warm-orange">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-warm-orange/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-clock text-warm-orange text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-charcoal mb-2">Smart Scheduling</h4>
+                                <p class="text-gray-600 text-sm mb-3">
+                                    Use scheduled lighting and appliance automation to reduce energy waste during peak hours.
+                                </p>
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-xs bg-warm-orange/10 text-warm-orange px-2 py-1 rounded-full">Potential Savings: $32/month</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-blue-500">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-water text-blue-500 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-charcoal mb-2">Water Heating Optimization</h4>
+                                <p class="text-gray-600 text-sm mb-3">
+                                    Lower your water heater temperature to 120°F and use smart leak detection.
+                                </p>
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-xs bg-blue-500/10 text-blue-500 px-2 py-1 rounded-full">Potential Savings: $28/month</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Home Automation Flow Diagram -->
+    <section id="features" class="py-20 bg-gradient-to-br from-warm-cream to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-secondary font-bold text-charcoal mb-4">
+                    How HomeIQ Connect 
+                    <span class="bg-gradient-to-r from-warm-orange to-sage-green bg-clip-text text-transparent">
+                        Works
+                    </span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    A seamless automation flow that learns your preferences and optimizes your home's behavior.
+                </p>
+            </div>
+            
+            <div class="relative">
+                <!-- Flow Diagram -->
+                <div class="flex flex-col lg:flex-row items-center justify-between space-y-8 lg:space-y-0 lg:space-x-8">
+                    <!-- Step 1: Detection -->
+                    <div class="flex-1 text-center">
+                        <div class="relative mx-auto w-32 h-32 bg-gradient-to-br from-warm-orange to-soft-orange rounded-full flex items-center justify-center mb-6 animate-pulse-glow">
+                            <i class="fas fa-eye text-white text-3xl"></i>
+                            <div class="absolute -top-2 -right-2 w-6 h-6 bg-green-400 rounded-full animate-ping"></div>
+                        </div>
+                        <h3 class="text-xl font-semibold text-charcoal mb-3">Smart Detection</h3>
+                        <p class="text-gray-600">
+                            Sensors automatically detect your presence, preferences, and environmental conditions.
+                        </p>
+                    </div>
+                    
+                    <!-- Arrow -->
+                    <div class="hidden lg:block">
+                        <i class="fas fa-arrow-right text-soft-orange text-2xl animate-pulse"></i>
+                    </div>
+                    <div class="lg:hidden">
+                        <i class="fas fa-arrow-down text-soft-orange text-2xl animate-pulse"></i>
+                    </div>
+                    
+                    <!-- Step 2: Processing -->
+                    <div class="flex-1 text-center">
+                        <div class="relative mx-auto w-32 h-32 bg-gradient-to-br from-sage-green to-deep-sage rounded-full flex items-center justify-center mb-6 animate-pulse-glow" style="animation-delay: 0.5s">
+                            <i class="fas fa-brain text-white text-3xl"></i>
+                            <div class="absolute -top-2 -right-2 w-6 h-6 bg-blue-400 rounded-full animate-ping" style="animation-delay: 0.5s"></div>
+                        </div>
+                        <h3 class="text-xl font-semibold text-charcoal mb-3">AI Processing</h3>
+                        <p class="text-gray-600">
+                            Advanced algorithms analyze patterns and make intelligent decisions for optimal comfort.
+                        </p>
+                    </div>
+                    
+                    <!-- Arrow -->
+                    <div class="hidden lg:block">
+                        <i class="fas fa-arrow-right text-sage-green text-2xl animate-pulse" style="animation-delay: 0.5s"></i>
+                    </div>
+                    <div class="lg:hidden">
+                        <i class="fas fa-arrow-down text-sage-green text-2xl animate-pulse" style="animation-delay: 0.5s"></i>
+                    </div>
+                    
+                    <!-- Step 3: Automation -->
+                    <div class="flex-1 text-center">
+                        <div class="relative mx-auto w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mb-6 animate-pulse-glow" style="animation-delay: 1s">
+                            <i class="fas fa-magic text-white text-3xl"></i>
+                            <div class="absolute -top-2 -right-2 w-6 h-6 bg-purple-400 rounded-full animate-ping" style="animation-delay: 1s"></div>
+                        </div>
+                        <h3 class="text-xl font-semibold text-charcoal mb-3">Smart Automation</h3>
+                        <p class="text-gray-600">
+                            Devices automatically adjust lighting, temperature, security, and more for perfect ambiance.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Interactive Flow Controls -->
+                <div class="mt-16 bg-white rounded-2xl p-8 shadow-lg">
+                    <h3 class="text-2xl font-semibold text-charcoal mb-6 text-center">Try Our Automation Scenarios</h3>
+                    
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <!-- Morning Routine -->
+                        <button class="flow-scenario p-6 border-2 border-gray-200 rounded-xl hover:border-warm-orange hover:shadow-lg transition-all duration-300" data-scenario="morning">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-sun text-white text-2xl"></i>
+                                </div>
+                                <h4 class="font-semibold text-charcoal mb-2">Good Morning</h4>
+                                <p class="text-sm text-gray-600">
+                                    Gradual lighting, optimal temperature, morning news, and coffee brewing.
+                                </p>
+                            </div>
+                        </button>
+                        
+                        <!-- Evening Routine -->
+                        <button class="flow-scenario p-6 border-2 border-gray-200 rounded-xl hover:border-sage-green hover:shadow-lg transition-all duration-300" data-scenario="evening">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-moon text-white text-2xl"></i>
+                                </div>
+                                <h4 class="font-semibold text-charcoal mb-2">Wind Down</h4>
+                                <p class="text-sm text-gray-600">
+                                    Dim lights, secure doors, adjust temperature, and activate sleep mode.
+                                </p>
+                            </div>
+                        </button>
+                        
+                        <!-- Away Mode -->
+                        <button class="flow-scenario p-6 border-2 border-gray-200 rounded-xl hover:border-blue-500 hover:shadow-lg transition-all duration-300" data-scenario="away">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-car text-white text-2xl"></i>
+                                </div>
+                                <h4 class="font-semibold text-charcoal mb-2">Away Mode</h4>
+                                <p class="text-sm text-gray-600">
+                                    Energy saving, security activation, and smart presence simulation.
+                                </p>
+                            </div>
+                        </button>
+                    </div>
+                    
+                    <!-- Scenario Details -->
+                    <div class="mt-8 p-6 bg-gray-50 rounded-xl" id="scenario-details">
+                        <div class="text-center text-gray-500">
+                            <i class="fas fa-hand-pointer text-2xl mb-2"></i>
+                            <p>Click on a scenario above to see the automation flow</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Calculator -->
+    <section id="pricing" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-secondary font-bold text-charcoal mb-4">
+                    Choose Your 
+                    <span class="bg-gradient-to-r from-warm-orange to-sage-green bg-clip-text text-transparent">
+                        Smart Home Plan
+                    </span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Transparent pricing with no hidden fees. Start small and scale as your smart home grows.
+                </p>
+            </div>
+            
+            <!-- Pricing Toggle -->
+            <div class="flex items-center justify-center mb-12">
+                <span class="text-charcoal mr-3">Monthly</span>
+                <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" class="sr-only peer" id="pricing-toggle">
+                    <div class="w-14 h-7 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-sage-green"></div>
+                </label>
+                <span class="text-charcoal ml-3">Yearly</span>
+                <span class="bg-sage-green text-white text-xs px-2 py-1 rounded-full ml-2">Save 20%</span>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Starter Plan -->
+                <div class="bg-gradient-to-br from-cream to-white rounded-2xl p-8 shadow-lg border-2 border-gray-200 hover:border-warm-orange transition-all duration-300">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-charcoal mb-2">Starter</h3>
+                        <p class="text-gray-600 mb-6">Perfect for apartments and small homes</p>
+                        <div class="mb-6">
+                            <span class="text-4xl font-bold text-warm-orange pricing-amount" data-monthly="19" data-yearly="182">$19</span>
+                            <span class="text-gray-600 ml-1 pricing-period">/month</span>
+                        </div>
+                        <button class="w-full bg-gradient-to-r from-warm-orange to-soft-orange text-white py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-300">
+                            Start Free Trial
+                        </button>
+                    </div>
+                    
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-sage-green mr-3"></i>
+                            Up to 10 connected devices
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-sage-green mr-3"></i>
+                            Basic automation rules
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-sage-green mr-3"></i>
+                            Energy monitoring
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-sage-green mr-3"></i>
+                            Mobile app access
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-sage-green mr-3"></i>
+                            24/7 email support
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Pro Plan (Popular) -->
+                <div class="bg-gradient-to-br from-cream to-white rounded-2xl p-8 shadow-xl border-2 border-sage-green relative transform scale-105">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                        <span class="bg-sage-green text-white px-6 py-2 rounded-full text-sm font-semibold">Most Popular</span>
+                    </div>
+                    
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-charcoal mb-2">Pro</h3>
+                        <p class="text-gray-600 mb-6">Ideal for most homes and families</p>
+                        <div class="mb-6">
+                            <span class="text-4xl font-bold text-sage-green pricing-amount" data-monthly="39" data-yearly="374">$39</span>
+                            <span class="text-gray-600 ml-1 pricing-period">/month</span>
+                        </div>
+                        <button class="w-full bg-gradient-to-r from-sage-green to-deep-sage text-white py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-300">
+                            Start Free Trial
+                        </button>
+                    </div>
+                    
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-sage-green mr-3"></i>
+                            Up to 50 connected devices
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-sage-green mr-3"></i>
+                            Advanced automation & AI learning
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-sage-green mr-3"></i>
+                            Detailed energy analytics
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-sage-green mr-3"></i>
+                            Voice control integration
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-sage-green mr-3"></i>
+                            Security monitoring
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-sage-green mr-3"></i>
+                            Priority phone support
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Enterprise Plan -->
+                <div class="bg-gradient-to-br from-cream to-white rounded-2xl p-8 shadow-lg border-2 border-gray-200 hover:border-blue-500 transition-all duration-300">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-charcoal mb-2">Enterprise</h3>
+                        <p class="text-gray-600 mb-6">For large homes and businesses</p>
+                        <div class="mb-6">
+                            <span class="text-4xl font-bold text-blue-600 pricing-amount" data-monthly="99" data-yearly="950">$99</span>
+                            <span class="text-gray-600 ml-1 pricing-period">/month</span>
+                        </div>
+                        <button class="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-300">
+                            Contact Sales
+                        </button>
+                    </div>
+                    
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-sage-green mr-3"></i>
+                            Unlimited connected devices
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-sage-green mr-3"></i>
+                            Custom automation workflows
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-sage-green mr-3"></i>
+                            Advanced analytics & reporting
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-sage-green mr-3"></i>
+                            Multi-location management
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-sage-green mr-3"></i>
+                            Professional installation
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-sage-green mr-3"></i>
+                            Dedicated account manager
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-charcoal text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div class="col-span-1">
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 bg-gradient-to-br from-warm-orange to-deep-sage rounded-lg flex items-center justify-center">
+                            <i class="fas fa-home text-white text-lg"></i>
+                        </div>
+                        <span class="text-xl font-secondary font-bold">HomeIQ Connect</span>
+                    </div>
+                    <p class="text-gray-300 mb-6">
+                        Transform your home into a smart sanctuary with our advanced IoT platform.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-warm-orange transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-warm-orange transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-warm-orange transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-warm-orange transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#features" class="text-gray-300 hover:text-warm-orange transition-colors">Features</a></li>
+                        <li><a href="#devices" class="text-gray-300 hover:text-warm-orange transition-colors">Devices</a></li>
+                        <li><a href="#pricing" class="text-gray-300 hover:text-warm-orange transition-colors">Pricing</a></li>
+                        <li><a href="#testimonials" class="text-gray-300 hover:text-warm-orange transition-colors">Reviews</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-warm-orange transition-colors">Help Center</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Support -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Support</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-300 hover:text-warm-orange transition-colors">Documentation</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-warm-orange transition-colors">Installation Guide</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-warm-orange transition-colors">Troubleshooting</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-warm-orange transition-colors">Contact Support</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-warm-orange transition-colors">Community Forum</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Contact</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-phone-alt text-warm-orange"></i>
+                            <span class="text-gray-300">1-800-HOMEIQ</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-envelope text-warm-orange"></i>
+                            <span class="text-gray-300">hello@homeiqconnect.com</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-map-marker-alt text-warm-orange"></i>
+                            <span class="text-gray-300">San Francisco, CA</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <div class="text-gray-400 text-sm">
+                    © 2024 HomeIQ Connect. All rights reserved.
+                </div>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-warm-orange text-sm transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-warm-orange text-sm transition-colors">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-warm-orange text-sm transition-colors">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Background Elements -->
+    <div class="fixed top-0 right-0 w-96 h-96 bg-gradient-to-br from-soft-orange/20 to-transparent rounded-full -translate-y-48 translate-x-48 animate-float -z-10"></div>
+    <div class="fixed bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-sage-green/20 to-transparent rounded-full translate-y-32 -translate-x-32 animate-float -z-10" style="animation-delay: -3s"></div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Day/Night toggle functionality
+        let isNightMode = false;
+        document.getElementById('day-night-toggle').addEventListener('click', function() {
+            isNightMode = !isNightMode;
+            const smartHomeDisplay = document.getElementById('smart-home-display');
+            const toggleSlider = document.getElementById('toggle-slider');
+            const tempDisplay = document.getElementById('temp-display');
+            const lightStatus = document.getElementById('light-status');
+            
+            if (isNightMode) {
+                smartHomeDisplay.classList.add('night-mode');
+                toggleSlider.style.transform = 'translateX(100%)';
+                tempDisplay.textContent = '68°F';
+                lightStatus.textContent = 'Off';
+            } else {
+                smartHomeDisplay.classList.remove('night-mode');
+                toggleSlider.style.transform = 'translateX(0)';
+                tempDisplay.textContent = '72°F';
+                lightStatus.textContent = 'Dim 40%';
+            }
+        });
+
+        // Device control panels interactivity
+        
+        // Lighting control
+        const brightnessSlider = document.getElementById('brightness-slider');
+        const brightnessValue = document.getElementById('brightness-value');
+        
+        if (brightnessSlider) {
+            brightnessSlider.addEventListener('input', function() {
+                brightnessValue.textContent = this.value + '%';
+            });
+        }
+
+        // Scene buttons
+        document.querySelectorAll('.scene-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.scene-btn').forEach(b => b.classList.remove('bg-yellow-400', 'text-yellow-900'));
+                this.classList.add('bg-yellow-400', 'text-yellow-900');
+            });
+        });
+
+        // Temperature control
+        let currentTemp = 72;
+        document.querySelectorAll('.temp-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const action = this.dataset.action;
+                if (action === 'increase' && currentTemp < 85) {
+                    currentTemp++;
+                } else if (action === 'decrease' && currentTemp > 60) {
+                    currentTemp--;
+                }
+                
+                document.getElementById('target-temp').textContent = currentTemp;
+                document.getElementById('temp-value').textContent = currentTemp + '°F';
+                
+                // Update circular progress
+                const progress = ((currentTemp - 60) / 25) * 283;
+                const circle = document.getElementById('temp-circle');
+                if (circle) {
+                    circle.style.strokeDashoffset = 283 - progress;
+                }
+            });
+        });
+
+        // Mode buttons
+        document.querySelectorAll('.mode-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.mode-btn').forEach(b => {
+                    b.classList.remove('bg-blue-400', 'text-blue-900', 'bg-orange-400', 'text-orange-900', 'bg-green-400', 'text-green-900');
+                });
+                
+                const mode = this.dataset.mode;
+                if (mode === 'cool') {
+                    this.classList.add('bg-blue-400', 'text-blue-900');
+                } else if (mode === 'heat') {
+                    this.classList.add('bg-orange-400', 'text-orange-900');
+                } else if (mode === 'auto') {
+                    this.classList.add('bg-green-400', 'text-green-900');
+                }
+            });
+        });
+
+        // Security panel
+        document.getElementById('arm-disarm-btn').addEventListener('click', function() {
+            const status = document.getElementById('security-status');
+            if (status.textContent === 'ARMED') {
+                status.textContent = 'DISARMED';
+                status.className = 'text-sm font-bold text-red-600';
+                this.textContent = 'Arm System';
+                this.className = 'w-full py-3 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-300';
+            } else {
+                status.textContent = 'ARMED';
+                status.className = 'text-sm font-bold text-green-600';
+                this.textContent = 'Disarm System';
+                this.className = 'w-full py-3 bg-gradient-to-r from-warm-orange to-red-500 text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-300';
+            }
+        });
+
+        // Flow scenario interactions
+        document.querySelectorAll('.flow-scenario').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const scenario = this.dataset.scenario;
+                const detailsContainer = document.getElementById('scenario-details');
+                
+                document.querySelectorAll('.flow-scenario').forEach(b => {
+                    b.classList.remove('border-warm-orange', 'border-sage-green', 'border-blue-500');
+                    b.classList.add('border-gray-200');
+                });
+                
+                let content = '';
+                if (scenario === 'morning') {
+                    this.classList.remove('border-gray-200');
+                    this.classList.add('border-warm-orange');
+                    content = `
+                        <div class="text-center">
+                            <h4 class="font-semibold text-charcoal mb-4">Good Morning Automation Flow</h4>
+                            <div class="grid md:grid-cols-4 gap-4 text-sm">
+                                <div class="bg-yellow-50 p-3 rounded-lg">
+                                    <i class="fas fa-sun text-yellow-500 text-lg mb-2"></i>
+                                    <div class="font-medium">6:30 AM</div>
+                                    <div class="text-gray-600">Gradual light increase</div>
+                                </div>
+                                <div class="bg-orange-50 p-3 rounded-lg">
+                                    <i class="fas fa-thermometer-half text-orange-500 text-lg mb-2"></i>
+                                    <div class="font-medium">6:45 AM</div>
+                                    <div class="text-gray-600">Temperature to 72°F</div>
+                                </div>
+                                <div class="bg-blue-50 p-3 rounded-lg">
+                                    <i class="fas fa-coffee text-blue-500 text-lg mb-2"></i>
+                                    <div class="font-medium">7:00 AM</div>
+                                    <div class="text-gray-600">Coffee maker starts</div>
+                                </div>
+                                <div class="bg-green-50 p-3 rounded-lg">
+                                    <i class="fas fa-volume-up text-green-500 text-lg mb-2"></i>
+                                    <div class="font-medium">7:15 AM</div>
+                                    <div class="text-gray-600">Morning news brief</div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                } else if (scenario === 'evening') {
+                    this.classList.remove('border-gray-200');
+                    this.classList.add('border-sage-green');
+                    content = `
+                        <div class="text-center">
+                            <h4 class="font-semibold text-charcoal mb-4">Wind Down Automation Flow</h4>
+                            <div class="grid md:grid-cols-4 gap-4 text-sm">
+                                <div class="bg-purple-50 p-3 rounded-lg">
+                                    <i class="fas fa-lightbulb text-purple-500 text-lg mb-2"></i>
+                                    <div class="font-medium">9:00 PM</div>
+                                    <div class="text-gray-600">Dim lights to 30%</div>
+                                </div>
+                                <div class="bg-blue-50 p-3 rounded-lg">
+                                    <i class="fas fa-lock text-blue-500 text-lg mb-2"></i>
+                                    <div class="font-medium">10:00 PM</div>
+                                    <div class="text-gray-600">Lock all doors</div>
+                                </div>
+                                <div class="bg-indigo-50 p-3 rounded-lg">
+                                    <i class="fas fa-thermometer-half text-indigo-500 text-lg mb-2"></i>
+                                    <div class="font-medium">10:30 PM</div>
+                                    <div class="text-gray-600">Lower to 68°F</div>
+                                </div>
+                                <div class="bg-gray-50 p-3 rounded-lg">
+                                    <i class="fas fa-moon text-gray-500 text-lg mb-2"></i>
+                                    <div class="font-medium">11:00 PM</div>
+                                    <div class="text-gray-600">Activate sleep mode</div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                } else if (scenario === 'away') {
+                    this.classList.remove('border-gray-200');
+                    this.classList.add('border-blue-500');
+                    content = `
+                        <div class="text-center">
+                            <h4 class="font-semibold text-charcoal mb-4">Away Mode Automation Flow</h4>
+                            <div class="grid md:grid-cols-4 gap-4 text-sm">
+                                <div class="bg-red-50 p-3 rounded-lg">
+                                    <i class="fas fa-shield-alt text-red-500 text-lg mb-2"></i>
+                                    <div class="font-medium">Immediate</div>
+                                    <div class="text-gray-600">Arm security system</div>
+                                </div>
+                                <div class="bg-green-50 p-3 rounded-lg">
+                                    <i class="fas fa-leaf text-green-500 text-lg mb-2"></i>
+                                    <div class="font-medium">5 minutes</div>
+                                    <div class="text-gray-600">Energy saving mode</div>
+                                </div>
+                                <div class="bg-yellow-50 p-3 rounded-lg">
+                                    <i class="fas fa-lightbulb text-yellow-500 text-lg mb-2"></i>
+                                    <div class="font-medium">Evening</div>
+                                    <div class="text-gray-600">Simulate presence</div>
+                                </div>
+                                <div class="bg-blue-50 p-3 rounded-lg">
+                                    <i class="fas fa-camera text-blue-500 text-lg mb-2"></i>
+                                    <div class="font-medium">Continuous</div>
+                                    <div class="text-gray-600">Monitor cameras</div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                detailsContainer.innerHTML = content;
+            });
+        });
+
+        // Device compatibility checker
+        const deviceSearch = document.getElementById('device-search');
+        const compatibilityResults = document.getElementById('compatibility-results');
+        
+        const sampleDevices = {
+            'philips hue': { name: 'Philips Hue Smart Bulbs', compatible: true, category: 'Lighting' },
+            'nest thermostat': { name: 'Google Nest Thermostat', compatible: true, category: 'Climate' },
+            'ring doorbell': { name: 'Ring Video Doorbell', compatible: true, category: 'Security' },
+            'samsung tv': { name: 'Samsung Smart TV', compatible: true, category: 'Entertainment' },
+            'ecobee': { name: 'Ecobee Smart Thermostat', compatible: true, category: 'Climate' },
+            'sonos': { name: 'Sonos Smart Speakers', compatible: true, category: 'Entertainment' },
+        };
+
+        if (deviceSearch) {
+            deviceSearch.addEventListener('input', function() {
+                const query = this.value.toLowerCase().trim();
+                if (query.length > 2) {
+                    const results = Object.entries(sampleDevices).filter(([key, device]) => 
+                        key.includes(query) || device.name.toLowerCase().includes(query)
+                    );
+                    
+                    if (results.length > 0) {
+                        let html = '<div class="space-y-3">';
+                        results.forEach(([key, device]) => {
+                            html += `
+                                <div class="flex items-center justify-between p-4 bg-white rounded-lg border">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-check text-green-600"></i>
+                                        </div>
+                                        <div>
+                                            <div class="font-semibold text-charcoal">${device.name}</div>
+                                            <div class="text-sm text-gray-600">${device.category}</div>
+                                        </div>
+                                    </div>
+                                    <span class="bg-green-100 text-green-800 text-sm px-3 py-1 rounded-full">Compatible</span>
+                                </div>
+                            `;
+                        });
+                        html += '</div>';
+                        compatibilityResults.innerHTML = html;
+                    } else {
+                        compatibilityResults.innerHTML = `
+                            <div class="text-center text-gray-500">
+                                <i class="fas fa-search text-3xl mb-3"></i>
+                                <p>No devices found matching "${query}"</p>
+                                <p class="text-sm mt-2">Try searching for popular brands like Philips, Nest, Ring, or Samsung</p>
+                            </div>
+                        `;
+                    }
+                } else if (query.length === 0) {
+                    compatibilityResults.innerHTML = `
+                        <div class="text-center text-gray-500">
+                            <i class="fas fa-search text-3xl mb-3"></i>
+                            <p>Search for a device or select a category to check compatibility</p>
+                        </div>
+                    `;
+                }
+            });
+        }
+
+        // Category buttons
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const category = this.dataset.category;
+                let devices = [];
+                
+                if (category === 'lighting') {
+                    devices = [
+                        { name: 'Philips Hue Smart Bulbs', compatible: true },
+                        { name: 'LIFX Color Bulbs', compatible: true },
+                        { name: 'TP-Link Kasa Smart Switches', compatible: true },
+                        { name: 'Lutron Caseta Dimmers', compatible: true },
+                    ];
+                } else if (category === 'climate') {
+                    devices = [
+                        { name: 'Google Nest Thermostat', compatible: true },
+                        { name: 'Ecobee Smart Thermostat', compatible: true },
+                        { name: 'Honeywell T9 Smart Thermostat', compatible: true },
+                        { name: 'Sensibo Smart AC Controllers', compatible: true },
+                    ];
+                } else if (category === 'security') {
+                    devices = [
+                        { name: 'Ring Video Doorbell', compatible: true },
+                        { name: 'Arlo Security Cameras', compatible: true },
+                        { name: 'August Smart Locks', compatible: true },
+                        { name: 'SimpliSafe Security System', compatible: true },
+                    ];
+                } else if (category === 'entertainment') {
+                    devices = [
+                        { name: 'Samsung Smart TVs', compatible: true },
+                        { name: 'Sonos Smart Speakers', compatible: true },
+                        { name: 'Apple TV 4K', compatible: true },
+                        { name: 'Roku Streaming Devices', compatible: true },
+                    ];
+                }
+                
+                let html = '<div class="space-y-3">';
+                devices.forEach(device => {
+                    html += `
+                        <div class="flex items-center justify-between p-4 bg-white rounded-lg border">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-check text-green-600"></i>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-charcoal">${device.name}</div>
+                                    <div class="text-sm text-gray-600">${category.charAt(0).toUpperCase() + category.slice(1)}</div>
+                                </div>
+                            </div>
+                            <span class="bg-green-100 text-green-800 text-sm px-3 py-1 rounded-full">Compatible</span>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+                compatibilityResults.innerHTML = html;
+            });
+        });
+
+        // Pricing toggle
+        const pricingToggle = document.getElementById('pricing-toggle');
+        const pricingAmounts = document.querySelectorAll('.pricing-amount');
+        const pricingPeriods = document.querySelectorAll('.pricing-period');
+        
+        if (pricingToggle) {
+            pricingToggle.addEventListener('change', function() {
+                const isYearly = this.checked;
+                
+                pricingAmounts.forEach(amount => {
+                    const monthly = amount.dataset.monthly;
+                    const yearly = amount.dataset.yearly;
+                    amount.textContent = isYearly ? `$${yearly}` : `$${monthly}`;
+                });
+                
+                pricingPeriods.forEach(period => {
+                    period.textContent = isYearly ? '/year' : '/month';
+                });
+            });
+        }
+
+        // Savings calculator
+        const homeSizeSelect = document.getElementById('home-size');
+        const energyBillInput = document.getElementById('energy-bill');
+        const deviceCountSlider = document.getElementById('device-count');
+        const deviceCountDisplay = document.getElementById('device-count-display');
+        
+        function updateSavingsCalculator() {
+            const homeSize = homeSizeSelect?.value || 'medium';
+            const energyBill = parseInt(energyBillInput?.value || 180);
+            const deviceCount = parseInt(deviceCountSlider?.value || 15);
+            
+            // Update device count display
+            if (deviceCountDisplay) {
+                deviceCountDisplay.textContent = deviceCount;
+            }
+            
+            // Calculate savings based on home size and device count
+            let savingsPercentage = 0.15; // Base 15%
+            
+            if (homeSize === 'large') savingsPercentage += 0.05;
+            if (deviceCount > 25) savingsPercentage += 0.05;
+            if (deviceCount > 50) savingsPercentage += 0.05;
+            
+            const monthlySavings = Math.round(energyBill * savingsPercentage);
+            const annualSavings = monthlySavings * 12;
+            
+            // Determine recommended plan
+            let recommendedPlan = 'Starter';
+            let planCost = 19;
+            
+            if (deviceCount > 10 || homeSize === 'medium') {
+                recommendedPlan = 'Pro';
+                planCost = 39;
+            }
+            if (deviceCount > 50 || homeSize === 'large') {
+                recommendedPlan = 'Enterprise';
+                planCost = 99;
+            }
+            
+            const netSavings = monthlySavings - planCost;
+            
+            // Update display
+            document.getElementById('monthly-savings').textContent = `$${monthlySavings}`;
+            document.getElementById('annual-savings').textContent = `$${annualSavings}`;
+            document.getElementById('recommended-plan').textContent = recommendedPlan;
+            document.getElementById('net-savings').textContent = `$${netSavings}`;
+        }
+        
+        // Add event listeners for calculator
+        [homeSizeSelect, energyBillInput, deviceCountSlider].forEach(element => {
+            if (element) {
+                element.addEventListener('input', updateSavingsCalculator);
+                element.addEventListener('change', updateSavingsCalculator);
+            }
+        });
+        
+        // Initialize calculator
+        updateSavingsCalculator();
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animate energy chart bars on scroll
+        function animateChartBars() {
+            const chart = document.getElementById('energy-chart');
+            if (!chart) return;
+            
+            const chartRect = chart.getBoundingClientRect();
+            const isVisible = chartRect.top < window.innerHeight && chartRect.bottom > 0;
+            
+            if (isVisible) {
+                const bars = chart.querySelectorAll('.chart-bar');
+                bars.forEach((bar, index) => {
+                    setTimeout(() => {
+                        bar.style.transform = 'scaleY(1)';
+                        bar.style.transformOrigin = 'bottom';
+                    }, index * 100);
+                });
+            }
+        }
+
+        // Initialize chart animation
+        window.addEventListener('scroll', animateChartBars);
+        animateChartBars();
+
+        // Add some interactive hover effects
+        document.querySelectorAll('.device-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
