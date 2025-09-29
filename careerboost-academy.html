@@ -1,0 +1,871 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerBoost Academy - Professional Career Development Hub</title>
+    <meta name="description" content="Transform your career with CareerBoost Academy's professional development programs, expert mentorship, and skill-building workshops.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'success-navy': '#1e3a8a',
+                        'promotion-gold': '#f59e0b',
+                        'achievement-green': '#059669',
+                        'navy-50': '#eff6ff',
+                        'navy-100': '#dbeafe',
+                        'navy-900': '#1e3a8a',
+                        'gold-50': '#fffbeb',
+                        'gold-100': '#fef3c7',
+                        'green-50': '#ecfdf5',
+                        'green-100': '#d1fae5'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'roboto-slab': ['Roboto Slab', 'serif']
+                    },
+                    animation: {
+                        'career-progress': 'careerProgress 3s ease-in-out infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'skill-pulse': 'skillPulse 2s ease-in-out infinite',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'fade-in': 'fadeIn 0.8s ease-out',
+                        'scale-in': 'scaleIn 0.5s ease-out'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        @keyframes careerProgress {
+            0%, 100% { transform: translateX(0) scale(1); }
+            50% { transform: translateX(20px) scale(1.1); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes skillPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes scaleIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        .career-pathway {
+            background: linear-gradient(135deg, #1e3a8a 0%, #059669 50%, #f59e0b 100%);
+            background-size: 300% 300%;
+            animation: pathwayGlow 4s ease-in-out infinite;
+        }
+        
+        @keyframes pathwayGlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .skill-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .mentor-card {
+            transition: all 0.3s ease;
+        }
+        
+        .mentor-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body class="font-inter bg-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-gray-200 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <div class="bg-success-navy text-white rounded-lg p-2">
+                        <i class="fas fa-rocket text-xl"></i>
+                    </div>
+                    <span class="ml-3 text-xl font-roboto-slab font-bold text-success-navy">CareerBoost Academy</span>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#programs" class="text-gray-700 hover:text-success-navy transition-colors">Programs</a>
+                    <a href="#mentors" class="text-gray-700 hover:text-success-navy transition-colors">Mentors</a>
+                    <a href="#success" class="text-gray-700 hover:text-success-navy transition-colors">Success Stories</a>
+                    <a href="#assessment" class="text-gray-700 hover:text-success-navy transition-colors">Assessment</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <button class="text-success-navy hover:text-promotion-gold transition-colors">Login</button>
+                    <button class="bg-promotion-gold text-white px-6 py-2 rounded-lg hover:bg-yellow-500 transition-colors">
+                        Start Journey
+                    </button>
+                </div>
+                
+                <button class="md:hidden text-gray-700" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-20 pb-16 bg-gradient-to-br from-navy-50 via-white to-green-50 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="animate-slide-up">
+                    <h1 class="text-4xl md:text-6xl font-roboto-slab font-bold text-success-navy mb-6">
+                        Accelerate Your 
+                        <span class="text-promotion-gold">Career</span> 
+                        Journey
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                        Transform your professional trajectory with personalized development programs, 
+                        expert mentorship, and industry-leading skill building workshops.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                        <button class="bg-success-navy text-white px-8 py-4 rounded-lg hover:bg-blue-800 transition-all transform hover:scale-105">
+                            <i class="fas fa-play mr-2"></i>
+                            Start Assessment
+                        </button>
+                        <button class="border-2 border-promotion-gold text-promotion-gold px-8 py-4 rounded-lg hover:bg-promotion-gold hover:text-white transition-all">
+                            <i class="fas fa-calendar mr-2"></i>
+                            Book Consultation
+                        </button>
+                    </div>
+                    
+                    <!-- Career Stats -->
+                    <div class="grid grid-cols-3 gap-6 text-center">
+                        <div>
+                            <div class="text-2xl font-bold text-success-navy" data-counter="5000">0</div>
+                            <div class="text-sm text-gray-600">Careers Boosted</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-promotion-gold" data-counter="89">0</div>
+                            <div class="text-sm text-gray-600">Avg Salary Increase %</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-achievement-green" data-counter="94">0</div>
+                            <div class="text-sm text-gray-600">Success Rate %</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Animated Career Progression -->
+                <div class="relative">
+                    <div class="career-pathway h-2 rounded-full mb-8 relative">
+                        <div class="career-progress-indicator absolute top-0 left-0 w-8 h-8 bg-white rounded-full border-4 border-success-navy -mt-3 animate-career-progress"></div>
+                    </div>
+                    
+                    <!-- Floating Skill Cards -->
+                    <div class="relative h-96">
+                        <div class="skill-card absolute top-0 right-0 p-4 rounded-lg animate-float" style="animation-delay: 0s;">
+                            <div class="flex items-center space-x-2">
+                                <div class="w-3 h-3 bg-achievement-green rounded-full"></div>
+                                <span class="text-sm font-semibold">Leadership</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-card absolute top-16 left-4 p-4 rounded-lg animate-float" style="animation-delay: 1s;">
+                            <div class="flex items-center space-x-2">
+                                <div class="w-3 h-3 bg-promotion-gold rounded-full"></div>
+                                <span class="text-sm font-semibold">Strategy</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-card absolute top-32 right-8 p-4 rounded-lg animate-float" style="animation-delay: 2s;">
+                            <div class="flex items-center space-x-2">
+                                <div class="w-3 h-3 bg-success-navy rounded-full"></div>
+                                <span class="text-sm font-semibold">Communication</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-card absolute bottom-16 left-0 p-4 rounded-lg animate-float" style="animation-delay: 3s;">
+                            <div class="flex items-center space-x-2">
+                                <div class="w-3 h-3 bg-purple-500 rounded-full"></div>
+                                <span class="text-sm font-semibold">Innovation</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Corporate Ladder Visualization -->
+                        <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2">
+                            <div class="w-32 h-48 relative">
+                                <div class="absolute bottom-0 w-full h-8 bg-gray-300 rounded"></div>
+                                <div class="absolute bottom-10 w-full h-8 bg-blue-300 rounded"></div>
+                                <div class="absolute bottom-20 w-full h-8 bg-green-300 rounded"></div>
+                                <div class="absolute bottom-30 w-full h-8 bg-yellow-300 rounded"></div>
+                                <div class="absolute bottom-40 w-full h-8 bg-promotion-gold rounded animate-skill-pulse"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Career Assessment Tool -->
+    <section id="assessment" class="py-16 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-roboto-slab font-bold text-success-navy mb-4">
+                    Discover Your Career Path
+                </h2>
+                <p class="text-xl text-gray-600">
+                    Take our comprehensive assessment to receive a personalized development roadmap
+                </p>
+            </div>
+            
+            <div class="bg-gradient-to-r from-navy-50 to-green-50 rounded-2xl p-8">
+                <div id="assessment-form">
+                    <div class="mb-8">
+                        <h3 class="text-xl font-semibold text-success-navy mb-4">Current Career Stage</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <label class="assessment-option cursor-pointer">
+                                <input type="radio" name="career-stage" value="entry" class="sr-only">
+                                <div class="border-2 border-gray-200 rounded-lg p-4 text-center hover:border-success-navy transition-colors">
+                                    <i class="fas fa-seedling text-2xl text-achievement-green mb-2"></i>
+                                    <div class="font-semibold">Entry Level</div>
+                                    <div class="text-sm text-gray-600">0-2 years experience</div>
+                                </div>
+                            </label>
+                            
+                            <label class="assessment-option cursor-pointer">
+                                <input type="radio" name="career-stage" value="mid" class="sr-only">
+                                <div class="border-2 border-gray-200 rounded-lg p-4 text-center hover:border-success-navy transition-colors">
+                                    <i class="fas fa-chart-line text-2xl text-promotion-gold mb-2"></i>
+                                    <div class="font-semibold">Mid-Level</div>
+                                    <div class="text-sm text-gray-600">3-7 years experience</div>
+                                </div>
+                            </label>
+                            
+                            <label class="assessment-option cursor-pointer">
+                                <input type="radio" name="career-stage" value="senior" class="sr-only">
+                                <div class="border-2 border-gray-200 rounded-lg p-4 text-center hover:border-success-navy transition-colors">
+                                    <i class="fas fa-crown text-2xl text-success-navy mb-2"></i>
+                                    <div class="font-semibold">Senior Level</div>
+                                    <div class="text-sm text-gray-600">8+ years experience</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <h3 class="text-xl font-semibold text-success-navy mb-4">Primary Career Goals</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <label class="flex items-center space-x-3 cursor-pointer">
+                                <input type="checkbox" name="goals" value="promotion" class="text-success-navy">
+                                <span>Promotion & Leadership</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer">
+                                <input type="checkbox" name="goals" value="salary" class="text-success-navy">
+                                <span>Salary Increase</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer">
+                                <input type="checkbox" name="goals" value="skills" class="text-success-navy">
+                                <span>Skill Development</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer">
+                                <input type="checkbox" name="goals" value="transition" class="text-success-navy">
+                                <span>Career Transition</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button id="generate-roadmap" class="bg-promotion-gold text-white px-8 py-4 rounded-lg hover:bg-yellow-500 transition-all transform hover:scale-105">
+                            <i class="fas fa-map-marked-alt mr-2"></i>
+                            Generate My Roadmap
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Roadmap Results -->
+                <div id="roadmap-results" class="hidden">
+                    <h3 class="text-xl font-semibold text-success-navy mb-6">Your Personalized Career Roadmap</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-lg p-6 shadow-sm">
+                            <div class="flex items-center mb-4">
+                                <div class="w-8 h-8 bg-achievement-green text-white rounded-full flex items-center justify-center text-sm font-bold">1</div>
+                                <h4 class="ml-3 font-semibold">Skill Assessment</h4>
+                            </div>
+                            <p class="text-gray-600 text-sm">Complete detailed skill evaluation and identify improvement areas</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-6 shadow-sm">
+                            <div class="flex items-center mb-4">
+                                <div class="w-8 h-8 bg-promotion-gold text-white rounded-full flex items-center justify-center text-sm font-bold">2</div>
+                                <h4 class="ml-3 font-semibold">Development Plan</h4>
+                            </div>
+                            <p class="text-gray-600 text-sm">Receive customized learning path with timeline and milestones</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-6 shadow-sm">
+                            <div class="flex items-center mb-4">
+                                <div class="w-8 h-8 bg-success-navy text-white rounded-full flex items-center justify-center text-sm font-bold">3</div>
+                                <h4 class="ml-3 font-semibold">Mentor Matching</h4>
+                            </div>
+                            <p class="text-gray-600 text-sm">Connect with industry experts aligned with your goals</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expert Mentors -->
+    <section id="mentors" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-roboto-slab font-bold text-success-navy mb-4">
+                    Learn from Industry Experts
+                </h2>
+                <p class="text-xl text-gray-600">
+                    Connect with seasoned professionals who've walked the path to success
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="mentor-card bg-white rounded-xl p-6 shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" 
+                             alt="Sarah Chen" class="w-16 h-16 rounded-full object-cover">
+                        <div class="ml-4">
+                            <h3 class="font-semibold text-success-navy">Sarah Chen</h3>
+                            <p class="text-sm text-gray-600">VP of Engineering</p>
+                            <p class="text-xs text-promotion-gold">Google</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 text-sm mb-4">
+                        "Helped 50+ engineers advance to senior roles through strategic skill development and leadership coaching."
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-xs bg-green-100 text-achievement-green px-2 py-1 rounded">Tech Leadership</span>
+                        </div>
+                        <button class="text-success-navy hover:text-promotion-gold transition-colors">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="mentor-card bg-white rounded-xl p-6 shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" 
+                             alt="Marcus Johnson" class="w-16 h-16 rounded-full object-cover">
+                        <div class="ml-4">
+                            <h3 class="font-semibold text-success-navy">Marcus Johnson</h3>
+                            <p class="text-sm text-gray-600">Chief Marketing Officer</p>
+                            <p class="text-xs text-promotion-gold">Microsoft</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 text-sm mb-4">
+                        "Specializes in career transitions and has mentored professionals across various industries."
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-xs bg-blue-100 text-success-navy px-2 py-1 rounded">Marketing Strategy</span>
+                        </div>
+                        <button class="text-success-navy hover:text-promotion-gold transition-colors">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="mentor-card bg-white rounded-xl p-6 shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b6d22d87?w=60&h=60&fit=crop&crop=face" 
+                             alt="Emily Rodriguez" class="w-16 h-16 rounded-full object-cover">
+                        <div class="ml-4">
+                            <h3 class="font-semibold text-success-navy">Emily Rodriguez</h3>
+                            <p class="text-sm text-gray-600">Senior Director</p>
+                            <p class="text-xs text-promotion-gold">Amazon</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 text-sm mb-4">
+                        "Expert in executive presence and negotiation, with a track record of 150% salary increases for mentees."
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-xs bg-yellow-100 text-promotion-gold px-2 py-1 rounded">Executive Coaching</span>
+                        </div>
+                        <button class="text-success-navy hover:text-promotion-gold transition-colors">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section id="success" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-roboto-slab font-bold text-success-navy mb-4">
+                    Success Stories
+                </h2>
+                <p class="text-xl text-gray-600">
+                    Real career transformations from our community
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-gradient-to-br from-green-50 to-blue-50 rounded-xl p-8">
+                    <div class="flex items-start space-x-4 mb-6">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face" 
+                             alt="Alex Thompson" class="w-15 h-15 rounded-full object-cover">
+                        <div>
+                            <h3 class="font-semibold text-success-navy">Alex Thompson</h3>
+                            <p class="text-sm text-gray-600">Software Engineer → Technical Lead</p>
+                        </div>
+                    </div>
+                    
+                    <blockquote class="text-gray-700 mb-6">
+                        "CareerBoost Academy's mentorship program was a game-changer. In 8 months, I went from senior engineer to technical lead with a 40% salary increase."
+                    </blockquote>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-promotion-gold">40%</div>
+                            <div class="text-xs text-gray-600">Salary Increase</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-achievement-green">8</div>
+                            <div class="text-xs text-gray-600">Months to Promotion</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-yellow-50 to-green-50 rounded-xl p-8">
+                    <div class="flex items-start space-x-4 mb-6">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b6d22d87?w=60&h=60&fit=crop&crop=face" 
+                             alt="Maria Garcia" class="w-15 h-15 rounded-full object-cover">
+                        <div>
+                            <h3 class="font-semibold text-success-navy">Maria Garcia</h3>
+                            <p class="text-sm text-gray-600">Marketing Coordinator → Brand Manager</p>
+                        </div>
+                    </div>
+                    
+                    <blockquote class="text-gray-700 mb-6">
+                        "The skill-building workshops and networking events opened doors I never knew existed. Now I'm leading a team of 12 marketers."
+                    </blockquote>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-promotion-gold">65%</div>
+                            <div class="text-xs text-gray-600">Salary Increase</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-achievement-green">12</div>
+                            <div class="text-xs text-gray-600">Team Members</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workshop Gallery -->
+    <section id="programs" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-roboto-slab font-bold text-success-navy mb-4">
+                    Professional Development Programs
+                </h2>
+                <p class="text-xl text-gray-600">
+                    Comprehensive skill-building workshops with industry certifications
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <div class="h-48 bg-gradient-to-br from-success-navy to-blue-600 flex items-center justify-center">
+                        <i class="fas fa-users text-white text-4xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-semibold text-success-navy mb-2">Leadership Excellence</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Master executive presence, team management, and strategic decision-making
+                        </p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs bg-green-100 text-achievement-green px-2 py-1 rounded">Certification</span>
+                            <span class="text-sm font-semibold text-promotion-gold">12 weeks</span>
+                        </div>
+                        <button class="w-full bg-success-navy text-white py-2 rounded-lg hover:bg-blue-800 transition-colors">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <div class="h-48 bg-gradient-to-br from-promotion-gold to-yellow-500 flex items-center justify-center">
+                        <i class="fas fa-chart-line text-white text-4xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-semibold text-success-navy mb-2">Strategic Thinking</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Develop analytical skills and strategic planning capabilities
+                        </p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs bg-blue-100 text-success-navy px-2 py-1 rounded">Certificate</span>
+                            <span class="text-sm font-semibold text-promotion-gold">8 weeks</span>
+                        </div>
+                        <button class="w-full bg-success-navy text-white py-2 rounded-lg hover:bg-blue-800 transition-colors">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <div class="h-48 bg-gradient-to-br from-achievement-green to-green-500 flex items-center justify-center">
+                        <i class="fas fa-handshake text-white text-4xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-semibold text-success-navy mb-2">Negotiation Mastery</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Advanced negotiation techniques for salary and career advancement
+                        </p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs bg-yellow-100 text-promotion-gold px-2 py-1 rounded">Intensive</span>
+                            <span class="text-sm font-semibold text-promotion-gold">6 weeks</span>
+                        </div>
+                        <button class="w-full bg-success-navy text-white py-2 rounded-lg hover:bg-blue-800 transition-colors">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Networking & Mentorship -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-roboto-slab font-bold text-success-navy mb-6">
+                        Connect, Network, Grow
+                    </h2>
+                    <p class="text-xl text-gray-600 mb-8">
+                        Join our exclusive community of ambitious professionals and industry leaders.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-achievement-green text-white rounded-lg flex items-center justify-center">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-success-navy mb-2">Monthly Networking Events</h3>
+                                <p class="text-gray-600">Connect with professionals across industries and career levels</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-promotion-gold text-white rounded-lg flex items-center justify-center">
+                                <i class="fas fa-user-friends"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-success-navy mb-2">Mentorship Matching</h3>
+                                <p class="text-gray-600">AI-powered matching with mentors aligned to your goals</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-success-navy text-white rounded-lg flex items-center justify-center">
+                                <i class="fas fa-target"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-success-navy mb-2">Goal Alignment System</h3>
+                                <p class="text-gray-600">Track progress and stay accountable with personalized goals</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-navy-50 to-green-50 rounded-2xl p-8">
+                    <h3 class="text-xl font-semibold text-success-navy mb-6">Schedule Your Next Step</h3>
+                    
+                    <form class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Event Type</label>
+                            <select class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-success-navy focus:border-transparent">
+                                <option>Networking Event</option>
+                                <option>Mentor Consultation</option>
+                                <option>Career Assessment</option>
+                                <option>Workshop Session</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Preferred Date</label>
+                            <input type="date" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-success-navy focus:border-transparent">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Career Focus Area</label>
+                            <select class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-success-navy focus:border-transparent">
+                                <option>Leadership Development</option>
+                                <option>Technical Skills</option>
+                                <option>Career Transition</option>
+                                <option>Salary Negotiation</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-promotion-gold text-white py-3 rounded-lg hover:bg-yellow-500 transition-colors">
+                            Schedule Event
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-success-navy to-achievement-green">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-roboto-slab font-bold text-white mb-6">
+                Ready to Accelerate Your Career?
+            </h2>
+            <p class="text-xl text-blue-100 mb-8">
+                Join thousands of professionals who have transformed their careers with CareerBoost Academy
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button class="bg-promotion-gold text-white px-8 py-4 rounded-lg hover:bg-yellow-500 transition-all transform hover:scale-105">
+                    <i class="fas fa-rocket mr-2"></i>
+                    Start Your Journey
+                </button>
+                <button class="border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-success-navy transition-all">
+                    <i class="fas fa-phone mr-2"></i>
+                    Book Free Consultation
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="bg-promotion-gold text-white rounded-lg p-2">
+                            <i class="fas fa-rocket text-xl"></i>
+                        </div>
+                        <span class="ml-3 text-xl font-roboto-slab font-bold">CareerBoost Academy</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Accelerating careers through professional development, mentorship, and strategic growth.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-promotion-gold transition-colors">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-promotion-gold transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-promotion-gold transition-colors">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">Programs</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Leadership Excellence</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Strategic Thinking</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Negotiation Mastery</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Career Transition</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">Resources</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Career Assessment</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Mentorship</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Success Stories</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Networking Events</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">Company</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">About</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 CareerBoost Academy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Counter Animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('[data-counter]');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-counter'));
+                const increment = target / 100;
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    counter.textContent = Math.floor(current);
+                    
+                    if (current >= target) {
+                        counter.textContent = target;
+                        clearInterval(timer);
+                    }
+                }, 20);
+            });
+        }
+
+        // Assessment Form Handler
+        document.getElementById('generate-roadmap').addEventListener('click', function() {
+            const form = document.getElementById('assessment-form');
+            const results = document.getElementById('roadmap-results');
+            
+            // Simple form validation
+            const careerStage = document.querySelector('input[name="career-stage"]:checked');
+            const goals = document.querySelectorAll('input[name="goals"]:checked');
+            
+            if (!careerStage) {
+                alert('Please select your career stage');
+                return;
+            }
+            
+            if (goals.length === 0) {
+                alert('Please select at least one career goal');
+                return;
+            }
+            
+            // Hide form and show results
+            form.style.display = 'none';
+            results.classList.remove('hidden');
+            results.style.animation = 'fadeIn 0.8s ease-out';
+        });
+
+        // Assessment Option Selection
+        document.querySelectorAll('.assessment-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove selected state from siblings
+                const siblings = this.parentNode.querySelectorAll('.assessment-option');
+                siblings.forEach(sibling => {
+                    sibling.querySelector('div').classList.remove('border-success-navy', 'bg-navy-50');
+                    sibling.querySelector('div').classList.add('border-gray-200');
+                });
+                
+                // Add selected state to clicked option
+                const div = this.querySelector('div');
+                div.classList.remove('border-gray-200');
+                div.classList.add('border-success-navy', 'bg-navy-50');
+                
+                // Check the radio button
+                this.querySelector('input[type="radio"]').checked = true;
+            });
+        });
+
+        // Smooth Scrolling for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            // Implementation for mobile menu toggle
+            console.log('Mobile menu toggle clicked');
+        });
+
+        // Scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'slideUp 0.6s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        // Observe mentor cards and other elements
+        document.querySelectorAll('.mentor-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Initialize animations when page loads
+        window.addEventListener('load', function() {
+            setTimeout(animateCounters, 1000);
+        });
+
+        // Form submission handlers
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for scheduling! We will contact you soon.');
+        });
+    </script>
+</body>
+</html>
