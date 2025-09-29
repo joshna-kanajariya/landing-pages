@@ -6,21 +6,131 @@
     <title>MakerSpace Global - Artisan Marketplace</title>
     <meta name="description" content="Discover unique handcrafted items from artisans worldwide. Connect with makers, learn new skills, and join our creative community.">
     
-    <!-- Tailwind CSS CDN -->
+    <!-- Tailwind CSS CDN with fallback -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Tailwind config
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'burnt-orange': '#CC5500',
+                        'clay-brown': '#8B4513',
+                        'mustard-yellow': '#FFDB58',
+                        'cream': '#F5F5DC',
+                        'terracotta': '#E2725B',
+                        'sage-green': '#9CAF88'
+                    },
+                    fontFamily: {
+                        'handwritten': ['Dancing Script', 'cursive'],
+                        'sans': ['Open Sans', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
     
-    <!-- Google Fonts CDN -->
+    <!-- Google Fonts CDN with fallback -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome Icons CDN -->
+    <!-- Font Awesome Icons CDN with fallback -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Leaflet CSS for maps -->
+    <!-- Leaflet CSS for maps with fallback -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     
     <style>
+        /* Fallback CSS for when CDNs are blocked */
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap');
+        
+        /* Icon fallbacks */
+        .fas, .fab {
+            font-family: 'Font Awesome 6 Free', 'Font Awesome 6 Brands', monospace;
+            font-weight: 900;
+            display: inline-block;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Basic Tailwind-like utility classes for fallback */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+        .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+        .py-12 { padding-top: 3rem; padding-bottom: 3rem; }
+        .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+        .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+        .pt-20 { padding-top: 5rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-12 { margin-bottom: 3rem; }
+        .mb-16 { margin-bottom: 4rem; }
+        .text-center { text-align: center; }
+        .text-left { text-align: left; }
+        .text-white { color: white; }
+        .bg-white { background-color: white; }
+        .rounded-full { border-radius: 9999px; }
+        .rounded-2xl { border-radius: 1rem; }
+        .rounded-3xl { border-radius: 1.5rem; }
+        .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+        .shadow-xl { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+        .shadow-2xl { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }
+        .grid { display: grid; }
+        .flex { display: flex; }
+        .hidden { display: none; }
+        .items-center { align-items: center; }
+        .justify-center { justify-content: center; }
+        .justify-between { justify-content: space-between; }
+        .space-x-2 > * + * { margin-left: 0.5rem; }
+        .space-x-4 > * + * { margin-left: 1rem; }
+        .space-x-6 > * + * { margin-left: 1.5rem; }
+        .space-y-6 > * + * { margin-top: 1.5rem; }
+        .font-bold { font-weight: 700; }
+        .font-semibold { font-weight: 600; }
+        .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+        .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+        .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+        .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+        .text-5xl { font-size: 3rem; line-height: 1; }
+        .text-6xl { font-size: 3.75rem; line-height: 1; }
+        .text-7xl { font-size: 4.5rem; line-height: 1; }
+        .min-h-screen { min-height: 100vh; }
+        .w-full { width: 100%; }
+        .h-96 { height: 24rem; }
+        .fixed { position: fixed; }
+        .relative { position: relative; }
+        .absolute { position: absolute; }
+        .top-0 { top: 0; }
+        .z-50 { z-index: 50; }
+        .backdrop-blur-md { backdrop-filter: blur(12px); }
+        .transition-colors { transition-property: color, background-color, border-color, text-decoration-color, fill, stroke; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+        .transition-all { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+        .duration-300 { transition-duration: 300ms; }
+        .hover\:scale-105:hover { transform: scale(1.05); }
+        .transform { transform: translate() rotate() skewX() skewY() scaleX() scaleY(); }
+        .cursor-pointer { cursor: pointer; }
+        
+        @media (min-width: 768px) {
+            .md\:flex { display: flex; }
+            .md\:hidden { display: none; }
+            .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .md\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+            .md\:text-6xl { font-size: 3.75rem; line-height: 1; }
+            .md\:text-7xl { font-size: 4.5rem; line-height: 1; }
+        }
+        
+        @media (min-width: 1024px) {
+            .lg\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .lg\:w-1\/2 { width: 50%; }
+            .lg\:flex-row { flex-direction: row; }
+            .lg\:flex-row-reverse { flex-direction: row-reverse; }
+        }
+
         /* Custom Tailwind config and styles */
         :root {
             --burnt-orange: #CC5500;
@@ -228,7 +338,7 @@
         <div class="container mx-auto px-4 py-3">
             <div class="flex justify-between items-center">
                 <div class="flex items-center space-x-2">
-                    <i class="fas fa-hammer text-burnt-orange text-2xl"></i>
+                    <i class="fas fa-hammer text-burnt-orange text-2xl" title="🔨">🔨</i>
                     <span class="handwritten text-2xl font-bold text-clay-brown">MakerSpace Global</span>
                 </div>
                 
@@ -1542,6 +1652,25 @@
         
         // Map initialization
         function initMap() {
+            // Check if Leaflet is available
+            if (typeof L === 'undefined') {
+                // Fallback: Show a placeholder map
+                const mapContainer = document.getElementById('map');
+                mapContainer.innerHTML = `
+                    <div class="w-full h-full bg-sage-green/20 rounded-xl flex items-center justify-center">
+                        <div class="text-center text-clay-brown">
+                            <div class="text-4xl mb-4">🗺️</div>
+                            <h4 class="text-xl font-bold mb-2">Interactive Map</h4>
+                            <p class="text-clay-brown/70">Map will load when external resources are available</p>
+                            <button class="mt-4 bg-burnt-orange text-white px-4 py-2 rounded-full hover:bg-clay-brown transition-all">
+                                View in Google Maps
+                            </button>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+            
             // Initialize map centered on a default location
             const map = L.map('map').setView([40.7128, -74.0060], 10);
             
