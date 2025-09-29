@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeartSync Counseling - Strengthening Relationships Through Connection</title>
+    <meta name="description" content="Professional relationship counseling platform helping couples build stronger connections. Expert therapists, personalized plans, and proven methodologies.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --warm-rose: #E67E7E;
+            --trust-blue: #4A90E2;
+            --healing-green: #7ED321;
+            --soft-rose: #F5E6E6;
+            --light-blue: #E8F4FD;
+            --light-green: #F0F9E8;
+        }
+        
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+        
+        .font-serif {
+            font-family: 'Merriweather', serif;
+        }
+        
+        .bg-warm-rose { background-color: var(--warm-rose); }
+        .bg-trust-blue { background-color: var(--trust-blue); }
+        .bg-healing-green { background-color: var(--healing-green); }
+        .bg-soft-rose { background-color: var(--soft-rose); }
+        .bg-light-blue { background-color: var(--light-blue); }
+        .bg-light-green { background-color: var(--light-green); }
+        
+        .text-warm-rose { color: var(--warm-rose); }
+        .text-trust-blue { color: var(--trust-blue); }
+        .text-healing-green { color: var(--healing-green); }
+        
+        .border-warm-rose { border-color: var(--warm-rose); }
+        .border-trust-blue { border-color: var(--trust-blue); }
+        .border-healing-green { border-color: var(--healing-green); }
+        
+        .hover\:bg-warm-rose:hover { background-color: var(--warm-rose); }
+        .hover\:bg-trust-blue:hover { background-color: var(--trust-blue); }
+        .hover\:bg-healing-green:hover { background-color: var(--healing-green); }
+        
+        /* Custom animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes pulse-heart {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .animate-pulse-heart {
+            animation: pulse-heart 2s ease-in-out infinite;
+        }
+        
+        .animate-slide-up {
+            animation: slideInUp 0.6s ease-out forwards;
+        }
+        
+        .animate-fade-scale {
+            animation: fadeInScale 0.8s ease-out forwards;
+        }
+        
+        /* Scroll triggered animations */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Heart shape CSS */
+        .heart {
+            position: relative;
+            width: 100px;
+            height: 90px;
+            transform: rotate(-45deg);
+        }
+        
+        .heart:before,
+        .heart:after {
+            content: '';
+            width: 52px;
+            height: 80px;
+            position: absolute;
+            left: 50px;
+            top: 0;
+            background: var(--warm-rose);
+            border-radius: 50px 50px 0 0;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+        
+        .heart:after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+        
+        /* Progress bar */
+        .progress-bar {
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--trust-blue), var(--healing-green));
+            border-radius: 4px;
+            transition: width 2s ease-out;
+        }
+        
+        /* Testimonial cards */
+        .testimonial-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        /* Compatibility tool styles */
+        .compatibility-meter {
+            background: conic-gradient(from 0deg, #ff6b6b 0deg 72deg, #ffd93d 72deg 144deg, #6bcf7f 144deg 216deg, #4ecdc4 216deg 288deg, #45b7d1 288deg 360deg);
+            border-radius: 50%;
+            position: relative;
+        }
+        
+        .compatibility-meter::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 80%;
+            height: 80%;
+            background: white;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        /* Package pricing cards */
+        .pricing-card {
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Responsive video container */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 shadow-sm">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-heart text-warm-rose text-2xl animate-pulse-heart"></i>
+                    <span class="text-2xl font-bold text-gray-800 font-serif">HeartSync</span>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#services" class="text-gray-700 hover:text-trust-blue transition-colors">Services</a>
+                    <a href="#therapists" class="text-gray-700 hover:text-trust-blue transition-colors">Therapists</a>
+                    <a href="#approach" class="text-gray-700 hover:text-trust-blue transition-colors">Our Approach</a>
+                    <a href="#packages" class="text-gray-700 hover:text-trust-blue transition-colors">Packages</a>
+                    <a href="#testimonials" class="text-gray-700 hover:text-trust-blue transition-colors">Success Stories</a>
+                </div>
+                <button class="bg-trust-blue text-white px-6 py-2 rounded-full hover:bg-blue-600 transition-colors">
+                    Book Session
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-20 pb-16 bg-gradient-to-br from-soft-rose via-light-blue to-light-green min-h-screen flex items-center">
+        <div class="container mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <h1 class="text-5xl lg:text-6xl font-bold text-gray-800 font-serif leading-tight">
+                        Strengthen Your
+                        <span class="text-warm-rose">Connection</span>
+                        <span class="text-trust-blue">Together</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 leading-relaxed">
+                        Professional relationship counseling that helps couples build deeper understanding, 
+                        improve communication, and create lasting happiness together.
+                    </p>
+                    
+                    <!-- Relationship Health Assessment Preview -->
+                    <div class="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg animate-slide-up">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                            <i class="fas fa-chart-line text-trust-blue mr-2"></i>
+                            Quick Relationship Health Check
+                        </h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-600">Communication Quality</span>
+                                <div class="progress-bar w-32">
+                                    <div class="progress-fill" id="comm-progress" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-600">Emotional Connection</span>
+                                <div class="progress-bar w-32">
+                                    <div class="progress-fill" id="emotion-progress" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-600">Conflict Resolution</span>
+                                <div class="progress-bar w-32">
+                                    <div class="progress-fill" id="conflict-progress" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="mt-4 bg-trust-blue text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-600 transition-colors">
+                            Take Full Assessment
+                        </button>
+                    </div>
+                    
+                    <div class="flex space-x-4">
+                        <button class="bg-trust-blue text-white px-8 py-4 rounded-full text-lg hover:bg-blue-600 transition-colors shadow-lg">
+                            Start Your Journey
+                        </button>
+                        <button class="border-2 border-trust-blue text-trust-blue px-8 py-4 rounded-full text-lg hover:bg-trust-blue hover:text-white transition-colors">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <!-- Floating Communication Displays -->
+                    <div class="absolute -top-8 -left-8 bg-white p-4 rounded-2xl shadow-lg animate-float" style="animation-delay: 0s;">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-comments text-healing-green"></i>
+                            <span class="text-sm font-medium">Active Listening +25%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute top-16 -right-4 bg-white p-4 rounded-2xl shadow-lg animate-float" style="animation-delay: 1s;">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-handshake text-warm-rose"></i>
+                            <span class="text-sm font-medium">Empathy Score: 9.2/10</span>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute -bottom-4 left-8 bg-white p-4 rounded-2xl shadow-lg animate-float" style="animation-delay: 2s;">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-heart text-warm-rose"></i>
+                            <span class="text-sm font-medium">Connection Strength: Strong</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Main Image/Couple Therapy Preview -->
+                    <div class="bg-white p-8 rounded-3xl shadow-2xl">
+                        <div class="aspect-square bg-gradient-to-br from-light-blue to-light-green rounded-2xl flex items-center justify-center">
+                            <div class="text-center space-y-4">
+                                <div class="heart mx-auto animate-pulse-heart" style="transform: rotate(-45deg) scale(0.5);"></div>
+                                <div class="heart mx-auto animate-pulse-heart" style="transform: rotate(-45deg) scale(0.3); margin-top: -20px; margin-left: 40px; animation-delay: 0.5s;"></div>
+                                <p class="text-gray-600 mt-8 font-serif">Building connections that last</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Compatibility Tool -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 font-serif mb-4">Discover Your Compatibility</h2>
+                <p class="text-xl text-gray-600">Interactive tools to understand your relationship dynamics</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <div class="bg-soft-rose p-6 rounded-2xl">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Relationship Compatibility Meter</h3>
+                        <div class="flex justify-center mb-6">
+                            <div class="compatibility-meter w-32 h-32 flex items-center justify-center">
+                                <span class="text-2xl font-bold text-gray-800 z-10" id="compatibility-score">0%</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-trust-blue text-white py-3 rounded-lg hover:bg-blue-600 transition-colors" onclick="runCompatibilityTest()">
+                            Calculate Compatibility
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-semibold text-gray-800">Personalized Counseling Recommendations</h3>
+                    <div id="counseling-suggestions" class="space-y-4">
+                        <div class="bg-light-blue p-4 rounded-lg opacity-50">
+                            <h4 class="font-semibold text-trust-blue">Communication Enhancement</h4>
+                            <p class="text-sm text-gray-600">12-week program focusing on active listening and expression</p>
+                        </div>
+                        <div class="bg-light-green p-4 rounded-lg opacity-50">
+                            <h4 class="font-semibold text-healing-green">Conflict Resolution</h4>
+                            <p class="text-sm text-gray-600">8-week intensive program for healthy disagreement patterns</p>
+                        </div>
+                        <div class="bg-soft-rose p-4 rounded-lg opacity-50">
+                            <h4 class="font-semibold text-warm-rose">Intimacy Building</h4>
+                            <p class="text-sm text-gray-600">16-week journey to deepen emotional and physical connection</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Therapist Showcase -->
+    <section id="therapists" class="py-16 bg-gradient-to-r from-light-blue to-light-green">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 font-serif mb-4">Meet Our Expert Therapists</h2>
+                <p class="text-xl text-gray-600">Licensed professionals with proven success in relationship counseling</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Therapist 1 -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden scroll-reveal">
+                    <div class="p-6 text-center">
+                        <div class="w-24 h-24 bg-trust-blue rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <i class="fas fa-user-md text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Dr. Sarah Mitchell</h3>
+                        <p class="text-trust-blue font-medium mb-2">Licensed Marriage & Family Therapist</p>
+                        <div class="text-sm text-gray-600 mb-4">
+                            <div class="flex items-center justify-center mb-1">
+                                <i class="fas fa-certificate text-healing-green mr-1"></i>
+                                <span>15+ Years Experience</span>
+                            </div>
+                            <div class="flex items-center justify-center mb-1">
+                                <i class="fas fa-award text-warm-rose mr-1"></i>
+                                <span>Gottman Method Certified</span>
+                            </div>
+                            <div class="flex items-center justify-center">
+                                <i class="fas fa-star text-yellow-500 mr-1"></i>
+                                <span>98% Success Rate</span>
+                            </div>
+                        </div>
+                        <div class="border-t pt-4">
+                            <p class="text-sm text-gray-600 italic">"I believe every relationship has the potential for deeper connection and joy."</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Therapist 2 -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden scroll-reveal">
+                    <div class="p-6 text-center">
+                        <div class="w-24 h-24 bg-healing-green rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <i class="fas fa-user-md text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Dr. Michael Chen</h3>
+                        <p class="text-healing-green font-medium mb-2">Clinical Psychologist</p>
+                        <div class="text-sm text-gray-600 mb-4">
+                            <div class="flex items-center justify-center mb-1">
+                                <i class="fas fa-certificate text-healing-green mr-1"></i>
+                                <span>12+ Years Experience</span>
+                            </div>
+                            <div class="flex items-center justify-center mb-1">
+                                <i class="fas fa-award text-warm-rose mr-1"></i>
+                                <span>EFT Specialist</span>
+                            </div>
+                            <div class="flex items-center justify-center">
+                                <i class="fas fa-star text-yellow-500 mr-1"></i>
+                                <span>95% Success Rate</span>
+                            </div>
+                        </div>
+                        <div class="border-t pt-4">
+                            <p class="text-sm text-gray-600 italic">"Healing happens when we create safe spaces for authentic connection."</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Therapist 3 -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden scroll-reveal">
+                    <div class="p-6 text-center">
+                        <div class="w-24 h-24 bg-warm-rose rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <i class="fas fa-user-md text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Dr. Emily Rodriguez</h3>
+                        <p class="text-warm-rose font-medium mb-2">Relationship Coach & Therapist</p>
+                        <div class="text-sm text-gray-600 mb-4">
+                            <div class="flex items-center justify-center mb-1">
+                                <i class="fas fa-certificate text-healing-green mr-1"></i>
+                                <span>10+ Years Experience</span>
+                            </div>
+                            <div class="flex items-center justify-center mb-1">
+                                <i class="fas fa-award text-warm-rose mr-1"></i>
+                                <span>IMAGO Certified</span>
+                            </div>
+                            <div class="flex items-center justify-center">
+                                <i class="fas fa-star text-yellow-500 mr-1"></i>
+                                <span>97% Success Rate</span>
+                            </div>
+                        </div>
+                        <div class="border-t pt-4">
+                            <p class="text-sm text-gray-600 italic">"Love is a skill that can be learned and perfected together."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Therapy Approaches -->
+    <section id="approach" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 font-serif mb-4">Our Proven Methodologies</h2>
+                <p class="text-xl text-gray-600">Evidence-based approaches tailored to your unique relationship needs</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Gottman Method -->
+                <div class="bg-light-blue p-8 rounded-2xl scroll-reveal">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-brain text-trust-blue text-4xl mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">Gottman Method</h3>
+                        <div class="w-full bg-gray-200 rounded-full h-2 mb-4">
+                            <div class="bg-trust-blue h-2 rounded-full" style="width: 94%"></div>
+                        </div>
+                        <span class="text-trust-blue font-medium">94% Effectiveness Rate</span>
+                    </div>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center"><i class="fas fa-check text-healing-green mr-2"></i>Research-based approach</li>
+                        <li class="flex items-center"><i class="fas fa-check text-healing-green mr-2"></i>Focus on friendship and intimacy</li>
+                        <li class="flex items-center"><i class="fas fa-check text-healing-green mr-2"></i>Conflict resolution techniques</li>
+                        <li class="flex items-center"><i class="fas fa-check text-healing-green mr-2"></i>Building love maps</li>
+                    </ul>
+                </div>
+                
+                <!-- Emotionally Focused Therapy -->
+                <div class="bg-light-green p-8 rounded-2xl scroll-reveal">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-heart text-healing-green text-4xl mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">EFT Therapy</h3>
+                        <div class="w-full bg-gray-200 rounded-full h-2 mb-4">
+                            <div class="bg-healing-green h-2 rounded-full" style="width: 90%"></div>
+                        </div>
+                        <span class="text-healing-green font-medium">90% Effectiveness Rate</span>
+                    </div>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center"><i class="fas fa-check text-healing-green mr-2"></i>Attachment-based healing</li>
+                        <li class="flex items-center"><i class="fas fa-check text-healing-green mr-2"></i>Emotional safety creation</li>
+                        <li class="flex items-center"><i class="fas fa-check text-healing-green mr-2"></i>Cycle interruption</li>
+                        <li class="flex items-center"><i class="fas fa-check text-healing-green mr-2"></i>Bonding conversations</li>
+                    </ul>
+                </div>
+                
+                <!-- IMAGO Therapy -->
+                <div class="bg-soft-rose p-8 rounded-2xl scroll-reveal">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-mirror text-warm-rose text-4xl mb-4"></i>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">IMAGO Therapy</h3>
+                        <div class="w-full bg-gray-200 rounded-full h-2 mb-4">
+                            <div class="bg-warm-rose h-2 rounded-full" style="width: 87%"></div>
+                        </div>
+                        <span class="text-warm-rose font-medium">87% Effectiveness Rate</span>
+                    </div>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center"><i class="fas fa-check text-healing-green mr-2"></i>Conscious relationship building</li>
+                        <li class="flex items-center"><i class="fas fa-check text-healing-green mr-2"></i>Dialogue facilitation</li>
+                        <li class="flex items-center"><i class="fas fa-check text-healing-green mr-2"></i>Childhood healing integration</li>
+                        <li class="flex items-center"><i class="fas fa-check text-healing-green mr-2"></i>Growth through understanding</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories & Testimonials -->
+    <section id="testimonials" class="py-16 bg-gradient-to-br from-soft-rose to-light-blue">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 font-serif mb-4">Success Stories</h2>
+                <p class="text-xl text-gray-600">Real couples, real transformations, lasting results</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card bg-white p-8 rounded-2xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-500">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="ml-2 text-gray-600 text-sm">5.0</span>
+                    </div>
+                    <blockquote class="text-gray-700 italic mb-6 font-serif">
+                        "HeartSync saved our marriage. We went from constant fighting to genuinely enjoying each other's company again. The communication exercises were life-changing."
+                    </blockquote>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-trust-blue rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-users text-white"></i>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-800">Sarah & Mike</p>
+                            <p class="text-sm text-gray-600">Married 8 years • Program: Communication Enhancement</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 p-3 bg-light-green rounded-lg">
+                        <div class="flex items-center text-healing-green">
+                            <i class="fas fa-trophy mr-2"></i>
+                            <span class="font-medium text-sm">Communication Breakthrough Achieved!</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card bg-white p-8 rounded-2xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-500">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="ml-2 text-gray-600 text-sm">5.0</span>
+                    </div>
+                    <blockquote class="text-gray-700 italic mb-6 font-serif">
+                        "We learned to fight fair and love deeper. Dr. Chen helped us understand our patterns and build new, healthier ones together."
+                    </blockquote>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-healing-green rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-users text-white"></i>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-800">David & Lisa</p>
+                            <p class="text-sm text-gray-600">Together 5 years • Program: Conflict Resolution</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 p-3 bg-light-blue rounded-lg">
+                        <div class="flex items-center text-trust-blue">
+                            <i class="fas fa-handshake mr-2"></i>
+                            <span class="font-medium text-sm">Conflict Resolution Mastered!</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card bg-white p-8 rounded-2xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-500">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="ml-2 text-gray-600 text-sm">5.0</span>
+                    </div>
+                    <blockquote class="text-gray-700 italic mb-6 font-serif">
+                        "The intimacy building program rekindled our connection in ways we never thought possible. We feel like newlyweds again!"
+                    </blockquote>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-warm-rose rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-users text-white"></i>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-800">Maria & James</p>
+                            <p class="text-sm text-gray-600">Married 12 years • Program: Intimacy Building</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 p-3 bg-soft-rose rounded-lg">
+                        <div class="flex items-center text-warm-rose">
+                            <i class="fas fa-heart mr-2"></i>
+                            <span class="font-medium text-sm">Deep Connection Restored!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Counseling Packages -->
+    <section id="packages" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 font-serif mb-4">Choose Your Journey</h2>
+                <p class="text-xl text-gray-600">Flexible counseling packages designed for every relationship stage</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Starter Package -->
+                <div class="pricing-card bg-white border-2 border-gray-200 rounded-2xl p-8 hover:border-trust-blue">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Relationship Tune-Up</h3>
+                        <div class="text-4xl font-bold text-trust-blue mb-2">$149</div>
+                        <p class="text-gray-600">per session</p>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-healing-green mr-2"></i>
+                            <span>4 sessions over 4 weeks</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-healing-green mr-2"></i>
+                            <span>Basic assessment tools</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-healing-green mr-2"></i>
+                            <span>Communication exercises</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-healing-green mr-2"></i>
+                            <span>Email support</span>
+                        </li>
+                    </ul>
+                    <button class="w-full bg-trust-blue text-white py-3 rounded-lg hover:bg-blue-600 transition-colors">
+                        Get Started
+                    </button>
+                </div>
+                
+                <!-- Premium Package -->
+                <div class="pricing-card bg-white border-2 border-healing-green rounded-2xl p-8 hover:border-healing-green relative">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-healing-green text-white px-4 py-1 rounded-full text-sm">
+                        Most Popular
+                    </div>
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Deep Connection</h3>
+                        <div class="text-4xl font-bold text-healing-green mb-2">$129</div>
+                        <p class="text-gray-600">per session</p>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-healing-green mr-2"></i>
+                            <span>12 sessions over 12 weeks</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-healing-green mr-2"></i>
+                            <span>Comprehensive assessments</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-healing-green mr-2"></i>
+                            <span>Personalized exercise library</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-healing-green mr-2"></i>
+                            <span>Weekly progress tracking</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-healing-green mr-2"></i>
+                            <span>24/7 crisis support</span>
+                        </li>
+                    </ul>
+                    <button class="w-full bg-healing-green text-white py-3 rounded-lg hover:bg-green-600 transition-colors">
+                        Start Journey
+                    </button>
+                </div>
+                
+                <!-- Premium Plus Package -->
+                <div class="pricing-card bg-white border-2 border-gray-200 rounded-2xl p-8 hover:border-warm-rose">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Complete Transformation</h3>
+                        <div class="text-4xl font-bold text-warm-rose mb-2">$109</div>
+                        <p class="text-gray-600">per session</p>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-healing-green mr-2"></i>
+                            <span>24 sessions over 24 weeks</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-healing-green mr-2"></i>
+                            <span>All assessment tools included</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-healing-green mr-2"></i>
+                            <span>Complete exercise library</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-healing-green mr-2"></i>
+                            <span>Bi-weekly progress reviews</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-healing-green mr-2"></i>
+                            <span>Priority booking & support</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-healing-green mr-2"></i>
+                            <span>3-month follow-up included</span>
+                        </li>
+                    </ul>
+                    <button class="w-full bg-warm-rose text-white py-3 rounded-lg hover:bg-red-400 transition-colors">
+                        Transform Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Relationship Goal Tracking -->
+    <section class="py-16 bg-gradient-to-r from-light-green to-light-blue">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 font-serif mb-4">Track Your Progress</h2>
+                <p class="text-xl text-gray-600">Monitor your relationship growth with our comprehensive tracking tools</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <div class="bg-white p-6 rounded-2xl shadow-lg scroll-reveal">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Relationship Goals Dashboard</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-700">Daily Check-ins</span>
+                                <div class="flex items-center">
+                                    <div class="progress-bar w-24 mr-2">
+                                        <div class="progress-fill" style="width: 87%"></div>
+                                    </div>
+                                    <span class="text-sm text-healing-green font-medium">87%</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-700">Communication Exercises</span>
+                                <div class="flex items-center">
+                                    <div class="progress-bar w-24 mr-2">
+                                        <div class="progress-fill" style="width: 92%"></div>
+                                    </div>
+                                    <span class="text-sm text-healing-green font-medium">92%</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-700">Conflict Resolution Practice</span>
+                                <div class="flex items-center">
+                                    <div class="progress-bar w-24 mr-2">
+                                        <div class="progress-fill" style="width: 78%"></div>
+                                    </div>
+                                    <span class="text-sm text-trust-blue font-medium">78%</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-700">Intimacy Building Activities</span>
+                                <div class="flex items-center">
+                                    <div class="progress-bar w-24 mr-2">
+                                        <div class="progress-fill" style="width: 85%"></div>
+                                    </div>
+                                    <span class="text-sm text-healing-green font-medium">85%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-2xl shadow-lg scroll-reveal">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Recent Milestones</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center p-3 bg-light-green rounded-lg">
+                                <i class="fas fa-trophy text-healing-green mr-3"></i>
+                                <div>
+                                    <p class="font-medium text-gray-800">7-Day Communication Streak!</p>
+                                    <p class="text-sm text-gray-600">Completed daily check-ins</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center p-3 bg-light-blue rounded-lg">
+                                <i class="fas fa-medal text-trust-blue mr-3"></i>
+                                <div>
+                                    <p class="font-medium text-gray-800">Conflict Resolution Badge</p>
+                                    <p class="text-sm text-gray-600">Successfully resolved 5 disagreements</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center p-3 bg-soft-rose rounded-lg">
+                                <i class="fas fa-heart text-warm-rose mr-3"></i>
+                                <div>
+                                    <p class="font-medium text-gray-800">Intimacy Level Up</p>
+                                    <p class="text-sm text-gray-600">Reached new connection depth</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="space-y-6">
+                    <div class="bg-white p-6 rounded-2xl shadow-lg scroll-reveal">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Communication Exercise Library</h3>
+                        <div class="space-y-3">
+                            <div class="border-l-4 border-trust-blue pl-4 py-2">
+                                <h4 class="font-medium text-gray-800">Active Listening Challenge</h4>
+                                <p class="text-sm text-gray-600">5-minute daily practice • Beginner level</p>
+                                <button class="text-trust-blue text-sm hover:underline mt-1">Start Exercise →</button>
+                            </div>
+                            <div class="border-l-4 border-healing-green pl-4 py-2">
+                                <h4 class="font-medium text-gray-800">Empathy Building Sessions</h4>
+                                <p class="text-sm text-gray-600">15-minute guided practice • Intermediate</p>
+                                <button class="text-healing-green text-sm hover:underline mt-1">Start Exercise →</button>
+                            </div>
+                            <div class="border-l-4 border-warm-rose pl-4 py-2">
+                                <h4 class="font-medium text-gray-800">Appreciation Expressions</h4>
+                                <p class="text-sm text-gray-600">Daily gratitude practice • All levels</p>
+                                <button class="text-warm-rose text-sm hover:underline mt-1">Start Exercise →</button>
+                            </div>
+                        </div>
+                        <button class="w-full mt-4 bg-gray-100 text-gray-700 py-2 rounded-lg hover:bg-gray-200 transition-colors">
+                            View All Exercises (47 available)
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid lg:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-heart text-warm-rose text-2xl"></i>
+                        <span class="text-2xl font-bold font-serif">HeartSync</span>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed">
+                        Strengthening relationships through professional counseling, proven methodologies, and compassionate care.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Couples Counseling</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Marriage Therapy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Communication Training</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Conflict Resolution</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Exercise Library</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Progress Tracking</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Success Stories</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Blog & Articles</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-2"></i>
+                            <span>(555) 123-HEART</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2"></i>
+                            <span>hello@heartsync.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-clock mr-2"></i>
+                            <span>24/7 Crisis Support</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-400">
+                    © 2024 HeartSync Counseling. All rights reserved. | 
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a> | 
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animated progress bars on hero section
+        function animateProgressBars() {
+            setTimeout(() => {
+                document.getElementById('comm-progress').style.width = '78%';
+            }, 500);
+            setTimeout(() => {
+                document.getElementById('emotion-progress').style.width = '85%';
+            }, 1000);
+            setTimeout(() => {
+                document.getElementById('conflict-progress').style.width = '65%';
+            }, 1500);
+        }
+
+        // Compatibility tool functionality
+        function runCompatibilityTest() {
+            const scoreElement = document.getElementById('compatibility-score');
+            const suggestionsElement = document.getElementById('counseling-suggestions');
+            
+            // Animate score counting up
+            let score = 0;
+            const targetScore = 82;
+            const interval = setInterval(() => {
+                score += 2;
+                scoreElement.textContent = score + '%';
+                if (score >= targetScore) {
+                    clearInterval(interval);
+                }
+            }, 50);
+            
+            // Show personalized suggestions
+            setTimeout(() => {
+                const suggestions = suggestionsElement.children;
+                for (let i = 0; i < suggestions.length; i++) {
+                    setTimeout(() => {
+                        suggestions[i].classList.remove('opacity-50');
+                        suggestions[i].classList.add('animate-fade-scale');
+                    }, i * 300);
+                }
+            }, 2000);
+        }
+
+        // Scroll reveal animation
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.scroll-reveal');
+            
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('revealed');
+                }
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        function setupSmoothScrolling() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Mobile menu toggle (if needed)
+        function setupMobileMenu() {
+            // This would be expanded for a full mobile menu implementation
+            const nav = document.querySelector('nav');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    nav.classList.add('shadow-lg');
+                } else {
+                    nav.classList.remove('shadow-lg');
+                }
+            });
+        }
+
+        // Testimonial rotation (optional enhancement)
+        function setupTestimonialRotation() {
+            // Could implement automatic testimonial sliding here
+        }
+
+        /* Reduced motion preferences */
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        
+        if (prefersReducedMotion.matches) {
+            // Disable animations for users who prefer reduced motion
+            const style = document.createElement('style');
+            style.textContent = `
+                *, *::before, *::after {
+                    animation-duration: 0.01ms !important;
+                    animation-iteration-count: 1 !important;
+                    transition-duration: 0.01ms !important;
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // Initialize all functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            animateProgressBars();
+            setupSmoothScrolling();
+            setupMobileMenu();
+            setupTestimonialRotation();
+            
+            // Setup scroll reveal
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll(); // Check on load
+        });
+
+        // Accessibility: Keyboard navigation support
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-navigation');
+            }
+        });
+
+        document.addEventListener('mousedown', function() {
+            document.body.classList.remove('keyboard-navigation');
+        });
+    </script>
+
+    <!-- Additional CSS for keyboard navigation -->
+    <style>
+        .keyboard-navigation *:focus {
+            outline: 2px solid var(--trust-blue) !important;
+            outline-offset: 2px !important;
+        }
+        
+        /* Print styles */
+        @media print {
+            .animate-float,
+            .animate-pulse-heart,
+            .animate-slide-up,
+            .animate-fade-scale {
+                animation: none !important;
+            }
+            
+            nav {
+                position: static !important;
+            }
+        }
+    </style>
+</body>
+</html>
