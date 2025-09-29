@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindfulPath - Your Journey to Mental Wellness</title>
+    <meta name="description" content="Discover inner peace with MindfulPath - a comprehensive mental health app featuring guided meditation, mood tracking, and expert support.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts - Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        'sage': {
+                            50: '#f4f7f4',
+                            100: '#e6ede6',
+                            200: '#c8d9c8',
+                            300: '#9cbf9c',
+                            400: '#7aa47a',
+                            500: '#608760',
+                            600: '#4a6d4a',
+                            700: '#3c5a3c',
+                            800: '#324a32',
+                            900: '#2a3e2a'
+                        },
+                        'lavender': {
+                            50: '#f8f7ff',
+                            100: '#f1efff',
+                            200: '#e5e2ff',
+                            300: '#d2ccff',
+                            400: '#b8a9ff',
+                            500: '#9d85ff',
+                            600: '#8362ff',
+                            700: '#704bff',
+                            800: '#5e3dcc',
+                            900: '#4e3399'
+                        },
+                        'peach': {
+                            50: '#fff8f5',
+                            100: '#ffefe6',
+                            200: '#ffdcc9',
+                            300: '#ffc39e',
+                            400: '#ff9f6b',
+                            500: '#ff7d3d',
+                            600: '#f55f1c',
+                            700: '#cc4a13',
+                            800: '#a13c15',
+                            900: '#823216'
+                        }
+                    },
+                    animation: {
+                        'breathe': 'breathe 4s ease-in-out infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'particle': 'particle 8s linear infinite',
+                        'typewriter': 'typewriter 3s steps(40) 1s forwards',
+                        'fadeInUp': 'fadeInUp 0.8s ease-out forwards',
+                        'pulse-soft': 'pulse-soft 2s ease-in-out infinite',
+                        'bounce-gentle': 'bounce-gentle 2s ease-in-out infinite'
+                    },
+                    keyframes: {
+                        breathe: {
+                            '0%, 100%': { transform: 'scale(1)', opacity: '0.7' },
+                            '50%': { transform: 'scale(1.2)', opacity: '1' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '33%': { transform: 'translateY(-10px) rotate(5deg)' },
+                            '66%': { transform: 'translateY(-5px) rotate(-3deg)' }
+                        },
+                        particle: {
+                            '0%': { transform: 'translateY(100vh) translateX(0px)', opacity: '1' },
+                            '100%': { transform: 'translateY(-100px) translateX(100px)', opacity: '0' }
+                        },
+                        typewriter: {
+                            'from': { width: '0' },
+                            'to': { width: '100%' }
+                        },
+                        fadeInUp: {
+                            'from': { 
+                                opacity: '0',
+                                transform: 'translateY(30px)'
+                            },
+                            'to': { 
+                                opacity: '1',
+                                transform: 'translateY(0)'
+                            }
+                        },
+                        'pulse-soft': {
+                            '0%, 100%': { opacity: '0.8', transform: 'scale(1)' },
+                            '50%': { opacity: '1', transform: 'scale(1.05)' }
+                        },
+                        'bounce-gentle': {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-5px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .breathing-circle {
+            background: radial-gradient(circle, rgba(156, 191, 156, 0.3) 0%, rgba(157, 133, 255, 0.2) 50%, rgba(255, 125, 61, 0.1) 100%);
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, rgba(156, 191, 156, 0.8) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .mood-tracker-circle {
+            transition: all 0.3s ease;
+        }
+        
+        .mood-tracker-circle:hover {
+            transform: scale(1.1);
+        }
+        
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid rgba(156, 191, 156, 0.75);
+            white-space: nowrap;
+            animation: typewriter 3s steps(40) 1s forwards;
+        }
+        
+        .typewriter::after {
+            content: '';
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { border-color: transparent; }
+            51%, 100% { border-color: rgba(156, 191, 156, 0.75); }
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .progress-bar {
+            transition: width 1s ease-out;
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-sage-50 via-lavender-50 to-peach-50 text-gray-800 overflow-x-hidden">
+
+    <!-- Hero Section with Breathing Visualization -->
+    <header class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0">
+            <!-- Floating Meditation Symbols -->
+            <div class="absolute top-20 left-10 text-sage-300 text-4xl animate-float opacity-60">
+                <i class="fas fa-om" style="animation-delay: 0s;"></i>
+            </div>
+            <div class="absolute top-40 right-20 text-lavender-300 text-3xl animate-float opacity-50">
+                <i class="fas fa-lotus" style="animation-delay: 1s;"></i>
+            </div>
+            <div class="absolute bottom-40 left-20 text-peach-300 text-3xl animate-float opacity-60">
+                <i class="fas fa-leaf" style="animation-delay: 2s;"></i>
+            </div>
+            <div class="absolute bottom-20 right-10 text-sage-300 text-2xl animate-float opacity-50">
+                <i class="fas fa-yin-yang" style="animation-delay: 3s;"></i>
+            </div>
+            
+            <!-- Gentle Particles -->
+            <div id="particles"></div>
+        </div>
+        
+        <!-- Navigation -->
+        <nav class="absolute top-0 left-0 right-0 z-50 p-6">
+            <div class="container mx-auto flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-r from-sage-400 to-lavender-400 rounded-full flex items-center justify-center">
+                        <i class="fas fa-brain text-white text-lg"></i>
+                    </div>
+                    <span class="text-2xl font-semibold text-sage-700">MindfulPath</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#features" class="text-sage-600 hover:text-sage-800 transition-colors duration-300">Features</a>
+                    <a href="#stories" class="text-sage-600 hover:text-sage-800 transition-colors duration-300">Success Stories</a>
+                    <a href="#therapists" class="text-sage-600 hover:text-sage-800 transition-colors duration-300">Therapists</a>
+                    <a href="#resources" class="text-sage-600 hover:text-sage-800 transition-colors duration-300">Resources</a>
+                </div>
+                <button class="bg-gradient-to-r from-sage-500 to-lavender-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                    Get Started
+                </button>
+            </div>
+        </nav>
+        
+        <!-- Hero Content -->
+        <div class="container mx-auto px-6 text-center z-10">
+            <div class="mb-12">
+                <!-- Breathing Visualization -->
+                <div class="relative inline-block mb-8">
+                    <div class="breathing-circle w-32 h-32 md:w-48 md:h-48 rounded-full animate-breathe mx-auto"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="text-sage-600 text-lg md:text-xl font-medium">
+                            <span class="breathe-text">Breathe</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-sage-800 mb-6 leading-tight">
+                    Your Journey to
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-sage-500 via-lavender-500 to-peach-500">
+                        Mental Wellness
+                    </span>
+                </h1>
+                
+                <p class="text-xl md:text-2xl text-sage-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+                    Discover inner peace, track your mood, and connect with caring professionals on your path to better mental health.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <button id="startTrialBtn" class="bg-gradient-to-r from-sage-500 to-lavender-500 text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:from-sage-600 hover:to-lavender-600">
+                        Start Free Trial
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                    <button class="text-sage-600 px-8 py-4 rounded-full text-lg font-semibold border-2 border-sage-300 hover:bg-sage-50 transition-all duration-300">
+                        Watch Demo
+                        <i class="fas fa-play ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mindfulness Quotes Section -->
+    <section class="py-20 bg-gradient-to-r from-sage-100 to-lavender-100">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-sage-800 mb-4">Daily Inspiration</h2>
+                <p class="text-sage-600 text-lg max-w-2xl mx-auto">Discover wisdom that guides your journey</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div id="quotesContainer" class="min-h-[200px] flex items-center justify-center">
+                    <blockquote class="text-2xl md:text-3xl text-center text-sage-700 font-light italic">
+                        <div class="typewriter opacity-0" id="currentQuote">
+                            "The present moment is the only time over which we have dominion."
+                        </div>
+                        <footer class="text-lg text-sage-500 mt-4 opacity-0" id="quoteAuthor">
+                            — Thích Nhất Hạnh
+                        </footer>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Mood Tracker -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-sage-800 mb-4">Track Your Mood</h2>
+                <p class="text-sage-600 text-lg max-w-2xl mx-auto">Understanding your emotions is the first step to wellness</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="glass-effect rounded-3xl p-8 md:p-12">
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-6 mb-8">
+                        <div class="mood-option text-center cursor-pointer" data-mood="excellent">
+                            <div class="mood-tracker-circle w-16 h-16 md:w-20 md:h-20 mx-auto mb-3 bg-gradient-to-br from-green-400 to-green-500 rounded-full flex items-center justify-center text-white text-2xl">
+                                😊
+                            </div>
+                            <span class="text-sage-700 font-medium">Excellent</span>
+                        </div>
+                        <div class="mood-option text-center cursor-pointer" data-mood="good">
+                            <div class="mood-tracker-circle w-16 h-16 md:w-20 md:h-20 mx-auto mb-3 bg-gradient-to-br from-lime-400 to-lime-500 rounded-full flex items-center justify-center text-white text-2xl">
+                                🙂
+                            </div>
+                            <span class="text-sage-700 font-medium">Good</span>
+                        </div>
+                        <div class="mood-option text-center cursor-pointer" data-mood="okay">
+                            <div class="mood-tracker-circle w-16 h-16 md:w-20 md:h-20 mx-auto mb-3 bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center text-white text-2xl">
+                                😐
+                            </div>
+                            <span class="text-sage-700 font-medium">Okay</span>
+                        </div>
+                        <div class="mood-option text-center cursor-pointer" data-mood="low">
+                            <div class="mood-tracker-circle w-16 h-16 md:w-20 md:h-20 mx-auto mb-3 bg-gradient-to-br from-orange-400 to-orange-500 rounded-full flex items-center justify-center text-white text-2xl">
+                                😟
+                            </div>
+                            <span class="text-sage-700 font-medium">Low</span>
+                        </div>
+                        <div class="mood-option text-center cursor-pointer" data-mood="difficult">
+                            <div class="mood-tracker-circle w-16 h-16 md:w-20 md:h-20 mx-auto mb-3 bg-gradient-to-br from-red-400 to-red-500 rounded-full flex items-center justify-center text-white text-2xl">
+                                😢
+                            </div>
+                            <span class="text-sage-700 font-medium">Difficult</span>
+                        </div>
+                    </div>
+                    
+                    <div id="moodFeedback" class="text-center p-6 bg-sage-50 rounded-2xl opacity-0 transition-all duration-500">
+                        <p class="text-sage-700 text-lg font-medium mb-2" id="moodMessage">Select your current mood</p>
+                        <p class="text-sage-600" id="moodSuggestion">We'll provide personalized recommendations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section id="stories" class="py-20 bg-gradient-to-r from-lavender-50 to-peach-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-sage-800 mb-4">Success Stories</h2>
+                <p class="text-sage-600 text-lg max-w-2xl mx-auto">Real people, real transformations</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="story-card bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all duration-500 opacity-0 transform translate-y-8">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-sage-400 to-lavender-400 rounded-full flex items-center justify-center text-white text-2xl font-bold mr-4">
+                            S
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-sage-800">Sarah M.</h3>
+                            <p class="text-sage-500">Teacher, 34</p>
+                        </div>
+                    </div>
+                    <p class="text-sage-600 leading-relaxed mb-6">
+                        "MindfulPath helped me manage my anxiety and find peace in daily chaos. The breathing exercises became my go-to during stressful moments."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="flex text-yellow-400 mr-2">
+                            ⭐⭐⭐⭐⭐
+                        </div>
+                        <span class="text-sage-500 text-sm">3 months of progress</span>
+                    </div>
+                </div>
+                
+                <div class="story-card bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all duration-500 opacity-0 transform translate-y-8" style="animation-delay: 0.2s;">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-lavender-400 to-peach-400 rounded-full flex items-center justify-center text-white text-2xl font-bold mr-4">
+                            M
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-sage-800">Marcus J.</h3>
+                            <p class="text-sage-500">Software Engineer, 28</p>
+                        </div>
+                    </div>
+                    <p class="text-sage-600 leading-relaxed mb-6">
+                        "The mood tracking feature showed me patterns I never noticed. Combined with therapy sessions, I've made incredible progress."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="flex text-yellow-400 mr-2">
+                            ⭐⭐⭐⭐⭐
+                        </div>
+                        <span class="text-sage-500 text-sm">6 months of growth</span>
+                    </div>
+                </div>
+                
+                <div class="story-card bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all duration-500 opacity-0 transform translate-y-8" style="animation-delay: 0.4s;">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-peach-400 to-sage-400 rounded-full flex items-center justify-center text-white text-2xl font-bold mr-4">
+                            E
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-sage-800">Emma L.</h3>
+                            <p class="text-sage-500">Student, 22</p>
+                        </div>
+                    </div>
+                    <p class="text-sage-600 leading-relaxed mb-6">
+                        "College stress was overwhelming until I found MindfulPath. The therapist matching was perfect, and I finally feel understood."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="flex text-yellow-400 mr-2">
+                            ⭐⭐⭐⭐⭐
+                        </div>
+                        <span class="text-sage-500 text-sm">4 months of healing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Progress Visualization -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-sage-800 mb-4">Your Wellness Journey</h2>
+                <p class="text-sage-600 text-lg max-w-2xl mx-auto">Track your progress with beautiful visualizations</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-gradient-to-r from-sage-50 to-lavender-50 rounded-3xl p-8 md:p-12">
+                    <div class="space-y-8">
+                        <div class="progress-item">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sage-700 font-medium">Mindfulness Practice</span>
+                                <span class="text-sage-600">87%</span>
+                            </div>
+                            <div class="bg-white rounded-full h-3 overflow-hidden">
+                                <div class="progress-bar bg-gradient-to-r from-sage-400 to-sage-500 h-full rounded-full transition-all duration-1000 ease-out" style="width: 0%" data-width="87%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-item">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sage-700 font-medium">Mood Stability</span>
+                                <span class="text-sage-600">72%</span>
+                            </div>
+                            <div class="bg-white rounded-full h-3 overflow-hidden">
+                                <div class="progress-bar bg-gradient-to-r from-lavender-400 to-lavender-500 h-full rounded-full transition-all duration-1000 ease-out" style="width: 0%" data-width="72%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-item">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sage-700 font-medium">Sleep Quality</span>
+                                <span class="text-sage-600">94%</span>
+                            </div>
+                            <div class="bg-white rounded-full h-3 overflow-hidden">
+                                <div class="progress-bar bg-gradient-to-r from-peach-400 to-peach-500 h-full rounded-full transition-all duration-1000 ease-out" style="width: 0%" data-width="94%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-item">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sage-700 font-medium">Overall Wellness</span>
+                                <span class="text-sage-600">84%</span>
+                            </div>
+                            <div class="bg-white rounded-full h-3 overflow-hidden">
+                                <div class="progress-bar bg-gradient-to-r from-sage-400 via-lavender-400 to-peach-400 h-full rounded-full transition-all duration-1000 ease-out" style="width: 0%" data-width="84%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-12 text-center">
+                        <p class="text-sage-600 text-lg mb-6">Keep up the great work! Your consistency is paying off.</p>
+                        <button class="bg-gradient-to-r from-sage-500 to-lavender-500 text-white px-6 py-3 rounded-full hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                            View Detailed Report
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Therapist Profiles -->
+    <section id="therapists" class="py-20 bg-gradient-to-r from-peach-50 to-sage-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-sage-800 mb-4">Meet Our Therapists</h2>
+                <p class="text-sage-600 text-lg max-w-2xl mx-auto">Compassionate professionals ready to support your journey</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="therapist-card bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 opacity-0 transform translate-y-8">
+                    <div class="h-64 bg-gradient-to-br from-sage-300 to-lavender-300 relative overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-32 h-32 bg-white rounded-full flex items-center justify-center text-6xl">
+                                👩‍⚕️
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-sage-800 mb-2">Dr. Lisa Chen</h3>
+                        <p class="text-sage-600 mb-4">Anxiety & Depression Specialist</p>
+                        <p class="text-sage-600 text-sm mb-4 leading-relaxed">15+ years helping individuals overcome anxiety and depression through mindfulness-based approaches.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-yellow-400">⭐⭐⭐⭐⭐ 4.9</span>
+                            <button class="bg-gradient-to-r from-sage-500 to-lavender-500 text-white px-4 py-2 rounded-full text-sm hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                                Book Session
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="therapist-card bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 opacity-0 transform translate-y-8" style="animation-delay: 0.2s;">
+                    <div class="h-64 bg-gradient-to-br from-lavender-300 to-peach-300 relative overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-32 h-32 bg-white rounded-full flex items-center justify-center text-6xl">
+                                👨‍⚕️
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-sage-800 mb-2">Dr. Michael Rodriguez</h3>
+                        <p class="text-sage-600 mb-4">Trauma & PTSD Therapist</p>
+                        <p class="text-sage-600 text-sm mb-4 leading-relaxed">Specialized in helping individuals heal from trauma using evidence-based therapeutic techniques.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-yellow-400">⭐⭐⭐⭐⭐ 4.8</span>
+                            <button class="bg-gradient-to-r from-sage-500 to-lavender-500 text-white px-4 py-2 rounded-full text-sm hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                                Book Session
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="therapist-card bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 opacity-0 transform translate-y-8" style="animation-delay: 0.4s;">
+                    <div class="h-64 bg-gradient-to-br from-peach-300 to-sage-300 relative overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-32 h-32 bg-white rounded-full flex items-center justify-center text-6xl">
+                                👩‍⚕️
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-sage-800 mb-2">Dr. Sarah Johnson</h3>
+                        <p class="text-sage-600 mb-4">Mindfulness & Wellness Coach</p>
+                        <p class="text-sage-600 text-sm mb-4 leading-relaxed">Expert in mindfulness practices and holistic wellness approaches for mental health.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-yellow-400">⭐⭐⭐⭐⭐ 5.0</span>
+                            <button class="bg-gradient-to-r from-sage-500 to-lavender-500 text-white px-4 py-2 rounded-full text-sm hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                                Book Session
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Free Trial Signup -->
+    <section class="py-20 bg-gradient-to-r from-sage-100 to-lavender-100">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-sage-800 mb-6">Start Your Journey Today</h2>
+                <p class="text-sage-600 text-lg mb-12 max-w-2xl mx-auto">Join thousands who have found peace and healing with MindfulPath. Your 14-day free trial includes full access to all features.</p>
+                
+                <div class="bg-white rounded-3xl p-8 md:p-12 shadow-xl max-w-2xl mx-auto">
+                    <form id="trialForm" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="form-group">
+                                <input type="text" id="firstName" placeholder="First Name" required 
+                                       class="w-full px-4 py-3 rounded-2xl border-2 border-sage-200 focus:border-sage-400 focus:outline-none transition-colors duration-300">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="lastName" placeholder="Last Name" required 
+                                       class="w-full px-4 py-3 rounded-2xl border-2 border-sage-200 focus:border-sage-400 focus:outline-none transition-colors duration-300">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="email" id="email" placeholder="Email Address" required 
+                                   class="w-full px-4 py-3 rounded-2xl border-2 border-sage-200 focus:border-sage-400 focus:outline-none transition-colors duration-300">
+                        </div>
+                        
+                        <div class="form-group">
+                            <select id="interest" required 
+                                    class="w-full px-4 py-3 rounded-2xl border-2 border-sage-200 focus:border-sage-400 focus:outline-none transition-colors duration-300 bg-white">
+                                <option value="">What interests you most?</option>
+                                <option value="meditation">Guided Meditation</option>
+                                <option value="therapy">Therapy Sessions</option>
+                                <option value="mood-tracking">Mood Tracking</option>
+                                <option value="community">Community Support</option>
+                                <option value="all">All Features</option>
+                            </select>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <input type="checkbox" id="privacy" required class="mr-3 w-5 h-5 text-sage-500">
+                            <label for="privacy" class="text-sage-600 text-sm">
+                                I agree to the <a href="#" class="text-sage-700 underline hover:text-sage-800">Privacy Policy</a> and <a href="#" class="text-sage-700 underline hover:text-sage-800">Terms of Service</a>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" id="submitTrialBtn" 
+                                class="w-full bg-gradient-to-r from-sage-500 to-lavender-500 text-white py-4 rounded-2xl text-lg font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:from-sage-600 hover:to-lavender-600">
+                            <span class="btn-text">Start Free Trial</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </form>
+                    
+                    <div class="mt-8 text-center">
+                        <p class="text-sage-500 text-sm">No credit card required • Cancel anytime • Full features included</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mental Health Resources -->
+    <section id="resources" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-sage-800 mb-4">Mental Health Resources</h2>
+                <p class="text-sage-600 text-lg max-w-2xl mx-auto">Additional support and information for your wellness journey</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <a href="#" class="resource-link group bg-gradient-to-br from-sage-50 to-sage-100 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                    <div class="text-sage-500 text-4xl mb-4 group-hover:text-sage-600 transition-colors duration-300">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-sage-800 mb-3">Self-Help Guides</h3>
+                    <p class="text-sage-600 leading-relaxed">Comprehensive guides for managing anxiety, depression, and stress with practical techniques.</p>
+                    <div class="mt-4 text-sage-500 group-hover:text-sage-600 transition-colors duration-300">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </a>
+                
+                <a href="#" class="resource-link group bg-gradient-to-br from-lavender-50 to-lavender-100 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                    <div class="text-lavender-500 text-4xl mb-4 group-hover:text-lavender-600 transition-colors duration-300">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-sage-800 mb-3">Crisis Support</h3>
+                    <p class="text-sage-600 leading-relaxed">24/7 crisis hotlines and emergency mental health resources for immediate support.</p>
+                    <div class="mt-4 text-lavender-500 group-hover:text-lavender-600 transition-colors duration-300">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </a>
+                
+                <a href="#" class="resource-link group bg-gradient-to-br from-peach-50 to-peach-100 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                    <div class="text-peach-500 text-4xl mb-4 group-hover:text-peach-600 transition-colors duration-300">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-sage-800 mb-3">Support Groups</h3>
+                    <p class="text-sage-600 leading-relaxed">Connect with others on similar journeys through moderated online support communities.</p>
+                    <div class="mt-4 text-peach-500 group-hover:text-peach-600 transition-colors duration-300">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </a>
+                
+                <a href="#" class="resource-link group bg-gradient-to-br from-sage-50 to-lavender-50 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                    <div class="text-sage-500 text-4xl mb-4 group-hover:text-sage-600 transition-colors duration-300">
+                        <i class="fas fa-podcast"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-sage-800 mb-3">Mindfulness Podcasts</h3>
+                    <p class="text-sage-600 leading-relaxed">Curated podcast recommendations for meditation, mindfulness, and mental wellness.</p>
+                    <div class="mt-4 text-sage-500 group-hover:text-sage-600 transition-colors duration-300">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </a>
+                
+                <a href="#" class="resource-link group bg-gradient-to-br from-lavender-50 to-peach-50 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                    <div class="text-lavender-500 text-4xl mb-4 group-hover:text-lavender-600 transition-colors duration-300">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-sage-800 mb-3">Educational Articles</h3>
+                    <p class="text-sage-600 leading-relaxed">Evidence-based articles about mental health topics written by licensed professionals.</p>
+                    <div class="mt-4 text-lavender-500 group-hover:text-lavender-600 transition-colors duration-300">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </a>
+                
+                <a href="#" class="resource-link group bg-gradient-to-br from-peach-50 to-sage-50 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                    <div class="text-peach-500 text-4xl mb-4 group-hover:text-peach-600 transition-colors duration-300">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-sage-800 mb-3">Self-Care Tools</h3>
+                    <p class="text-sage-600 leading-relaxed">Interactive tools and worksheets for building healthy habits and self-care routines.</p>
+                    <div class="mt-4 text-peach-500 group-hover:text-peach-600 transition-colors duration-300">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-sage-800 text-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 bg-gradient-to-r from-sage-400 to-lavender-400 rounded-full flex items-center justify-center">
+                            <i class="fas fa-brain text-white text-lg"></i>
+                        </div>
+                        <span class="text-2xl font-semibold">MindfulPath</span>
+                    </div>
+                    <p class="text-sage-200 leading-relaxed mb-6">
+                        Your companion on the journey to mental wellness and inner peace.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-sage-300 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Features</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-sage-200 hover:text-white transition-colors duration-300">Guided Meditation</a></li>
+                        <li><a href="#" class="text-sage-200 hover:text-white transition-colors duration-300">Mood Tracking</a></li>
+                        <li><a href="#" class="text-sage-200 hover:text-white transition-colors duration-300">Therapy Sessions</a></li>
+                        <li><a href="#" class="text-sage-200 hover:text-white transition-colors duration-300">Progress Analytics</a></li>
+                        <li><a href="#" class="text-sage-200 hover:text-white transition-colors duration-300">Community Support</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Support</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-sage-200 hover:text-white transition-colors duration-300">Help Center</a></li>
+                        <li><a href="#" class="text-sage-200 hover:text-white transition-colors duration-300">Contact Us</a></li>
+                        <li><a href="#" class="text-sage-200 hover:text-white transition-colors duration-300">Privacy Policy</a></li>
+                        <li><a href="#" class="text-sage-200 hover:text-white transition-colors duration-300">Terms of Service</a></li>
+                        <li><a href="#" class="text-sage-200 hover:text-white transition-colors duration-300">Crisis Resources</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Get Started</h4>
+                    <p class="text-sage-200 mb-4">Ready to begin your wellness journey?</p>
+                    <button class="bg-gradient-to-r from-sage-500 to-lavender-500 text-white px-6 py-3 rounded-full hover:shadow-lg transition-all duration-300 transform hover:scale-105 mb-4">
+                        Start Free Trial
+                    </button>
+                    <p class="text-sage-300 text-sm">No credit card required</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-sage-600 pt-8 text-center">
+                <p class="text-sage-300">
+                    © 2024 MindfulPath. All rights reserved. | Made with ❤️ for mental wellness
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Particle system for hero section
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 20;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Mindfulness quotes rotation
+        const quotes = [
+            {
+                text: "The present moment is the only time over which we have dominion.",
+                author: "Thích Nhất Hạnh"
+            },
+            {
+                text: "Peace comes from within. Do not seek it without.",
+                author: "Buddha"
+            },
+            {
+                text: "Wherever you are, be there totally.",
+                author: "Eckhart Tolle"
+            },
+            {
+                text: "The mind is everything. What you think you become.",
+                author: "Buddha"
+            },
+            {
+                text: "In the midst of movement and chaos, keep stillness inside of you.",
+                author: "Deepak Chopra"
+            }
+        ];
+
+        let currentQuoteIndex = 0;
+
+        function showQuote(index) {
+            const quoteElement = document.getElementById('currentQuote');
+            const authorElement = document.getElementById('quoteAuthor');
+            
+            // Hide current quote
+            quoteElement.style.opacity = '0';
+            authorElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                quoteElement.textContent = `"${quotes[index].text}"`;
+                authorElement.textContent = `— ${quotes[index].author}`;
+                
+                // Reset typewriter animation
+                quoteElement.style.width = '0';
+                quoteElement.style.opacity = '1';
+                
+                // Trigger typewriter effect
+                setTimeout(() => {
+                    quoteElement.style.width = '100%';
+                    setTimeout(() => {
+                        authorElement.style.opacity = '1';
+                    }, 2000);
+                }, 100);
+            }, 500);
+        }
+
+        function rotateQuotes() {
+            showQuote(currentQuoteIndex);
+            currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+        }
+
+        // Mood tracking functionality
+        const moodOptions = document.querySelectorAll('.mood-option');
+        const moodFeedback = document.getElementById('moodFeedback');
+        const moodMessage = document.getElementById('moodMessage');
+        const moodSuggestion = document.getElementById('moodSuggestion');
+
+        const moodResponses = {
+            excellent: {
+                message: "That's wonderful! You're feeling great today!",
+                suggestion: "Keep up the positive energy with a gratitude meditation."
+            },
+            good: {
+                message: "Great to hear you're doing well!",
+                suggestion: "Consider a mindfulness session to maintain this positive state."
+            },
+            okay: {
+                message: "It's okay to feel neutral sometimes.",
+                suggestion: "A breathing exercise might help bring more clarity to your day."
+            },
+            low: {
+                message: "We understand you're having a difficult time.",
+                suggestion: "Let's try a gentle meditation or connect with one of our therapists."
+            },
+            difficult: {
+                message: "We're here to support you through this difficult time.",
+                suggestion: "Consider reaching out to our crisis support team for immediate help."
+            }
+        };
+
+        moodOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                const mood = this.dataset.mood;
+                const response = moodResponses[mood];
+                
+                // Remove active state from all options
+                moodOptions.forEach(opt => opt.classList.remove('ring-4', 'ring-sage-300'));
+                
+                // Add active state to clicked option
+                this.classList.add('ring-4', 'ring-sage-300');
+                
+                // Show feedback
+                moodMessage.textContent = response.message;
+                moodSuggestion.textContent = response.suggestion;
+                moodFeedback.style.opacity = '1';
+                
+                // Add gentle bounce animation
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+            });
+        });
+
+        // Breathing text animation
+        function animateBreatheText() {
+            const breatheText = document.querySelector('.breathe-text');
+            const breatheStates = ['Breathe In', 'Hold', 'Breathe Out', 'Hold'];
+            let currentState = 0;
+            
+            setInterval(() => {
+                breatheText.textContent = breatheStates[currentState];
+                currentState = (currentState + 1) % breatheStates.length;
+            }, 1000);
+        }
+
+        // Form submission with micro-interactions
+        document.getElementById('trialForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitTrialBtn');
+            const btnText = submitBtn.querySelector('.btn-text');
+            
+            // Loading state
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+            btnText.textContent = 'Creating your account...';
+            
+            // Simulate API call
+            setTimeout(() => {
+                btnText.textContent = 'Welcome to MindfulPath!';
+                submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+                submitBtn.classList.add('bg-green-500');
+                
+                setTimeout(() => {
+                    alert('Welcome to your 14-day free trial! Check your email for next steps.');
+                    this.reset();
+                    btnText.textContent = 'Start Free Trial';
+                    submitBtn.classList.remove('bg-green-500');
+                    submitBtn.disabled = false;
+                }, 2000);
+            }, 2000);
+        });
+
+        // Progress bar animations
+        function animateProgressBars() {
+            const progressBars = document.querySelectorAll('.progress-bar');
+            progressBars.forEach(bar => {
+                const targetWidth = bar.dataset.width;
+                setTimeout(() => {
+                    bar.style.width = targetWidth;
+                }, 500);
+            });
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.classList.contains('story-card')) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    } else if (entry.target.classList.contains('therapist-card')) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    } else if (entry.target.classList.contains('progress-item')) {
+                        animateProgressBars();
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create particles
+            createParticles();
+            
+            // Start quote rotation
+            setTimeout(() => {
+                rotateQuotes();
+                setInterval(rotateQuotes, 8000);
+            }, 1000);
+            
+            // Start breathing text animation
+            animateBreatheText();
+            
+            // Observe elements for animations
+            document.querySelectorAll('.story-card, .therapist-card, .progress-item').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Add input focus effects
+        document.querySelectorAll('input, select').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.classList.add('transform', 'scale-105');
+            });
+            
+            input.addEventListener('blur', function() {
+                this.classList.remove('transform', 'scale-105');
+            });
+        });
+    </script>
+</body>
+</html>
