@@ -1,0 +1,1740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TransformPath Coaching - Transform Your Life Today</title>
+    <meta name="description" content="Unlock your potential with TransformPath Coaching. Expert life coaches, personalized development plans, and proven transformation methods to achieve your goals.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts - Poppins and Merriweather -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --confidence-gold: #F59E0B;
+            --growth-green: #10B981;
+            --clarity-blue: #3B82F6;
+            --deep-gold: #D97706;
+            --deep-green: #059669;
+            --deep-blue: #1D4ED8;
+        }
+        
+        .font-poppins { font-family: 'Poppins', sans-serif; }
+        .font-merriweather { font-family: 'Merriweather', serif; }
+        
+        .bg-gradient-empowerment {
+            background: linear-gradient(135deg, var(--confidence-gold) 0%, var(--growth-green) 50%, var(--clarity-blue) 100%);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, var(--confidence-gold), var(--growth-green), var(--clarity-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.4); }
+            50% { box-shadow: 0 0 40px rgba(245, 158, 11, 0.8); }
+        }
+        
+        .float-animation { animation: float 3s ease-in-out infinite; }
+        .fade-in-up { animation: fadeInUp 0.8s ease-out; }
+        .slide-in-right { animation: slideInRight 0.8s ease-out; }
+        .pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+        
+        .journey-step {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .journey-step.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .goal-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .assessment-progress {
+            background: linear-gradient(90deg, var(--growth-green) 0%, var(--clarity-blue) 100%);
+        }
+        
+        .story-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--confidence-gold), var(--growth-green), var(--clarity-blue));
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .coach-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .coach-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .package-tier {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .package-tier:hover {
+            transform: scale(1.05);
+            border-color: var(--confidence-gold);
+        }
+        
+        .package-tier.featured {
+            border-color: var(--confidence-gold);
+            box-shadow: 0 0 30px rgba(245, 158, 11, 0.3);
+        }
+        
+        .methodology-card {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .methodology-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .methodology-card:hover::before {
+            left: 100%;
+        }
+        
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+        
+        .progress-circle {
+            stroke-dasharray: 283;
+            stroke-dashoffset: 283;
+            transition: stroke-dashoffset 1s ease-in-out;
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body class="font-poppins bg-white text-gray-800 overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-2xl font-bold text-gradient">TransformPath</h1>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#home" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-yellow-600 transition-colors">Home</a>
+                        <a href="#assessment" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-green-600 transition-colors">Assessment</a>
+                        <a href="#coaches" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors">Coaches</a>
+                        <a href="#packages" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-yellow-600 transition-colors">Packages</a>
+                        <a href="#community" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-green-600 transition-colors">Community</a>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <button class="bg-gradient-empowerment text-white px-6 py-2 rounded-full font-semibold hover:shadow-lg transition-all pulse-glow">
+                        Start Your Journey
+                    </button>
+                </div>
+                <div class="md:hidden">
+                    <button type="button" class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="mobile-menu hidden md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-lg">
+                <a href="#home" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-yellow-600">Home</a>
+                <a href="#assessment" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-green-600">Assessment</a>
+                <a href="#coaches" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600">Coaches</a>
+                <a href="#packages" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-yellow-600">Packages</a>
+                <a href="#community" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-green-600">Community</a>
+                <button class="w-full text-left bg-gradient-empowerment text-white px-3 py-2 rounded-md font-semibold mt-2">
+                    Start Your Journey
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-yellow-50 via-green-50 to-blue-50 pt-16 overflow-hidden">
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-yellow-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
+            <div class="absolute top-3/4 right-1/4 w-64 h-64 bg-green-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse" style="animation-delay: 2s;"></div>
+            <div class="absolute bottom-1/4 left-1/3 w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse" style="animation-delay: 4s;"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Hero Content -->
+                <div class="text-center lg:text-left fade-in-up">
+                    <div class="mb-6">
+                        <span class="inline-block px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold mb-4">
+                            🌟 Transform Your Life Today
+                        </span>
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                        <span class="text-gradient">Unlock Your</span><br>
+                        <span class="font-merriweather text-gray-800">True Potential</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8 font-merriweather leading-relaxed">
+                        Join thousands who have transformed their lives with our proven coaching methods. 
+                        Discover your path to success, fulfillment, and lasting happiness.
+                    </p>
+                    
+                    <!-- Motivational Quote Overlay -->
+                    <div class="bg-white/80 backdrop-blur-sm rounded-lg p-6 mb-8 border-l-4 border-yellow-500">
+                        <blockquote class="text-lg font-merriweather italic text-gray-700 mb-2">
+                            "The journey of a thousand miles begins with a single step."
+                        </blockquote>
+                        <cite class="text-sm text-gray-500">- Lao Tzu</cite>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <button class="bg-gradient-empowerment text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-all pulse-glow transform hover:scale-105">
+                            <i class="fas fa-rocket mr-2"></i>
+                            Start Free Assessment
+                        </button>
+                        <button class="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-full font-semibold text-lg hover:border-yellow-500 hover:text-yellow-600 transition-all">
+                            <i class="fas fa-play mr-2"></i>
+                            Watch Demo
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Personal Growth Journey Visualization -->
+                <div class="relative">
+                    <div class="journey-visualization">
+                        <!-- Animated Growth Path -->
+                        <div class="relative w-full h-96 bg-white/50 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
+                            <h3 class="text-2xl font-bold text-center mb-6 text-gradient">Your Growth Journey</h3>
+                            
+                            <!-- Journey Steps -->
+                            <div class="space-y-4">
+                                <div class="journey-step flex items-center p-4 bg-yellow-100 rounded-lg" data-step="1">
+                                    <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center text-white font-bold mr-4">1</div>
+                                    <div>
+                                        <h4 class="font-semibold text-yellow-800">Self Discovery</h4>
+                                        <p class="text-sm text-yellow-600">Understand your current state</p>
+                                    </div>
+                                    <div class="ml-auto">
+                                        <div class="w-4 h-4 bg-yellow-500 rounded-full animate-pulse"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="journey-step flex items-center p-4 bg-green-100 rounded-lg" data-step="2">
+                                    <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold mr-4">2</div>
+                                    <div>
+                                        <h4 class="font-semibold text-green-800">Goal Setting</h4>
+                                        <p class="text-sm text-green-600">Define your transformation vision</p>
+                                    </div>
+                                    <div class="ml-auto">
+                                        <div class="w-4 h-4 bg-green-500 rounded-full"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="journey-step flex items-center p-4 bg-blue-100 rounded-lg" data-step="3">
+                                    <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold mr-4">3</div>
+                                    <div>
+                                        <h4 class="font-semibold text-blue-800">Action Planning</h4>
+                                        <p class="text-sm text-blue-600">Create your roadmap to success</p>
+                                    </div>
+                                    <div class="ml-auto">
+                                        <div class="w-4 h-4 bg-blue-500 rounded-full"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="journey-step flex items-center p-4 bg-purple-100 rounded-lg" data-step="4">
+                                    <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold mr-4">4</div>
+                                    <div>
+                                        <h4 class="font-semibold text-purple-800">Transformation</h4>
+                                        <p class="text-sm text-purple-600">Achieve your goals with support</p>
+                                    </div>
+                                    <div class="ml-auto">
+                                        <div class="w-4 h-4 bg-purple-500 rounded-full"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Floating Life Goal Achievement Displays -->
+        <div class="absolute top-20 right-10 hidden lg:block">
+            <div class="goal-card float-animation p-4 rounded-xl text-center text-white" style="animation-delay: 1s;">
+                <i class="fas fa-trophy text-3xl mb-2 text-yellow-400"></i>
+                <p class="text-sm font-semibold">Career Success</p>
+                <p class="text-xs opacity-80">92% Achievement Rate</p>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-32 left-10 hidden lg:block">
+            <div class="goal-card float-animation p-4 rounded-xl text-center text-white" style="animation-delay: 2s;">
+                <i class="fas fa-heart text-3xl mb-2 text-red-400"></i>
+                <p class="text-sm font-semibold">Relationships</p>
+                <p class="text-xs opacity-80">89% Improvement</p>
+            </div>
+        </div>
+        
+        <div class="absolute top-1/3 right-32 hidden lg:block">
+            <div class="goal-card float-animation p-4 rounded-xl text-center text-white" style="animation-delay: 0.5s;">
+                <i class="fas fa-dumbbell text-3xl mb-2 text-green-400"></i>
+                <p class="text-sm font-semibold">Health & Fitness</p>
+                <p class="text-xs opacity-80">95% Goal Achievement</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coaching Session Preview -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">
+                    <span class="text-gradient">Experience</span> 
+                    <span class="font-merriweather">Our Coaching</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto font-merriweather">
+                    See how our proven coaching methodology transforms lives through personalized guidance and support.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Video Preview Placeholder -->
+                <div class="relative">
+                    <div class="aspect-video bg-gradient-to-br from-yellow-100 to-blue-100 rounded-2xl overflow-hidden shadow-lg">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <button class="w-20 h-20 bg-white rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform">
+                                <i class="fas fa-play text-2xl text-yellow-600 ml-1"></i>
+                            </button>
+                        </div>
+                        <div class="absolute bottom-4 left-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+                            <i class="fas fa-clock mr-1"></i>
+                            3:45 - Sample Session
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Session Benefits -->
+                <div class="space-y-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-lightbulb text-yellow-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2">Personalized Insights</h3>
+                            <p class="text-gray-600">Receive tailored guidance based on your unique goals and challenges.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-chart-line text-green-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2">Measurable Progress</h3>
+                            <p class="text-gray-600">Track your transformation with clear milestones and achievements.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-hands-helping text-blue-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2">Ongoing Support</h3>
+                            <p class="text-gray-600">Get continuous encouragement and accountability from your dedicated coach.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="pt-4">
+                        <button class="bg-gradient-empowerment text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transition-all">
+                            Book Your Free Session
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Life Assessment Tool -->
+    <section id="assessment" class="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">
+                    <span class="text-gradient">Discover</span> 
+                    <span class="font-merriweather">Your Potential</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto font-merriweather">
+                    Take our comprehensive life assessment to get a personalized development plan tailored to your goals.
+                </p>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-xl p-8">
+                <div class="assessment-container">
+                    <!-- Progress Bar -->
+                    <div class="mb-8">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-medium text-gray-700">Assessment Progress</span>
+                            <span class="text-sm font-medium text-gray-700"><span id="current-question">1</span>/10</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div id="progress-bar" class="assessment-progress h-2 rounded-full transition-all duration-300" style="width: 10%"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Assessment Question -->
+                    <div id="assessment-content">
+                        <div class="assessment-question mb-8">
+                            <h3 class="text-2xl font-semibold mb-4" id="question-title">How satisfied are you with your current career?</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="question-options">
+                                <button class="assessment-option p-4 border-2 border-gray-200 rounded-lg hover:border-yellow-500 hover:bg-yellow-50 transition-all text-left">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-frown text-red-500 text-xl mr-3"></i>
+                                        <div>
+                                            <p class="font-semibold">Not satisfied</p>
+                                            <p class="text-sm text-gray-600">I feel stuck and unfulfilled</p>
+                                        </div>
+                                    </div>
+                                </button>
+                                
+                                <button class="assessment-option p-4 border-2 border-gray-200 rounded-lg hover:border-yellow-500 hover:bg-yellow-50 transition-all text-left">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-meh text-yellow-500 text-xl mr-3"></i>
+                                        <div>
+                                            <p class="font-semibold">Somewhat satisfied</p>
+                                            <p class="text-sm text-gray-600">It's okay but could be better</p>
+                                        </div>
+                                    </div>
+                                </button>
+                                
+                                <button class="assessment-option p-4 border-2 border-gray-200 rounded-lg hover:border-yellow-500 hover:bg-yellow-50 transition-all text-left">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-smile text-green-500 text-xl mr-3"></i>
+                                        <div>
+                                            <p class="font-semibold">Satisfied</p>
+                                            <p class="text-sm text-gray-600">I enjoy my work most days</p>
+                                        </div>
+                                    </div>
+                                </button>
+                                
+                                <button class="assessment-option p-4 border-2 border-gray-200 rounded-lg hover:border-yellow-500 hover:bg-yellow-50 transition-all text-left">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-grin-stars text-blue-500 text-xl mr-3"></i>
+                                        <div>
+                                            <p class="font-semibold">Very satisfied</p>
+                                            <p class="text-sm text-gray-600">I love what I do and feel fulfilled</p>
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Assessment Results (Initially Hidden) -->
+                    <div id="assessment-results" class="hidden">
+                        <div class="text-center mb-8">
+                            <i class="fas fa-chart-pie text-6xl text-gradient mb-4"></i>
+                            <h3 class="text-3xl font-bold mb-4">Your Personalized Development Plan</h3>
+                            <p class="text-lg text-gray-600">Based on your responses, here's your custom roadmap to transformation:</p>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                            <div class="bg-yellow-50 p-6 rounded-lg text-center">
+                                <i class="fas fa-bullseye text-3xl text-yellow-600 mb-3"></i>
+                                <h4 class="font-semibold text-yellow-800 mb-2">Primary Focus</h4>
+                                <p class="text-sm text-yellow-700">Career Advancement</p>
+                            </div>
+                            
+                            <div class="bg-green-50 p-6 rounded-lg text-center">
+                                <i class="fas fa-calendar-check text-3xl text-green-600 mb-3"></i>
+                                <h4 class="font-semibold text-green-800 mb-2">Timeline</h4>
+                                <p class="text-sm text-green-700">6-8 Months</p>
+                            </div>
+                            
+                            <div class="bg-blue-50 p-6 rounded-lg text-center">
+                                <i class="fas fa-user-graduate text-3xl text-blue-600 mb-3"></i>
+                                <h4 class="font-semibold text-blue-800 mb-2">Coach Match</h4>
+                                <p class="text-sm text-blue-700">Career Specialist</p>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center">
+                            <button class="bg-gradient-empowerment text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-all pulse-glow">
+                                Get Your Complete Plan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories Timeline -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">
+                    <span class="text-gradient">Success</span> 
+                    <span class="font-merriweather">Stories</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto font-merriweather">
+                    Real transformations from real people. See how our coaching has changed lives.
+                </p>
+            </div>
+            
+            <div class="relative story-timeline">
+                <!-- Timeline Items -->
+                <div class="space-y-16">
+                    <!-- Story 1 -->
+                    <div class="timeline-item grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                        <div class="lg:text-right">
+                            <div class="bg-yellow-50 p-8 rounded-2xl">
+                                <div class="flex items-center justify-center lg:justify-end mb-4">
+                                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b932?w=80&h=80&fit=crop&crop=face" alt="Sarah Johnson" class="w-16 h-16 rounded-full mr-4">
+                                    <div class="text-left lg:text-right">
+                                        <h3 class="font-semibold text-lg">Sarah Johnson</h3>
+                                        <p class="text-sm text-gray-600">Marketing Executive</p>
+                                    </div>
+                                </div>
+                                <blockquote class="text-lg font-merriweather italic mb-4">
+                                    "TransformPath helped me discover my true passion and transition into a career I love. I went from feeling stuck to feeling empowered."
+                                </blockquote>
+                                <div class="flex flex-wrap gap-2 justify-center lg:justify-end">
+                                    <span class="px-3 py-1 bg-yellow-200 text-yellow-800 rounded-full text-sm">Career Change</span>
+                                    <span class="px-3 py-1 bg-green-200 text-green-800 rounded-full text-sm">Confidence Building</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center lg:text-left">
+                            <div class="bg-gradient-to-br from-yellow-100 to-yellow-200 p-8 rounded-2xl">
+                                <h4 class="text-2xl font-bold mb-4 text-yellow-800">6 Month Journey</h4>
+                                <div class="space-y-3">
+                                    <div class="flex items-center">
+                                        <div class="w-4 h-4 bg-yellow-600 rounded-full mr-3"></div>
+                                        <span class="text-sm">Started career coaching sessions</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-4 h-4 bg-yellow-600 rounded-full mr-3"></div>
+                                        <span class="text-sm">Identified passion for digital marketing</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-4 h-4 bg-yellow-600 rounded-full mr-3"></div>
+                                        <span class="text-sm">Developed transition strategy</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-4 h-4 bg-yellow-600 rounded-full mr-3"></div>
+                                        <span class="text-sm">Landed dream job with 40% salary increase</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Story 2 -->
+                    <div class="timeline-item grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                        <div class="lg:order-2">
+                            <div class="bg-green-50 p-8 rounded-2xl">
+                                <div class="flex items-center mb-4">
+                                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face" alt="Michael Chen" class="w-16 h-16 rounded-full mr-4">
+                                    <div>
+                                        <h3 class="font-semibold text-lg">Michael Chen</h3>
+                                        <p class="text-sm text-gray-600">Entrepreneur</p>
+                                    </div>
+                                </div>
+                                <blockquote class="text-lg font-merriweather italic mb-4">
+                                    "The goal-setting framework and accountability support helped me launch my business successfully while maintaining work-life balance."
+                                </blockquote>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1 bg-green-200 text-green-800 rounded-full text-sm">Business Launch</span>
+                                    <span class="px-3 py-1 bg-blue-200 text-blue-800 rounded-full text-sm">Work-Life Balance</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:order-1 text-center lg:text-right">
+                            <div class="bg-gradient-to-br from-green-100 to-green-200 p-8 rounded-2xl">
+                                <h4 class="text-2xl font-bold mb-4 text-green-800">8 Month Journey</h4>
+                                <div class="space-y-3">
+                                    <div class="flex items-center justify-end">
+                                        <span class="text-sm mr-3">Business planning and validation</span>
+                                        <div class="w-4 h-4 bg-green-600 rounded-full"></div>
+                                    </div>
+                                    <div class="flex items-center justify-end">
+                                        <span class="text-sm mr-3">Secured initial funding</span>
+                                        <div class="w-4 h-4 bg-green-600 rounded-full"></div>
+                                    </div>
+                                    <div class="flex items-center justify-end">
+                                        <span class="text-sm mr-3">Built team and launched product</span>
+                                        <div class="w-4 h-4 bg-green-600 rounded-full"></div>
+                                    </div>
+                                    <div class="flex items-center justify-end">
+                                        <span class="text-sm mr-3">Achieved 6-figure revenue</span>
+                                        <div class="w-4 h-4 bg-green-600 rounded-full"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Story 3 -->
+                    <div class="timeline-item grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                        <div class="lg:text-right">
+                            <div class="bg-blue-50 p-8 rounded-2xl">
+                                <div class="flex items-center justify-center lg:justify-end mb-4">
+                                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face" alt="Emily Rodriguez" class="w-16 h-16 rounded-full mr-4">
+                                    <div class="text-left lg:text-right">
+                                        <h3 class="font-semibold text-lg">Emily Rodriguez</h3>
+                                        <p class="text-sm text-gray-600">Life Transformation</p>
+                                    </div>
+                                </div>
+                                <blockquote class="text-lg font-merriweather italic mb-4">
+                                    "I overcame years of self-doubt and built the confidence to pursue my dreams. The personal development work was life-changing."
+                                </blockquote>
+                                <div class="flex flex-wrap gap-2 justify-center lg:justify-end">
+                                    <span class="px-3 py-1 bg-blue-200 text-blue-800 rounded-full text-sm">Confidence Building</span>
+                                    <span class="px-3 py-1 bg-purple-200 text-purple-800 rounded-full text-sm">Personal Growth</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center lg:text-left">
+                            <div class="bg-gradient-to-br from-blue-100 to-blue-200 p-8 rounded-2xl">
+                                <h4 class="text-2xl font-bold mb-4 text-blue-800">4 Month Journey</h4>
+                                <div class="space-y-3">
+                                    <div class="flex items-center">
+                                        <div class="w-4 h-4 bg-blue-600 rounded-full mr-3"></div>
+                                        <span class="text-sm">Identified limiting beliefs</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-4 h-4 bg-blue-600 rounded-full mr-3"></div>
+                                        <span class="text-sm">Developed self-confidence practices</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-4 h-4 bg-blue-600 rounded-full mr-3"></div>
+                                        <span class="text-sm">Set and achieved personal goals</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-4 h-4 bg-blue-600 rounded-full mr-3"></div>
+                                        <span class="text-sm">Launched passion project</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certified Coach Profiles -->
+    <section id="coaches" class="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">
+                    <span class="text-gradient">Meet Your</span> 
+                    <span class="font-merriweather">Expert Coaches</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto font-merriweather">
+                    Our certified coaches bring years of experience and proven methodologies to guide your transformation.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Coach 1 -->
+                <div class="coach-card bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="text-center mb-6">
+                        <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=120&h=120&fit=crop&crop=face" alt="Dr. Alexandra Thompson" class="w-24 h-24 rounded-full mx-auto mb-4">
+                        <h3 class="text-xl font-bold mb-2">Dr. Alexandra Thompson</h3>
+                        <p class="text-gray-600 mb-4">Career & Leadership Coach</p>
+                        <div class="flex justify-center items-center mb-2">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="ml-2 text-sm text-gray-600">(4.9/5)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-semibold mb-3">Specializations:</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">Executive Coaching</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Leadership</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Career Transition</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-semibold mb-3">Success Metrics:</h4>
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span class="text-sm">Client Success Rate</span>
+                                <span class="text-sm font-semibold text-green-600">94%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-sm">Years Experience</span>
+                                <span class="text-sm font-semibold">12</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-sm">Clients Coached</span>
+                                <span class="text-sm font-semibold">500+</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-semibold mb-2">Certifications:</h4>
+                        <div class="text-sm text-gray-600">
+                            <p>• ICF Professional Certified Coach</p>
+                            <p>• PhD in Organizational Psychology</p>
+                            <p>• Certified Leadership Assessor</p>
+                        </div>
+                    </div>
+                    
+                    <button class="w-full bg-gradient-empowerment text-white py-3 rounded-full font-semibold hover:shadow-lg transition-all">
+                        Book Consultation
+                    </button>
+                </div>
+                
+                <!-- Coach 2 -->
+                <div class="coach-card bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="text-center mb-6">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop&crop=face" alt="Marcus Williams" class="w-24 h-24 rounded-full mx-auto mb-4">
+                        <h3 class="text-xl font-bold mb-2">Marcus Williams</h3>
+                        <p class="text-gray-600 mb-4">Life & Wellness Coach</p>
+                        <div class="flex justify-center items-center mb-2">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="ml-2 text-sm text-gray-600">(4.8/5)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-semibold mb-3">Specializations:</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Life Balance</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Wellness</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">Mindfulness</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-semibold mb-3">Success Metrics:</h4>
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span class="text-sm">Client Success Rate</span>
+                                <span class="text-sm font-semibold text-green-600">91%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-sm">Years Experience</span>
+                                <span class="text-sm font-semibold">8</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-sm">Clients Coached</span>
+                                <span class="text-sm font-semibold">350+</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-semibold mb-2">Certifications:</h4>
+                        <div class="text-sm text-gray-600">
+                            <p>• Certified Life Coach (CLC)</p>
+                            <p>• Wellness Coaching Certification</p>
+                            <p>• Mindfulness-Based Stress Reduction</p>
+                        </div>
+                    </div>
+                    
+                    <button class="w-full bg-gradient-empowerment text-white py-3 rounded-full font-semibold hover:shadow-lg transition-all">
+                        Book Consultation
+                    </button>
+                </div>
+                
+                <!-- Coach 3 -->
+                <div class="coach-card bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="text-center mb-6">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=120&h=120&fit=crop&crop=face" alt="Sarah Chen" class="w-24 h-24 rounded-full mx-auto mb-4">
+                        <h3 class="text-xl font-bold mb-2">Sarah Chen</h3>
+                        <p class="text-gray-600 mb-4">Business & Entrepreneur Coach</p>
+                        <div class="flex justify-center items-center mb-2">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="ml-2 text-sm text-gray-600">(4.9/5)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-semibold mb-3">Specializations:</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">Business Strategy</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Startups</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Scaling</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-semibold mb-3">Success Metrics:</h4>
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span class="text-sm">Client Success Rate</span>
+                                <span class="text-sm font-semibold text-green-600">96%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-sm">Years Experience</span>
+                                <span class="text-sm font-semibold">15</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-sm">Businesses Launched</span>
+                                <span class="text-sm font-semibold">200+</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-semibold mb-2">Certifications:</h4>
+                        <div class="text-sm text-gray-600">
+                            <p>• MBA in Entrepreneurship</p>
+                            <p>• Certified Business Coach</p>
+                            <p>• Lean Startup Methodology</p>
+                        </div>
+                    </div>
+                    
+                    <button class="w-full bg-gradient-empowerment text-white py-3 rounded-full font-semibold hover:shadow-lg transition-all">
+                        Book Consultation
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coaching Methodology -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">
+                    <span class="text-gradient">Our Proven</span> 
+                    <span class="font-merriweather">Methodology</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto font-merriweather">
+                    Discover the science-backed approaches that drive real transformation in our coaching programs.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <!-- Methodology 1 -->
+                <div class="methodology-card bg-gradient-to-br from-yellow-50 to-yellow-100 p-8 rounded-2xl">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-brain text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Cognitive Behavioral Approach</h3>
+                        <p class="text-gray-600">Transform limiting beliefs and thought patterns</p>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-yellow-500 mt-1 mr-3"></i>
+                            <span class="text-sm">Identify self-limiting beliefs</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-yellow-500 mt-1 mr-3"></i>
+                            <span class="text-sm">Reframe negative thought patterns</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-yellow-500 mt-1 mr-3"></i>
+                            <span class="text-sm">Build empowering mindsets</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Methodology 2 -->
+                <div class="methodology-card bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-2xl">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-target text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Goal-Setting Framework</h3>
+                        <p class="text-gray-600">SMART goals with accountability systems</p>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span class="text-sm">Define clear, measurable objectives</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span class="text-sm">Create actionable step-by-step plans</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span class="text-sm">Regular progress tracking and adjustments</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Methodology 3 -->
+                <div class="methodology-card bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-2xl">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-heart text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Positive Psychology</h3>
+                        <p class="text-gray-600">Strengths-based transformation approach</p>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
+                            <span class="text-sm">Identify and leverage core strengths</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
+                            <span class="text-sm">Build resilience and emotional intelligence</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
+                            <span class="text-sm">Cultivate happiness and fulfillment</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Methodology Comparison -->
+            <div class="bg-gradient-to-r from-gray-50 to-blue-50 rounded-2xl p-8">
+                <h3 class="text-2xl font-bold text-center mb-8">Why Our Approach Works</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-yellow-600 mb-2">94%</div>
+                        <p class="text-sm text-gray-600">Success Rate</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-green-600 mb-2">6.8x</div>
+                        <p class="text-sm text-gray-600">Faster Results</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-blue-600 mb-2">89%</div>
+                        <p class="text-sm text-gray-600">Long-term Retention</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coaching Packages -->
+    <section id="packages" class="py-20 bg-gradient-to-br from-yellow-50 via-green-50 to-blue-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">
+                    <span class="text-gradient">Choose Your</span> 
+                    <span class="font-merriweather">Transformation Path</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto font-merriweather">
+                    Flexible coaching packages designed to meet you wherever you are in your journey.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Starter Package -->
+                <div class="package-tier bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold mb-2">Starter</h3>
+                        <p class="text-gray-600 mb-4">Perfect for beginners</p>
+                        <div class="text-4xl font-bold mb-2">
+                            <span class="text-3xl text-gray-500">$</span>297
+                            <span class="text-lg text-gray-500 font-normal">/month</span>
+                        </div>
+                        <p class="text-sm text-gray-500">3-month commitment</p>
+                    </div>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 w-5"></i>
+                            <span class="ml-3">2 coaching sessions per month</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 w-5"></i>
+                            <span class="ml-3">Email support between sessions</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 w-5"></i>
+                            <span class="ml-3">Goal-setting workbook</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 w-5"></i>
+                            <span class="ml-3">Progress tracking tools</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 w-5"></i>
+                            <span class="ml-3">Resource library access</span>
+                        </div>
+                    </div>
+                    
+                    <button class="w-full border-2 border-gray-300 text-gray-700 py-3 rounded-full font-semibold hover:border-yellow-500 hover:text-yellow-600 transition-all">
+                        Get Started
+                    </button>
+                </div>
+                
+                <!-- Professional Package (Featured) -->
+                <div class="package-tier featured bg-white rounded-2xl p-8 shadow-xl relative">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                        <span class="bg-gradient-empowerment text-white px-6 py-2 rounded-full text-sm font-semibold">Most Popular</span>
+                    </div>
+                    
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold mb-2">Professional</h3>
+                        <p class="text-gray-600 mb-4">Our most comprehensive program</p>
+                        <div class="text-4xl font-bold mb-2">
+                            <span class="text-3xl text-gray-500">$</span>597
+                            <span class="text-lg text-gray-500 font-normal">/month</span>
+                        </div>
+                        <p class="text-sm text-gray-500">6-month commitment</p>
+                    </div>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 w-5"></i>
+                            <span class="ml-3">4 coaching sessions per month</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 w-5"></i>
+                            <span class="ml-3">24/7 chat support</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 w-5"></i>
+                            <span class="ml-3">Personalized development plan</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 w-5"></i>
+                            <span class="ml-3">Weekly accountability check-ins</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 w-5"></i>
+                            <span class="ml-3">Assessment tools & reports</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 w-5"></i>
+                            <span class="ml-3">Group mastermind access</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 w-5"></i>
+                            <span class="ml-3">Priority coach matching</span>
+                        </div>
+                    </div>
+                    
+                    <button class="w-full bg-gradient-empowerment text-white py-3 rounded-full font-semibold hover:shadow-lg transition-all pulse-glow">
+                        Start Transforming
+                    </button>
+                </div>
+                
+                <!-- Executive Package -->
+                <div class="package-tier bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold mb-2">Executive</h3>
+                        <p class="text-gray-600 mb-4">For high-achievers and leaders</p>
+                        <div class="text-4xl font-bold mb-2">
+                            <span class="text-3xl text-gray-500">$</span>997
+                            <span class="text-lg text-gray-500 font-normal">/month</span>
+                        </div>
+                        <p class="text-sm text-gray-500">12-month commitment</p>
+                    </div>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 w-5"></i>
+                            <span class="ml-3">8 coaching sessions per month</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 w-5"></i>
+                            <span class="ml-3">Dedicated coach & support team</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 w-5"></i>
+                            <span class="ml-3">Custom transformation program</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 w-5"></i>
+                            <span class="ml-3">360-degree assessments</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 w-5"></i>
+                            <span class="ml-3">Leadership development modules</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 w-5"></i>
+                            <span class="ml-3">VIP community access</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500 w-5"></i>
+                            <span class="ml-3">Monthly strategy sessions</span>
+                        </div>
+                    </div>
+                    
+                    <button class="w-full border-2 border-gray-300 text-gray-700 py-3 rounded-full font-semibold hover:border-yellow-500 hover:text-yellow-600 transition-all">
+                        Schedule Consultation
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Package Comparison Features -->
+            <div class="mt-16 bg-white rounded-2xl p-8 shadow-lg">
+                <h3 class="text-2xl font-bold text-center mb-8">Package Features Comparison</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b">
+                                <th class="text-left py-4">Features</th>
+                                <th class="text-center py-4">Starter</th>
+                                <th class="text-center py-4">Professional</th>
+                                <th class="text-center py-4">Executive</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm">
+                            <tr class="border-b">
+                                <td class="py-3">Monthly Coaching Sessions</td>
+                                <td class="text-center py-3">2</td>
+                                <td class="text-center py-3">4</td>
+                                <td class="text-center py-3">8</td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="py-3">Support Response Time</td>
+                                <td class="text-center py-3">24-48hrs</td>
+                                <td class="text-center py-3">2-4hrs</td>
+                                <td class="text-center py-3">< 1hr</td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="py-3">Community Access</td>
+                                <td class="text-center py-3">Basic</td>
+                                <td class="text-center py-3">Premium</td>
+                                <td class="text-center py-3">VIP</td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="py-3">Assessment Tools</td>
+                                <td class="text-center py-3">Basic</td>
+                                <td class="text-center py-3">Comprehensive</td>
+                                <td class="text-center py-3">360-Degree</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Goal Tracking & Community -->
+    <section id="community" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">
+                    <span class="text-gradient">Track Progress</span> 
+                    <span class="font-merriweather">& Find Community</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto font-merriweather">
+                    Stay motivated with our goal tracking tools and connect with like-minded individuals on similar journeys.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+                <!-- Goal Tracking Dashboard -->
+                <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold mb-6 text-center">Your Progress Dashboard</h3>
+                    
+                    <!-- Progress Rings -->
+                    <div class="grid grid-cols-3 gap-6 mb-8">
+                        <div class="text-center">
+                            <div class="relative w-20 h-20 mx-auto mb-2">
+                                <svg class="progress-ring w-20 h-20">
+                                    <circle cx="40" cy="40" r="32" stroke="#e5e7eb" stroke-width="4" fill="none"></circle>
+                                    <circle cx="40" cy="40" r="32" stroke="#f59e0b" stroke-width="4" fill="none" 
+                                            class="progress-circle" style="stroke-dashoffset: 82;"></circle>
+                                </svg>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <span class="text-lg font-bold text-yellow-600">71%</span>
+                                </div>
+                            </div>
+                            <p class="text-sm font-semibold">Career Goals</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="relative w-20 h-20 mx-auto mb-2">
+                                <svg class="progress-ring w-20 h-20">
+                                    <circle cx="40" cy="40" r="32" stroke="#e5e7eb" stroke-width="4" fill="none"></circle>
+                                    <circle cx="40" cy="40" r="32" stroke="#10b981" stroke-width="4" fill="none" 
+                                            class="progress-circle" style="stroke-dashoffset: 56;"></circle>
+                                </svg>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <span class="text-lg font-bold text-green-600">80%</span>
+                                </div>
+                            </div>
+                            <p class="text-sm font-semibold">Health & Wellness</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="relative w-20 h-20 mx-auto mb-2">
+                                <svg class="progress-ring w-20 h-20">
+                                    <circle cx="40" cy="40" r="32" stroke="#e5e7eb" stroke-width="4" fill="none"></circle>
+                                    <circle cx="40" cy="40" r="32" stroke="#3b82f6" stroke-width="4" fill="none" 
+                                            class="progress-circle" style="stroke-dashoffset: 113;"></circle>
+                                </svg>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <span class="text-lg font-bold text-blue-600">60%</span>
+                                </div>
+                            </div>
+                            <p class="text-sm font-semibold">Relationships</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Recent Achievements -->
+                    <div class="space-y-3 mb-6">
+                        <h4 class="font-semibold">Recent Achievements:</h4>
+                        <div class="flex items-center p-3 bg-yellow-100 rounded-lg">
+                            <i class="fas fa-trophy text-yellow-600 mr-3"></i>
+                            <span class="text-sm">Completed 30-day habit challenge</span>
+                        </div>
+                        <div class="flex items-center p-3 bg-green-100 rounded-lg">
+                            <i class="fas fa-star text-green-600 mr-3"></i>
+                            <span class="text-sm">Reached monthly exercise goal</span>
+                        </div>
+                        <div class="flex items-center p-3 bg-blue-100 rounded-lg">
+                            <i class="fas fa-heart text-blue-600 mr-3"></i>
+                            <span class="text-sm">Improved communication skills rating</span>
+                        </div>
+                    </div>
+                    
+                    <button class="w-full bg-gradient-empowerment text-white py-3 rounded-full font-semibold">
+                        View Full Dashboard
+                    </button>
+                </div>
+                
+                <!-- Community Features -->
+                <div class="bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold mb-6 text-center">Community & Support</h3>
+                    
+                    <!-- Accountability Partner Matching -->
+                    <div class="mb-8">
+                        <h4 class="font-semibold mb-4">Accountability Partner Matching</h4>
+                        <div class="bg-white rounded-lg p-4 mb-4">
+                            <div class="flex items-center mb-3">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face" alt="Partner" class="w-10 h-10 rounded-full mr-3">
+                                <div>
+                                    <p class="font-semibold text-sm">Alex M.</p>
+                                    <p class="text-xs text-gray-600">Career Transition • 89% Match</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-700 mb-3">"Looking for someone to stay accountable with career goals and networking challenges."</p>
+                            <button class="text-sm bg-green-100 text-green-700 px-3 py-1 rounded-full">Connect</button>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-4">
+                            <div class="flex items-center mb-3">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face" alt="Partner" class="w-10 h-10 rounded-full mr-3">
+                                <div>
+                                    <p class="font-semibold text-sm">Maria S.</p>
+                                    <p class="text-xs text-gray-600">Work-Life Balance • 92% Match</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-700 mb-3">"Entrepreneur seeking balance between business growth and personal life."</p>
+                            <button class="text-sm bg-green-100 text-green-700 px-3 py-1 rounded-full">Connect</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Community Stats -->
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="text-center bg-white rounded-lg p-4">
+                            <div class="text-2xl font-bold text-green-600">2,847</div>
+                            <p class="text-sm text-gray-600">Active Members</p>
+                        </div>
+                        <div class="text-center bg-white rounded-lg p-4">
+                            <div class="text-2xl font-bold text-blue-600">94%</div>
+                            <p class="text-sm text-gray-600">Goal Achievement</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Support Groups -->
+                    <div class="mb-6">
+                        <h4 class="font-semibold mb-3">Active Support Groups</h4>
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-center p-3 bg-white rounded-lg">
+                                <span class="text-sm">Career Changers</span>
+                                <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full">47 members</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-white rounded-lg">
+                                <span class="text-sm">Entrepreneurs</span>
+                                <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">32 members</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-white rounded-lg">
+                                <span class="text-sm">Wellness Warriors</span>
+                                <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">61 members</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="w-full bg-gradient-empowerment text-white py-3 rounded-full font-semibold">
+                        Join Community
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Motivational Quote Section -->
+            <div class="text-center bg-gradient-to-r from-yellow-50 via-green-50 to-blue-50 rounded-2xl p-12">
+                <blockquote class="text-3xl font-merriweather italic text-gray-700 mb-4">
+                    "The only impossible journey is the one you never begin."
+                </blockquote>
+                <cite class="text-lg text-gray-500">- Tony Robbins</cite>
+                <div class="mt-8">
+                    <button class="bg-gradient-empowerment text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-all pulse-glow">
+                        <i class="fas fa-rocket mr-2"></i>
+                        Begin Your Journey Today
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <!-- Company Info -->
+                <div>
+                    <h3 class="text-2xl font-bold text-gradient mb-4">TransformPath</h3>
+                    <p class="text-gray-400 mb-4">Empowering individuals to unlock their true potential and create lasting transformation in their lives.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#assessment" class="text-gray-400 hover:text-white transition-colors">Free Assessment</a></li>
+                        <li><a href="#coaches" class="text-gray-400 hover:text-white transition-colors">Our Coaches</a></li>
+                        <li><a href="#packages" class="text-gray-400 hover:text-white transition-colors">Packages</a></li>
+                        <li><a href="#community" class="text-gray-400 hover:text-white transition-colors">Community</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Services -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Career Coaching</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Life Coaching</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Business Coaching</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Wellness Coaching</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Leadership Development</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-yellow-400"></i>
+                            <span class="text-gray-400">hello@transformpath.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-2 text-yellow-400"></i>
+                            <span class="text-gray-400">1-800-TRANSFORM</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt mr-2 text-yellow-400"></i>
+                            <span class="text-gray-400">Worldwide • Remote Coaching</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 TransformPath Coaching. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.querySelector('.mobile-menu-button');
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', function() {
+                    const mobileMenu = document.querySelector('.mobile-menu');
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('.nav-link').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                    // Close mobile menu if open
+                    document.querySelector('.mobile-menu').classList.add('hidden');
+                });
+            });
+
+            // Journey visualization animation
+            function animateJourneySteps() {
+                const steps = document.querySelectorAll('.journey-step');
+                steps.forEach((step, index) => {
+                    setTimeout(() => {
+                        step.classList.add('active');
+                    }, index * 500);
+                });
+            }
+
+            // Timeline animation
+            function animateTimeline() {
+                const timelineItems = document.querySelectorAll('.timeline-item');
+                timelineItems.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add('visible');
+                    }, index * 300);
+                });
+            }
+
+            // Intersection Observer for animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (entry.target.classList.contains('journey-visualization')) {
+                            animateJourneySteps();
+                        }
+                        if (entry.target.classList.contains('story-timeline')) {
+                            animateTimeline();
+                        }
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            // Observe elements for animation
+            const journeyViz = document.querySelector('.journey-visualization');
+            const storyTimeline = document.querySelector('.story-timeline');
+            
+            if (journeyViz) observer.observe(journeyViz);
+            if (storyTimeline) observer.observe(storyTimeline);
+
+            // Assessment functionality
+            const assessmentQuestions = [
+                {
+                    title: "How satisfied are you with your current career?",
+                    options: [
+                        { text: "Not satisfied", subtitle: "I feel stuck and unfulfilled", icon: "fas fa-frown", color: "red" },
+                        { text: "Somewhat satisfied", subtitle: "It's okay but could be better", icon: "fas fa-meh", color: "yellow" },
+                        { text: "Satisfied", subtitle: "I enjoy my work most days", icon: "fas fa-smile", color: "green" },
+                        { text: "Very satisfied", subtitle: "I love what I do and feel fulfilled", icon: "fas fa-grin-stars", color: "blue" }
+                    ]
+                },
+                {
+                    title: "How would you rate your work-life balance?",
+                    options: [
+                        { text: "Poor", subtitle: "Work dominates my life", icon: "fas fa-battery-empty", color: "red" },
+                        { text: "Fair", subtitle: "Some balance but could improve", icon: "fas fa-battery-quarter", color: "yellow" },
+                        { text: "Good", subtitle: "Generally balanced", icon: "fas fa-battery-three-quarters", color: "green" },
+                        { text: "Excellent", subtitle: "Perfect harmony", icon: "fas fa-battery-full", color: "blue" }
+                    ]
+                },
+                {
+                    title: "How confident do you feel about your future goals?",
+                    options: [
+                        { text: "Not confident", subtitle: "I'm unsure about my direction", icon: "fas fa-question-circle", color: "red" },
+                        { text: "Somewhat confident", subtitle: "I have some clarity", icon: "fas fa-adjust", color: "yellow" },
+                        { text: "Confident", subtitle: "I know where I'm heading", icon: "fas fa-compass", color: "green" },
+                        { text: "Very confident", subtitle: "I have a clear vision", icon: "fas fa-eye", color: "blue" }
+                    ]
+                },
+                {
+                    title: "What's your biggest challenge right now?",
+                    options: [
+                        { text: "Lack of direction", subtitle: "I don't know what I want", icon: "fas fa-compass", color: "red" },
+                        { text: "Time management", subtitle: "I'm always overwhelmed", icon: "fas fa-clock", color: "yellow" },
+                        { text: "Confidence issues", subtitle: "I doubt my abilities", icon: "fas fa-user-shield", color: "green" },
+                        { text: "Motivation", subtitle: "I struggle to stay motivated", icon: "fas fa-battery-empty", color: "blue" }
+                    ]
+                },
+                {
+                    title: "How important is personal growth to you?",
+                    options: [
+                        { text: "Not very important", subtitle: "I'm content as I am", icon: "fas fa-leaf", color: "red" },
+                        { text: "Somewhat important", subtitle: "I'd like some improvement", icon: "fas fa-seedling", color: "yellow" },
+                        { text: "Very important", subtitle: "It's a high priority for me", icon: "fas fa-tree", color: "green" },
+                        { text: "Extremely important", subtitle: "It's my top priority", icon: "fas fa-mountain", color: "blue" }
+                    ]
+                }
+            ];
+
+            let currentQuestionIndex = 0;
+            const userAnswers = [];
+
+            function renderQuestion(index) {
+                const question = assessmentQuestions[index];
+                const questionTitle = document.getElementById('question-title');
+                const questionOptions = document.getElementById('question-options');
+                const currentQuestionSpan = document.getElementById('current-question');
+                const progressBar = document.getElementById('progress-bar');
+
+                if (!questionTitle || !questionOptions) return;
+
+                questionTitle.textContent = question.title;
+                currentQuestionSpan.textContent = index + 1;
+                progressBar.style.width = `${((index + 1) / assessmentQuestions.length) * 100}%`;
+
+                questionOptions.innerHTML = '';
+                question.options.forEach((option, optionIndex) => {
+                    const button = document.createElement('button');
+                    button.className = 'assessment-option p-4 border-2 border-gray-200 rounded-lg hover:border-yellow-500 hover:bg-yellow-50 transition-all text-left';
+                    button.innerHTML = `
+                        <div class="flex items-center">
+                            <i class="${option.icon} text-${option.color}-500 text-xl mr-3"></i>
+                            <div>
+                                <p class="font-semibold">${option.text}</p>
+                                <p class="text-sm text-gray-600">${option.subtitle}</p>
+                            </div>
+                        </div>
+                    `;
+                    button.addEventListener('click', () => selectOption(optionIndex));
+                    questionOptions.appendChild(button);
+                });
+            }
+
+            function selectOption(optionIndex) {
+                userAnswers[currentQuestionIndex] = optionIndex;
+                
+                // Highlight selected option
+                document.querySelectorAll('.assessment-option').forEach((btn, index) => {
+                    btn.classList.remove('border-yellow-500', 'bg-yellow-50');
+                    if (index === optionIndex) {
+                        btn.classList.add('border-yellow-500', 'bg-yellow-50');
+                    }
+                });
+
+                // Move to next question after a short delay
+                setTimeout(() => {
+                    currentQuestionIndex++;
+                    if (currentQuestionIndex < assessmentQuestions.length) {
+                        renderQuestion(currentQuestionIndex);
+                    } else {
+                        showResults();
+                    }
+                }, 500);
+            }
+
+            function showResults() {
+                const assessmentContent = document.getElementById('assessment-content');
+                const assessmentResults = document.getElementById('assessment-results');
+                
+                if (assessmentContent && assessmentResults) {
+                    assessmentContent.classList.add('hidden');
+                    assessmentResults.classList.remove('hidden');
+                }
+            }
+
+            // Initialize assessment
+            renderQuestion(0);
+
+            // Parallax effect for hero section (reduced motion friendly)
+            let ticking = false;
+            function updateParallax() {
+                const scrolled = window.pageYOffset;
+                const parallax = document.querySelector('#home');
+                const speed = 0.3;
+                
+                if (parallax && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                    parallax.style.transform = `translateY(${scrolled * speed}px)`;
+                }
+                ticking = false;
+            }
+
+            function requestTick() {
+                if (!ticking) {
+                    requestAnimationFrame(updateParallax);
+                    ticking = true;
+                }
+            }
+
+            window.addEventListener('scroll', requestTick);
+
+            // Animate elements on scroll
+            const animateOnScroll = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in-up');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            // Observe elements for animation
+            document.querySelectorAll('h2, .methodology-card, .coach-card, .package-tier').forEach(el => {
+                animateOnScroll.observe(el);
+            });
+
+            // Progress ring animations
+            function animateProgressRings() {
+                const rings = document.querySelectorAll('.progress-circle');
+                rings.forEach((ring, index) => {
+                    const percent = [71, 80, 60][index];
+                    const circumference = 2 * Math.PI * 32;
+                    const offset = circumference - (percent / 100) * circumference;
+                    
+                    setTimeout(() => {
+                        ring.style.strokeDashoffset = offset;
+                    }, index * 200);
+                });
+            }
+
+            // Animate progress rings when community section comes into view
+            const communityObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateProgressRings();
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            const communitySection = document.querySelector('#community');
+            if (communitySection) {
+                communityObserver.observe(communitySection);
+            }
+
+            // Package tier hover effects
+            document.querySelectorAll('.package-tier').forEach(tier => {
+                tier.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                });
+                
+                tier.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+
+            // Floating elements animation
+            function floatingAnimation() {
+                const floatingElements = document.querySelectorAll('.float-animation');
+                floatingElements.forEach((element, index) => {
+                    element.style.animationDelay = `${index * 0.5}s`;
+                });
+            }
+
+            floatingAnimation();
+
+            // Add click handlers for CTA buttons
+            document.querySelectorAll('button').forEach(button => {
+                if (button.textContent.includes('Start') || button.textContent.includes('Begin') || button.textContent.includes('Book')) {
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        // Scroll to assessment section for "Start" buttons
+                        if (button.textContent.includes('Start') || button.textContent.includes('Begin')) {
+                            const assessmentSection = document.querySelector('#assessment');
+                            if (assessmentSection) {
+                                assessmentSection.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        }
+                        // Add a subtle animation feedback
+                        button.style.transform = 'scale(0.95)';
+                        setTimeout(() => {
+                            button.style.transform = 'scale(1)';
+                        }, 150);
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
