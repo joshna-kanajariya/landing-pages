@@ -1,0 +1,1736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UserFirst Design Lab - UX Consultancy & User Experience Design</title>
+    <meta name="description" content="UserFirst Design Lab: Premier UX consultancy specializing in user-centered design, interface optimization, and digital experience transformation.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --interface-blue: #2563eb;
+            --wireframe-gray: #6b7280;
+            --highlight-orange: #f97316;
+            --light-blue: #eff6ff;
+            --dark-blue: #1e40af;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .font-code {
+            font-family: 'Fira Code', monospace;
+        }
+        
+        /* Custom Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(37, 99, 235, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(37, 99, 235, 0.6); }
+        }
+        
+        @keyframes flow {
+            0% { transform: translateX(-100%); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateX(100%); opacity: 0; }
+        }
+        
+        @keyframes rotate-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        
+        .flow-animation {
+            animation: flow 3s ease-in-out infinite;
+        }
+        
+        .rotate-slow {
+            animation: rotate-slow 20s linear infinite;
+        }
+        
+        /* Interface Elements */
+        .interface-card {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(249, 115, 22, 0.1) 100%);
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .interface-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.2);
+            border-color: var(--interface-blue);
+        }
+        
+        .wireframe-element {
+            border: 2px dashed var(--wireframe-gray);
+            background: rgba(107, 114, 128, 0.1);
+        }
+        
+        /* Skill Matrix */
+        .skill-bar {
+            background: linear-gradient(90deg, var(--interface-blue) 0%, var(--highlight-orange) 100%);
+            height: 6px;
+            border-radius: 3px;
+            transition: width 1s ease-in-out;
+        }
+        
+        /* Process Visualization */
+        .process-step {
+            position: relative;
+        }
+        
+        .process-step::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -30px;
+            width: 20px;
+            height: 2px;
+            background: var(--interface-blue);
+            transform: translateY(-50%);
+        }
+        
+        .process-step:last-child::before {
+            display: none;
+        }
+        
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--interface-blue);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--dark-blue);
+        }
+        
+        /* Responsive Typography */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+                line-height: 1.2;
+            }
+        }
+        
+        /* Loading Animation */
+        .loading-dots {
+            display: inline-block;
+        }
+        
+        .loading-dots::after {
+            content: '';
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60%, 100% { content: '...'; }
+        }
+        
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        /* Focus styles for accessibility */
+        .focus-ring:focus {
+            outline: 2px solid var(--interface-blue);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="font-bold text-xl text-blue-600 font-code">UserFirst</div>
+                    <div class="ml-2 text-orange-500 font-semibold">Design Lab</div>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#services" class="text-gray-700 hover:text-blue-600 transition-colors focus-ring">Services</a>
+                    <a href="#process" class="text-gray-700 hover:text-blue-600 transition-colors focus-ring">Process</a>
+                    <a href="#portfolio" class="text-gray-700 hover:text-blue-600 transition-colors focus-ring">Portfolio</a>
+                    <a href="#team" class="text-gray-700 hover:text-blue-600 transition-colors focus-ring">Team</a>
+                    <a href="#contact" class="text-gray-700 hover:text-blue-600 transition-colors focus-ring">Contact</a>
+                </div>
+                
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-md text-gray-700 hover:text-blue-600 focus-ring">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+            <div class="px-4 py-2 space-y-2">
+                <a href="#services" class="block py-2 text-gray-700 hover:text-blue-600 transition-colors focus-ring">Services</a>
+                <a href="#process" class="block py-2 text-gray-700 hover:text-blue-600 transition-colors focus-ring">Process</a>
+                <a href="#portfolio" class="block py-2 text-gray-700 hover:text-blue-600 transition-colors focus-ring">Portfolio</a>
+                <a href="#team" class="block py-2 text-gray-700 hover:text-blue-600 transition-colors focus-ring">Team</a>
+                <a href="#contact" class="block py-2 text-gray-700 hover:text-blue-600 transition-colors focus-ring">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Animated User Journey -->
+    <section class="pt-20 pb-16 bg-gradient-to-br from-blue-50 via-white to-orange-50 min-h-screen flex items-center relative overflow-hidden">
+        <!-- Floating Interface Elements -->
+        <div class="floating absolute top-20 left-10 w-16 h-16 bg-blue-100 rounded-lg border-2 border-blue-300 opacity-70"></div>
+        <div class="floating absolute top-40 right-20 w-12 h-12 bg-orange-100 rounded-full border-2 border-orange-300 opacity-70" style="animation-delay: 1s;"></div>
+        <div class="floating absolute bottom-40 left-20 w-20 h-10 bg-gray-100 rounded border-2 border-gray-300 opacity-70" style="animation-delay: 2s;"></div>
+        <div class="floating absolute bottom-20 right-10 w-14 h-14 bg-blue-200 rounded-lg border-2 border-blue-400 opacity-70" style="animation-delay: 1.5s;"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="hero-title text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                        <span class="text-blue-600">User-Centered</span><br>
+                        <span class="text-gray-900">Design That</span><br>
+                        <span class="text-orange-500">Converts</span>
+                    </h1>
+                    
+                    <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                        Transform your digital products with research-driven UX design. We create interfaces that users love and businesses trust.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 mb-12">
+                        <button onclick="scrollToSection('contact')" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 pulse-glow focus-ring">
+                            Start Your Project
+                        </button>
+                        <button onclick="scrollToSection('portfolio')" class="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 focus-ring">
+                            View Our Work
+                        </button>
+                    </div>
+                    
+                    <!-- Trust Indicators -->
+                    <div class="flex items-center space-x-8 text-sm text-gray-500">
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <span class="ml-1">4.9/5 Client Rating</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-green-500"></i>
+                            <span class="ml-1">200+ Projects</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-award text-blue-500"></i>
+                            <span class="ml-1">UX Certified</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- User Journey Animation -->
+                <div class="relative">
+                    <div class="bg-white rounded-2xl shadow-2xl p-8 interface-card">
+                        <div class="text-center mb-6">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2">User Journey Flow</h3>
+                            <div class="w-full h-1 bg-gray-200 rounded overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-blue-500 to-orange-500 flow-animation"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Interactive Journey Steps -->
+                        <div class="space-y-4" id="journey-steps">
+                            <div class="journey-step flex items-center p-3 rounded-lg border-2 border-transparent transition-all duration-300" data-step="1">
+                                <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm font-bold">1</div>
+                                <div class="ml-3">
+                                    <div class="font-medium text-gray-800">User Research</div>
+                                    <div class="text-sm text-gray-500">Understanding user needs</div>
+                                </div>
+                            </div>
+                            <div class="journey-step flex items-center p-3 rounded-lg border-2 border-transparent transition-all duration-300" data-step="2">
+                                <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center text-white text-sm font-bold">2</div>
+                                <div class="ml-3">
+                                    <div class="font-medium text-gray-800">Wireframing</div>
+                                    <div class="text-sm text-gray-500">Structure & layout design</div>
+                                </div>
+                            </div>
+                            <div class="journey-step flex items-center p-3 rounded-lg border-2 border-transparent transition-all duration-300" data-step="3">
+                                <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center text-white text-sm font-bold">3</div>
+                                <div class="ml-3">
+                                    <div class="font-medium text-gray-800">Prototyping</div>
+                                    <div class="text-sm text-gray-500">Interactive mockups</div>
+                                </div>
+                            </div>
+                            <div class="journey-step flex items-center p-3 rounded-lg border-2 border-transparent transition-all duration-300" data-step="4">
+                                <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center text-white text-sm font-bold">4</div>
+                                <div class="ml-3">
+                                    <div class="font-medium text-gray-800">Testing</div>
+                                    <div class="text-sm text-gray-500">Usability validation</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Usability Testing Simulation -->
+                        <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm font-medium text-gray-700">Usability Score</span>
+                                <span class="text-sm font-bold text-green-600" id="usability-score">0%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 h-2 rounded-full transition-all duration-2s" id="usability-bar" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Services Section with Methodology Breakdowns -->
+    <section id="services" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Our UX Services</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Comprehensive UX solutions tailored to your business goals</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- User Research Service -->
+                <div class="interface-card rounded-2xl p-8 group">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-200 transition-colors">
+                            <i class="fas fa-users text-blue-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">User Research</h3>
+                        <p class="text-gray-600">Deep dive into user behavior and preferences</p>
+                    </div>
+                    
+                    <!-- Methodology Breakdown -->
+                    <div class="space-y-3">
+                        <div class="flex items-center text-sm text-gray-700">
+                            <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                            User Interviews & Surveys
+                        </div>
+                        <div class="flex items-center text-sm text-gray-700">
+                            <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                            Behavioral Analytics
+                        </div>
+                        <div class="flex items-center text-sm text-gray-700">
+                            <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                            Persona Development
+                        </div>
+                        <div class="flex items-center text-sm text-gray-700">
+                            <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                            Journey Mapping
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">Duration</span>
+                            <span class="text-sm font-semibold text-gray-900">2-4 weeks</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Interface Design Service -->
+                <div class="interface-card rounded-2xl p-8 group">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-orange-200 transition-colors">
+                            <i class="fas fa-palette text-orange-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Interface Design</h3>
+                        <p class="text-gray-600">Beautiful, functional interface solutions</p>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-center text-sm text-gray-700">
+                            <div class="w-2 h-2 bg-orange-500 rounded-full mr-3"></div>
+                            Wireframing & Prototyping
+                        </div>
+                        <div class="flex items-center text-sm text-gray-700">
+                            <div class="w-2 h-2 bg-orange-500 rounded-full mr-3"></div>
+                            Visual Design Systems
+                        </div>
+                        <div class="flex items-center text-sm text-gray-700">
+                            <div class="w-2 h-2 bg-orange-500 rounded-full mr-3"></div>
+                            Interactive Components
+                        </div>
+                        <div class="flex items-center text-sm text-gray-700">
+                            <div class="w-2 h-2 bg-orange-500 rounded-full mr-3"></div>
+                            Responsive Layouts
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">Duration</span>
+                            <span class="text-sm font-semibold text-gray-900">3-6 weeks</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Usability Testing Service -->
+                <div class="interface-card rounded-2xl p-8 group">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-gray-200 transition-colors">
+                            <i class="fas fa-flask text-gray-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Usability Testing</h3>
+                        <p class="text-gray-600">Validate design decisions with real users</p>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-center text-sm text-gray-700">
+                            <div class="w-2 h-2 bg-gray-500 rounded-full mr-3"></div>
+                            A/B Testing
+                        </div>
+                        <div class="flex items-center text-sm text-gray-700">
+                            <div class="w-2 h-2 bg-gray-500 rounded-full mr-3"></div>
+                            Task-based Testing
+                        </div>
+                        <div class="flex items-center text-sm text-gray-700">
+                            <div class="w-2 h-2 bg-gray-500 rounded-full mr-3"></div>
+                            Accessibility Audits
+                        </div>
+                        <div class="flex items-center text-sm text-gray-700">
+                            <div class="w-2 h-2 bg-gray-500 rounded-full mr-3"></div>
+                            Performance Analysis
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">Duration</span>
+                            <span class="text-sm font-semibold text-gray-900">1-3 weeks</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- UX Process Visualization with Scroll-triggered Animations -->
+    <section id="process" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Our Design Process</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">A proven methodology that delivers results</p>
+            </div>
+            
+            <div class="relative">
+                <!-- Process Flow Line -->
+                <div class="absolute top-1/2 left-0 w-full h-1 bg-gray-200 transform -translate-y-1/2"></div>
+                <div class="absolute top-1/2 left-0 h-1 bg-gradient-to-r from-blue-500 to-orange-500 transform -translate-y-1/2 transition-all duration-1s" id="process-progress" style="width: 0%;"></div>
+                
+                <div class="grid md:grid-cols-4 gap-8 relative z-10">
+                    <!-- Discover Phase -->
+                    <div class="process-step text-center" data-process="1">
+                        <div class="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg border-4 border-blue-500">
+                            <i class="fas fa-search text-blue-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">Discover</h3>
+                        <p class="text-gray-600 mb-4">Research users, analyze competitors, define requirements</p>
+                        <div class="wireframe-element rounded-lg p-4 text-left">
+                            <div class="space-y-2">
+                                <div class="h-2 bg-gray-300 rounded w-3/4"></div>
+                                <div class="h-2 bg-gray-300 rounded w-1/2"></div>
+                                <div class="h-2 bg-gray-300 rounded w-5/6"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Define Phase -->
+                    <div class="process-step text-center" data-process="2">
+                        <div class="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg border-4 border-gray-300">
+                            <i class="fas fa-lightbulb text-gray-400 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">Define</h3>
+                        <p class="text-gray-600 mb-4">Synthesize insights, create personas, map user journeys</p>
+                        <div class="wireframe-element rounded-lg p-4 text-left">
+                            <div class="grid grid-cols-2 gap-2">
+                                <div class="h-8 bg-gray-300 rounded"></div>
+                                <div class="h-8 bg-gray-300 rounded"></div>
+                                <div class="col-span-2 h-4 bg-gray-300 rounded"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Design Phase -->
+                    <div class="process-step text-center" data-process="3">
+                        <div class="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg border-4 border-gray-300">
+                            <i class="fas fa-pencil-ruler text-gray-400 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">Design</h3>
+                        <p class="text-gray-600 mb-4">Create wireframes, prototypes, and visual designs</p>
+                        <div class="wireframe-element rounded-lg p-4 text-left">
+                            <div class="space-y-1">
+                                <div class="h-1 bg-gray-300 rounded w-full"></div>
+                                <div class="h-8 bg-gray-300 rounded w-full"></div>
+                                <div class="grid grid-cols-3 gap-1">
+                                    <div class="h-4 bg-gray-300 rounded"></div>
+                                    <div class="h-4 bg-gray-300 rounded"></div>
+                                    <div class="h-4 bg-gray-300 rounded"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Deliver Phase -->
+                    <div class="process-step text-center" data-process="4">
+                        <div class="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg border-4 border-gray-300">
+                            <i class="fas fa-rocket text-gray-400 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">Deliver</h3>
+                        <p class="text-gray-600 mb-4">Test, iterate, and launch the final product</p>
+                        <div class="wireframe-element rounded-lg p-4 text-left">
+                            <div class="space-y-2">
+                                <div class="h-3 bg-gray-300 rounded w-full"></div>
+                                <div class="h-6 bg-gray-300 rounded w-full"></div>
+                                <div class="flex space-x-1">
+                                    <div class="h-3 bg-gray-300 rounded flex-1"></div>
+                                    <div class="h-3 bg-gray-300 rounded w-8"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Design Thinking Workshops -->
+    <section class="py-20 bg-gradient-to-br from-blue-600 to-blue-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Design Thinking Workshops</h2>
+                <p class="text-xl text-blue-100 max-w-3xl mx-auto">Interactive sessions to solve complex design challenges</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+    <!-- Portfolio with Before/After Comparisons -->
+    <section id="portfolio" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Case Studies</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Real results from our UX transformations</p>
+            </div>
+            
+            <!-- Case Study Tabs -->
+            <div class="flex justify-center mb-12">
+                <div class="flex space-x-2 bg-gray-100 rounded-lg p-1">
+                    <button class="case-tab active px-6 py-2 rounded-md font-medium transition-all duration-300 focus-ring" data-case="ecommerce">E-commerce</button>
+                    <button class="case-tab px-6 py-2 rounded-md font-medium transition-all duration-300 focus-ring" data-case="saas">SaaS Platform</button>
+                    <button class="case-tab px-6 py-2 rounded-md font-medium transition-all duration-300 focus-ring" data-case="mobile">Mobile App</button>
+                </div>
+            </div>
+            
+            <!-- Case Study Content -->
+            <div id="case-content">
+                <!-- E-commerce Case Study -->
+                <div class="case-study active" id="ecommerce-case">
+                    <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Fashion E-commerce Redesign</h3>
+                            <p class="text-gray-600 mb-6">Increased conversion rate by 142% through user-centered checkout optimization and improved product discovery.</p>
+                            
+                            <div class="space-y-4 mb-8">
+                                <div class="flex items-center">
+                                    <div class="w-4 h-4 bg-green-500 rounded-full mr-3"></div>
+                                    <span class="text-gray-700">142% increase in conversion rate</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-4 h-4 bg-blue-500 rounded-full mr-3"></div>
+                                    <span class="text-gray-700">38% reduction in cart abandonment</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-4 h-4 bg-orange-500 rounded-full mr-3"></div>
+                                    <span class="text-gray-700">65% faster checkout process</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex space-x-4">
+                                <button class="comparison-btn bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors focus-ring" data-view="before">Before</button>
+                                <button class="comparison-btn bg-gray-200 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-300 transition-colors focus-ring" data-view="after">After</button>
+                            </div>
+                        </div>
+                        
+                        <div class="relative">
+                            <!-- Before/After Interface Mockups -->
+                            <div class="interface-comparison">
+                                <div class="comparison-view active" id="before-view">
+                                    <div class="bg-gray-100 rounded-2xl p-8 shadow-lg">
+                                        <div class="bg-white rounded-lg p-6">
+                                            <div class="text-center mb-6">
+                                                <div class="text-red-500 text-sm font-medium mb-2">❌ BEFORE: Complex checkout</div>
+                                                <div class="h-8 bg-gray-300 rounded mb-4"></div>
+                                                <div class="space-y-2">
+                                                    <div class="h-4 bg-gray-300 rounded"></div>
+                                                    <div class="h-4 bg-gray-300 rounded w-3/4"></div>
+                                                    <div class="h-4 bg-gray-300 rounded w-1/2"></div>
+                                                </div>
+                                            </div>
+                                            <div class="grid grid-cols-2 gap-4">
+                                                <div class="h-20 bg-gray-300 rounded"></div>
+                                                <div class="h-20 bg-gray-300 rounded"></div>
+                                                <div class="col-span-2 h-8 bg-red-200 rounded"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="comparison-view" id="after-view">
+                                    <div class="bg-blue-50 rounded-2xl p-8 shadow-lg">
+                                        <div class="bg-white rounded-lg p-6">
+                                            <div class="text-center mb-6">
+                                                <div class="text-green-500 text-sm font-medium mb-2">✅ AFTER: Streamlined experience</div>
+                                                <div class="h-8 bg-blue-500 rounded mb-4"></div>
+                                                <div class="space-y-2">
+                                                    <div class="h-4 bg-blue-200 rounded"></div>
+                                                    <div class="h-4 bg-blue-200 rounded w-2/3"></div>
+                                                </div>
+                                            </div>
+                                            <div class="space-y-3">
+                                                <div class="h-12 bg-blue-100 rounded flex items-center px-4">
+                                                    <div class="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
+                                                    <div class="h-2 bg-blue-300 rounded flex-1"></div>
+                                                </div>
+                                                <div class="h-8 bg-green-200 rounded"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- SaaS Case Study -->
+                <div class="case-study" id="saas-case">
+                    <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">SaaS Dashboard Optimization</h3>
+                            <p class="text-gray-600 mb-6">Reduced user onboarding time by 60% and improved feature adoption through intuitive information architecture.</p>
+                            
+                            <div class="space-y-4 mb-8">
+                                <div class="flex items-center">
+                                    <div class="w-4 h-4 bg-green-500 rounded-full mr-3"></div>
+                                    <span class="text-gray-700">60% faster onboarding</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-4 h-4 bg-blue-500 rounded-full mr-3"></div>
+                                    <span class="text-gray-700">85% increase in feature adoption</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-4 h-4 bg-orange-500 rounded-full mr-3"></div>
+                                    <span class="text-gray-700">40% reduction in support tickets</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-100 rounded-2xl p-8">
+                            <div class="text-center text-gray-500">
+                                <i class="fas fa-chart-line text-4xl mb-4"></i>
+                                <p>SaaS Dashboard Mockup</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mobile App Case Study -->
+                <div class="case-study" id="mobile-case">
+                    <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Fitness App UX Overhaul</h3>
+                            <p class="text-gray-600 mb-6">Increased daily active users by 200% through gamification and improved user engagement flows.</p>
+                            
+                            <div class="space-y-4 mb-8">
+                                <div class="flex items-center">
+                                    <div class="w-4 h-4 bg-green-500 rounded-full mr-3"></div>
+                                    <span class="text-gray-700">200% increase in DAU</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-4 h-4 bg-blue-500 rounded-full mr-3"></div>
+                                    <span class="text-gray-700">95% user retention at week 1</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-4 h-4 bg-orange-500 rounded-full mr-3"></div>
+                                    <span class="text-gray-700">4.8/5 app store rating</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-100 rounded-2xl p-8">
+                            <div class="text-center text-gray-500">
+                                <i class="fas fa-mobile-alt text-4xl mb-4"></i>
+                                <p>Mobile App Mockup</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section with Skill Matrices -->
+    <section id="team" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Our Expert Team</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">UX professionals with proven track records</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Team Member 1: UX Researcher -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div class="text-center mb-6">
+                        <div class="w-24 h-24 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <i class="fas fa-user text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-1">Sarah Chen</h3>
+                        <p class="text-blue-600 font-medium">Senior UX Researcher</p>
+                        <p class="text-gray-500 text-sm">8+ years experience</p>
+                    </div>
+                    
+                    <!-- Skill Matrix -->
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-sm font-medium text-gray-700">User Research</span>
+                                <span class="text-sm text-gray-500">95%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="skill-bar rounded-full" data-width="95" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-sm font-medium text-gray-700">Data Analysis</span>
+                                <span class="text-sm text-gray-500">90%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="skill-bar rounded-full" data-width="90" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-sm font-medium text-gray-700">Prototyping</span>
+                                <span class="text-sm text-gray-500">75%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="skill-bar rounded-full" data-width="75" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-sm font-medium text-gray-700">Workshop Facilitation</span>
+                                <span class="text-sm text-gray-500">85%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="skill-bar rounded-full" data-width="85" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+    <!-- UX Audit Tools -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Free UX Audit Tools</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Analyze your current UX with our professional audit tools</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- UX Audit Form -->
+                <div class="bg-gradient-to-br from-blue-50 to-orange-50 rounded-2xl p-8">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-6">Quick UX Assessment</h3>
+                    
+                    <form id="ux-audit-form" class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Website URL</label>
+                            <input type="url" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="https://yourwebsite.com" required>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Primary Goal</label>
+                            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option>Increase conversions</option>
+                                <option>Improve user engagement</option>
+                                <option>Reduce bounce rate</option>
+                                <option>Enhance usability</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Target Audience</label>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                    <span class="ml-2 text-sm text-gray-700">Young professionals (25-35)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                    <span class="ml-2 text-sm text-gray-700">Business executives (35-50)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                    <span class="ml-2 text-sm text-gray-700">Tech-savvy users</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                    <span class="ml-2 text-sm text-gray-700">General consumers</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors focus-ring">
+                            Start Free Audit
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- UX Score Dashboard -->
+                <div class="space-y-6">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-6">UX Health Check</h3>
+                        
+                        <div class="space-y-6">
+                            <!-- Usability Score -->
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-sm font-medium text-gray-700">Usability</span>
+                                    <span class="text-sm font-bold text-green-600" id="audit-usability">0%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-3">
+                                    <div class="bg-green-500 h-3 rounded-full transition-all duration-2s" id="audit-usability-bar" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Accessibility Score -->
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-sm font-medium text-gray-700">Accessibility</span>
+                                    <span class="text-sm font-bold text-yellow-600" id="audit-accessibility">0%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-3">
+                                    <div class="bg-yellow-500 h-3 rounded-full transition-all duration-2s" id="audit-accessibility-bar" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Performance Score -->
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-sm font-medium text-gray-700">Performance</span>
+                                    <span class="text-sm font-bold text-blue-600" id="audit-performance">0%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-3">
+                                    <div class="bg-blue-500 h-3 rounded-full transition-all duration-2s" id="audit-performance-bar" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Mobile Friendliness -->
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-sm font-medium text-gray-700">Mobile Friendly</span>
+                                    <span class="text-sm font-bold text-orange-600" id="audit-mobile">0%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-3">
+                                    <div class="bg-orange-500 h-3 rounded-full transition-all duration-2s" id="audit-mobile-bar" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 p-4 bg-blue-50 rounded-lg">
+                            <div class="flex items-center justify-between">
+                                <span class="text-lg font-semibold text-gray-900">Overall UX Score</span>
+                                <span class="text-2xl font-bold text-blue-600" id="overall-score">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Recommendations -->
+                    <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Quick Recommendations</h3>
+                        <div id="recommendations" class="space-y-3">
+                            <div class="text-gray-500 text-center py-8">
+                                <i class="fas fa-chart-line text-3xl mb-2"></i>
+                                <p>Run an audit to see personalized recommendations</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Consultation Booking -->
+    <section id="contact" class="py-20 bg-gradient-to-br from-gray-900 to-blue-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Ready to Transform Your UX?</h2>
+                <p class="text-xl text-blue-100 max-w-3xl mx-auto">Book a discovery session and let's design something amazing together</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8">
+                    <h3 class="text-2xl font-semibold mb-6">Get in Touch</h3>
+                    
+                    <form id="contact-form" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-blue-100 mb-2">First Name</label>
+                                <input type="text" class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/70 focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="John" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-blue-100 mb-2">Last Name</label>
+                                <input type="text" class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/70 focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="Doe" required>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-blue-100 mb-2">Email</label>
+                            <input type="email" class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/70 focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="john@company.com" required>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-blue-100 mb-2">Company</label>
+                            <input type="text" class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/70 focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="Your Company">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-blue-100 mb-2">Project Type</label>
+                            <select class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                                <option value="" class="text-gray-900">Select project type</option>
+                                <option value="website-redesign" class="text-gray-900">Website Redesign</option>
+                                <option value="mobile-app" class="text-gray-900">Mobile App Design</option>
+                                <option value="web-app" class="text-gray-900">Web Application</option>
+                                <option value="ux-audit" class="text-gray-900">UX Audit</option>
+                                <option value="design-system" class="text-gray-900">Design System</option>
+                                <option value="consultation" class="text-gray-900">UX Consultation</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-blue-100 mb-2">Project Budget</label>
+                            <select class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                                <option value="" class="text-gray-900">Select budget range</option>
+                                <option value="5k-15k" class="text-gray-900">$5,000 - $15,000</option>
+                                <option value="15k-30k" class="text-gray-900">$15,000 - $30,000</option>
+                                <option value="30k-50k" class="text-gray-900">$30,000 - $50,000</option>
+                                <option value="50k+" class="text-gray-900">$50,000+</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-blue-100 mb-2">Project Details</label>
+                            <textarea rows="4" class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/70 focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="Tell us about your project goals, challenges, and vision..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-orange-500 text-white py-3 rounded-lg font-semibold hover:bg-orange-600 transition-colors focus-ring">
+                            Schedule Discovery Session
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Discovery Session Preview & Design Sprint Planning -->
+                <div class="space-y-8">
+                    <!-- Discovery Session Preview -->
+                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8">
+                        <h3 class="text-2xl font-semibold mb-6">Discovery Session Preview</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <span class="text-white text-sm font-bold">1</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-2">Business Goals Analysis</h4>
+                                    <p class="text-blue-100 text-sm">Deep dive into your business objectives and KPIs</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <span class="text-white text-sm font-bold">2</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-2">Current UX Assessment</h4>
+                                    <p class="text-blue-100 text-sm">Evaluate existing user experience and pain points</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <span class="text-white text-sm font-bold">3</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-2">Opportunity Identification</h4>
+                                    <p class="text-blue-100 text-sm">Discover high-impact improvement areas</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <span class="text-white text-sm font-bold">4</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-2">Strategy Roadmap</h4>
+                                    <p class="text-blue-100 text-sm">Create actionable plan with timelines and priorities</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 p-4 bg-orange-500/20 rounded-lg">
+                            <div class="flex items-center justify-between">
+                                <span class="font-semibold">Session Duration</span>
+                                <span class="text-orange-300">90 minutes</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Design Sprint Planning -->
+                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8">
+                        <h3 class="text-2xl font-semibold mb-6">Design Sprint Planning</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center p-3 bg-white/10 rounded-lg">
+                                <span class="font-medium">5-Day Sprint</span>
+                                <span class="text-orange-300">Most Popular</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center p-3 bg-white/10 rounded-lg">
+                                <span class="font-medium">3-Day Express</span>
+                                <span class="text-blue-300">Fast Track</span>
+                            </div>
+                            
+                            <div class="flex justify-between items-center p-3 bg-white/10 rounded-lg">
+                                <span class="font-medium">10-Day Deep Dive</span>
+                                <span class="text-green-300">Comprehensive</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 text-center">
+                            <button onclick="scrollToSection('services')" class="text-orange-400 hover:text-orange-300 font-medium transition-colors focus-ring">
+                                Learn More About Design Sprints →
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Info -->
+                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8">
+                        <h3 class="text-xl font-semibold mb-6">Get in Touch</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-envelope text-orange-400"></i>
+                                <span>hello@userfirstdesignlab.com</span>
+                            </div>
+                            
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-phone text-blue-400"></i>
+                                <span>+1 (555) 123-4567</span>
+                            </div>
+                            
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-map-marker-alt text-green-400"></i>
+                                <span>San Francisco, CA</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 flex justify-center space-x-4">
+                            <a href="#" class="text-white hover:text-orange-400 transition-colors">
+                                <i class="fab fa-linkedin text-xl"></i>
+                            </a>
+                            <a href="#" class="text-white hover:text-blue-400 transition-colors">
+                                <i class="fab fa-twitter text-xl"></i>
+                            </a>
+                            <a href="#" class="text-white hover:text-pink-400 transition-colors">
+                                <i class="fab fa-dribbble text-xl"></i>
+                            </a>
+                            <a href="#" class="text-white hover:text-purple-400 transition-colors">
+                                <i class="fab fa-behance text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="font-bold text-xl text-blue-400 font-code">UserFirst</div>
+                        <div class="ml-2 text-orange-500 font-semibold">Design Lab</div>
+                    </div>
+                    <p class="text-gray-400 mb-4">Creating user-centered digital experiences that drive business results.</p>
+                    <div class="flex space-x-3">
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-orange-400 transition-colors">
+                            <i class="fab fa-dribbble"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">Services</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#services" class="hover:text-white transition-colors">User Research</a></li>
+                        <li><a href="#services" class="hover:text-white transition-colors">Interface Design</a></li>
+                        <li><a href="#services" class="hover:text-white transition-colors">Usability Testing</a></li>
+                        <li><a href="#services" class="hover:text-white transition-colors">Design Systems</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">Company</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#team" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#portfolio" class="hover:text-white transition-colors">Case Studies</a></li>
+                        <li><a href="#process" class="hover:text-white transition-colors">Our Process</a></li>
+                        <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">Resources</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">UX Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Design Tools</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Free Templates</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">UX Checklist</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 UserFirst Design Lab. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Interactions -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // User journey animation
+            let currentStep = 0;
+            const journeySteps = document.querySelectorAll('.journey-step');
+            const usabilityScore = document.getElementById('usability-score');
+            const usabilityBar = document.getElementById('usability-bar');
+            
+            function animateJourney() {
+                if (currentStep < journeySteps.length) {
+                    // Reset all steps
+                    journeySteps.forEach((step, index) => {
+                        const circle = step.querySelector('.w-8.h-8');
+                        if (index <= currentStep) {
+                            circle.classList.remove('bg-gray-300');
+                            circle.classList.add('bg-blue-500');
+                            circle.querySelector('.text-sm').classList.remove('text-white');
+                            circle.querySelector('.text-sm').classList.add('text-white');
+                        } else {
+                            circle.classList.add('bg-gray-300');
+                            circle.classList.remove('bg-blue-500');
+                        }
+                    });
+                    
+                    // Update usability score
+                    const progress = ((currentStep + 1) / journeySteps.length) * 100;
+                    usabilityScore.textContent = Math.round(progress) + '%';
+                    usabilityBar.style.width = progress + '%';
+                    
+                    currentStep++;
+                    if (currentStep >= journeySteps.length) {
+                        currentStep = 0;
+                        setTimeout(animateJourney, 2000);
+                    } else {
+                        setTimeout(animateJourney, 1500);
+                    }
+                }
+            }
+            
+            // Start journey animation
+            setTimeout(animateJourney, 1000);
+            
+            // Scroll-triggered process animation
+            function animateProcess() {
+                const processSection = document.getElementById('process');
+                const processProgress = document.getElementById('process-progress');
+                const processSteps = document.querySelectorAll('[data-process]');
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            let currentProcessStep = 0;
+                            
+                            function stepAnimation() {
+                                if (currentProcessStep < processSteps.length) {
+                                    const step = processSteps[currentProcessStep];
+                                    const circle = step.querySelector('.w-20.h-20');
+                                    const icon = circle.querySelector('i');
+                                    
+                                    // Animate circle
+                                    circle.classList.remove('border-gray-300');
+                                    circle.classList.add('border-blue-500');
+                                    
+                                    // Animate icon
+                                    icon.classList.remove('text-gray-400');
+                                    icon.classList.add('text-blue-600');
+                                    
+                                    // Update progress bar
+                                    const progress = ((currentProcessStep + 1) / processSteps.length) * 100;
+                                    processProgress.style.width = progress + '%';
+                                    
+                                    currentProcessStep++;
+                                    if (currentProcessStep < processSteps.length) {
+                                        setTimeout(stepAnimation, 800);
+                                    }
+                                }
+                            }
+                            
+                            stepAnimation();
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                if (processSection) {
+                    observer.observe(processSection);
+                }
+            }
+            
+            animateProcess();
+            
+            // Workshop simulator
+            const workshopBtns = document.querySelectorAll('.workshop-btn');
+            const workshopPreview = document.getElementById('workshop-preview');
+            
+            const workshopContent = {
+                empathy: {
+                    title: 'Empathy Mapping Workshop',
+                    description: 'A collaborative session to understand user emotions, thoughts, and behaviors.',
+                    duration: '2-3 hours',
+                    participants: '4-8 people',
+                    deliverables: ['User empathy maps', 'Insight summaries', 'Opportunity areas']
+                },
+                ideation: {
+                    title: 'Ideation Session',
+                    description: 'Generate innovative solutions through structured brainstorming.',
+                    duration: '3-4 hours',
+                    participants: '6-10 people',
+                    deliverables: ['Prioritized ideas', 'Solution concepts', 'Next steps plan']
+                },
+                prototype: {
+                    title: 'Rapid Prototyping Workshop',
+                    description: 'Build and test concepts quickly with hands-on prototyping.',
+                    duration: '4-6 hours',
+                    participants: '4-6 people',
+                    deliverables: ['Interactive prototypes', 'User feedback', 'Iteration plan']
+                }
+            };
+            
+            workshopBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const workshopType = this.dataset.workshop;
+                    const content = workshopContent[workshopType];
+                    
+                    // Update active state
+                    workshopBtns.forEach(b => b.classList.remove('bg-white/30'));
+                    this.classList.add('bg-white/30');
+                    
+                    // Update preview content
+                    workshopPreview.innerHTML = `
+                        <h4 class="font-semibold text-white mb-2">${content.title}</h4>
+                        <p class="text-blue-100 text-sm mb-4">${content.description}</p>
+                        <div class="grid grid-cols-2 gap-4 text-xs">
+                            <div>
+                                <span class="text-blue-200">Duration:</span>
+                                <div class="text-white">${content.duration}</div>
+                            </div>
+                            <div>
+                                <span class="text-blue-200">Participants:</span>
+                                <div class="text-white">${content.participants}</div>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <span class="text-blue-200 text-xs">Deliverables:</span>
+                            <ul class="text-white text-xs mt-1">
+                                ${content.deliverables.map(item => `<li>• ${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                });
+            });
+            
+            // Case study tabs
+            const caseTabs = document.querySelectorAll('.case-tab');
+            const caseStudies = document.querySelectorAll('.case-study');
+            
+            caseTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const caseType = this.dataset.case;
+                    
+                    // Update active tab
+                    caseTabs.forEach(t => {
+                        t.classList.remove('active', 'bg-blue-600', 'text-white');
+                        t.classList.add('text-gray-700');
+                    });
+                    this.classList.add('active', 'bg-blue-600', 'text-white');
+                    this.classList.remove('text-gray-700');
+                    
+                    // Show corresponding case study
+                    caseStudies.forEach(study => {
+                        study.classList.remove('active');
+                        study.style.display = 'none';
+                    });
+                    
+                    const targetStudy = document.getElementById(caseType + '-case');
+                    if (targetStudy) {
+                        targetStudy.classList.add('active');
+                        targetStudy.style.display = 'block';
+                    }
+                });
+            });
+            
+            // Before/After comparison
+            const comparisonBtns = document.querySelectorAll('.comparison-btn');
+            const comparisonViews = document.querySelectorAll('.comparison-view');
+            
+            comparisonBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const viewType = this.dataset.view;
+                    
+                    // Update active button
+                    comparisonBtns.forEach(b => {
+                        b.classList.remove('bg-blue-600', 'text-white');
+                        b.classList.add('bg-gray-200', 'text-gray-700');
+                    });
+                    this.classList.add('bg-blue-600', 'text-white');
+                    this.classList.remove('bg-gray-200', 'text-gray-700');
+                    
+                    // Show corresponding view
+                    comparisonViews.forEach(view => {
+                        view.classList.remove('active');
+                        view.style.display = 'none';
+                    });
+                    
+                    const targetView = document.getElementById(viewType + '-view');
+                    if (targetView) {
+                        targetView.classList.add('active');
+                        targetView.style.display = 'block';
+                    }
+                });
+            });
+            
+            // Skill bars animation
+            function animateSkillBars() {
+                const skillBars = document.querySelectorAll('.skill-bar');
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const bar = entry.target;
+                            const width = bar.dataset.width;
+                            setTimeout(() => {
+                                bar.style.width = width + '%';
+                            }, 200);
+                            observer.unobserve(bar);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                skillBars.forEach(bar => observer.observe(bar));
+            }
+            
+            animateSkillBars();
+            
+            // UX Audit simulation
+            const auditForm = document.getElementById('ux-audit-form');
+            
+            auditForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Simulate audit process
+                const scores = {
+                    usability: Math.floor(Math.random() * 30) + 70,
+                    accessibility: Math.floor(Math.random() * 40) + 60,
+                    performance: Math.floor(Math.random() * 35) + 65,
+                    mobile: Math.floor(Math.random() * 25) + 75
+                };
+                
+                // Animate scores
+                Object.keys(scores).forEach((key, index) => {
+                    setTimeout(() => {
+                        const scoreElement = document.getElementById('audit-' + key);
+                        const barElement = document.getElementById('audit-' + key + '-bar');
+                        
+                        scoreElement.textContent = scores[key] + '%';
+                        barElement.style.width = scores[key] + '%';
+                    }, index * 500);
+                });
+                
+                // Calculate overall score
+                setTimeout(() => {
+                    const overall = Math.round(Object.values(scores).reduce((a, b) => a + b) / 4);
+                    document.getElementById('overall-score').textContent = overall + '%';
+                    
+                    // Show recommendations
+                    const recommendations = document.getElementById('recommendations');
+                    const recs = [
+                        'Improve navigation clarity',
+                        'Optimize mobile responsiveness',
+                        'Enhance accessibility features',
+                        'Reduce page load times',
+                        'Simplify checkout process'
+                    ];
+                    
+                    recommendations.innerHTML = recs.map(rec => `
+                        <div class="flex items-center p-3 bg-blue-50 rounded-lg">
+                            <i class="fas fa-lightbulb text-blue-500 mr-3"></i>
+                            <span class="text-gray-700">${rec}</span>
+                        </div>
+                    `).join('');
+                }, 2500);
+            });
+            
+            // Contact form handling
+            const contactForm = document.getElementById('contact-form');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Show success message
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+                
+                submitBtn.textContent = 'Scheduling...';
+                submitBtn.disabled = true;
+                
+                setTimeout(() => {
+                    submitBtn.textContent = '✓ Session Scheduled!';
+                    submitBtn.classList.remove('bg-orange-500', 'hover:bg-orange-600');
+                    submitBtn.classList.add('bg-green-500');
+                    
+                    setTimeout(() => {
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                        submitBtn.classList.remove('bg-green-500');
+                        submitBtn.classList.add('bg-orange-500', 'hover:bg-orange-600');
+                        this.reset();
+                    }, 3000);
+                }, 2000);
+            });
+            
+            // Smooth scrolling function
+            window.scrollToSection = function(sectionId) {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth' });
+                }
+            };
+            
+            // Add scroll-triggered animations for other elements
+            const animateOnScroll = () => {
+                const elements = document.querySelectorAll('.interface-card, .floating');
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.animationPlayState = 'running';
+                        }
+                    });
+                }, { threshold: 0.1 });
+                
+                elements.forEach(el => {
+                    el.style.animationPlayState = 'paused';
+                    observer.observe(el);
+                });
+            };
+            
+            animateOnScroll();
+        });
+    </script>
+</body>
+</html>
+                    
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <div class="flex justify-center space-x-3">
+                            <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors">
+                                <i class="fab fa-dribbble"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 2: UI Designer -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div class="text-center mb-6">
+                        <div class="w-24 h-24 bg-gradient-to-br from-orange-400 to-orange-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <i class="fas fa-user text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-1">Marcus Rodriguez</h3>
+                        <p class="text-orange-600 font-medium">Lead UI Designer</p>
+                        <p class="text-gray-500 text-sm">6+ years experience</p>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-sm font-medium text-gray-700">Visual Design</span>
+                                <span class="text-sm text-gray-500">98%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="skill-bar rounded-full" data-width="98" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-sm font-medium text-gray-700">Design Systems</span>
+                                <span class="text-sm text-gray-500">92%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="skill-bar rounded-full" data-width="92" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-sm font-medium text-gray-700">Animation</span>
+                                <span class="text-sm text-gray-500">88%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="skill-bar rounded-full" data-width="88" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-sm font-medium text-gray-700">Accessibility</span>
+                                <span class="text-sm text-gray-500">80%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="skill-bar rounded-full" data-width="80" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <div class="flex justify-center space-x-3">
+                            <a href="#" class="text-gray-400 hover:text-orange-600 transition-colors">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-orange-600 transition-colors">
+                                <i class="fab fa-behance"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 3: UX Strategist -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div class="text-center mb-6">
+                        <div class="w-24 h-24 bg-gradient-to-br from-gray-400 to-gray-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <i class="fas fa-user text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-1">Alex Thompson</h3>
+                        <p class="text-gray-600 font-medium">UX Strategist</p>
+                        <p class="text-gray-500 text-sm">10+ years experience</p>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-sm font-medium text-gray-700">Strategy Planning</span>
+                                <span class="text-sm text-gray-500">96%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="skill-bar rounded-full" data-width="96" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-sm font-medium text-gray-700">Business Analysis</span>
+                                <span class="text-sm text-gray-500">94%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="skill-bar rounded-full" data-width="94" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-sm font-medium text-gray-700">Project Management</span>
+                                <span class="text-sm text-gray-500">90%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="skill-bar rounded-full" data-width="90" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-sm font-medium text-gray-700">Client Relations</span>
+                                <span class="text-sm text-gray-500">92%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="skill-bar rounded-full" data-width="92" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <div class="flex justify-center space-x-3">
+                            <a href="#" class="text-gray-400 hover:text-gray-600 transition-colors">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-gray-600 transition-colors">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+                    <div class="space-y-8">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="fas fa-brain text-white text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Empathy Mapping</h3>
+                                <p class="text-blue-100">Understand user emotions, thoughts, and behaviors through collaborative mapping exercises.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="fas fa-puzzle-piece text-white text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Problem Framing</h3>
+                                <p class="text-blue-100">Define the right problems to solve with structured problem identification techniques.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="fas fa-lightbulb text-white text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Ideation Sessions</h3>
+                                <p class="text-blue-100">Generate innovative solutions through guided brainstorming and creative thinking.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="fas fa-hammer text-white text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Rapid Prototyping</h3>
+                                <p class="text-blue-100">Build and test concepts quickly with hands-on prototyping workshops.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-12">
+                        <button onclick="scrollToSection('contact')" class="bg-orange-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-orange-600 transition-all duration-300 transform hover:scale-105 focus-ring">
+                            Book a Workshop
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Interactive Workshop Simulator -->
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8">
+                    <div class="text-center mb-6">
+                        <h3 class="text-xl font-semibold mb-2">Workshop Simulator</h3>
+                        <p class="text-blue-100 text-sm">Try different workshop formats</p>
+                    </div>
+                    
+                    <div class="space-y-4" id="workshop-options">
+                        <button class="workshop-btn w-full text-left p-4 bg-white/20 rounded-lg hover:bg-white/30 transition-all duration-300 focus-ring" data-workshop="empathy">
+                            <i class="fas fa-heart mr-3 text-orange-400"></i>
+                            <span class="font-medium">Empathy Mapping</span>
+                        </button>
+                        <button class="workshop-btn w-full text-left p-4 bg-white/20 rounded-lg hover:bg-white/30 transition-all duration-300 focus-ring" data-workshop="ideation">
+                            <i class="fas fa-lightbulb mr-3 text-yellow-400"></i>
+                            <span class="font-medium">Ideation Session</span>
+                        </button>
+                        <button class="workshop-btn w-full text-left p-4 bg-white/20 rounded-lg hover:bg-white/30 transition-all duration-300 focus-ring" data-workshop="prototype">
+                            <i class="fas fa-cube mr-3 text-green-400"></i>
+                            <span class="font-medium">Rapid Prototyping</span>
+                        </button>
+                    </div>
+                    
+                    <div class="mt-6 p-4 bg-white/20 rounded-lg" id="workshop-preview">
+                        <div class="text-center text-blue-100">
+                            <i class="fas fa-mouse-pointer text-2xl mb-2"></i>
+                            <p>Select a workshop type to preview</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
