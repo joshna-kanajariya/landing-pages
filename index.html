@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InnerCalm Sanctuary - Meditation & Mindfulness App</title>
+    <meta name="description" content="Find inner peace with InnerCalm Sanctuary. Guided meditation, mindfulness practices, and stress reduction techniques for a calmer mind.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --meditation-purple: #8B5CF6;
+            --zen-green: #10B981;
+            --mindful-blue: #3B82F6;
+            --soft-lavender: #F3E8FF;
+            --sage-green: #ECFDF5;
+            --gentle-blue: #EFF6FF;
+        }
+        
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .font-lora {
+            font-family: 'Lora', serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--meditation-purple) 0%, var(--zen-green) 50%, var(--mindful-blue) 100%);
+        }
+        
+        .lotus-petal {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(139, 92, 246, 0.3);
+            border-radius: 50% 10px 50% 10px;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .lotus-petal:nth-child(2) { animation-delay: -2s; }
+        .lotus-petal:nth-child(3) { animation-delay: -4s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
+            50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+        }
+        
+        .breathing-circle {
+            width: 200px;
+            height: 200px;
+            border: 2px solid var(--meditation-purple);
+            border-radius: 50%;
+            animation: breathe 4s ease-in-out infinite;
+        }
+        
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+        
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .meditation-card {
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .meditation-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+        }
+        
+        .zen-transition {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .streak-counter {
+            background: linear-gradient(45deg, var(--zen-green), var(--mindful-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            .lotus-petal, .breathing-circle {
+                animation: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-purple-50 via-green-50 to-blue-50 text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-purple-100">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-r from-purple-500 to-green-500 rounded-full flex items-center justify-center">
+                        <i class="fas fa-lotus text-white text-lg" aria-hidden="true"></i>
+                    </div>
+                    <span class="text-2xl font-bold font-lora text-purple-800">InnerCalm Sanctuary</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="zen-transition hover:text-purple-600" tabindex="0">Features</a>
+                    <a href="#instructors" class="zen-transition hover:text-purple-600" tabindex="0">Instructors</a>
+                    <a href="#pricing" class="zen-transition hover:text-purple-600" tabindex="0">Pricing</a>
+                    <button class="bg-gradient-to-r from-purple-500 to-green-500 text-white px-6 py-2 rounded-full zen-transition hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-300" aria-label="Start your meditation journey">
+                        Start Journey
+                    </button>
+                </div>
+                <button class="md:hidden text-purple-600" aria-label="Open menu" id="mobile-menu-btn">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <!-- Floating Lotus Petals -->
+        <div class="lotus-petal" style="top: 20%; left: 10%;"></div>
+        <div class="lotus-petal" style="top: 60%; right: 15%;"></div>
+        <div class="lotus-petal" style="top: 40%; left: 70%;"></div>
+        
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-5xl md:text-7xl font-bold font-lora text-purple-800 mb-6 fade-in-up">
+                    Find Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-green-500">Inner Peace</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-600 mb-8 fade-in-up">
+                    Discover tranquility through guided meditation, mindfulness practices, and personalized wellness journeys
+                </p>
+                
+                <!-- Breathing Exercise Guide -->
+                <div class="flex flex-col items-center mb-12 fade-in-up">
+                    <div class="breathing-circle mb-4 flex items-center justify-center">
+                        <span class="text-purple-600 font-semibold">Breathe</span>
+                    </div>
+                    <p class="text-sm text-gray-500">Follow the circle - Inhale as it grows, exhale as it shrinks</p>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-6 justify-center mb-16 fade-in-up">
+                    <button class="bg-gradient-to-r from-purple-500 to-green-500 text-white px-8 py-4 rounded-full text-lg font-semibold zen-transition hover:shadow-xl hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-300" aria-label="Start free meditation trial">
+                        Start Free Trial
+                    </button>
+                    <button class="border-2 border-purple-500 text-purple-600 px-8 py-4 rounded-full text-lg font-semibold zen-transition hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-300" aria-label="Watch meditation demo">
+                        <i class="fas fa-play mr-2" aria-hidden="true"></i>Watch Demo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meditation Session Previews -->
+    <section class="py-20 bg-white/50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold font-lora text-center text-purple-800 mb-16 fade-in-up">
+                Experience Mindful Moments
+            </h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="meditation-card bg-white/70 rounded-2xl p-8 text-center fade-in-up">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-brain text-purple-600 text-2xl" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Morning Clarity</h3>
+                    <p class="text-gray-600 mb-6">Start your day with focused intention and mental clarity</p>
+                    <div class="bg-purple-50 rounded-lg p-4 mb-4">
+                        <div class="flex items-center justify-between text-sm">
+                            <span>Duration: 10 min</span>
+                            <span class="text-purple-600">◯ ◯ ◯</span>
+                        </div>
+                    </div>
+                    <button class="text-purple-600 font-semibold zen-transition hover:text-purple-800 focus:outline-none focus:ring-2 focus:ring-purple-300" aria-label="Preview morning clarity meditation">
+                        Preview Session <i class="fas fa-play ml-1" aria-hidden="true"></i>
+                    </button>
+                </div>
+                
+                <div class="meditation-card bg-white/70 rounded-2xl p-8 text-center fade-in-up">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-leaf text-green-600 text-2xl" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Stress Release</h3>
+                    <p class="text-gray-600 mb-6">Let go of tension and find your natural state of calm</p>
+                    <div class="bg-green-50 rounded-lg p-4 mb-4">
+                        <div class="flex items-center justify-between text-sm">
+                            <span>Duration: 15 min</span>
+                            <span class="text-green-600">◯ ◯ ◯ ◯</span>
+                        </div>
+                    </div>
+                    <button class="text-green-600 font-semibold zen-transition hover:text-green-800 focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Preview stress release meditation">
+                        Preview Session <i class="fas fa-play ml-1" aria-hidden="true"></i>
+                    </button>
+                </div>
+                
+                <div class="meditation-card bg-white/70 rounded-2xl p-8 text-center fade-in-up">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-moon text-blue-600 text-2xl" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Deep Sleep</h3>
+                    <p class="text-gray-600 mb-6">Drift into peaceful slumber with gentle guidance</p>
+                    <div class="bg-blue-50 rounded-lg p-4 mb-4">
+                        <div class="flex items-center justify-between text-sm">
+                            <span>Duration: 20 min</span>
+                            <span class="text-blue-600">◯ ◯ ◯ ◯ ◯</span>
+                        </div>
+                    </div>
+                    <button class="text-blue-600 font-semibold zen-transition hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-300" aria-label="Preview deep sleep meditation">
+                        Preview Session <i class="fas fa-play ml-1" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Showcase -->
+    <section id="features" class="py-20 bg-gradient-to-r from-purple-50 to-green-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold font-lora text-center text-purple-800 mb-4 fade-in-up">
+                Science-Backed Benefits
+            </h2>
+            <p class="text-center text-gray-600 mb-16 fade-in-up">
+                Research-proven results from regular meditation practice
+            </p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white rounded-2xl p-6 text-center shadow-lg fade-in-up">
+                    <div class="text-4xl font-bold text-purple-600 mb-2">73%</div>
+                    <div class="text-sm text-gray-500 mb-2">Stress Reduction</div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-purple-500 h-2 rounded-full" style="width: 73%"></div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-6 text-center shadow-lg fade-in-up">
+                    <div class="text-4xl font-bold text-green-600 mb-2">68%</div>
+                    <div class="text-sm text-gray-500 mb-2">Better Sleep</div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-green-500 h-2 rounded-full" style="width: 68%"></div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-6 text-center shadow-lg fade-in-up">
+                    <div class="text-4xl font-bold text-blue-600 mb-2">85%</div>
+                    <div class="text-sm text-gray-500 mb-2">Focus Improvement</div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-blue-500 h-2 rounded-full" style="width: 85%"></div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-6 text-center shadow-lg fade-in-up">
+                    <div class="text-4xl font-bold text-purple-600 mb-2">91%</div>
+                    <div class="text-sm text-gray-500 mb-2">Emotional Balance</div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-purple-500 h-2 rounded-full" style="width: 91%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Meditation Styles -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold font-lora text-center text-purple-800 mb-16 fade-in-up">
+                Choose Your Meditation Style
+            </h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="flex flex-wrap justify-center gap-4 mb-12">
+                    <button class="meditation-style-btn bg-purple-500 text-white px-6 py-3 rounded-full zen-transition hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-300" data-style="mindfulness" aria-label="Select mindfulness meditation">
+                        Mindfulness
+                    </button>
+                    <button class="meditation-style-btn bg-gray-200 text-gray-700 px-6 py-3 rounded-full zen-transition hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-300" data-style="loving-kindness" aria-label="Select loving kindness meditation">
+                        Loving Kindness
+                    </button>
+                    <button class="meditation-style-btn bg-gray-200 text-gray-700 px-6 py-3 rounded-full zen-transition hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-300" data-style="body-scan" aria-label="Select body scan meditation">
+                        Body Scan
+                    </button>
+                    <button class="meditation-style-btn bg-gray-200 text-gray-700 px-6 py-3 rounded-full zen-transition hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-300" data-style="visualization" aria-label="Select visualization meditation">
+                        Visualization
+                    </button>
+                </div>
+                
+                <div id="meditation-preview" class="bg-gradient-to-br from-purple-50 to-green-50 rounded-2xl p-8 text-center">
+                    <h3 class="text-2xl font-semibold mb-4">Mindfulness Meditation</h3>
+                    <p class="text-gray-600 mb-6">Focus on the present moment with gentle awareness of thoughts and sensations</p>
+                    <div class="bg-white/70 rounded-xl p-6 mb-6">
+                        <div class="flex items-center justify-center space-x-4 text-sm text-gray-500">
+                            <span><i class="fas fa-clock mr-1" aria-hidden="true"></i> 5-30 minutes</span>
+                            <span><i class="fas fa-users mr-1" aria-hidden="true"></i> Beginner Friendly</span>
+                            <span><i class="fas fa-star mr-1" aria-hidden="true"></i> Most Popular</span>
+                        </div>
+                    </div>
+                    <button class="bg-gradient-to-r from-purple-500 to-green-500 text-white px-8 py-3 rounded-full zen-transition hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-300" aria-label="Try mindfulness meditation">
+                        Try Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expert Instructors -->
+    <section id="instructors" class="py-20 bg-gradient-to-br from-green-50 to-blue-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold font-lora text-center text-purple-800 mb-16 fade-in-up">
+                Learn from Mindfulness Experts
+            </h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl p-8 text-center shadow-lg fade-in-up">
+                    <div class="w-24 h-24 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full mx-auto mb-6 flex items-center justify-center text-white text-2xl font-bold">
+                        DR
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Dr. Sarah Chen</h3>
+                    <p class="text-gray-500 mb-4">Mindfulness-Based Stress Reduction</p>
+                    <p class="text-gray-600 text-sm mb-6">
+                        "Meditation isn't about stopping thoughts, but learning to observe them with compassion. My approach combines ancient wisdom with modern neuroscience."
+                    </p>
+                    <div class="flex justify-center space-x-2 text-sm text-gray-500">
+                        <span>15+ years</span>
+                        <span>•</span>
+                        <span>PhD Psychology</span>
+                        <span>•</span>
+                        <span>1M+ students</span>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 text-center shadow-lg fade-in-up">
+                    <div class="w-24 h-24 bg-gradient-to-r from-green-400 to-blue-400 rounded-full mx-auto mb-6 flex items-center justify-center text-white text-2xl font-bold">
+                        MJ
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Master Jin Wu</h3>
+                    <p class="text-gray-500 mb-4">Zen & Loving Kindness</p>
+                    <p class="text-gray-600 text-sm mb-6">
+                        "True peace comes from within. Through gentle practice and patient understanding, we cultivate the garden of our inner world."
+                    </p>
+                    <div class="flex justify-center space-x-2 text-sm text-gray-500">
+                        <span>25+ years</span>
+                        <span>•</span>
+                        <span>Zen Master</span>
+                        <span>•</span>
+                        <span>500K+ students</span>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 text-center shadow-lg fade-in-up">
+                    <div class="w-24 h-24 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full mx-auto mb-6 flex items-center justify-center text-white text-2xl font-bold">
+                        ER
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Emma Rodriguez</h3>
+                    <p class="text-gray-500 mb-4">Sleep & Anxiety Specialist</p>
+                    <p class="text-gray-600 text-sm mb-6">
+                        "Sleep is the foundation of wellbeing. My guided meditations help create the perfect conditions for restorative rest and anxiety relief."
+                    </p>
+                    <div class="flex justify-center space-x-2 text-sm text-gray-500">
+                        <span>12+ years</span>
+                        <span>•</span>
+                        <span>Sleep Therapist</span>
+                        <span>•</span>
+                        <span>750K+ students</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Testimonials -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold font-lora text-center text-purple-800 mb-16 fade-in-up">
+                Mindfulness Success Stories
+            </h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 fade-in-up">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                            A
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Alex Thompson</h4>
+                            <p class="text-sm text-gray-500">Marketing Manager</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        "My stress levels dropped by 60% after just 3 months. The sleep meditations are incredible - I fall asleep in minutes now!"
+                    </p>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-purple-600 font-semibold">60% less stress</span>
+                        <span class="text-gray-500">3 months active</span>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 fade-in-up">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                            M
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Maria Santos</h4>
+                            <p class="text-sm text-gray-500">Teacher</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        "InnerCalm helped me find balance during a difficult time. The loving kindness meditations transformed my relationships."
+                    </p>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-green-600 font-semibold">200 day streak</span>
+                        <span class="text-gray-500">8 months active</span>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8 fade-in-up">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                            J
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">James Park</h4>
+                            <p class="text-sm text-gray-500">Software Engineer</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        "Focus meditation boosted my productivity by 40%. The daily reminders keep me consistent with my practice."
+                    </p>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-blue-600 font-semibold">40% more focused</span>
+                        <span class="text-gray-500">6 months active</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mood Tracking & Streaks -->
+    <section class="py-20 bg-gradient-to-r from-purple-50 via-green-50 to-blue-50">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl font-bold font-lora text-purple-800 mb-8 fade-in-up">
+                    Track Your Mindfulness Journey
+                </h2>
+                <p class="text-xl text-gray-600 mb-12 fade-in-up">
+                    Monitor your progress with mood tracking and celebrate your meditation streaks
+                </p>
+                
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="bg-white/70 rounded-2xl p-8 fade-in-up">
+                        <h3 class="text-2xl font-semibold mb-6">Daily Mood Tracker</h3>
+                        <div class="flex justify-between items-center mb-6">
+                            <div class="text-center">
+                                <div class="text-4xl mb-2">😌</div>
+                                <div class="text-sm text-gray-500">Calm</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-4xl mb-2">😊</div>
+                                <div class="text-sm text-gray-500">Happy</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-4xl mb-2">🧘</div>
+                                <div class="text-sm text-gray-500">Focused</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-4xl mb-2">😴</div>
+                                <div class="text-sm text-gray-500">Restful</div>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-r from-purple-100 to-green-100 rounded-lg p-4">
+                            <p class="text-sm text-gray-600">
+                                Track how meditation impacts your daily emotional wellbeing
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white/70 rounded-2xl p-8 fade-in-up">
+                        <h3 class="text-2xl font-semibold mb-6">Meditation Streak</h3>
+                        <div class="text-center mb-6">
+                            <div class="text-6xl font-bold streak-counter mb-2">47</div>
+                            <div class="text-lg text-gray-600">Days in a row</div>
+                        </div>
+                        <div class="grid grid-cols-7 gap-2 mb-6">
+                            <div class="w-8 h-8 bg-green-500 rounded-full"></div>
+                            <div class="w-8 h-8 bg-green-500 rounded-full"></div>
+                            <div class="w-8 h-8 bg-green-500 rounded-full"></div>
+                            <div class="w-8 h-8 bg-green-500 rounded-full"></div>
+                            <div class="w-8 h-8 bg-green-500 rounded-full"></div>
+                            <div class="w-8 h-8 bg-green-500 rounded-full"></div>
+                            <div class="w-8 h-8 bg-purple-500 rounded-full animate-pulse"></div>
+                        </div>
+                        <div class="bg-gradient-to-r from-green-100 to-blue-100 rounded-lg p-4">
+                            <p class="text-sm text-gray-600">
+                                🎉 You're just 3 days away from a 50-day milestone!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Plans -->
+    <section id="pricing" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold font-lora text-center text-purple-800 mb-8 fade-in-up">
+                Choose Your Meditation Journey
+            </h2>
+            <p class="text-center text-gray-600 mb-16 fade-in-up">
+                Unlock different levels of access to our meditation library
+            </p>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Free Plan -->
+                <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 text-center fade-in-up">
+                    <h3 class="text-2xl font-semibold mb-4">Free</h3>
+                    <div class="text-4xl font-bold text-gray-700 mb-6">$0<span class="text-lg font-normal">/month</span></div>
+                    <ul class="text-left space-y-3 mb-8">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3" aria-hidden="true"></i>5 guided meditations</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3" aria-hidden="true"></i>Basic breathing exercises</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3" aria-hidden="true"></i>Progress tracking</li>
+                        <li class="flex items-center"><i class="fas fa-times text-gray-400 mr-3" aria-hidden="true"></i>Advanced techniques</li>
+                        <li class="flex items-center"><i class="fas fa-times text-gray-400 mr-3" aria-hidden="true"></i>Expert guidance</li>
+                    </ul>
+                    <button class="w-full bg-gray-200 text-gray-700 py-3 rounded-full zen-transition hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-300" aria-label="Start free plan">
+                        Get Started
+                    </button>
+                </div>
+                
+                <!-- Premium Plan -->
+                <div class="bg-gradient-to-br from-purple-500 to-green-500 rounded-2xl p-8 text-center text-white relative fade-in-up">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-yellow-900 px-4 py-1 rounded-full text-sm font-semibold">
+                        Most Popular
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4">Premium</h3>
+                    <div class="text-4xl font-bold mb-6">$9.99<span class="text-lg font-normal">/month</span></div>
+                    <ul class="text-left space-y-3 mb-8">
+                        <li class="flex items-center"><i class="fas fa-check mr-3" aria-hidden="true"></i>200+ guided meditations</li>
+                        <li class="flex items-center"><i class="fas fa-check mr-3" aria-hidden="true"></i>All meditation styles</li>
+                        <li class="flex items-center"><i class="fas fa-check mr-3" aria-hidden="true"></i>Expert instructors</li>
+                        <li class="flex items-center"><i class="fas fa-check mr-3" aria-hidden="true"></i>Mood tracking</li>
+                        <li class="flex items-center"><i class="fas fa-check mr-3" aria-hidden="true"></i>Offline downloads</li>
+                    </ul>
+                    <button class="w-full bg-white text-purple-600 py-3 rounded-full font-semibold zen-transition hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white" aria-label="Start premium plan">
+                        Start Free Trial
+                    </button>
+                </div>
+                
+                <!-- Master Plan -->
+                <div class="bg-gradient-to-br from-yellow-100 to-orange-100 rounded-2xl p-8 text-center fade-in-up">
+                    <h3 class="text-2xl font-semibold mb-4">Master</h3>
+                    <div class="text-4xl font-bold text-orange-600 mb-6">$19.99<span class="text-lg font-normal">/month</span></div>
+                    <ul class="text-left space-y-3 mb-8">
+                        <li class="flex items-center"><i class="fas fa-check text-orange-500 mr-3" aria-hidden="true"></i>Everything in Premium</li>
+                        <li class="flex items-center"><i class="fas fa-check text-orange-500 mr-3" aria-hidden="true"></i>1:1 guidance sessions</li>
+                        <li class="flex items-center"><i class="fas fa-check text-orange-500 mr-3" aria-hidden="true"></i>Custom meditation plans</li>
+                        <li class="flex items-center"><i class="fas fa-check text-orange-500 mr-3" aria-hidden="true"></i>Advanced analytics</li>
+                        <li class="flex items-center"><i class="fas fa-check text-orange-500 mr-3" aria-hidden="true"></i>Priority support</li>
+                    </ul>
+                    <button class="w-full bg-gradient-to-r from-orange-500 to-yellow-500 text-white py-3 rounded-full font-semibold zen-transition hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-orange-300" aria-label="Start master plan">
+                        Start Free Trial
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 bg-gradient-to-r from-purple-500 to-green-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-lotus text-white text-lg" aria-hidden="true"></i>
+                        </div>
+                        <span class="text-xl font-bold font-lora">InnerCalm Sanctuary</span>
+                    </div>
+                    <p class="text-gray-400 mb-6">
+                        Your journey to inner peace starts here. Discover the transformative power of mindfulness meditation.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white zen-transition" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white zen-transition" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white zen-transition" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-6">Meditation</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" class="zen-transition hover:text-white">Mindfulness</a></li>
+                        <li><a href="#" class="zen-transition hover:text-white">Sleep Stories</a></li>
+                        <li><a href="#" class="zen-transition hover:text-white">Stress Relief</a></li>
+                        <li><a href="#" class="zen-transition hover:text-white">Focus</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-6">Company</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" class="zen-transition hover:text-white">About Us</a></li>
+                        <li><a href="#" class="zen-transition hover:text-white">Careers</a></li>
+                        <li><a href="#" class="zen-transition hover:text-white">Press</a></li>
+                        <li><a href="#" class="zen-transition hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-6">Support</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" class="zen-transition hover:text-white">Help Center</a></li>
+                        <li><a href="#" class="zen-transition hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="zen-transition hover:text-white">Terms of Service</a></li>
+                        <li><a href="#" class="zen-transition hover:text-white">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 InnerCalm Sanctuary. All rights reserved. Find your inner peace.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Meditation style selector
+        const styleButtons = document.querySelectorAll('.meditation-style-btn');
+        const previewSection = document.getElementById('meditation-preview');
+
+        const meditationStyles = {
+            'mindfulness': {
+                title: 'Mindfulness Meditation',
+                description: 'Focus on the present moment with gentle awareness of thoughts and sensations',
+                features: ['5-30 minutes', 'Beginner Friendly', 'Most Popular']
+            },
+            'loving-kindness': {
+                title: 'Loving Kindness Meditation',
+                description: 'Cultivate compassion and love for yourself and others through guided visualization',
+                features: ['10-25 minutes', 'Heart-Opening', 'Relationship Focus']
+            },
+            'body-scan': {
+                title: 'Body Scan Meditation',
+                description: 'Progressive relaxation technique that releases tension throughout your body',
+                features: ['15-45 minutes', 'Deep Relaxation', 'Stress Relief']
+            },
+            'visualization': {
+                title: 'Visualization Meditation',
+                description: 'Use guided imagery to create peaceful mental landscapes and positive outcomes',
+                features: ['10-30 minutes', 'Creative Practice', 'Goal Setting']
+            }
+        };
+
+        styleButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                // Update button states
+                styleButtons.forEach(btn => {
+                    btn.classList.remove('bg-purple-500', 'text-white');
+                    btn.classList.add('bg-gray-200', 'text-gray-700');
+                });
+                
+                button.classList.remove('bg-gray-200', 'text-gray-700');
+                button.classList.add('bg-purple-500', 'text-white');
+
+                // Update preview content
+                const style = button.dataset.style;
+                const styleData = meditationStyles[style];
+                
+                previewSection.innerHTML = `
+                    <h3 class="text-2xl font-semibold mb-4">${styleData.title}</h3>
+                    <p class="text-gray-600 mb-6">${styleData.description}</p>
+                    <div class="bg-white/70 rounded-xl p-6 mb-6">
+                        <div class="flex items-center justify-center space-x-4 text-sm text-gray-500">
+                            ${styleData.features.map(feature => `
+                                <span><i class="fas fa-${getIconForFeature(feature)} mr-1" aria-hidden="true"></i> ${feature}</span>
+                            `).join('')}
+                        </div>
+                    </div>
+                    <button class="bg-gradient-to-r from-purple-500 to-green-500 text-white px-8 py-3 rounded-full zen-transition hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-300" aria-label="Try ${styleData.title.toLowerCase()}">
+                        Try Now
+                    </button>
+                `;
+            });
+        });
+
+        function getIconForFeature(feature) {
+            if (feature.includes('minutes')) return 'clock';
+            if (feature.includes('Beginner') || feature.includes('Popular')) return 'star';
+            if (feature.includes('Heart') || feature.includes('Relationship')) return 'heart';
+            if (feature.includes('Relaxation') || feature.includes('Relief')) return 'leaf';
+            if (feature.includes('Creative') || feature.includes('Goal')) return 'lightbulb';
+            return 'check';
+        }
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        let mobileMenuOpen = false;
+
+        mobileMenuBtn?.addEventListener('click', () => {
+            mobileMenuOpen = !mobileMenuOpen;
+            // Implementation would depend on actual mobile menu structure
+            console.log('Mobile menu toggled');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Breathing circle animation sync with instructions
+        const breathingCircle = document.querySelector('.breathing-circle');
+        if (breathingCircle) {
+            let breatheText = breathingCircle.querySelector('span');
+            let isInhaling = true;
+            
+            setInterval(() => {
+                if (breatheText) {
+                    breatheText.textContent = isInhaling ? 'Inhale' : 'Exhale';
+                    isInhaling = !isInhaling;
+                }
+            }, 2000);
+        }
+
+        // Add keyboard navigation support
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-navigation');
+            }
+        });
+
+        document.addEventListener('mousedown', () => {
+            document.body.classList.remove('keyboard-navigation');
+        });
+
+        // Respect reduced motion preferences
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.documentElement.style.setProperty('--animation-duration', '0s');
+        }
+    </script>
+</body>
+</html>
