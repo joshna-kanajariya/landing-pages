@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrimeCap Wealth Management - Investment Advisory Excellence</title>
+    <meta name="description" content="Professional wealth management and investment advisory services. Build and grow your portfolio with expert guidance from PrimeCap's certified financial advisors.">
+    
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+        
+        :root {
+            --portfolio-blue: #1e40af;
+            --growth-green: #059669;
+            --stability-gray: #64748b;
+            --accent-gold: #f59e0b;
+            --deep-navy: #0f172a;
+            --light-gray: #f8fafc;
+        }
+        
+        .font-playfair { font-family: 'Times New Roman', serif; font-weight: 600; }
+        .font-lato { font-family: 'Segoe UI', sans-serif; }
+        
+        /* Layout utilities */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .flex { display: flex; }
+        .grid { display: grid; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .justify-center { justify-content: center; }
+        .text-center { text-align: center; }
+        .relative { position: relative; }
+        .absolute { position: absolute; }
+        .fixed { position: fixed; }
+        .hidden { display: none; }
+        
+        /* Spacing */
+        .p-4 { padding: 1rem; }
+        .p-6 { padding: 1.5rem; }
+        .p-8 { padding: 2rem; }
+        .py-2 { padding: 0.5rem 0; }
+        .py-3 { padding: 0.75rem 0; }
+        .py-4 { padding: 1rem 0; }
+        .py-16 { padding: 4rem 0; }
+        .py-20 { padding: 5rem 0; }
+        .px-4 { padding: 0 1rem; }
+        .px-6 { padding: 0 1.5rem; }
+        .px-8 { padding: 0 2rem; }
+        .mb-2 { margin-bottom: 0.5rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .mb-12 { margin-bottom: 3rem; }
+        .mb-16 { margin-bottom: 4rem; }
+        .mt-4 { margin-top: 1rem; }
+        .mt-8 { margin-top: 2rem; }
+        .mt-12 { margin-top: 3rem; }
+        .mr-2 { margin-right: 0.5rem; }
+        .mr-3 { margin-right: 0.75rem; }
+        .mr-4 { margin-right: 1rem; }
+        .gap-4 { gap: 1rem; }
+        .gap-8 { gap: 2rem; }
+        .gap-12 { gap: 3rem; }
+        
+        /* Colors */
+        .text-white { color: white; }
+        .text-gray-300 { color: #d1d5db; }
+        .text-gray-600 { color: #4b5563; }
+        .text-gray-700 { color: #374151; }
+        .text-gray-900 { color: #111827; }
+        .text-blue-600 { color: #2563eb; }
+        .text-blue-700 { color: #1d4ed8; }
+        .text-green-400 { color: #4ade80; }
+        .text-green-600 { color: #16a34a; }
+        .text-green-800 { color: #166534; }
+        .text-yellow-600 { color: #ca8a04; }
+        
+        .bg-white { background-color: white; }
+        .bg-gray-50 { background-color: #f9fafb; }
+        .bg-gray-900 { background-color: #111827; }
+        .bg-blue-600 { background-color: #2563eb; }
+        .bg-blue-700 { background-color: #1d4ed8; }
+        .bg-green-600 { background-color: #16a34a; }
+        .bg-yellow-600 { background-color: #ca8a04; }
+        
+        /* Typography */
+        .text-sm { font-size: 0.875rem; }
+        .text-lg { font-size: 1.125rem; }
+        .text-xl { font-size: 1.25rem; }
+        .text-2xl { font-size: 1.5rem; }
+        .text-3xl { font-size: 1.875rem; }
+        .text-4xl { font-size: 2.25rem; }
+        .text-5xl { font-size: 3rem; }
+        .text-6xl { font-size: 3.75rem; }
+        .font-bold { font-weight: 700; }
+        .font-semibold { font-weight: 600; }
+        .leading-tight { line-height: 1.25; }
+        .leading-relaxed { line-height: 1.625; }
+        
+        /* Borders and shadows */
+        .rounded { border-radius: 0.25rem; }
+        .rounded-lg { border-radius: 0.5rem; }
+        .rounded-2xl { border-radius: 1rem; }
+        .rounded-full { border-radius: 9999px; }
+        .border { border: 1px solid #e5e7eb; }
+        .border-2 { border: 2px solid; }
+        .border-b { border-bottom: 1px solid #e5e7eb; }
+        .border-gray-200 { border-color: #e5e7eb; }
+        .border-gray-300 { border-color: #d1d5db; }
+        .border-blue-500 { border-color: #3b82f6; }
+        .border-white { border-color: white; }
+        .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+        .shadow-xl { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+        
+        /* Sizing */
+        .w-4 { width: 1rem; }
+        .w-12 { width: 3rem; }
+        .w-16 { width: 4rem; }
+        .w-24 { width: 6rem; }
+        .w-full { width: 100%; }
+        .h-2 { height: 0.5rem; }
+        .h-4 { height: 1rem; }
+        .h-16 { height: 4rem; }
+        .h-24 { height: 6rem; }
+        .min-h-screen { min-height: 100vh; }
+        
+        /* Position */
+        .top-0 { top: 0; }
+        .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+        .z-50 { z-index: 50; }
+        
+        /* Transitions */
+        .transition-colors { transition: color 0.15s, background-color 0.15s, border-color 0.15s; }
+        .transition-opacity { transition: opacity 0.15s; }
+        .transition-shadow { transition: box-shadow 0.15s; }
+        .duration-500 { transition-duration: 0.5s; }
+        
+        /* Hover effects */
+        .hover\:bg-blue-700:hover { background-color: #1d4ed8; }
+        .hover\:bg-blue-800:hover { background-color: #1e40af; }
+        .hover\:bg-green-700:hover { background-color: #15803d; }
+        .hover\:bg-yellow-700:hover { background-color: #a16207; }
+        .hover\:text-blue-700:hover { color: #1d4ed8; }
+        .hover\:text-white:hover { color: white; }
+        .hover\:shadow-xl:hover { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+        
+        /* Focus states */
+        .focus\:ring-2:focus { box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); }
+        .focus\:ring-blue-500:focus { box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); }
+        
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e5e7eb;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 50;
+        }
+        
+        nav .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 4rem;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1d4ed8;
+        }
+        
+        .nav-links {
+            display: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: #374151;
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+        
+        .nav-links a:hover {
+            color: #1d4ed8;
+        }
+        
+        /* Hero section */
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, var(--portfolio-blue) 50%, var(--growth-green) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-gradient::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(30, 64, 175, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(5, 150, 105, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(100, 116, 139, 0.1) 0%, transparent 50%);
+        }
+        
+        .wealth-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Floating animations */
+        .floating-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(1deg); }
+            66% { transform: translateY(-10px) rotate(-1deg); }
+        }
+        
+        .floating-animation:nth-child(2) { animation-delay: -2s; }
+        .floating-animation:nth-child(3) { animation-delay: -4s; }
+        
+        /* Scroll reveal */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Forms */
+        button {
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.15s, color 0.15s;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-family: inherit;
+            outline: none;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+        }
+        
+        /* Risk slider */
+        .risk-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(to right, var(--growth-green) 0%, var(--accent-gold) 50%, #ef4444 100%);
+            outline: none;
+        }
+        
+        .risk-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid var(--portfolio-blue);
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        /* Service tiers */
+        .service-tier {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .service-tier:hover {
+            border-color: var(--portfolio-blue);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(30, 64, 175, 0.1);
+        }
+        
+        /* Testimonials */
+        .testimonial-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,250,252,0.9) 100%);
+            border-left: 4px solid var(--growth-green);
+        }
+        
+        /* Calculator */
+        .calculator-result {
+            background: linear-gradient(135deg, var(--growth-green) 0%, var(--portfolio-blue) 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        
+        /* Charts */
+        .portfolio-chart {
+            position: relative;
+            height: 300px;
+            width: 100%;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+        
+        /* List styles */
+        ul {
+            list-style: none;
+        }
+        
+        .check-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+        
+        .check-list li::before {
+            content: '✓';
+            color: #16a34a;
+            font-weight: bold;
+            margin-right: 0.75rem;
+        }
+        
+        /* Icons using Unicode symbols */
+        .icon-chart::before { content: '📈'; margin-right: 0.5rem; }
+        .icon-pie::before { content: '📊'; margin-right: 0.5rem; }
+        .icon-trending::before { content: '📈'; margin-right: 0.5rem; }
+        .icon-coins::before { content: '🪙'; margin-right: 0.5rem; }
+        .icon-globe::before { content: '🌐'; margin-right: 0.5rem; }
+        .icon-shield::before { content: '🛡️'; margin-right: 0.5rem; }
+        .icon-phone::before { content: '📞'; margin-right: 0.5rem; }
+        .icon-email::before { content: '✉️'; margin-right: 0.5rem; }
+        .icon-location::before { content: '📍'; margin-right: 0.5rem; }
+        
+        /* Responsive design */
+        @media (min-width: 640px) {
+            .container { padding: 0 2rem; }
+            .sm\:flex-row { flex-direction: row; }
+        }
+        
+        @media (min-width: 768px) {
+            .nav-links { display: flex; }
+            .md\:flex { display: flex; }
+            .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .md\:text-6xl { font-size: 3.75rem; }
+        }
+        
+        @media (min-width: 1024px) {
+            .lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        }
+        
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            .floating-animation,
+            .scroll-reveal {
+                animation: none;
+                transition: none;
+            }
+        }
+        
+        /* Additional utilities */
+        .opacity-0 { opacity: 0; }
+        .opacity-90 { opacity: 0.9; }
+        .transform { transform: translateZ(0); }
+        .cursor-pointer { cursor: pointer; }
+        .pointer-events-none { pointer-events: none; }
+        .object-cover { object-fit: cover; }
+        .italic { font-style: italic; }
+        .overflow-hidden { overflow: hidden; }
+        .backdrop-blur { backdrop-filter: blur(10px); }
+    </style>
+</head>
+<body class="font-lato text-gray-900 bg-white">
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">
+                <span class="icon-chart"></span>
+                PrimeCap
+            </div>
+            <div class="nav-links">
+                <a href="#services">Services</a>
+                <a href="#advisors">Advisors</a>
+                <a href="#insights">Market Insights</a>
+                <a href="#testimonials">Success Stories</a>
+                <a href="#calculator">Calculator</a>
+            </div>
+            <button class="bg-blue-700 text-white hover:bg-blue-800 transition-colors">
+                Book Consultation
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient">
+        <div class="container">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="text-white">
+                    <h1 class="font-playfair text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                        Build Your
+                        <span class="text-green-400">Wealth</span>
+                        Portfolio
+                    </h1>
+                    <p class="text-xl mb-8 text-gray-300 leading-relaxed">
+                        Expert investment advisory services designed to grow and protect your financial future. 
+                        Personalized strategies, proven results, and comprehensive wealth management solutions.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="bg-green-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-green-700 transition-colors">
+                            Start Investment Journey
+                        </button>
+                        <button class="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-blue-900 transition-colors">
+                            Portfolio Analysis
+                        </button>
+                    </div>
+                    <div class="mt-12 grid grid-cols-3 gap-8">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-green-400">$2.5B+</div>
+                            <div class="text-sm text-gray-300">Assets Under Management</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-green-400">15.2%</div>
+                            <div class="text-sm text-gray-300">Average Annual Return</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-green-400">2,500+</div>
+                            <div class="text-sm text-gray-300">Satisfied Clients</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Performance Chart -->
+                <div class="wealth-card rounded-2xl p-6">
+                    <h3 class="font-playfair text-2xl font-semibold mb-4 text-gray-900">Portfolio Performance</h3>
+                    <div class="portfolio-chart">
+                        Interactive Portfolio Chart
+                        <br><small>📈 +127.3% Growth Over 5 Years</small>
+                    </div>
+                    <div class="mt-4 flex justify-between text-sm">
+                        <span class="text-gray-600">5Y Growth</span>
+                        <span class="text-green-600 font-semibold">+127.3%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Risk Assessment Tools -->
+    <section class="py-20 bg-gray-50">
+        <div class="container">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="font-playfair text-4xl font-bold mb-4">Interactive Risk Assessment</h2>
+                <p class="text-xl text-gray-600">
+                    Discover your investment profile and build a personalized portfolio tailored to your financial goals and risk tolerance.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="scroll-reveal">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <h3 class="font-playfair text-2xl font-semibold mb-6">Risk Tolerance Assessment</h3>
+                        
+                        <div class="mb-6">
+                            <label class="block text-sm font-semibold mb-2">Investment Timeline</label>
+                            <select>
+                                <option>Less than 5 years</option>
+                                <option>5-10 years</option>
+                                <option>10-20 years</option>
+                                <option>More than 20 years</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-sm font-semibold mb-2">Risk Tolerance: <span id="riskValue">Moderate</span></label>
+                            <input type="range" id="riskSlider" class="risk-slider" min="0" max="100" value="50">
+                            <div class="flex justify-between text-xs text-gray-500 mt-1">
+                                <span>Conservative</span>
+                                <span>Moderate</span>
+                                <span>Aggressive</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-sm font-semibold mb-2">Investment Amount ($)</label>
+                            <input type="number" placeholder="50,000" min="1000">
+                        </div>
+                        
+                        <button class="w-full bg-blue-700 text-white py-3 rounded-lg font-semibold hover:bg-blue-800 transition-colors">
+                            Generate Portfolio Recommendation
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="scroll-reveal">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <h3 class="font-playfair text-2xl font-semibold mb-6">Recommended Portfolio</h3>
+                        <div class="portfolio-chart mb-6">
+                            Portfolio Allocation Chart
+                            <br><small>📊 Diversified Investment Mix</small>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center">
+                                    <div class="w-4 h-4 bg-blue-600 rounded mr-3"></div>
+                                    <span>Stocks</span>
+                                </div>
+                                <span class="font-semibold">60%</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center">
+                                    <div class="w-4 h-4 bg-green-600 rounded mr-3"></div>
+                                    <span>Bonds</span>
+                                </div>
+                                <span class="font-semibold">30%</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center">
+                                    <div class="w-4 h-4 bg-yellow-600 rounded mr-3"></div>
+                                    <span>Real Estate</span>
+                                </div>
+                                <span class="font-semibold">10%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advisor Profiles -->
+    <section id="advisors" class="py-20 bg-white">
+        <div class="container">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="font-playfair text-4xl font-bold mb-4">Expert Advisory Team</h2>
+                <p class="text-xl text-gray-600">
+                    Meet our certified financial advisors with proven track records in wealth management and investment strategy.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="scroll-reveal bg-gray-50 rounded-2xl p-8 text-center hover:shadow-xl transition-shadow">
+                    <div class="w-24 h-24 rounded-full mx-auto mb-6 bg-blue-100 flex items-center justify-center text-2xl">👨‍💼</div>
+                    <h3 class="font-playfair text-xl font-semibold mb-2">Michael Chen, CFA</h3>
+                    <p class="text-gray-600 mb-4">Senior Portfolio Manager</p>
+                    <div class="text-sm text-gray-500 mb-4">
+                        <div>15+ Years Experience</div>
+                        <div>Certified Financial Analyst</div>
+                        <div>Specializes in Growth Strategies</div>
+                    </div>
+                    <div class="bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-semibold">
+                        Track Record: 18.5% Annual Return
+                    </div>
+                </div>
+                
+                <div class="scroll-reveal bg-gray-50 rounded-2xl p-8 text-center hover:shadow-xl transition-shadow">
+                    <div class="w-24 h-24 rounded-full mx-auto mb-6 bg-pink-100 flex items-center justify-center text-2xl">👩‍💼</div>
+                    <h3 class="font-playfair text-xl font-semibold mb-2">Sarah Johnson, CFP</h3>
+                    <p class="text-gray-600 mb-4">Wealth Management Director</p>
+                    <div class="text-sm text-gray-500 mb-4">
+                        <div>12+ Years Experience</div>
+                        <div>Certified Financial Planner</div>
+                        <div>Retirement Planning Expert</div>
+                    </div>
+                    <div class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold">
+                        Track Record: 16.2% Annual Return
+                    </div>
+                </div>
+                
+                <div class="scroll-reveal bg-gray-50 rounded-2xl p-8 text-center hover:shadow-xl transition-shadow">
+                    <div class="w-24 h-24 rounded-full mx-auto mb-6 bg-green-100 flex items-center justify-center text-2xl">👨‍💼</div>
+                    <h3 class="font-playfair text-xl font-semibold mb-2">David Rodriguez, CPA</h3>
+                    <p class="text-gray-600 mb-4">Tax Strategy Advisor</p>
+                    <div class="text-sm text-gray-500 mb-4">
+                        <div>10+ Years Experience</div>
+                        <div>Certified Public Accountant</div>
+                        <div>Tax-Efficient Investing</div>
+                    </div>
+                    <div class="bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full text-sm font-semibold">
+                        Track Record: 14.8% Annual Return
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services & Pricing -->
+    <section id="services" class="py-20 bg-gray-50">
+        <div class="container">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="font-playfair text-4xl font-bold mb-4">Advisory Service Tiers</h2>
+                <p class="text-xl text-gray-600">
+                    Choose the wealth management service that best fits your investment goals and portfolio size.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="scroll-reveal service-tier bg-white rounded-2xl p-8">
+                    <div class="text-center mb-6">
+                        <h3 class="font-playfair text-2xl font-semibold mb-2">Essential</h3>
+                        <div class="text-3xl font-bold text-blue-700 mb-2">0.75%</div>
+                        <div class="text-gray-600">Annual Management Fee</div>
+                        <div class="text-sm text-gray-500 mt-2">Minimum: $100,000</div>
+                    </div>
+                    <ul class="check-list mb-8">
+                        <li>Portfolio Management</li>
+                        <li>Quarterly Reviews</li>
+                        <li>Online Dashboard</li>
+                        <li>Basic Reporting</li>
+                    </ul>
+                    <button class="w-full bg-gray-200 text-gray-800 py-3 rounded-lg font-semibold hover:bg-gray-300 transition-colors">
+                        Get Started
+                    </button>
+                </div>
+                
+                <div class="scroll-reveal service-tier bg-blue-50 rounded-2xl p-8 border-2 border-blue-500 relative">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white px-6 py-2 rounded-full text-sm font-semibold">
+                        Most Popular
+                    </div>
+                    <div class="text-center mb-6">
+                        <h3 class="font-playfair text-2xl font-semibold mb-2">Premium</h3>
+                        <div class="text-3xl font-bold text-blue-700 mb-2">1.00%</div>
+                        <div class="text-gray-600">Annual Management Fee</div>
+                        <div class="text-sm text-gray-500 mt-2">Minimum: $500,000</div>
+                    </div>
+                    <ul class="check-list mb-8">
+                        <li>Everything in Essential</li>
+                        <li>Monthly Reviews</li>
+                        <li>Tax-Loss Harvesting</li>
+                        <li>Dedicated Advisor</li>
+                        <li>Financial Planning</li>
+                    </ul>
+                    <button class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                        Get Started
+                    </button>
+                </div>
+                
+                <div class="scroll-reveal service-tier bg-white rounded-2xl p-8">
+                    <div class="text-center mb-6">
+                        <h3 class="font-playfair text-2xl font-semibold mb-2">Elite</h3>
+                        <div class="text-3xl font-bold text-blue-700 mb-2">1.25%</div>
+                        <div class="text-gray-600">Annual Management Fee</div>
+                        <div class="text-sm text-gray-500 mt-2">Minimum: $2,000,000</div>
+                    </div>
+                    <ul class="check-list mb-8">
+                        <li>Everything in Premium</li>
+                        <li>Weekly Check-ins</li>
+                        <li>Alternative Investments</li>
+                        <li>Estate Planning</li>
+                        <li>Family Office Services</li>
+                    </ul>
+                    <button class="w-full bg-yellow-600 text-white py-3 rounded-lg font-semibold hover:bg-yellow-700 transition-colors">
+                        Get Started
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investment Calculator -->
+    <section id="calculator" class="py-20 bg-white">
+        <div class="container">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="font-playfair text-4xl font-bold mb-4">Investment Calculator</h2>
+                <p class="text-xl text-gray-600">
+                    Project your potential returns and plan your financial future with our interactive investment calculator.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <div class="scroll-reveal bg-gray-50 rounded-2xl p-8">
+                    <h3 class="font-playfair text-2xl font-semibold mb-6">Calculate Your Potential Returns</h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Initial Investment ($)</label>
+                            <input type="number" id="initialInvestment" placeholder="50,000" value="50000">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Monthly Contribution ($)</label>
+                            <input type="number" id="monthlyContribution" placeholder="1,000" value="1000">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Expected Annual Return (%)</label>
+                            <input type="number" id="annualReturn" placeholder="10" value="10" step="0.1">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Investment Period (Years)</label>
+                            <input type="number" id="investmentPeriod" placeholder="10" value="10">
+                        </div>
+                        
+                        <button onclick="calculateReturns()" class="w-full bg-blue-700 text-white py-3 rounded-lg font-semibold hover:bg-blue-800 transition-colors">
+                            Calculate Projected Returns
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="scroll-reveal">
+                    <div id="calculatorResults" class="calculator-result">
+                        <h3 class="text-2xl font-bold mb-4">Your Investment Projection</h3>
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="text-center">
+                                <div class="text-3xl font-bold" id="finalAmount">$0</div>
+                                <div class="text-sm opacity-90">Final Amount</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold" id="totalGain">$0</div>
+                                <div class="text-sm opacity-90">Total Gain</div>
+                            </div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.2);" class="rounded-lg p-4 mb-4">
+                            <div class="flex justify-between mb-2">
+                                <span>Total Invested:</span>
+                                <span id="totalInvested">$0</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Investment Growth:</span>
+                                <span id="investmentGrowth">$0</span>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button style="background: white; color: #1d4ed8;" class="px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                                Schedule Consultation
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="container">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="text-2xl font-playfair font-bold text-blue-400 mb-4">
+                        <span class="icon-chart"></span>
+                        PrimeCap
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Professional wealth management and investment advisory services for sophisticated investors.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Portfolio Management</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Financial Planning</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Tax Strategy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Estate Planning</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Market Insights</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Investment Calculator</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Risk Assessment</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Educational Content</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><span class="icon-phone"></span>(555) 123-4567</li>
+                        <li><span class="icon-email"></span>info@primecapwealth.com</li>
+                        <li><span class="icon-location"></span>123 Financial District<br>New York, NY 10004</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 PrimeCap Wealth Management. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll reveal animation
+        function revealOnScroll() {
+            const elements = document.querySelectorAll('.scroll-reveal');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('revealed');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Initial check
+        
+        // Risk slider update
+        const riskSlider = document.getElementById('riskSlider');
+        const riskValue = document.getElementById('riskValue');
+        
+        if (riskSlider && riskValue) {
+            riskSlider.addEventListener('input', function() {
+                const value = this.value;
+                
+                if (value < 30) {
+                    riskValue.textContent = 'Conservative';
+                } else if (value < 70) {
+                    riskValue.textContent = 'Moderate';
+                } else {
+                    riskValue.textContent = 'Aggressive';
+                }
+            });
+        }
+        
+        // Investment Calculator
+        function calculateReturns() {
+            const initial = parseFloat(document.getElementById('initialInvestment').value) || 0;
+            const monthly = parseFloat(document.getElementById('monthlyContribution').value) || 0;
+            const rate = parseFloat(document.getElementById('annualReturn').value) / 100 || 0;
+            const years = parseFloat(document.getElementById('investmentPeriod').value) || 0;
+            
+            const monthlyRate = rate / 12;
+            const months = years * 12;
+            
+            // Future value of initial investment
+            const futureValueInitial = initial * Math.pow(1 + monthlyRate, months);
+            
+            // Future value of monthly contributions (annuity)
+            const futureValueMonthly = monthly * (Math.pow(1 + monthlyRate, months) - 1) / monthlyRate;
+            
+            const finalAmount = futureValueInitial + futureValueMonthly;
+            const totalInvested = initial + (monthly * months);
+            const totalGain = finalAmount - totalInvested;
+            
+            // Update display
+            document.getElementById('finalAmount').textContent = '$' + finalAmount.toLocaleString('en-US', {maximumFractionDigits: 0});
+            document.getElementById('totalGain').textContent = '$' + totalGain.toLocaleString('en-US', {maximumFractionDigits: 0});
+            document.getElementById('totalInvested').textContent = '$' + totalInvested.toLocaleString('en-US', {maximumFractionDigits: 0});
+            document.getElementById('investmentGrowth').textContent = '$' + totalGain.toLocaleString('en-US', {maximumFractionDigits: 0});
+            
+            // Show results
+            const results = document.getElementById('calculatorResults');
+            results.style.opacity = '1';
+        }
+        
+        // Smooth scrolling for navigation links
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+        
+        // Accessibility: Reduce motion for users who prefer it
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            const style = document.createElement('style');
+            style.textContent = `
+                .floating-animation { animation: none !important; }
+                .scroll-reveal { transition: none !important; }
+            `;
+            document.head.appendChild(style);
+        }
+    </script>
+</body>
+</html>
