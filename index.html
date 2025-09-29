@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MotionCraft Studios - Cinematic Excellence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'bebas': ['Bebas Neue', 'cursive'],
+                        'source': ['Source Sans Pro', 'sans-serif']
+                    },
+                    colors: {
+                        'golden': '#D4AF37',
+                        'red-carpet': '#B91C1C',
+                        'film-black': '#0F0F0F',
+                        'silver-screen': '#E5E7EB'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes filmStrip {
+            0% { background-position: 0 0; }
+            100% { background-position: 20px 0; }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes timeline {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        
+        .film-strip::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: repeating-linear-gradient(
+                90deg,
+                #D4AF37 0px,
+                #D4AF37 10px,
+                #0F0F0F 10px,
+                #0F0F0F 20px
+            );
+            animation: filmStrip 2s linear infinite;
+        }
+        
+        .film-strip::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: repeating-linear-gradient(
+                90deg,
+                #D4AF37 0px,
+                #D4AF37 10px,
+                #0F0F0F 10px,
+                #0F0F0F 20px
+            );
+            animation: filmStrip 2s linear infinite reverse;
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+        
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .timeline-progress {
+            animation: timeline 3s ease-out forwards;
+        }
+        
+        .hover-3d {
+            transition: transform 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .hover-3d:hover {
+            transform: perspective(1000px) rotateX(10deg) rotateY(10deg) translateZ(20px);
+        }
+        
+        .video-overlay {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.8), rgba(15, 15, 15, 0.9));
+        }
+        
+        .genre-filter.active {
+            background: linear-gradient(45deg, #D4AF37, #B91C1C);
+            color: white;
+        }
+        
+        .parallax {
+            transform: translateZ(0);
+            will-change: transform;
+        }
+        
+        .testimonial-card {
+            background: linear-gradient(135deg, rgba(15, 15, 15, 0.95), rgba(212, 175, 55, 0.1));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        
+        .equipment-card {
+            background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .equipment-card:hover {
+            border-color: #D4AF37;
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+        }
+        
+        .milestone {
+            position: relative;
+        }
+        
+        .milestone::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            background: #D4AF37;
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .milestone.completed::before {
+            background: #B91C1C;
+            box-shadow: 0 0 20px rgba(185, 28, 28, 0.5);
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-film-black text-white font-source overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-film-black/90 backdrop-blur-md border-b border-golden/20">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between py-4">
+                <div class="text-2xl font-bebas text-golden">
+                    <i class="fas fa-film mr-2"></i>
+                    MotionCraft Studios
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="hover:text-golden transition-colors">Home</a>
+                    <a href="#services" class="hover:text-golden transition-colors">Services</a>
+                    <a href="#portfolio" class="hover:text-golden transition-colors">Portfolio</a>
+                    <a href="#directors" class="hover:text-golden transition-colors">Directors</a>
+                    <a href="#equipment" class="hover:text-golden transition-colors">Equipment</a>
+                    <a href="#contact" class="hover:text-golden transition-colors">Contact</a>
+                </div>
+                <button class="md:hidden text-golden">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center film-strip">
+        <div class="absolute inset-0 bg-gradient-to-br from-film-black via-film-black/80 to-red-carpet/20"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center">
+                <h1 class="text-6xl md:text-8xl font-bebas text-golden mb-6 fade-in-up">
+                    CINEMATIC
+                    <span class="block text-white">EXCELLENCE</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-silver-screen mb-8 max-w-3xl mx-auto fade-in-up" style="animation-delay: 0.2s;">
+                    Creating award-winning visual stories that captivate audiences worldwide. From concept to final cut, we bring your vision to life.
+                </p>
+                <div class="flex flex-col md:flex-row gap-4 justify-center mb-12 fade-in-up" style="animation-delay: 0.4s;">
+                    <button class="bg-gradient-to-r from-golden to-red-carpet text-film-black px-8 py-4 rounded-lg font-semibold hover:scale-105 transition-transform">
+                        <i class="fas fa-play mr-2"></i>View Our Reel
+                    </button>
+                    <button class="border-2 border-golden text-golden px-8 py-4 rounded-lg font-semibold hover:bg-golden hover:text-film-black transition-all">
+                        <i class="fas fa-calendar mr-2"></i>Book Consultation
+                    </button>
+                </div>
+                
+                <!-- Animated Timeline -->
+                <div class="max-w-4xl mx-auto mb-12 fade-in-up" style="animation-delay: 0.6s;">
+                    <h3 class="text-2xl font-bebas text-golden mb-6">PRODUCTION TIMELINE</h3>
+                    <div class="relative">
+                        <div class="absolute top-1/2 left-0 w-full h-1 bg-gray-700 transform -translate-y-1/2"></div>
+                        <div class="absolute top-1/2 left-0 h-1 bg-gradient-to-r from-golden to-red-carpet transform -translate-y-1/2 timeline-progress"></div>
+                        <div class="flex justify-between items-center relative">
+                            <div class="timeline-step text-center">
+                                <div class="w-4 h-4 bg-golden rounded-full mx-auto mb-2"></div>
+                                <span class="text-sm">Pre-Production</span>
+                            </div>
+                            <div class="timeline-step text-center">
+                                <div class="w-4 h-4 bg-golden rounded-full mx-auto mb-2"></div>
+                                <span class="text-sm">Filming</span>
+                            </div>
+                            <div class="timeline-step text-center">
+                                <div class="w-4 h-4 bg-golden rounded-full mx-auto mb-2"></div>
+                                <span class="text-sm">Post-Production</span>
+                            </div>
+                            <div class="timeline-step text-center">
+                                <div class="w-4 h-4 bg-red-carpet rounded-full mx-auto mb-2"></div>
+                                <span class="text-sm">Delivery</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Floating Cinema Equipment -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+                    <div class="text-center float-animation hover-3d" style="animation-delay: 0s;">
+                        <i class="fas fa-video text-4xl text-golden mb-2"></i>
+                        <p class="text-sm">4K Cameras</p>
+                    </div>
+                    <div class="text-center float-animation hover-3d" style="animation-delay: 0.5s;">
+                        <i class="fas fa-microphone text-4xl text-golden mb-2"></i>
+                        <p class="text-sm">Pro Audio</p>
+                    </div>
+                    <div class="text-center float-animation hover-3d" style="animation-delay: 1s;">
+                        <i class="fas fa-lightbulb text-4xl text-golden mb-2"></i>
+                        <p class="text-sm">Lighting</p>
+                    </div>
+                    <div class="text-center float-animation hover-3d" style="animation-delay: 1.5s;">
+                        <i class="fas fa-edit text-4xl text-golden mb-2"></i>
+                        <p class="text-sm">Editing</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Video Showcases -->
+    <section id="portfolio" class="py-20 bg-gradient-to-b from-film-black to-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-5xl font-bebas text-center text-golden mb-4">OUR PORTFOLIO</h2>
+            <p class="text-center text-silver-screen mb-12 max-w-2xl mx-auto">
+                Discover our award-winning productions across various genres and formats
+            </p>
+            
+            <!-- Genre Filters -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="genre-filter active px-6 py-2 rounded-full border border-golden transition-all" data-genre="all">
+                    All Projects
+                </button>
+                <button class="genre-filter px-6 py-2 rounded-full border border-golden transition-all" data-genre="commercial">
+                    Commercial
+                </button>
+                <button class="genre-filter px-6 py-2 rounded-full border border-golden transition-all" data-genre="documentary">
+                    Documentary
+                </button>
+                <button class="genre-filter px-6 py-2 rounded-full border border-golden transition-all" data-genre="music-video">
+                    Music Video
+                </button>
+                <button class="genre-filter px-6 py-2 rounded-full border border-golden transition-all" data-genre="corporate">
+                    Corporate
+                </button>
+            </div>
+            
+            <!-- Video Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="video-item relative group" data-genre="commercial">
+                    <div class="aspect-video bg-gray-800 rounded-lg overflow-hidden">
+                        <div class="w-full h-full bg-gradient-to-br from-golden/20 to-red-carpet/20 flex items-center justify-center">
+                            <i class="fas fa-play text-4xl text-golden"></i>
+                        </div>
+                        <div class="absolute inset-0 video-overlay opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <button class="bg-golden text-film-black px-6 py-3 rounded-lg font-semibold">
+                                <i class="fas fa-play mr-2"></i>Watch Now
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <h3 class="text-xl font-semibold text-white">Luxury Brand Campaign</h3>
+                        <p class="text-silver-screen">Commercial • 2024</p>
+                    </div>
+                </div>
+                
+                <div class="video-item relative group" data-genre="documentary">
+                    <div class="aspect-video bg-gray-800 rounded-lg overflow-hidden">
+                        <div class="w-full h-full bg-gradient-to-br from-golden/20 to-red-carpet/20 flex items-center justify-center">
+                            <i class="fas fa-play text-4xl text-golden"></i>
+                        </div>
+                        <div class="absolute inset-0 video-overlay opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <button class="bg-golden text-film-black px-6 py-3 rounded-lg font-semibold">
+                                <i class="fas fa-play mr-2"></i>Watch Now
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <h3 class="text-xl font-semibold text-white">Ocean Depths</h3>
+                        <p class="text-silver-screen">Documentary • 2024</p>
+                    </div>
+                </div>
+                
+                <div class="video-item relative group" data-genre="music-video">
+                    <div class="aspect-video bg-gray-800 rounded-lg overflow-hidden">
+                        <div class="w-full h-full bg-gradient-to-br from-golden/20 to-red-carpet/20 flex items-center justify-center">
+                            <i class="fas fa-play text-4xl text-golden"></i>
+                        </div>
+                        <div class="absolute inset-0 video-overlay opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <button class="bg-golden text-film-black px-6 py-3 rounded-lg font-semibold">
+                                <i class="fas fa-play mr-2"></i>Watch Now
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <h3 class="text-xl font-semibold text-white">Electric Dreams</h3>
+                        <p class="text-silver-screen">Music Video • 2024</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Behind-the-Scenes Gallery -->
+    <section class="py-20 bg-film-black">
+        <div class="container mx-auto px-4">
+            <h2 class="text-5xl font-bebas text-center text-golden mb-12">BEHIND THE SCENES</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 behind-scenes-gallery">
+                <div class="aspect-square bg-gray-800 rounded-lg overflow-hidden hover:scale-105 transition-transform cursor-pointer">
+                    <div class="w-full h-full bg-gradient-to-br from-golden/30 to-film-black flex items-center justify-center">
+                        <i class="fas fa-camera text-3xl text-golden"></i>
+                    </div>
+                </div>
+                <div class="aspect-square bg-gray-800 rounded-lg overflow-hidden hover:scale-105 transition-transform cursor-pointer">
+                    <div class="w-full h-full bg-gradient-to-br from-red-carpet/30 to-film-black flex items-center justify-center">
+                        <i class="fas fa-film text-3xl text-golden"></i>
+                    </div>
+                </div>
+                <div class="aspect-square bg-gray-800 rounded-lg overflow-hidden hover:scale-105 transition-transform cursor-pointer">
+                    <div class="w-full h-full bg-gradient-to-br from-golden/30 to-film-black flex items-center justify-center">
+                        <i class="fas fa-clapperboard text-3xl text-golden"></i>
+                    </div>
+                </div>
+                <div class="aspect-square bg-gray-800 rounded-lg overflow-hidden hover:scale-105 transition-transform cursor-pointer">
+                    <div class="w-full h-full bg-gradient-to-br from-red-carpet/30 to-film-black flex items-center justify-center">
+                        <i class="fas fa-video text-3xl text-golden"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Director Profiles -->
+    <section id="directors" class="py-20 bg-gradient-to-b from-gray-900 to-film-black">
+        <div class="container mx-auto px-4">
+            <h2 class="text-5xl font-bebas text-center text-golden mb-12">OUR DIRECTORS</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="text-center group">
+                    <div class="w-48 h-48 mx-auto mb-6 rounded-full bg-gradient-to-br from-golden/20 to-red-carpet/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i class="fas fa-user text-6xl text-golden"></i>
+                    </div>
+                    <h3 class="text-2xl font-bebas text-white mb-2">SARAH CHEN</h3>
+                    <p class="text-golden mb-4">Creative Director</p>
+                    <div class="text-silver-screen mb-4">
+                        <p class="mb-2">15+ years in commercial filmmaking</p>
+                        <p>Emmy Award Winner</p>
+                    </div>
+                    <div class="filmography">
+                        <h4 class="text-golden font-semibold mb-2">Notable Works:</h4>
+                        <ul class="text-sm text-silver-screen space-y-1">
+                            <li>• "Urban Symphony" (2024)</li>
+                            <li>• "Brand Evolution" (2023)</li>
+                            <li>• "Future Vision" (2023)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="text-center group">
+                    <div class="w-48 h-48 mx-auto mb-6 rounded-full bg-gradient-to-br from-golden/20 to-red-carpet/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i class="fas fa-user text-6xl text-golden"></i>
+                    </div>
+                    <h3 class="text-2xl font-bebas text-white mb-2">MARCUS RODRIGUEZ</h3>
+                    <p class="text-golden mb-4">Documentary Specialist</p>
+                    <div class="text-silver-screen mb-4">
+                        <p class="mb-2">Sundance Film Festival Winner</p>
+                        <p>National Geographic Contributor</p>
+                    </div>
+                    <div class="filmography">
+                        <h4 class="text-golden font-semibold mb-2">Notable Works:</h4>
+                        <ul class="text-sm text-silver-screen space-y-1">
+                            <li>• "Ocean Depths" (2024)</li>
+                            <li>• "City Stories" (2023)</li>
+                            <li>• "Wildlife Chronicles" (2022)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="text-center group">
+                    <div class="w-48 h-48 mx-auto mb-6 rounded-full bg-gradient-to-br from-golden/20 to-red-carpet/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i class="fas fa-user text-6xl text-golden"></i>
+                    </div>
+                    <h3 class="text-2xl font-bebas text-white mb-2">ELENA KOWALSKI</h3>
+                    <p class="text-golden mb-4">Music Video Director</p>
+                    <div class="text-silver-screen mb-4">
+                        <p class="mb-2">MTV VMA Nominee</p>
+                        <p>100M+ views across platforms</p>
+                    </div>
+                    <div class="filmography">
+                        <h4 class="text-golden font-semibold mb-2">Notable Works:</h4>
+                        <ul class="text-sm text-silver-screen space-y-1">
+                            <li>• "Electric Dreams" (2024)</li>
+                            <li>• "Neon Nights" (2023)</li>
+                            <li>• "Rhythm & Light" (2023)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Testimonials -->
+    <section class="py-20 bg-film-black">
+        <div class="container mx-auto px-4">
+            <h2 class="text-5xl font-bebas text-center text-golden mb-12">CLIENT TESTIMONIALS</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="testimonial-card p-8 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-golden rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-play text-film-black"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-semibold">Tech Corp</h4>
+                            <p class="text-silver-screen text-sm">Fortune 500 Company</p>
+                        </div>
+                    </div>
+                    <p class="text-silver-screen mb-4">
+                        "MotionCraft Studios transformed our brand vision into a cinematic masterpiece. Their attention to detail and creative expertise exceeded our expectations."
+                    </p>
+                    <div class="flex text-golden">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card p-8 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-golden rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-play text-film-black"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-semibold">Indie Artist</h4>
+                            <p class="text-silver-screen text-sm">Music Producer</p>
+                        </div>
+                    </div>
+                    <p class="text-silver-screen mb-4">
+                        "The music video they created for my single went viral! Their creative vision and technical expertise are unmatched in the industry."
+                    </p>
+                    <div class="flex text-golden">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card p-8 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-golden rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-play text-film-black"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-semibold">Startup Inc</h4>
+                            <p class="text-silver-screen text-sm">Technology Startup</p>
+                        </div>
+                    </div>
+                    <p class="text-silver-screen mb-4">
+                        "Professional, creative, and efficient. MotionCraft Studios delivered a documentary that perfectly captured our company's journey and mission."
+                    </p>
+                    <div class="flex text-golden">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Timeline Builder -->
+    <section class="py-20 bg-gradient-to-b from-film-black to-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-5xl font-bebas text-center text-golden mb-12">PROJECT TIMELINE</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="relative">
+                    <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-golden"></div>
+                    
+                    <div class="milestone completed mb-8 pl-20">
+                        <h3 class="text-xl font-semibold text-white mb-2">1. Pre-Production</h3>
+                        <p class="text-silver-screen mb-2">Concept development, scripting, and planning</p>
+                        <div class="text-sm text-golden">Duration: 2-4 weeks</div>
+                    </div>
+                    
+                    <div class="milestone completed mb-8 pl-20">
+                        <h3 class="text-xl font-semibold text-white mb-2">2. Casting & Location</h3>
+                        <p class="text-silver-screen mb-2">Talent selection and location scouting</p>
+                        <div class="text-sm text-golden">Duration: 1-2 weeks</div>
+                    </div>
+                    
+                    <div class="milestone mb-8 pl-20">
+                        <h3 class="text-xl font-semibold text-white mb-2">3. Production</h3>
+                        <p class="text-silver-screen mb-2">Principal photography and filming</p>
+                        <div class="text-sm text-golden">Duration: 1-3 weeks</div>
+                    </div>
+                    
+                    <div class="milestone mb-8 pl-20">
+                        <h3 class="text-xl font-semibold text-white mb-2">4. Post-Production</h3>
+                        <p class="text-silver-screen mb-2">Editing, color grading, and sound design</p>
+                        <div class="text-sm text-golden">Duration: 2-6 weeks</div>
+                    </div>
+                    
+                    <div class="milestone pl-20">
+                        <h3 class="text-xl font-semibold text-white mb-2">5. Delivery</h3>
+                        <p class="text-silver-screen mb-2">Final review and project delivery</p>
+                        <div class="text-sm text-golden">Duration: 1 week</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Equipment Rental -->
+    <section id="equipment" class="py-20 bg-film-black">
+        <div class="container mx-auto px-4">
+            <h2 class="text-5xl font-bebas text-center text-golden mb-4">EQUIPMENT RENTAL</h2>
+            <p class="text-center text-silver-screen mb-12 max-w-2xl mx-auto">
+                Professional-grade equipment available for rent with full technical support
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="equipment-card p-6 rounded-lg">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-video text-4xl text-golden mb-4"></i>
+                        <h3 class="text-xl font-semibold text-white mb-2">4K Cameras</h3>
+                    </div>
+                    <ul class="text-silver-screen space-y-2 mb-6">
+                        <li>• RED Komodo 6K</li>
+                        <li>• Sony FX6 Full Frame</li>
+                        <li>• Canon C70 Cinema Camera</li>
+                        <li>• Professional Lens Kit</li>
+                    </ul>
+                    <div class="text-center">
+                        <div class="text-2xl font-bebas text-golden mb-2">$500/day</div>
+                        <button class="bg-golden text-film-black px-6 py-2 rounded-lg font-semibold hover:scale-105 transition-transform">
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="equipment-card p-6 rounded-lg">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-microphone text-4xl text-golden mb-4"></i>
+                        <h3 class="text-xl font-semibold text-white mb-2">Audio Equipment</h3>
+                    </div>
+                    <ul class="text-silver-screen space-y-2 mb-6">
+                        <li>• Wireless Mic Systems</li>
+                        <li>• Boom Poles & Operators</li>
+                        <li>• Field Recorders</li>
+                        <li>• Studio Monitors</li>
+                    </ul>
+                    <div class="text-center">
+                        <div class="text-2xl font-bebas text-golden mb-2">$200/day</div>
+                        <button class="bg-golden text-film-black px-6 py-2 rounded-lg font-semibold hover:scale-105 transition-transform">
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="equipment-card p-6 rounded-lg">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-lightbulb text-4xl text-golden mb-4"></i>
+                        <h3 class="text-xl font-semibold text-white mb-2">Lighting Package</h3>
+                    </div>
+                    <ul class="text-silver-screen space-y-2 mb-6">
+                        <li>• LED Panel Kits</li>
+                        <li>• Softboxes & Diffusers</li>
+                        <li>• Color Gels & Filters</li>
+                        <li>• Stands & Rigging</li>
+                    </ul>
+                    <div class="text-center">
+                        <div class="text-2xl font-bebas text-golden mb-2">$300/day</div>
+                        <button class="bg-golden text-film-black px-6 py-2 rounded-lg font-semibold hover:scale-105 transition-transform">
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Production Services -->
+    <section id="services" class="py-20 bg-gradient-to-b from-gray-900 to-film-black">
+        <div class="container mx-auto px-4">
+            <h2 class="text-5xl font-bebas text-center text-golden mb-12">PRODUCTION SERVICES</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="space-y-8">
+                    <div class="service-package border border-golden/30 rounded-lg p-8">
+                        <h3 class="text-2xl font-bebas text-golden mb-4">ESSENTIAL PACKAGE</h3>
+                        <div class="text-3xl font-bebas text-white mb-4">$5,000</div>
+                        <ul class="space-y-3 text-silver-screen mb-6">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-golden mr-3"></i>
+                                Single camera setup
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-golden mr-3"></i>
+                                8-hour shooting day
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-golden mr-3"></i>
+                                Basic lighting package
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-golden mr-3"></i>
+                                Standard editing
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-golden mr-3"></i>
+                                2 revision rounds
+                            </li>
+                        </ul>
+                        <button class="w-full bg-golden text-film-black py-3 rounded-lg font-semibold hover:scale-105 transition-transform">
+                            Choose Essential
+                        </button>
+                    </div>
+                    
+                    <div class="service-package border border-golden/30 rounded-lg p-8">
+                        <h3 class="text-2xl font-bebas text-golden mb-4">PREMIUM PACKAGE</h3>
+                        <div class="text-3xl font-bebas text-white mb-4">$15,000</div>
+                        <ul class="space-y-3 text-silver-screen mb-6">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-golden mr-3"></i>
+                                Multi-camera setup
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-golden mr-3"></i>
+                                3-day shooting schedule
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-golden mr-3"></i>
+                                Professional lighting
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-golden mr-3"></i>
+                                Advanced post-production
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-golden mr-3"></i>
+                                Unlimited revisions
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-golden mr-3"></i>
+                                Color grading included
+                            </li>
+                        </ul>
+                        <button class="w-full bg-gradient-to-r from-golden to-red-carpet text-film-black py-3 rounded-lg font-semibold hover:scale-105 transition-transform">
+                            Choose Premium
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="space-y-8">
+                    <div class="service-package border border-golden/30 rounded-lg p-8">
+                        <h3 class="text-2xl font-bebas text-golden mb-4">PROFESSIONAL PACKAGE</h3>
+                        <div class="text-3xl font-bebas text-white mb-4">$10,000</div>
+                        <ul class="space-y-3 text-silver-screen mb-6">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-golden mr-3"></i>
+                                Dual camera setup
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-golden mr-3"></i>
+                                2-day shooting schedule
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-golden mr-3"></i>
+                                Advanced lighting setup
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-golden mr-3"></i>
+                                Professional editing
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-golden mr-3"></i>
+                                5 revision rounds
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-golden mr-3"></i>
+                                Audio enhancement
+                            </li>
+                        </ul>
+                        <button class="w-full bg-golden text-film-black py-3 rounded-lg font-semibold hover:scale-105 transition-transform">
+                            Choose Professional
+                        </button>
+                    </div>
+                    
+                    <div class="service-package border border-red-carpet rounded-lg p-8 bg-gradient-to-br from-red-carpet/10 to-golden/5">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-2xl font-bebas text-golden">ENTERPRISE PACKAGE</h3>
+                            <span class="bg-red-carpet text-white px-3 py-1 rounded-full text-sm">MOST POPULAR</span>
+                        </div>
+                        <div class="text-3xl font-bebas text-white mb-4">Custom Quote</div>
+                        <ul class="space-y-3 text-silver-screen mb-6">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-golden mr-3"></i>
+                                Full production crew
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-golden mr-3"></i>
+                                Extended shooting schedule
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-golden mr-3"></i>
+                                Cinema-grade equipment
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-golden mr-3"></i>
+                                Full post-production suite
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-golden mr-3"></i>
+                                Dedicated project manager
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-golden mr-3"></i>
+                                White-glove service
+                            </li>
+                        </ul>
+                        <button class="w-full bg-gradient-to-r from-red-carpet to-golden text-white py-3 rounded-lg font-semibold hover:scale-105 transition-transform">
+                            Get Custom Quote
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-film-black">
+        <div class="container mx-auto px-4">
+            <h2 class="text-5xl font-bebas text-center text-golden mb-12">GET IN TOUCH</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                <div>
+                    <h3 class="text-2xl font-bebas text-white mb-6">LET'S CREATE SOMETHING AMAZING</h3>
+                    <p class="text-silver-screen mb-8">
+                        Ready to bring your vision to life? Contact us today to discuss your project and get a custom quote.
+                    </p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-golden mr-4"></i>
+                            <span class="text-silver-screen">123 Studio Avenue, Los Angeles, CA 90210</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-phone text-golden mr-4"></i>
+                            <span class="text-silver-screen">+1 (555) 123-4567</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope text-golden mr-4"></i>
+                            <span class="text-silver-screen">hello@motioncraftstudios.com</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-golden hover:text-white transition-colors">
+                            <i class="fab fa-instagram text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-golden hover:text-white transition-colors">
+                            <i class="fab fa-youtube text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-golden hover:text-white transition-colors">
+                            <i class="fab fa-vimeo text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-golden hover:text-white transition-colors">
+                            <i class="fab fa-linkedin text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900 p-8 rounded-lg">
+                    <form>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <input type="text" placeholder="First Name" class="bg-film-black border border-golden/30 rounded-lg px-4 py-3 text-white focus:border-golden focus:outline-none">
+                            <input type="text" placeholder="Last Name" class="bg-film-black border border-golden/30 rounded-lg px-4 py-3 text-white focus:border-golden focus:outline-none">
+                        </div>
+                        <input type="email" placeholder="Email Address" class="w-full bg-film-black border border-golden/30 rounded-lg px-4 py-3 text-white focus:border-golden focus:outline-none mb-4">
+                        <input type="tel" placeholder="Phone Number" class="w-full bg-film-black border border-golden/30 rounded-lg px-4 py-3 text-white focus:border-golden focus:outline-none mb-4">
+                        <select class="w-full bg-film-black border border-golden/30 rounded-lg px-4 py-3 text-white focus:border-golden focus:outline-none mb-4">
+                            <option>Project Type</option>
+                            <option>Commercial</option>
+                            <option>Documentary</option>
+                            <option>Music Video</option>
+                            <option>Corporate</option>
+                            <option>Other</option>
+                        </select>
+                        <textarea placeholder="Tell us about your project..." rows="4" class="w-full bg-film-black border border-golden/30 rounded-lg px-4 py-3 text-white focus:border-golden focus:outline-none mb-6"></textarea>
+                        <button type="submit" class="w-full bg-gradient-to-r from-golden to-red-carpet text-film-black py-3 rounded-lg font-semibold hover:scale-105 transition-transform">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-film-black border-t border-golden/20 py-8">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <div class="text-2xl font-bebas text-golden mb-4">
+                    <i class="fas fa-film mr-2"></i>
+                    MotionCraft Studios
+                </div>
+                <p class="text-silver-screen mb-4">Crafting cinematic excellence since 2015</p>
+                <p class="text-sm text-gray-500">
+                    © 2024 MotionCraft Studios. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Genre filtering functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const genreFilters = document.querySelectorAll('.genre-filter');
+            const videoItems = document.querySelectorAll('.video-item');
+
+            genreFilters.forEach(filter => {
+                filter.addEventListener('click', function() {
+                    const genre = this.getAttribute('data-genre');
+                    
+                    // Update active filter
+                    genreFilters.forEach(f => f.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter videos
+                    videoItems.forEach(item => {
+                        if (genre === 'all' || item.getAttribute('data-genre') === genre) {
+                            item.style.display = 'block';
+                            item.style.animation = 'fadeInUp 0.5s ease forwards';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Scroll-triggered animations for behind-the-scenes gallery
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe gallery items
+            document.querySelectorAll('.behind-scenes-gallery > div').forEach(item => {
+                observer.observe(item);
+            });
+
+            // Parallax effect for hero section
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const parallaxElements = document.querySelectorAll('.parallax');
+                
+                parallaxElements.forEach(element => {
+                    const speed = element.dataset.speed || 0.5;
+                    element.style.transform = `translateY(${scrolled * speed}px)`;
+                });
+            });
+
+            // Equipment card hover effects
+            const equipmentCards = document.querySelectorAll('.equipment-card');
+            equipmentCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Milestone progress animation
+            const milestones = document.querySelectorAll('.milestone');
+            const milestoneObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('completed');
+                        }, 500);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            milestones.forEach(milestone => {
+                milestoneObserver.observe(milestone);
+            });
+
+            // Form validation and submission
+            const contactForm = document.querySelector('form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Basic form validation
+                    const inputs = this.querySelectorAll('input[required], textarea[required]');
+                    let isValid = true;
+                    
+                    inputs.forEach(input => {
+                        if (!input.value.trim()) {
+                            isValid = false;
+                            input.style.borderColor = '#B91C1C';
+                        } else {
+                            input.style.borderColor = '#D4AF37';
+                        }
+                    });
+                    
+                    if (isValid) {
+                        // Simulate form submission
+                        const submitBtn = this.querySelector('button[type="submit"]');
+                        const originalText = submitBtn.textContent;
+                        submitBtn.textContent = 'Sending...';
+                        submitBtn.disabled = true;
+                        
+                        setTimeout(() => {
+                            submitBtn.textContent = 'Message Sent!';
+                            submitBtn.style.background = '#059669';
+                            
+                            setTimeout(() => {
+                                submitBtn.textContent = originalText;
+                                submitBtn.disabled = false;
+                                submitBtn.style.background = '';
+                                this.reset();
+                            }, 2000);
+                        }, 1000);
+                    }
+                });
+            }
+
+            // Responsive navigation toggle
+            const navToggle = document.querySelector('.md\\:hidden button');
+            const navMenu = document.querySelector('.md\\:flex');
+            
+            if (navToggle && navMenu) {
+                navToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('hidden');
+                    navMenu.classList.toggle('flex');
+                    navMenu.classList.toggle('flex-col');
+                    navMenu.classList.toggle('absolute');
+                    navMenu.classList.toggle('top-full');
+                    navMenu.classList.toggle('left-0');
+                    navMenu.classList.toggle('w-full');
+                    navMenu.classList.toggle('bg-film-black');
+                    navMenu.classList.toggle('p-4');
+                });
+            }
+        });
+
+        // Performance optimization: Lazy loading for video elements
+        if ('IntersectionObserver' in window) {
+            const videoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Lazy load video content when it comes into view
+                        entry.target.classList.add('loaded');
+                    }
+                });
+            });
+
+            document.querySelectorAll('.video-item').forEach(video => {
+                videoObserver.observe(video);
+            });
+        }
+
+        // Accessibility: Keyboard navigation support
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-navigation');
+            }
+        });
+
+        document.addEventListener('mousedown', function() {
+            document.body.classList.remove('keyboard-navigation');
+        });
+    </script>
+</body>
+</html>
