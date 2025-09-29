@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeChef Essentials - Fresh Meals, Chef-Crafted</title>
+    <meta name="description" content="Discover the joy of cooking with HomeChef Essentials. Fresh ingredients, chef-designed recipes, and personalized meal plans delivered to your door.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts - Quicksand & Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'fresh-green': '#4ADE80',
+                        'tomato-red': '#EF4444',
+                        'chef-white': '#FEFEFE',
+                        'herb-green': '#22C55E',
+                        'paprika-orange': '#F97316',
+                        'sage-green': '#84CC16'
+                    },
+                    fontFamily: {
+                        'quicksand': ['Quicksand', 'sans-serif'],
+                        'roboto': ['Roboto', 'sans-serif']
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'wiggle': 'wiggle 1s ease-in-out infinite',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'fade-in': 'fadeIn 0.8s ease-out'
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        },
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-3deg)' },
+                            '50%': { transform: 'rotate(3deg)' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(100px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .recipe-step {
+            transition: all 0.3s ease;
+        }
+        .recipe-step.active {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(74, 222, 128, 0.3);
+        }
+        .ingredient-indicator {
+            background: linear-gradient(135deg, #4ADE80, #22C55E);
+        }
+        .difficulty-easy { color: #22C55E; }
+        .difficulty-medium { color: #F97316; }
+        .difficulty-hard { color: #EF4444; }
+        .subscription-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        .cooking-utensil {
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
+        }
+        .macro-bar {
+            background: linear-gradient(90deg, #4ADE80 0%, #22C55E 100%);
+        }
+        .skill-progress {
+            background: linear-gradient(90deg, #EF4444 0%, #F97316 50%, #4ADE80 100%);
+        }
+    </style>
+</head>
+<body class="font-roboto bg-chef-white text-gray-800 overflow-x-hidden">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-chef-white/95 backdrop-blur-sm z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-utensils text-tomato-red text-2xl cooking-utensil"></i>
+                    <span class="font-quicksand font-bold text-xl text-gray-800">HomeChef Essentials</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#recipes" class="text-gray-600 hover:text-tomato-red transition-colors">Recipes</a>
+                    <a href="#plans" class="text-gray-600 hover:text-tomato-red transition-colors">Meal Plans</a>
+                    <a href="#success-stories" class="text-gray-600 hover:text-tomato-red transition-colors">Success Stories</a>
+                    <a href="#subscription" class="bg-tomato-red text-white px-6 py-2 rounded-full hover:bg-red-600 transition-colors">Get Started</a>
+                </div>
+                <button class="md:hidden" id="mobile-menu-button">
+                    <i class="fas fa-bars text-gray-800"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Animated Recipe Steps -->
+    <section class="pt-24 pb-16 bg-gradient-to-br from-fresh-green/10 via-chef-white to-tomato-red/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="animate-fade-in">
+                    <h1 class="font-quicksand font-bold text-4xl md:text-6xl leading-tight mb-6">
+                        <span class="text-fresh-green">Fresh</span> Ingredients,<br>
+                        <span class="text-tomato-red">Chef-Crafted</span> Recipes
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        Transform your kitchen into a culinary haven with our premium meal kits. 
+                        Expert recipes, fresh ingredients, and step-by-step guidance delivered to your door.
+                    </p>
+                    
+                    <!-- Floating Ingredient Freshness Indicators -->
+                    <div class="flex flex-wrap gap-4 mb-8">
+                        <div class="ingredient-indicator text-white px-4 py-2 rounded-full animate-float">
+                            <i class="fas fa-leaf mr-2"></i>Farm Fresh
+                        </div>
+                        <div class="ingredient-indicator text-white px-4 py-2 rounded-full animate-float" style="animation-delay: 0.5s;">
+                            <i class="fas fa-clock mr-2"></i>24h Delivery
+                        </div>
+                        <div class="ingredient-indicator text-white px-4 py-2 rounded-full animate-float" style="animation-delay: 1s;">
+                            <i class="fas fa-award mr-2"></i>Chef Approved
+                        </div>
+                    </div>
+                    
+                    <button class="bg-tomato-red text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-red-600 transform hover:scale-105 transition-all duration-300 shadow-lg">
+                        Start Cooking Today
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+                
+                <!-- Animated Recipe Steps -->
+                <div class="relative">
+                    <div class="bg-white rounded-2xl shadow-2xl p-8 recipe-demo">
+                        <h3 class="font-quicksand font-semibold text-2xl mb-6 text-center">Mediterranean Chicken Bowl</h3>
+                        
+                        <!-- Cooking Time Display -->
+                        <div class="flex justify-center mb-6">
+                            <div class="bg-fresh-green/10 px-6 py-3 rounded-full flex items-center">
+                                <i class="fas fa-clock text-fresh-green mr-2"></i>
+                                <span class="font-semibold text-fresh-green" id="cooking-time">25 minutes</span>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4" id="recipe-steps">
+                            <div class="recipe-step p-4 bg-gray-50 rounded-lg flex items-center active">
+                                <div class="w-8 h-8 bg-tomato-red text-white rounded-full flex items-center justify-center font-bold mr-4">1</div>
+                                <span>Prep fresh vegetables and herbs</span>
+                            </div>
+                            <div class="recipe-step p-4 bg-gray-50 rounded-lg flex items-center">
+                                <div class="w-8 h-8 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center font-bold mr-4">2</div>
+                                <span>Season and cook chicken breast</span>
+                            </div>
+                            <div class="recipe-step p-4 bg-gray-50 rounded-lg flex items-center">
+                                <div class="w-8 h-8 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center font-bold mr-4">3</div>
+                                <span>Prepare lemon herb quinoa</span>
+                            </div>
+                            <div class="recipe-step p-4 bg-gray-50 rounded-lg flex items-center">
+                                <div class="w-8 h-8 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center font-bold mr-4">4</div>
+                                <span>Assemble bowl and garnish</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Meal Preference Selectors -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="font-quicksand font-bold text-3xl md:text-4xl mb-4">Personalize Your Culinary Journey</h2>
+                <p class="text-lg text-gray-600">Tell us about your preferences and dietary needs</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Dietary Restrictions -->
+                <div class="bg-white rounded-xl p-6 shadow-lg">
+                    <h3 class="font-quicksand font-semibold text-xl mb-4 flex items-center">
+                        <i class="fas fa-heart text-tomato-red mr-3"></i>Dietary Preferences
+                    </h3>
+                    <div class="space-y-3">
+                        <label class="flex items-center cursor-pointer preference-option">
+                            <input type="checkbox" class="form-checkbox text-fresh-green mr-3">
+                            <span>Vegetarian</span>
+                        </label>
+                        <label class="flex items-center cursor-pointer preference-option">
+                            <input type="checkbox" class="form-checkbox text-fresh-green mr-3">
+                            <span>Vegan</span>
+                        </label>
+                        <label class="flex items-center cursor-pointer preference-option">
+                            <input type="checkbox" class="form-checkbox text-fresh-green mr-3">
+                            <span>Gluten-Free</span>
+                        </label>
+                        <label class="flex items-center cursor-pointer preference-option">
+                            <input type="checkbox" class="form-checkbox text-fresh-green mr-3">
+                            <span>Keto</span>
+                        </label>
+                        <label class="flex items-center cursor-pointer preference-option">
+                            <input type="checkbox" class="form-checkbox text-fresh-green mr-3">
+                            <span>Low-Carb</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Cooking Skill Level -->
+                <div class="bg-white rounded-xl p-6 shadow-lg">
+                    <h3 class="font-quicksand font-semibold text-xl mb-4 flex items-center">
+                        <i class="fas fa-chef-hat text-paprika-orange mr-3"></i>Cooking Level
+                    </h3>
+                    <div class="space-y-3">
+                        <label class="flex items-center cursor-pointer">
+                            <input type="radio" name="skill-level" class="form-radio text-fresh-green mr-3">
+                            <span>Beginner (15-20 min recipes)</span>
+                        </label>
+                        <label class="flex items-center cursor-pointer">
+                            <input type="radio" name="skill-level" class="form-radio text-fresh-green mr-3">
+                            <span>Intermediate (25-35 min recipes)</span>
+                        </label>
+                        <label class="flex items-center cursor-pointer">
+                            <input type="radio" name="skill-level" class="form-radio text-fresh-green mr-3">
+                            <span>Advanced (40+ min recipes)</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Family Size -->
+                <div class="bg-white rounded-xl p-6 shadow-lg">
+                    <h3 class="font-quicksand font-semibold text-xl mb-4 flex items-center">
+                        <i class="fas fa-users text-sage-green mr-3"></i>Family Size
+                    </h3>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button class="family-size-btn p-3 border-2 border-gray-200 rounded-lg hover:border-fresh-green hover:bg-fresh-green/10 transition-all" data-size="2">
+                            2 People
+                        </button>
+                        <button class="family-size-btn p-3 border-2 border-gray-200 rounded-lg hover:border-fresh-green hover:bg-fresh-green/10 transition-all" data-size="4">
+                            4 People
+                        </button>
+                        <button class="family-size-btn p-3 border-2 border-gray-200 rounded-lg hover:border-fresh-green hover:bg-fresh-green/10 transition-all" data-size="6">
+                            6 People
+                        </button>
+                        <button class="family-size-btn p-3 border-2 border-gray-200 rounded-lg hover:border-fresh-green hover:bg-fresh-green/10 transition-all" data-size="8">
+                            8+ People
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chef-Designed Recipe Gallery -->
+    <section id="recipes" class="py-16 bg-chef-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="font-quicksand font-bold text-3xl md:text-4xl mb-4">Chef-Designed Recipe Collection</h2>
+                <p class="text-lg text-gray-600">Discover recipes crafted by professional chefs</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="recipe-gallery">
+                <!-- Recipe cards will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories Showcase -->
+    <section id="success-stories" class="py-16 bg-gradient-to-r from-fresh-green/5 to-tomato-red/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="font-quicksand font-bold text-3xl md:text-4xl mb-4">Cooking Success Stories</h2>
+                <p class="text-lg text-gray-600">See how HomeChef Essentials transformed their kitchens</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                    <div class="relative">
+                        <div class="h-48 bg-gradient-to-br from-fresh-green to-herb-green flex items-center justify-center">
+                            <i class="fas fa-image text-white text-4xl"></i>
+                        </div>
+                        <div class="absolute top-4 left-4 bg-white/90 px-3 py-1 rounded-full text-sm font-semibold">
+                            Before/After
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-quicksand font-semibold text-xl mb-3">Sarah's Transformation</h3>
+                        <p class="text-gray-600 mb-4">"I went from ordering takeout 5 times a week to cooking restaurant-quality meals at home!"</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-fresh-green rounded-full flex items-center justify-center">
+                                    <i class="fas fa-user text-white"></i>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="font-semibold">Sarah M.</p>
+                                    <p class="text-sm text-gray-500">3 months with HomeChef</p>
+                                </div>
+                            </div>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                    <div class="relative">
+                        <div class="h-48 bg-gradient-to-br from-tomato-red to-paprika-orange flex items-center justify-center">
+                            <i class="fas fa-image text-white text-4xl"></i>
+                        </div>
+                        <div class="absolute top-4 left-4 bg-white/90 px-3 py-1 rounded-full text-sm font-semibold">
+                            Before/After
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-quicksand font-semibold text-xl mb-3">Mike's Journey</h3>
+                        <p class="text-gray-600 mb-4">"From burning water to creating amazing family dinners. My kids actually ask for more vegetables now!"</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-tomato-red rounded-full flex items-center justify-center">
+                                    <i class="fas fa-user text-white"></i>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="font-semibold">Mike R.</p>
+                                    <p class="text-sm text-gray-500">6 months with HomeChef</p>
+                                </div>
+                            </div>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                    <div class="relative">
+                        <div class="h-48 bg-gradient-to-br from-sage-green to-fresh-green flex items-center justify-center">
+                            <i class="fas fa-image text-white text-4xl"></i>
+                        </div>
+                        <div class="absolute top-4 left-4 bg-white/90 px-3 py-1 rounded-full text-sm font-semibold">
+                            Before/After
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-quicksand font-semibold text-xl mb-3">Emma's Success</h3>
+                        <p class="text-gray-600 mb-4">"HomeChef helped me discover a love for cooking I never knew I had. Now I host dinner parties!"</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-sage-green rounded-full flex items-center justify-center">
+                                    <i class="fas fa-user text-white"></i>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="font-semibold">Emma L.</p>
+                                    <p class="text-sm text-gray-500">1 year with HomeChef</p>
+                                </div>
+                            </div>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nutritionist-Approved Meal Plan Comparisons -->
+    <section id="plans" class="py-16 bg-chef-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="font-quicksand font-bold text-3xl md:text-4xl mb-4">Nutritionist-Approved Meal Plans</h2>
+                <p class="text-lg text-gray-600">Track calories, macros, and achieve your health goals</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl shadow-lg p-6 border-2 border-transparent hover:border-fresh-green transition-all">
+                    <div class="text-center mb-6">
+                        <h3 class="font-quicksand font-bold text-xl mb-2">Balanced Living</h3>
+                        <p class="text-gray-600">Perfect for everyday healthy eating</p>
+                    </div>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div class="flex justify-between items-center">
+                            <span>Calories/day</span>
+                            <span class="font-semibold">1,800-2,200</span>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>Protein</span>
+                                <span class="text-sm">25%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="macro-bar h-2 rounded-full" style="width: 25%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>Carbs</span>
+                                <span class="text-sm">45%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="macro-bar h-2 rounded-full" style="width: 45%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>Fats</span>
+                                <span class="text-sm">30%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="macro-bar h-2 rounded-full" style="width: 30%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="w-full bg-fresh-green text-white py-3 rounded-lg font-semibold hover:bg-herb-green transition-colors">
+                        Choose Plan
+                    </button>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 border-2 border-tomato-red relative">
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-tomato-red text-white px-4 py-1 rounded-full text-sm font-semibold">
+                        Most Popular
+                    </div>
+                    <div class="text-center mb-6 mt-2">
+                        <h3 class="font-quicksand font-bold text-xl mb-2">Performance Plus</h3>
+                        <p class="text-gray-600">For active lifestyles and fitness goals</p>
+                    </div>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div class="flex justify-between items-center">
+                            <span>Calories/day</span>
+                            <span class="font-semibold">2,200-2,800</span>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>Protein</span>
+                                <span class="text-sm">35%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="macro-bar h-2 rounded-full" style="width: 35%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>Carbs</span>
+                                <span class="text-sm">40%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="macro-bar h-2 rounded-full" style="width: 40%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>Fats</span>
+                                <span class="text-sm">25%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="macro-bar h-2 rounded-full" style="width: 25%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="w-full bg-tomato-red text-white py-3 rounded-lg font-semibold hover:bg-red-600 transition-colors">
+                        Choose Plan
+                    </button>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 border-2 border-transparent hover:border-fresh-green transition-all">
+                    <div class="text-center mb-6">
+                        <h3 class="font-quicksand font-bold text-xl mb-2">Weight Management</h3>
+                        <p class="text-gray-600">Designed for sustainable weight loss</p>
+                    </div>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div class="flex justify-between items-center">
+                            <span>Calories/day</span>
+                            <span class="font-semibold">1,400-1,800</span>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>Protein</span>
+                                <span class="text-sm">30%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="macro-bar h-2 rounded-full" style="width: 30%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>Carbs</span>
+                                <span class="text-sm">35%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="macro-bar h-2 rounded-full" style="width: 35%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>Fats</span>
+                                <span class="text-sm">35%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="macro-bar h-2 rounded-full" style="width: 35%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="w-full bg-fresh-green text-white py-3 rounded-lg font-semibold hover:bg-herb-green transition-colors">
+                        Choose Plan
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cooking Skill Development Tracking -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="font-quicksand font-bold text-3xl md:text-4xl mb-4">Track Your Culinary Growth</h2>
+                <p class="text-lg text-gray-600">Watch your cooking skills improve with every meal</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="space-y-6">
+                        <div class="bg-white rounded-xl p-6 shadow-lg">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="font-quicksand font-semibold text-lg">Knife Skills</h3>
+                                <span class="text-2xl">🔪</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3 mb-2">
+                                <div class="skill-progress h-3 rounded-full" style="width: 75%"></div>
+                            </div>
+                            <p class="text-sm text-gray-600">Advanced Level - 75% Complete</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl p-6 shadow-lg">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="font-quicksand font-semibold text-lg">Sautéing & Pan Techniques</h3>
+                                <span class="text-2xl">🍳</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3 mb-2">
+                                <div class="skill-progress h-3 rounded-full" style="width: 60%"></div>
+                            </div>
+                            <p class="text-sm text-gray-600">Intermediate Level - 60% Complete</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl p-6 shadow-lg">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="font-quicksand font-semibold text-lg">Sauce Making</h3>
+                                <span class="text-2xl">🥄</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3 mb-2">
+                                <div class="skill-progress h-3 rounded-full" style="width: 40%"></div>
+                            </div>
+                            <p class="text-sm text-gray-600">Beginner Level - 40% Complete</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl p-8 shadow-lg">
+                    <h3 class="font-quicksand font-bold text-2xl mb-6 text-center">Your Cooking Journey</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center p-4 bg-fresh-green/10 rounded-lg">
+                            <div class="w-12 h-12 bg-fresh-green rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-trophy text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Pasta Master</h4>
+                                <p class="text-sm text-gray-600">Completed 15 pasta recipes</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center p-4 bg-tomato-red/10 rounded-lg">
+                            <div class="w-12 h-12 bg-tomato-red rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-medal text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Spice Expert</h4>
+                                <p class="text-sm text-gray-600">Mastered 20 different spice blends</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center p-4 bg-sage-green/10 rounded-lg">
+                            <div class="w-12 h-12 bg-sage-green rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-star text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Healthy Choices</h4>
+                                <p class="text-sm text-gray-600">30 days of nutritious cooking</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 text-center">
+                        <p class="text-2xl font-bold text-fresh-green">Level 8 Chef</p>
+                        <p class="text-gray-600">2,400 XP to next level</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kitchen Equipment Recommendations -->
+    <section class="py-16 bg-chef-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="font-quicksand font-bold text-3xl md:text-4xl mb-4">Recommended Kitchen Equipment</h2>
+                <p class="text-lg text-gray-600">Get recipe-specific utensil suggestions for perfect results</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow">
+                    <div class="text-4xl mb-4 cooking-utensil">🔪</div>
+                    <h3 class="font-quicksand font-semibold text-lg mb-2">Chef's Knife</h3>
+                    <p class="text-gray-600 text-sm mb-4">Essential for 85% of our recipes</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-fresh-green font-semibold">$89</span>
+                        <button class="bg-fresh-green text-white px-4 py-2 rounded-full text-sm hover:bg-herb-green transition-colors">
+                            Add to Kit
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow">
+                    <div class="text-4xl mb-4 cooking-utensil">🍳</div>
+                    <h3 class="font-quicksand font-semibold text-lg mb-2">Non-Stick Pan</h3>
+                    <p class="text-gray-600 text-sm mb-4">Perfect for sautéing and eggs</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-fresh-green font-semibold">$65</span>
+                        <button class="bg-fresh-green text-white px-4 py-2 rounded-full text-sm hover:bg-herb-green transition-colors">
+                            Add to Kit
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow">
+                    <div class="text-4xl mb-4 cooking-utensil">🥄</div>
+                    <h3 class="font-quicksand font-semibold text-lg mb-2">Wooden Spoons</h3>
+                    <p class="text-gray-600 text-sm mb-4">Gentle on cookware surfaces</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-fresh-green font-semibold">$25</span>
+                        <button class="bg-fresh-green text-white px-4 py-2 rounded-full text-sm hover:bg-herb-green transition-colors">
+                            Add to Kit
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow">
+                    <div class="text-4xl mb-4 cooking-utensil">🏺</div>
+                    <h3 class="font-quicksand font-semibold text-lg mb-2">Mixing Bowls</h3>
+                    <p class="text-gray-600 text-sm mb-4">Set of 3 different sizes</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-fresh-green font-semibold">$45</span>
+                        <button class="bg-fresh-green text-white px-4 py-2 rounded-full text-sm hover:bg-herb-green transition-colors">
+                            Add to Kit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subscription Options -->
+    <section id="subscription" class="py-16 bg-gradient-to-br from-fresh-green/10 via-chef-white to-tomato-red/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="font-quicksand font-bold text-3xl md:text-4xl mb-4">Flexible Subscription Options</h2>
+                <p class="text-lg text-gray-600">Skip weeks, customize meals, and cancel anytime</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="subscription-card bg-white rounded-xl shadow-lg p-8 transition-all duration-300">
+                    <div class="text-center mb-6">
+                        <h3 class="font-quicksand font-bold text-2xl mb-2">Essential</h3>
+                        <div class="text-4xl font-bold text-fresh-green mb-2">$59</div>
+                        <p class="text-gray-600">per week</p>
+                    </div>
+                    
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-fresh-green mr-3"></i>
+                            <span>3 recipes for 2 people</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-fresh-green mr-3"></i>
+                            <span>Free delivery</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-fresh-green mr-3"></i>
+                            <span>Skip or cancel anytime</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-fresh-green mr-3"></i>
+                            <span>Recipe customization</span>
+                        </li>
+                    </ul>
+                    
+                    <button class="w-full bg-fresh-green text-white py-3 rounded-lg font-semibold hover:bg-herb-green transition-colors">
+                        Start Essential Plan
+                    </button>
+                </div>
+                
+                <div class="subscription-card bg-white rounded-xl shadow-lg p-8 border-2 border-tomato-red relative transition-all duration-300">
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-tomato-red text-white px-4 py-1 rounded-full text-sm font-semibold">
+                        Best Value
+                    </div>
+                    <div class="text-center mb-6 mt-2">
+                        <h3 class="font-quicksand font-bold text-2xl mb-2">Family</h3>
+                        <div class="text-4xl font-bold text-tomato-red mb-2">$119</div>
+                        <p class="text-gray-600">per week</p>
+                    </div>
+                    
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-tomato-red mr-3"></i>
+                            <span>4 recipes for 4 people</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-tomato-red mr-3"></i>
+                            <span>Free delivery</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-tomato-red mr-3"></i>
+                            <span>Skip or cancel anytime</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-tomato-red mr-3"></i>
+                            <span>Recipe customization</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-tomato-red mr-3"></i>
+                            <span>Premium ingredients</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-tomato-red mr-3"></i>
+                            <span>Nutrition tracking</span>
+                        </li>
+                    </ul>
+                    
+                    <button class="w-full bg-tomato-red text-white py-3 rounded-lg font-semibold hover:bg-red-600 transition-colors">
+                        Start Family Plan
+                    </button>
+                </div>
+                
+                <div class="subscription-card bg-white rounded-xl shadow-lg p-8 transition-all duration-300">
+                    <div class="text-center mb-6">
+                        <h3 class="font-quicksand font-bold text-2xl mb-2">Gourmet</h3>
+                        <div class="text-4xl font-bold text-sage-green mb-2">$179</div>
+                        <p class="text-gray-600">per week</p>
+                    </div>
+                    
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-sage-green mr-3"></i>
+                            <span>5 recipes for 4 people</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-sage-green mr-3"></i>
+                            <span>Free priority delivery</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-sage-green mr-3"></i>
+                            <span>Skip or cancel anytime</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-sage-green mr-3"></i>
+                            <span>Full recipe customization</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-sage-green mr-3"></i>
+                            <span>Organic ingredients</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-sage-green mr-3"></i>
+                            <span>Personal chef consultation</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-sage-green mr-3"></i>
+                            <span>Kitchen equipment discounts</span>
+                        </li>
+                    </ul>
+                    
+                    <button class="w-full bg-sage-green text-white py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors">
+                        Start Gourmet Plan
+                    </button>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <p class="text-gray-600 mb-4">All plans include:</p>
+                <div class="flex flex-wrap justify-center gap-8">
+                    <div class="flex items-center">
+                        <i class="fas fa-pause text-fresh-green mr-2"></i>
+                        <span>Skip any week</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-times text-tomato-red mr-2"></i>
+                        <span>Cancel anytime</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-edit text-sage-green mr-2"></i>
+                        <span>Customize meals</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-truck text-paprika-orange mr-2"></i>
+                        <span>Free delivery</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-utensils text-tomato-red text-2xl cooking-utensil"></i>
+                        <span class="font-quicksand font-bold text-xl">HomeChef Essentials</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">Transform your kitchen into a culinary haven with our premium meal kits and expert guidance.</p>
+                    <div class="flex space-x-4">
+                        <i class="fab fa-facebook text-fresh-green text-xl cursor-pointer hover:text-herb-green transition-colors"></i>
+                        <i class="fab fa-instagram text-fresh-green text-xl cursor-pointer hover:text-herb-green transition-colors"></i>
+                        <i class="fab fa-twitter text-fresh-green text-xl cursor-pointer hover:text-herb-green transition-colors"></i>
+                        <i class="fab fa-youtube text-fresh-green text-xl cursor-pointer hover:text-herb-green transition-colors"></i>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-quicksand font-semibold text-lg mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#recipes" class="text-gray-400 hover:text-white transition-colors">Recipes</a></li>
+                        <li><a href="#plans" class="text-gray-400 hover:text-white transition-colors">Meal Plans</a></li>
+                        <li><a href="#success-stories" class="text-gray-400 hover:text-white transition-colors">Success Stories</a></li>
+                        <li><a href="#subscription" class="text-gray-400 hover:text-white transition-colors">Subscription</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-quicksand font-semibold text-lg mb-4">Support</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Delivery Info</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Returns</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-quicksand font-semibold text-lg mb-4">Stay Connected</h3>
+                    <p class="text-gray-400 mb-4">Get recipes, tips, and exclusive offers</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Enter your email" class="flex-1 px-4 py-2 rounded-l-lg text-gray-800">
+                        <button class="bg-tomato-red px-6 py-2 rounded-r-lg hover:bg-red-600 transition-colors">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-400">&copy; 2024 HomeChef Essentials. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Recipe step animation
+        let currentStep = 0;
+        const steps = document.querySelectorAll('.recipe-step');
+        const cookingTime = document.getElementById('cooking-time');
+        
+        function animateRecipeSteps() {
+            steps.forEach((step, index) => {
+                step.classList.remove('active');
+                const numberElement = step.querySelector('div');
+                numberElement.classList.remove('bg-tomato-red', 'text-white');
+                numberElement.classList.add('bg-gray-300', 'text-gray-600');
+            });
+            
+            const activeStep = steps[currentStep];
+            activeStep.classList.add('active');
+            const activeNumber = activeStep.querySelector('div');
+            activeNumber.classList.remove('bg-gray-300', 'text-gray-600');
+            activeNumber.classList.add('bg-tomato-red', 'text-white');
+            
+            // Update cooking time based on step
+            const times = ['25 minutes', '20 minutes', '15 minutes', '5 minutes'];
+            cookingTime.textContent = times[currentStep];
+            
+            currentStep = (currentStep + 1) % steps.length;
+        }
+        
+        // Start recipe animation
+        setInterval(animateRecipeSteps, 2000);
+        
+        // Family size selector
+        document.querySelectorAll('.family-size-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.family-size-btn').forEach(b => {
+                    b.classList.remove('border-fresh-green', 'bg-fresh-green/10');
+                    b.classList.add('border-gray-200');
+                });
+                this.classList.remove('border-gray-200');
+                this.classList.add('border-fresh-green', 'bg-fresh-green/10');
+            });
+        });
+        
+        // Recipe gallery data
+        const recipes = [
+            {
+                name: "Mediterranean Chicken Bowl",
+                difficulty: "easy",
+                time: "25 min",
+                image: "🍗",
+                description: "Grilled chicken with quinoa, fresh vegetables, and herb dressing"
+            },
+            {
+                name: "Spicy Thai Beef Stir-Fry",
+                difficulty: "medium",
+                time: "30 min",
+                image: "🥩",
+                description: "Tender beef with vegetables in authentic Thai sauce"
+            },
+            {
+                name: "Lobster Risotto",
+                difficulty: "hard",
+                time: "45 min",
+                image: "🦞",
+                description: "Creamy arborio rice with fresh lobster and herbs"
+            },
+            {
+                name: "Vegetarian Buddha Bowl",
+                difficulty: "easy",
+                time: "20 min",
+                image: "🥗",
+                description: "Nutritious mix of grains, legumes, and fresh vegetables"
+            },
+            {
+                name: "Salmon Teriyaki",
+                difficulty: "medium",
+                time: "28 min",
+                image: "🐟",
+                description: "Glazed salmon with steamed vegetables and rice"
+            },
+            {
+                name: "Duck Confit",
+                difficulty: "hard",
+                time: "60 min",
+                image: "🦆",
+                description: "Traditional French duck leg with roasted vegetables"
+            }
+        ];
+        
+        // Populate recipe gallery
+        function populateRecipeGallery() {
+            const gallery = document.getElementById('recipe-gallery');
+            
+            recipes.forEach((recipe, index) => {
+                const recipeCard = document.createElement('div');
+                recipeCard.className = 'bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300 opacity-0 animate-slide-up';
+                recipeCard.style.animationDelay = `${index * 0.1}s`;
+                
+                const difficultyColor = recipe.difficulty === 'easy' ? 'difficulty-easy' : 
+                                       recipe.difficulty === 'medium' ? 'difficulty-medium' : 'difficulty-hard';
+                
+                recipeCard.innerHTML = `
+                    <div class="relative">
+                        <div class="h-48 bg-gradient-to-br from-fresh-green/20 to-tomato-red/20 flex items-center justify-center">
+                            <span class="text-6xl">${recipe.image}</span>
+                        </div>
+                        <div class="absolute top-4 left-4 bg-white/90 px-3 py-1 rounded-full text-sm font-semibold ${difficultyColor}">
+                            ${recipe.difficulty.charAt(0).toUpperCase() + recipe.difficulty.slice(1)}
+                        </div>
+                        <div class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-sm font-semibold">
+                            <i class="fas fa-clock mr-1"></i>${recipe.time}
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-quicksand font-semibold text-xl mb-3">${recipe.name}</h3>
+                        <p class="text-gray-600 mb-4">${recipe.description}</p>
+                        <button class="w-full bg-fresh-green text-white py-2 rounded-lg hover:bg-herb-green transition-colors">
+                            View Recipe
+                        </button>
+                    </div>
+                `;
+                
+                gallery.appendChild(recipeCard);
+                
+                // Trigger animation after a delay
+                setTimeout(() => {
+                    recipeCard.classList.remove('opacity-0');
+                }, index * 100);
+            });
+        }
+        
+        // Scroll-triggered animations
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.animate-slide-up, .animate-fade-in');
+            const windowHeight = window.innerHeight;
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('animate-slide-up');
+                }
+            });
+        }
+        
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            // Add mobile menu implementation here
+            alert('Mobile menu would open here');
+        });
+        
+        // Preference option hover effects
+        document.querySelectorAll('.preference-option').forEach(option => {
+            option.addEventListener('mouseenter', function() {
+                this.classList.add('bg-fresh-green/5');
+            });
+            option.addEventListener('mouseleave', function() {
+                this.classList.remove('bg-fresh-green/5');
+            });
+        });
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            populateRecipeGallery();
+            window.addEventListener('scroll', handleScrollAnimations);
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+        
+        // Reduce motion for accessibility
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.documentElement.style.setProperty('--animation-duration', '0.01ms');
+        }
+    </script>
+</body>
+</html>
