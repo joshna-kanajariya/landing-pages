@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarbonSense Monitor - Track Your Carbon Footprint</title>
+    <meta name="description" content="Monitor and reduce your carbon footprint with CarbonSense. Join millions in the fight against climate change through personalized tracking and actionable insights.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts - Inter and Roboto Slab -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Roboto+Slab:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --earth-green: #2D5016;
+            --forest-green: #4F7942;
+            --warning-orange: #FF6B35;
+            --sky-blue: #87CEEB;
+            --light-green: #90EE90;
+            --dark-blue: #1E3A8A;
+        }
+        
+        * {
+            scroll-behavior: smooth;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .heading-font {
+            font-family: 'Roboto Slab', serif;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, var(--earth-green) 0%, var(--forest-green) 50%, var(--sky-blue) 100%);
+        }
+        
+        .carbon-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .emission-goal {
+            animation: pulse 2s infinite;
+        }
+        
+        .timeline-item {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+        
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .assessment-card {
+            transition: all 0.3s ease;
+        }
+        
+        .assessment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .expert-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .expert-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .expert-card:hover::before {
+            left: 100%;
+        }
+        
+        .success-story {
+            animation: slideInUp 0.6s ease-out;
+        }
+        
+        .partnership-badge {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 53%, 80%, 100% { transform: translateY(0); }
+            40%, 43% { transform: translateY(-10px); }
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            .carbon-animation,
+            .emission-goal,
+            .partnership-badge {
+                animation: none;
+            }
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--earth-green), var(--warning-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, var(--light-green) 0%, var(--forest-green) 100%);
+            animation: progressFill 2s ease-out;
+        }
+        
+        @keyframes progressFill {
+            from { width: 0%; }
+            to { width: var(--progress); }
+        }
+    </style>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'roboto-slab': ['Roboto Slab', 'serif'],
+                    },
+                    colors: {
+                        'earth-green': '#2D5016',
+                        'forest-green': '#4F7942',
+                        'warning-orange': '#FF6B35',
+                        'sky-blue': '#87CEEB',
+                        'light-green': '#90EE90',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-leaf text-2xl text-forest-green"></i>
+                    <span class="text-xl font-bold text-earth-green heading-font">CarbonSense Monitor</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-700 hover:text-forest-green transition-colors">Features</a>
+                    <a href="#assessment" class="text-gray-700 hover:text-forest-green transition-colors">Assessment</a>
+                    <a href="#experts" class="text-gray-700 hover:text-forest-green transition-colors">Experts</a>
+                    <a href="#community" class="text-gray-700 hover:text-forest-green transition-colors">Community</a>
+                    <button class="bg-forest-green text-white px-6 py-2 rounded-full hover:bg-earth-green transition-colors">
+                        Get Started
+                    </button>
+                </div>
+                <button class="md:hidden text-gray-700" id="mobile-menu-btn">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-4 pt-2 pb-3 space-y-1 bg-white border-t">
+                <a href="#features" class="block px-3 py-2 text-gray-700">Features</a>
+                <a href="#assessment" class="block px-3 py-2 text-gray-700">Assessment</a>
+                <a href="#experts" class="block px-3 py-2 text-gray-700">Experts</a>
+                <a href="#community" class="block px-3 py-2 text-gray-700">Community</a>
+                <button class="w-full mt-2 bg-forest-green text-white px-6 py-2 rounded-full">
+                    Get Started
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg min-h-screen flex items-center justify-center pt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-5xl md:text-7xl font-bold heading-font mb-6">
+                    Track Your <span class="text-yellow-300">Carbon</span> Impact
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 opacity-90">
+                    Join millions in reducing carbon footprints with personalized insights, 
+                    actionable goals, and community-driven climate solutions.
+                </p>
+                
+                <!-- Animated Carbon Calculator -->
+                <div class="carbon-animation bg-white/10 backdrop-blur-sm rounded-3xl p-8 mb-8 max-w-2xl mx-auto">
+                    <h3 class="text-2xl font-semibold mb-4 heading-font">Your Personal Carbon Calculator</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                        <div class="bg-white/20 rounded-xl p-4">
+                            <i class="fas fa-car text-3xl mb-2"></i>
+                            <div class="text-2xl font-bold" id="transport-co2">0</div>
+                            <div class="text-sm opacity-80">Transport CO₂</div>
+                        </div>
+                        <div class="bg-white/20 rounded-xl p-4">
+                            <i class="fas fa-home text-3xl mb-2"></i>
+                            <div class="text-2xl font-bold" id="home-co2">0</div>
+                            <div class="text-sm opacity-80">Home CO₂</div>
+                        </div>
+                        <div class="bg-white/20 rounded-xl p-4">
+                            <i class="fas fa-utensils text-3xl mb-2"></i>
+                            <div class="text-2xl font-bold" id="food-co2">0</div>
+                            <div class="text-sm opacity-80">Food CO₂</div>
+                        </div>
+                        <div class="bg-white/20 rounded-xl p-4">
+                            <i class="fas fa-leaf text-3xl mb-2"></i>
+                            <div class="text-2xl font-bold" id="total-co2">0</div>
+                            <div class="text-sm opacity-80">Total Tons/Year</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Floating Emission Goals -->
+                <div class="flex flex-wrap justify-center gap-4 mb-8">
+                    <div class="emission-goal bg-yellow-400 text-earth-green px-6 py-3 rounded-full font-semibold">
+                        <i class="fas fa-bullseye mr-2"></i>Goal: -20% This Year
+                    </div>
+                    <div class="emission-goal bg-light-green text-earth-green px-6 py-3 rounded-full font-semibold">
+                        <i class="fas fa-chart-line mr-2"></i>Progress: 15% Reduced
+                    </div>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="bg-warning-orange text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-orange-600 transition-colors transform hover:scale-105">
+                        <i class="fas fa-download mr-2"></i>Download App
+                    </button>
+                    <button class="bg-white/20 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/30 transition-colors">
+                        <i class="fas fa-play mr-2"></i>Watch Demo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Climate Impact Timeline -->
+    <section class="py-20 bg-gradient-to-b from-sky-blue to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-earth-green heading-font mb-4">
+                    Climate Impact Timeline
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    See how your actions today create lasting environmental impact for future generations
+                </p>
+            </div>
+            
+            <div class="relative">
+                <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-forest-green"></div>
+                
+                <!-- Timeline Items -->
+                <div class="space-y-16">
+                    <div class="timeline-item flex items-center">
+                        <div class="w-1/2 pr-8 text-right">
+                            <div class="bg-white rounded-2xl p-6 shadow-lg">
+                                <h3 class="text-2xl font-bold text-earth-green mb-2 heading-font">Today</h3>
+                                <p class="text-gray-600">Start tracking your carbon footprint and identify key reduction areas</p>
+                                <div class="mt-4 text-warning-orange font-semibold">Current: 12.5 tons CO₂/year</div>
+                            </div>
+                        </div>
+                        <div class="w-6 h-6 bg-warning-orange rounded-full border-4 border-white shadow-lg z-10"></div>
+                        <div class="w-1/2 pl-8">
+                            <div class="text-4xl">🌍</div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item flex items-center">
+                        <div class="w-1/2 pr-8 text-right">
+                            <div class="text-4xl">🚗→🚲</div>
+                        </div>
+                        <div class="w-6 h-6 bg-forest-green rounded-full border-4 border-white shadow-lg z-10"></div>
+                        <div class="w-1/2 pl-8">
+                            <div class="bg-white rounded-2xl p-6 shadow-lg">
+                                <h3 class="text-2xl font-bold text-earth-green mb-2 heading-font">3 Months</h3>
+                                <p class="text-gray-600">Adopt sustainable transport habits and see immediate impact</p>
+                                <div class="mt-4 text-forest-green font-semibold">Reduced to: 9.8 tons CO₂/year</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item flex items-center">
+                        <div class="w-1/2 pr-8 text-right">
+                            <div class="bg-white rounded-2xl p-6 shadow-lg">
+                                <h3 class="text-2xl font-bold text-earth-green mb-2 heading-font">1 Year</h3>
+                                <p class="text-gray-600">Complete lifestyle transformation with renewable energy and conscious consumption</p>
+                                <div class="mt-4 text-forest-green font-semibold">Target: 6.2 tons CO₂/year</div>
+                            </div>
+                        </div>
+                        <div class="w-6 h-6 bg-light-green rounded-full border-4 border-white shadow-lg z-10"></div>
+                        <div class="w-1/2 pl-8">
+                            <div class="text-4xl">🌱</div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item flex items-center">
+                        <div class="w-1/2 pr-8 text-right">
+                            <div class="text-4xl">🌳</div>
+                        </div>
+                        <div class="w-6 h-6 bg-green-500 rounded-full border-4 border-white shadow-lg z-10"></div>
+                        <div class="w-1/2 pl-8">
+                            <div class="bg-white rounded-2xl p-6 shadow-lg">
+                                <h3 class="text-2xl font-bold text-earth-green mb-2 heading-font">5+ Years</h3>
+                                <p class="text-gray-600">Become carbon negative through offsets and inspire others</p>
+                                <div class="mt-4 text-green-600 font-semibold">Achievement: Carbon Negative!</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Lifestyle Assessment -->
+    <section id="assessment" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-earth-green heading-font mb-4">
+                    Lifestyle Assessment Tools
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Interactive tools to analyze your carbon footprint and get personalized reduction strategies
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Transport Assessment -->
+                <div class="assessment-card bg-gradient-to-br from-sky-blue to-blue-200 rounded-3xl p-8 text-center">
+                    <div class="text-6xl mb-4">🚗</div>
+                    <h3 class="text-2xl font-bold text-earth-green mb-4 heading-font">Transport Impact</h3>
+                    <p class="text-gray-700 mb-6">Analyze your daily commute and travel patterns</p>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div class="bg-white/50 rounded-xl p-4">
+                            <label class="block text-sm font-medium mb-2">Daily Commute (miles)</label>
+                            <input type="range" id="commute-slider" class="w-full" min="0" max="100" value="25">
+                            <span id="commute-value" class="text-lg font-bold">25 miles</span>
+                        </div>
+                        <div class="bg-white/70 rounded-xl p-3">
+                            <div class="text-lg font-semibold text-warning-orange">
+                                <span id="transport-impact">5.2</span> tons CO₂/year
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="bg-earth-green text-white px-6 py-3 rounded-full w-full hover:bg-forest-green transition-colors">
+                        Get Reduction Tips
+                    </button>
+                </div>
+                
+                <!-- Home Energy Assessment -->
+                <div class="assessment-card bg-gradient-to-br from-light-green to-green-200 rounded-3xl p-8 text-center">
+                    <div class="text-6xl mb-4">🏠</div>
+                    <h3 class="text-2xl font-bold text-earth-green mb-4 heading-font">Home Energy</h3>
+                    <p class="text-gray-700 mb-6">Evaluate your household energy consumption</p>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div class="bg-white/50 rounded-xl p-4">
+                            <label class="block text-sm font-medium mb-2">Monthly Electricity (kWh)</label>
+                            <input type="range" id="electricity-slider" class="w-full" min="200" max="2000" value="800">
+                            <span id="electricity-value" class="text-lg font-bold">800 kWh</span>
+                        </div>
+                        <div class="bg-white/70 rounded-xl p-3">
+                            <div class="text-lg font-semibold text-warning-orange">
+                                <span id="home-impact">4.8</span> tons CO₂/year
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="bg-earth-green text-white px-6 py-3 rounded-full w-full hover:bg-forest-green transition-colors">
+                        Energy Audit
+                    </button>
+                </div>
+                
+                <!-- Diet Assessment -->
+                <div class="assessment-card bg-gradient-to-br from-yellow-200 to-warning-orange rounded-3xl p-8 text-center">
+                    <div class="text-6xl mb-4">🍽️</div>
+                    <h3 class="text-2xl font-bold text-earth-green mb-4 heading-font">Diet Impact</h3>
+                    <p class="text-gray-700 mb-6">Discover the climate impact of your food choices</p>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div class="bg-white/50 rounded-xl p-4">
+                            <label class="block text-sm font-medium mb-2">Meat meals per week</label>
+                            <input type="range" id="meat-slider" class="w-full" min="0" max="21" value="10">
+                            <span id="meat-value" class="text-lg font-bold">10 meals</span>
+                        </div>
+                        <div class="bg-white/70 rounded-xl p-3">
+                            <div class="text-lg font-semibold text-warning-orange">
+                                <span id="diet-impact">2.5</span> tons CO₂/year
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="bg-earth-green text-white px-6 py-3 rounded-full w-full hover:bg-forest-green transition-colors">
+                        Plant-Based Tips
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sustainability Expert Advisors -->
+    <section id="experts" class="py-20 bg-gradient-to-b from-gray-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-earth-green heading-font mb-4">
+                    Meet Our Expert Advisors
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Learn from leading environmental activists and sustainability experts
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Expert 1 -->
+                <div class="expert-card bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl">
+                    <div class="h-64 bg-gradient-to-br from-forest-green to-earth-green flex items-center justify-center">
+                        <div class="text-8xl">👩‍🔬</div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-earth-green mb-2 heading-font">Dr. Sarah Chen</h3>
+                        <p class="text-warning-orange font-semibold mb-3">Climate Science Researcher</p>
+                        <p class="text-gray-600 mb-4">
+                            Leading research on carbon capture technologies with 15+ years experience in climate science and environmental policy.
+                        </p>
+                        <div class="flex items-center space-x-4 mb-4">
+                            <span class="bg-forest-green/10 text-forest-green px-3 py-1 rounded-full text-sm">
+                                Climate Policy
+                            </span>
+                            <span class="bg-sky-blue/20 text-blue-700 px-3 py-1 rounded-full text-sm">
+                                Research
+                            </span>
+                        </div>
+                        <button class="text-earth-green font-semibold hover:text-forest-green transition-colors">
+                            <i class="fas fa-comment mr-2"></i>Ask Dr. Chen
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Expert 2 -->
+                <div class="expert-card bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl">
+                    <div class="h-64 bg-gradient-to-br from-light-green to-forest-green flex items-center justify-center">
+                        <div class="text-8xl">👨‍🌾</div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-earth-green mb-2 heading-font">Marcus Rivera</h3>
+                        <p class="text-warning-orange font-semibold mb-3">Sustainable Living Coach</p>
+                        <p class="text-gray-600 mb-4">
+                            Expert in zero-waste lifestyle and sustainable consumer habits. Helped thousands reduce their carbon footprint by 40%.
+                        </p>
+                        <div class="flex items-center space-x-4 mb-4">
+                            <span class="bg-light-green/30 text-green-700 px-3 py-1 rounded-full text-sm">
+                                Zero Waste
+                            </span>
+                            <span class="bg-warning-orange/20 text-orange-700 px-3 py-1 rounded-full text-sm">
+                                Lifestyle
+                            </span>
+                        </div>
+                        <button class="text-earth-green font-semibold hover:text-forest-green transition-colors">
+                            <i class="fas fa-comment mr-2"></i>Chat with Marcus
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Expert 3 -->
+                <div class="expert-card bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl">
+                    <div class="h-64 bg-gradient-to-br from-sky-blue to-blue-400 flex items-center justify-center">
+                        <div class="text-8xl">👩‍💼</div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-earth-green mb-2 heading-font">Elena Kowalski</h3>
+                        <p class="text-warning-orange font-semibold mb-3">Renewable Energy Advocate</p>
+                        <p class="text-gray-600 mb-4">
+                            Former UN climate negotiator specializing in renewable energy transitions and corporate sustainability strategies.
+                        </p>
+                        <div class="flex items-center space-x-4 mb-4">
+                            <span class="bg-sky-blue/30 text-blue-700 px-3 py-1 rounded-full text-sm">
+                                Renewable Energy
+                            </span>
+                            <span class="bg-yellow-200 text-yellow-800 px-3 py-1 rounded-full text-sm">
+                                UN Experience
+                            </span>
+                        </div>
+                        <button class="text-earth-green font-semibold hover:text-forest-green transition-colors">
+                            <i class="fas fa-comment mr-2"></i>Connect with Elena
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Success Stories -->
+    <section class="py-20 bg-gradient-to-br from-earth-green to-forest-green text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold heading-font mb-4">
+                    Success Stories
+                </h2>
+                <p class="text-xl opacity-90 max-w-3xl mx-auto">
+                    Real people making real environmental impact with CarbonSense Monitor
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Success Story 1 -->
+                <div class="success-story bg-white/10 backdrop-blur-sm rounded-3xl p-8">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 bg-gradient-to-br from-yellow-400 to-warning-orange rounded-full flex items-center justify-center text-2xl">
+                            👩‍💻
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-xl font-bold">Jessica Walsh</h3>
+                            <p class="opacity-80">Software Engineer, Seattle</p>
+                        </div>
+                    </div>
+                    <p class="mb-4 opacity-90">
+                        "Reduced my carbon footprint by 45% in just 8 months! The app's personalized suggestions made it easy to transition to sustainable living."
+                    </p>
+                    <div class="flex items-center space-x-4">
+                        <div class="bg-green-500/20 px-3 py-1 rounded-full text-sm">
+                            <i class="fas fa-arrow-down mr-1"></i>45% Reduction
+                        </div>
+                        <div class="bg-blue-500/20 px-3 py-1 rounded-full text-sm">
+                            <i class="fas fa-calendar mr-1"></i>8 Months
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Success Story 2 -->
+                <div class="success-story bg-white/10 backdrop-blur-sm rounded-3xl p-8">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 bg-gradient-to-br from-light-green to-forest-green rounded-full flex items-center justify-center text-2xl">
+                            👨‍👩‍👧‍👦
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-xl font-bold">The Rodriguez Family</h3>
+                            <p class="opacity-80">Austin, Texas</p>
+                        </div>
+                    </div>
+                    <p class="mb-4 opacity-90">
+                        "Our whole family got involved! We've planted 50 trees through the app and inspired our entire neighborhood to go green."
+                    </p>
+                    <div class="flex items-center space-x-4">
+                        <div class="bg-green-500/20 px-3 py-1 rounded-full text-sm">
+                            <i class="fas fa-tree mr-1"></i>50 Trees
+                        </div>
+                        <div class="bg-purple-500/20 px-3 py-1 rounded-full text-sm">
+                            <i class="fas fa-users mr-1"></i>Family Goal
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Success Story 3 -->
+                <div class="success-story bg-white/10 backdrop-blur-sm rounded-3xl p-8">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 bg-gradient-to-br from-sky-blue to-blue-400 rounded-full flex items-center justify-center text-2xl">
+                            👨‍🎓
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-xl font-bold">Dr. Michael Chen</h3>
+                            <p class="opacity-80">University Professor, Boston</p>
+                        </div>
+                    </div>
+                    <p class="mb-4 opacity-90">
+                        "Achieved carbon neutrality in 2 years! Now I use the data to teach environmental science to my students."
+                    </p>
+                    <div class="flex items-center space-x-4">
+                        <div class="bg-green-500/20 px-3 py-1 rounded-full text-sm">
+                            <i class="fas fa-balance-scale mr-1"></i>Carbon Neutral
+                        </div>
+                        <div class="bg-yellow-500/20 px-3 py-1 rounded-full text-sm">
+                            <i class="fas fa-graduation-cap mr-1"></i>Educator
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Action Plan Builder -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-earth-green heading-font mb-4">
+                    Build Your Action Plan
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Get personalized sustainability challenges and track your progress
+                </p>
+            </div>
+            
+            <div class="bg-gradient-to-br from-gray-50 to-sky-blue/10 rounded-3xl p-8 md:p-12">
+                <div class="grid md:grid-cols-2 gap-12">
+                    <!-- Challenge Selection -->
+                    <div>
+                        <h3 class="text-3xl font-bold text-earth-green mb-6 heading-font">Choose Your Challenges</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="challenge-item bg-white rounded-2xl p-6 border-2 border-transparent hover:border-forest-green transition-colors cursor-pointer">
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="transport-challenge" class="mr-4 scale-125">
+                                    <div class="flex-1">
+                                        <h4 class="text-xl font-semibold text-earth-green">🚲 Sustainable Transport</h4>
+                                        <p class="text-gray-600">Use public transport or bike 3 days/week</p>
+                                        <div class="mt-2 text-forest-green font-semibold">Potential: -2.1 tons CO₂/year</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="challenge-item bg-white rounded-2xl p-6 border-2 border-transparent hover:border-forest-green transition-colors cursor-pointer">
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="energy-challenge" class="mr-4 scale-125">
+                                    <div class="flex-1">
+                                        <h4 class="text-xl font-semibold text-earth-green">⚡ Home Energy Efficiency</h4>
+                                        <p class="text-gray-600">Switch to LED bulbs and optimize heating</p>
+                                        <div class="mt-2 text-forest-green font-semibold">Potential: -1.8 tons CO₂/year</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="challenge-item bg-white rounded-2xl p-6 border-2 border-transparent hover:border-forest-green transition-colors cursor-pointer">
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="diet-challenge" class="mr-4 scale-125">
+                                    <div class="flex-1">
+                                        <h4 class="text-xl font-semibold text-earth-green">🌱 Plant-Based Meals</h4>
+                                        <p class="text-gray-600">Try 2 plant-based meals per day</p>
+                                        <div class="mt-2 text-forest-green font-semibold">Potential: -1.2 tons CO₂/year</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Progress Visualization -->
+                    <div>
+                        <h3 class="text-3xl font-bold text-earth-green mb-6 heading-font">Your Progress</h3>
+                        
+                        <div class="bg-white rounded-2xl p-6">
+                            <div class="text-center mb-6">
+                                <div class="text-5xl font-bold text-earth-green" id="total-reduction">0</div>
+                                <p class="text-gray-600">Potential CO₂ Reduction (tons/year)</p>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <span class="font-medium">Transport</span>
+                                        <span id="transport-progress">0%</span>
+                                    </div>
+                                    <div class="bg-gray-200 rounded-full h-3">
+                                        <div class="progress-bar h-3 rounded-full" style="--progress: 0%" id="transport-bar"></div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <span class="font-medium">Energy</span>
+                                        <span id="energy-progress">0%</span>
+                                    </div>
+                                    <div class="bg-gray-200 rounded-full h-3">
+                                        <div class="progress-bar h-3 rounded-full" style="--progress: 0%" id="energy-bar"></div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between mb-2">
+                                        <span class="font-medium">Diet</span>
+                                        <span id="diet-progress">0%</span>
+                                    </div>
+                                    <div class="bg-gray-200 rounded-full h-3">
+                                        <div class="progress-bar h-3 rounded-full" style="--progress: 0%" id="diet-bar"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button class="w-full mt-6 bg-forest-green text-white py-3 rounded-full font-semibold hover:bg-earth-green transition-colors">
+                                Start My Plan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community & Partnerships -->
+    <section id="community" class="py-20 bg-gradient-to-b from-forest-green to-earth-green text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold heading-font mb-4">
+                    Join Our Global Community
+                </h2>
+                <p class="text-xl opacity-90 max-w-3xl mx-auto">
+                    Connect with like-minded individuals and participate in environmental initiatives worldwide
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                <!-- Community Stats -->
+                <div class="text-center">
+                    <div class="text-4xl font-bold mb-2" id="community-members">2.4M+</div>
+                    <p class="opacity-80">Active Members</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold mb-2" id="trees-planted">15.7M</div>
+                    <p class="opacity-80">Trees Planted</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold mb-2" id="co2-saved">890K</div>
+                    <p class="opacity-80">Tons CO₂ Saved</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold mb-2" id="countries">127</div>
+                    <p class="opacity-80">Countries</p>
+                </div>
+            </div>
+            
+            <!-- Partnership Showcases -->
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 text-center">
+                    <div class="partnership-badge text-6xl mb-4">🌳</div>
+                    <h3 class="text-2xl font-bold mb-4 heading-font">Reforestation Projects</h3>
+                    <p class="opacity-90 mb-6">
+                        Partner with us to plant trees in deforested areas. Every ton of CO₂ saved plants a tree in your name.
+                    </p>
+                    <div class="bg-white/20 rounded-2xl p-4 mb-6">
+                        <div class="text-2xl font-bold">50,000</div>
+                        <p class="text-sm opacity-80">Trees planted this month</p>
+                    </div>
+                    <button class="bg-light-green text-earth-green px-6 py-3 rounded-full font-semibold hover:bg-green-300 transition-colors">
+                        Plant Trees
+                    </button>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 text-center">
+                    <div class="partnership-badge text-6xl mb-4">🌊</div>
+                    <h3 class="text-2xl font-bold mb-4 heading-font">Ocean Conservation</h3>
+                    <p class="opacity-90 mb-6">
+                        Support marine ecosystem restoration and plastic cleanup initiatives in partnership with Ocean Conservancy.
+                    </p>
+                    <div class="bg-white/20 rounded-2xl p-4 mb-6">
+                        <div class="text-2xl font-bold">2.3M lbs</div>
+                        <p class="text-sm opacity-80">Plastic removed from oceans</p>
+                    </div>
+                    <button class="bg-sky-blue text-earth-green px-6 py-3 rounded-full font-semibold hover:bg-blue-300 transition-colors">
+                        Clean Oceans
+                    </button>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 text-center">
+                    <div class="partnership-badge text-6xl mb-4">⚡</div>
+                    <h3 class="text-2xl font-bold mb-4 heading-font">Renewable Energy</h3>
+                    <p class="opacity-90 mb-6">
+                        Invest your carbon credits in solar and wind energy projects that power communities sustainably.
+                    </p>
+                    <div class="bg-white/20 rounded-2xl p-4 mb-6">
+                        <div class="text-2xl font-bold">125 MW</div>
+                        <p class="text-sm opacity-80">Clean energy generated</p>
+                    </div>
+                    <button class="bg-yellow-400 text-earth-green px-6 py-3 rounded-full font-semibold hover:bg-yellow-300 transition-colors">
+                        Fund Renewable Energy
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-gradient-to-br from-warning-orange to-red-500 text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl md:text-6xl font-bold heading-font mb-6">
+                Start Your Climate Journey Today
+            </h2>
+            <p class="text-xl md:text-2xl mb-8 opacity-90">
+                Join millions taking action against climate change. Every journey begins with a single step.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+                <button class="bg-white text-warning-orange px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transition-colors transform hover:scale-105">
+                    <i class="fas fa-mobile-alt mr-2"></i>Download Free App
+                </button>
+                <button class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-warning-orange transition-colors">
+                    <i class="fas fa-calculator mr-2"></i>Calculate My Footprint
+                </button>
+            </div>
+            
+            <p class="text-sm opacity-80">
+                Available on iOS and Android • Free forever • No ads
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-earth-green text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-leaf text-2xl"></i>
+                        <span class="text-xl font-bold heading-font">CarbonSense Monitor</span>
+                    </div>
+                    <p class="opacity-80 mb-4">
+                        Empowering individuals and communities to take climate action through data-driven insights and collective impact.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-2xl hover:text-light-green transition-colors"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-2xl hover:text-light-green transition-colors"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-2xl hover:text-light-green transition-colors"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-2xl hover:text-light-green transition-colors"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 heading-font">Features</h3>
+                    <ul class="space-y-2 opacity-80">
+                        <li><a href="#" class="hover:text-light-green transition-colors">Carbon Calculator</a></li>
+                        <li><a href="#" class="hover:text-light-green transition-colors">Progress Tracking</a></li>
+                        <li><a href="#" class="hover:text-light-green transition-colors">Expert Advice</a></li>
+                        <li><a href="#" class="hover:text-light-green transition-colors">Community Challenges</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 heading-font">Resources</h3>
+                    <ul class="space-y-2 opacity-80">
+                        <li><a href="#" class="hover:text-light-green transition-colors">Climate Science</a></li>
+                        <li><a href="#" class="hover:text-light-green transition-colors">Sustainability Tips</a></li>
+                        <li><a href="#" class="hover:text-light-green transition-colors">Research Papers</a></li>
+                        <li><a href="#" class="hover:text-light-green transition-colors">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 heading-font">Support</h3>
+                    <ul class="space-y-2 opacity-80">
+                        <li><a href="#" class="hover:text-light-green transition-colors">Help Center</a></li>
+                        <li><a href="#" class="hover:text-light-green transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-light-green transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-light-green transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/20 mt-12 pt-8 text-center opacity-80">
+                <p>&copy; 2024 CarbonSense Monitor. All rights reserved. Made with 💚 for the planet.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Animated Carbon Calculator
+        function animateCounters() {
+            const transport = document.getElementById('transport-co2');
+            const home = document.getElementById('home-co2');
+            const food = document.getElementById('food-co2');
+            const total = document.getElementById('total-co2');
+            
+            animateValue(transport, 0, 5.2, 2000);
+            animateValue(home, 0, 4.8, 2500);
+            animateValue(food, 0, 2.5, 1800);
+            animateValue(total, 0, 12.5, 3000);
+        }
+        
+        function animateValue(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                element.textContent = (progress * (end - start) + start).toFixed(1);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Intersection Observer for Timeline Animation
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            observer.observe(item);
+        });
+
+        // Assessment Tool Interactions
+        const commuteSlider = document.getElementById('commute-slider');
+        const commuteValue = document.getElementById('commute-value');
+        const transportImpact = document.getElementById('transport-impact');
+
+        commuteSlider.addEventListener('input', function() {
+            const miles = this.value;
+            commuteValue.textContent = miles + ' miles';
+            const impact = (miles * 0.21).toFixed(1); // Rough calculation
+            transportImpact.textContent = impact;
+        });
+
+        const electricitySlider = document.getElementById('electricity-slider');
+        const electricityValue = document.getElementById('electricity-value');
+        const homeImpact = document.getElementById('home-impact');
+
+        electricitySlider.addEventListener('input', function() {
+            const kwh = this.value;
+            electricityValue.textContent = kwh + ' kWh';
+            const impact = (kwh * 0.0006 * 12).toFixed(1); // Rough calculation
+            homeImpact.textContent = impact;
+        });
+
+        const meatSlider = document.getElementById('meat-slider');
+        const meatValue = document.getElementById('meat-value');
+        const dietImpact = document.getElementById('diet-impact');
+
+        meatSlider.addEventListener('input', function() {
+            const meals = this.value;
+            meatValue.textContent = meals + ' meals';
+            const impact = (meals * 0.12).toFixed(1); // Rough calculation
+            dietImpact.textContent = impact;
+        });
+
+        // Action Plan Builder
+        const challenges = {
+            transport: { element: document.getElementById('transport-challenge'), value: 2.1 },
+            energy: { element: document.getElementById('energy-challenge'), value: 1.8 },
+            diet: { element: document.getElementById('diet-challenge'), value: 1.2 }
+        };
+
+        const totalReduction = document.getElementById('total-reduction');
+
+        Object.keys(challenges).forEach(key => {
+            challenges[key].element.addEventListener('change', updateActionPlan);
+        });
+
+        function updateActionPlan() {
+            let total = 0;
+            
+            Object.keys(challenges).forEach(key => {
+                const challenge = challenges[key];
+                const isChecked = challenge.element.checked;
+                const progress = isChecked ? 100 : 0;
+                
+                if (isChecked) {
+                    total += challenge.value;
+                }
+                
+                document.getElementById(`${key}-progress`).textContent = progress + '%';
+                document.getElementById(`${key}-bar`).style.setProperty('--progress', progress + '%');
+            });
+            
+            totalReduction.textContent = total.toFixed(1);
+        }
+
+        // Community Stats Animation
+        function animateCommunityStats() {
+            const members = document.getElementById('community-members');
+            const trees = document.getElementById('trees-planted');
+            const co2Saved = document.getElementById('co2-saved');
+            const countries = document.getElementById('countries');
+            
+            animateStatValue(members, 0, 2.4, 'M+', 2000);
+            animateStatValue(trees, 0, 15.7, 'M', 2500);
+            animateStatValue(co2Saved, 0, 890, 'K', 2200);
+            animateStatValue(countries, 0, 127, '', 1800);
+        }
+        
+        function animateStatValue(element, start, end, suffix, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = (progress * (end - start) + start).toFixed(1);
+                element.textContent = value + suffix;
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Initialize animations when page loads
+        window.addEventListener('load', function() {
+            setTimeout(animateCounters, 500);
+            
+            // Animate community stats when section is visible
+            const communityObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCommunityStats();
+                        communityObserver.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            communityObserver.observe(document.getElementById('community'));
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
