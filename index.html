@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChronoElite Collection - Luxury Watch Marketplace</title>
+    <meta name="description" content="Discover the world's finest luxury watches at ChronoElite Collection. Premium timepieces, authenticated craftsmanship, and exclusive access to rare collections.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts - Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* Custom CSS Variables */
+        :root {
+            --color-deep-black: #0a0a0a;
+            --color-charcoal: #1a1a1a;
+            --color-gold: #d4af37;
+            --color-gold-light: #f4e5a3;
+            --color-pearl-white: #f8f6f0;
+            --color-silver: #c0c0c0;
+            --gradient-gold: linear-gradient(135deg, #d4af37, #f4e5a3);
+            --gradient-black: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+        }
+        
+        /* Font Families */
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .font-inter { font-family: 'Inter', sans-serif; }
+        
+        /* Custom Background Colors */
+        .bg-deep-black { background-color: var(--color-deep-black); }
+        .bg-charcoal { background-color: var(--color-charcoal); }
+        .bg-gold { background-color: var(--color-gold); }
+        .bg-pearl-white { background-color: var(--color-pearl-white); }
+        .text-gold { color: var(--color-gold); }
+        .text-pearl-white { color: var(--color-pearl-white); }
+        
+        /* Gradient backgrounds */
+        .bg-gradient-gold { background: var(--gradient-gold); }
+        .bg-gradient-black { background: var(--gradient-black); }
+        
+        /* 3D Watch Animation */
+        .watch-3d {
+            animation: rotate3d 20s linear infinite;
+            transform-style: preserve-3d;
+        }
+        
+        @keyframes rotate3d {
+            0% { transform: rotateY(0deg) rotateX(10deg); }
+            100% { transform: rotateY(360deg) rotateX(10deg); }
+        }
+        
+        /* Floating Animation */
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* Golden Hover Effects */
+        .golden-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .golden-hover:hover {
+            color: var(--color-gold);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        /* Scroll Triggered Animations */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Watch Card Hover Effects */
+        .watch-card {
+            transition: all 0.5s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .watch-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3);
+        }
+        
+        /* Timeline Animation */
+        .timeline-item {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+        
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* Authentication Badge Animation */
+        .auth-badge {
+            animation: pulse-gold 2s infinite;
+        }
+        
+        @keyframes pulse-gold {
+            0%, 100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(212, 175, 55, 0.8); }
+        }
+        
+        /* Market Trend Visualization */
+        .trend-line {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: draw-line 3s ease-in-out forwards;
+        }
+        
+        @keyframes draw-line {
+            to { stroke-dashoffset: 0; }
+        }
+        
+        /* VIP Exclusive Animation */
+        .vip-exclusive {
+            background: linear-gradient(45deg, var(--color-gold), var(--color-gold-light), var(--color-gold));
+            background-size: 200% 200%;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        /* Luxury Loading Animation */
+        .luxury-loader {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--color-gold);
+            border-top: 3px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .watch-3d {
+                animation-duration: 15s;
+            }
+        }
+        
+        /* Accessibility - Respect reduced motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            .watch-3d,
+            .float,
+            .auth-badge,
+            .vip-exclusive,
+            .luxury-loader {
+                animation: none;
+            }
+            
+            .scroll-animate,
+            .timeline-item,
+            .watch-card,
+            .golden-hover {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-deep-black text-pearl-white font-inter overflow-x-hidden">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-charcoal/90 backdrop-blur-md border-b border-gold/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-2xl font-playfair font-bold text-gold">ChronoElite</h1>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#collections" class="golden-hover px-3 py-2 text-sm font-medium" aria-label="View Collections">Collections</a>
+                        <a href="#heritage" class="golden-hover px-3 py-2 text-sm font-medium" aria-label="Our Heritage">Heritage</a>
+                        <a href="#authentication" class="golden-hover px-3 py-2 text-sm font-medium" aria-label="Authentication">Authentication</a>
+                        <a href="#investment" class="golden-hover px-3 py-2 text-sm font-medium" aria-label="Investment">Investment</a>
+                        <a href="#concierge" class="golden-hover px-3 py-2 text-sm font-medium" aria-label="Concierge Services">Concierge</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="bg-gradient-gold text-deep-black px-6 py-2 rounded-full font-medium hover:shadow-lg transition-all duration-300" aria-label="Join VIP">
+                        VIP Access
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Video Placeholder -->
+        <div class="absolute inset-0 bg-gradient-to-br from-charcoal via-deep-black to-charcoal"></div>
+        
+        <!-- Floating Brand Logos -->
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="absolute top-20 left-10 float opacity-20">
+                <i class="fas fa-crown text-gold text-3xl"></i>
+            </div>
+            <div class="absolute top-32 right-20 float opacity-20" style="animation-delay: -2s;">
+                <i class="fas fa-gem text-gold text-2xl"></i>
+            </div>
+            <div class="absolute bottom-40 left-20 float opacity-20" style="animation-delay: -4s;">
+                <i class="fas fa-star text-gold text-2xl"></i>
+            </div>
+            <div class="absolute bottom-20 right-10 float opacity-20" style="animation-delay: -3s;">
+                <i class="fas fa-certificate text-gold text-3xl"></i>
+            </div>
+        </div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Hero Content -->
+                <div class="text-center lg:text-left">
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-playfair font-bold leading-tight mb-6">
+                        <span class="text-gold">Timeless</span><br>
+                        <span class="text-pearl-white">Luxury</span><br>
+                        <span class="text-gold">Redefined</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-pearl-white/80 mb-8 max-w-2xl">
+                        Discover the world's most exquisite timepieces. Each watch in our collection represents centuries of craftsmanship, innovation, and unparalleled luxury.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <button class="bg-gradient-gold text-deep-black px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105" aria-label="Explore Collections">
+                            Explore Collections
+                        </button>
+                        <button class="border-2 border-gold text-gold px-8 py-4 rounded-full font-semibold text-lg hover:bg-gold hover:text-deep-black transition-all duration-300" aria-label="Schedule Consultation">
+                            Private Consultation
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 3D Watch Display -->
+                <div class="flex justify-center">
+                    <div class="relative">
+                        <div class="watch-3d w-80 h-80 bg-gradient-to-br from-gold/20 to-gold/5 rounded-full flex items-center justify-center border border-gold/30">
+                            <div class="w-60 h-60 bg-gradient-black rounded-full flex items-center justify-center border-4 border-gold shadow-2xl">
+                                <i class="fas fa-clock text-gold text-6xl"></i>
+                            </div>
+                        </div>
+                        <!-- Craftsmanship Detail Zoom-ins -->
+                        <div class="absolute -top-4 -right-4 w-16 h-16 bg-gold/20 rounded-full flex items-center justify-center border border-gold/50 float">
+                            <i class="fas fa-diamond text-gold text-xl"></i>
+                        </div>
+                        <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-gold/20 rounded-full flex items-center justify-center border border-gold/50 float" style="animation-delay: -1s;">
+                            <i class="fas fa-cog text-gold text-xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Watch Collections Gallery -->
+    <section id="collections" class="py-20 bg-charcoal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="text-4xl md:text-5xl font-playfair font-bold text-gold mb-6">Curated Collections</h2>
+                <p class="text-xl text-pearl-white/80 max-w-3xl mx-auto">Each timepiece is carefully selected for its exceptional craftsmanship, heritage, and investment potential.</p>
+            </div>
+            
+            <!-- Collection Filters -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12 scroll-animate">
+                <button class="filter-btn active bg-gradient-gold text-deep-black px-6 py-3 rounded-full font-medium transition-all duration-300" data-filter="all">
+                    All Collections
+                </button>
+                <button class="filter-btn bg-charcoal border border-gold text-gold px-6 py-3 rounded-full font-medium hover:bg-gold hover:text-deep-black transition-all duration-300" data-filter="vintage">
+                    Vintage Classics
+                </button>
+                <button class="filter-btn bg-charcoal border border-gold text-gold px-6 py-3 rounded-full font-medium hover:bg-gold hover:text-deep-black transition-all duration-300" data-filter="modern">
+                    Modern Masters
+                </button>
+                <button class="filter-btn bg-charcoal border border-gold text-gold px-6 py-3 rounded-full font-medium hover:bg-gold hover:text-deep-black transition-all duration-300" data-filter="limited">
+                    Limited Editions
+                </button>
+            </div>
+            
+            <!-- Watch Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="watchGrid">
+                <!-- Watch Card 1 -->
+                <div class="watch-card bg-gradient-black rounded-2xl p-6 border border-gold/20 hover:border-gold/50" data-category="vintage">
+                    <div class="aspect-square bg-pearl-white/5 rounded-xl mb-6 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-clock text-gold text-4xl"></i>
+                        <div class="absolute top-2 right-2 auth-badge bg-gold/20 text-gold px-2 py-1 rounded-full text-xs font-semibold">
+                            Authenticated
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-playfair font-semibold text-pearl-white mb-2">Royal Heritage 1923</h3>
+                    <p class="text-gold font-medium mb-2">$125,000</p>
+                    <p class="text-pearl-white/70 text-sm mb-4">Rare vintage piece with original complications and pristine condition.</p>
+                    <button class="w-full bg-gradient-gold text-deep-black py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300">
+                        View Details
+                    </button>
+                </div>
+                
+                <!-- Watch Card 2 -->
+                <div class="watch-card bg-gradient-black rounded-2xl p-6 border border-gold/20 hover:border-gold/50" data-category="modern">
+                    <div class="aspect-square bg-pearl-white/5 rounded-xl mb-6 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-stopwatch text-gold text-4xl"></i>
+                        <div class="absolute top-2 right-2 auth-badge bg-gold/20 text-gold px-2 py-1 rounded-full text-xs font-semibold">
+                            Authenticated
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-playfair font-semibold text-pearl-white mb-2">Precision Master Pro</h3>
+                    <p class="text-gold font-medium mb-2">$89,500</p>
+                    <p class="text-pearl-white/70 text-sm mb-4">Contemporary masterpiece with cutting-edge technology and timeless design.</p>
+                    <button class="w-full bg-gradient-gold text-deep-black py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300">
+                        View Details
+                    </button>
+                </div>
+                
+                <!-- Watch Card 3 -->
+                <div class="watch-card bg-gradient-black rounded-2xl p-6 border border-gold/20 hover:border-gold/50" data-category="limited">
+                    <div class="aspect-square bg-pearl-white/5 rounded-xl mb-6 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-gem text-gold text-4xl"></i>
+                        <div class="absolute top-2 right-2 auth-badge bg-gold/20 text-gold px-2 py-1 rounded-full text-xs font-semibold">
+                            Limited Edition
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-playfair font-semibold text-pearl-white mb-2">Elite Diamond Edition</h3>
+                    <p class="text-gold font-medium mb-2">$295,000</p>
+                    <p class="text-pearl-white/70 text-sm mb-4">Exclusive limited run of 50 pieces worldwide with diamond-set bezel.</p>
+                    <button class="w-full bg-gradient-gold text-deep-black py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300">
+                        View Details
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Watch Customization -->
+    <section class="py-20 bg-deep-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="text-4xl md:text-5xl font-playfair font-bold text-gold mb-6">Bespoke Customization</h2>
+                <p class="text-xl text-pearl-white/80 max-w-3xl mx-auto">Create your perfect timepiece with our master craftsmen. Every detail tailored to your vision.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Customization Preview -->
+                <div class="scroll-animate">
+                    <div class="bg-gradient-black rounded-2xl p-8 border border-gold/20">
+                        <div class="aspect-square bg-pearl-white/5 rounded-xl flex items-center justify-center mb-6 relative">
+                            <div class="w-40 h-40 bg-gradient-to-br from-gold/30 to-gold/10 rounded-full flex items-center justify-center border-2 border-gold">
+                                <i id="customWatch" class="fas fa-clock text-gold text-5xl"></i>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <h3 class="text-2xl font-playfair font-semibold text-pearl-white mb-2">Your Custom Timepiece</h3>
+                            <p class="text-gold font-medium text-lg" id="customPrice">Starting at $75,000</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Customization Options -->
+                <div class="scroll-animate space-y-6">
+                    <div class="bg-gradient-black rounded-xl p-6 border border-gold/20">
+                        <h4 class="text-lg font-playfair font-semibold text-gold mb-4">Case Material</h4>
+                        <div class="grid grid-cols-2 gap-3">
+                            <button class="customization-option active bg-gold/20 text-gold px-4 py-3 rounded-lg font-medium transition-all duration-300" data-option="gold">
+                                18K Gold
+                            </button>
+                            <button class="customization-option bg-charcoal text-pearl-white px-4 py-3 rounded-lg font-medium hover:bg-gold/20 hover:text-gold transition-all duration-300" data-option="platinum">
+                                Platinum
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-black rounded-xl p-6 border border-gold/20">
+                        <h4 class="text-lg font-playfair font-semibold text-gold mb-4">Dial Design</h4>
+                        <div class="grid grid-cols-3 gap-3">
+                            <button class="customization-option active bg-gold/20 text-gold px-4 py-3 rounded-lg font-medium transition-all duration-300" data-option="classic">
+                                Classic
+                            </button>
+                            <button class="customization-option bg-charcoal text-pearl-white px-4 py-3 rounded-lg font-medium hover:bg-gold/20 hover:text-gold transition-all duration-300" data-option="skeleton">
+                                Skeleton
+                            </button>
+                            <button class="customization-option bg-charcoal text-pearl-white px-4 py-3 rounded-lg font-medium hover:bg-gold/20 hover:text-gold transition-all duration-300" data-option="diamond">
+                                Diamond
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <button class="w-full bg-gradient-gold text-deep-black py-4 rounded-xl font-semibold text-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                        Schedule Design Consultation
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Watchmaker Heritage Timeline -->
+    <section id="heritage" class="py-20 bg-charcoal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="text-4xl md:text-5xl font-playfair font-bold text-gold mb-6">Legacy of Excellence</h2>
+                <p class="text-xl text-pearl-white/80 max-w-3xl mx-auto">Three centuries of horological mastery, passed down through generations of master craftsmen.</p>
+            </div>
+            
+            <div class="relative">
+                <!-- Timeline Line -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gold h-full hidden md:block"></div>
+                
+                <!-- Timeline Items -->
+                <div class="space-y-12">
+                    <!-- Timeline Item 1 -->
+                    <div class="timeline-item relative grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div class="bg-gradient-black rounded-2xl p-8 border border-gold/20 order-2 md:order-1">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-hammer text-gold text-2xl mr-4"></i>
+                                <span class="text-gold font-semibold text-lg">1743</span>
+                            </div>
+                            <h3 class="text-2xl font-playfair font-semibold text-pearl-white mb-4">The Foundation</h3>
+                            <p class="text-pearl-white/80">Master craftsman Jean-Baptiste Chronos establishes the first workshop in Geneva, setting the standards for precision timepieces.</p>
+                        </div>
+                        <div class="order-1 md:order-2 flex justify-center">
+                            <div class="w-32 h-32 bg-gradient-gold rounded-full flex items-center justify-center">
+                                <i class="fas fa-tools text-deep-black text-3xl"></i>
+                            </div>
+                        </div>
+                        <!-- Timeline Dot -->
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gold rounded-full border-4 border-charcoal hidden md:block"></div>
+                    </div>
+                    
+                    <!-- Timeline Item 2 -->
+                    <div class="timeline-item relative grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div class="flex justify-center">
+                            <div class="w-32 h-32 bg-gradient-gold rounded-full flex items-center justify-center">
+                                <i class="fas fa-crown text-deep-black text-3xl"></i>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-black rounded-2xl p-8 border border-gold/20">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-star text-gold text-2xl mr-4"></i>
+                                <span class="text-gold font-semibold text-lg">1889</span>
+                            </div>
+                            <h3 class="text-2xl font-playfair font-semibold text-pearl-white mb-4">Royal Recognition</h3>
+                            <p class="text-pearl-white/80">Awarded the prestigious title of Royal Watchmaker, serving European nobility and establishing our reputation for excellence.</p>
+                        </div>
+                        <!-- Timeline Dot -->
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gold rounded-full border-4 border-charcoal hidden md:block"></div>
+                    </div>
+                    
+                    <!-- Timeline Item 3 -->
+                    <div class="timeline-item relative grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div class="bg-gradient-black rounded-2xl p-8 border border-gold/20 order-2 md:order-1">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-rocket text-gold text-2xl mr-4"></i>
+                                <span class="text-gold font-semibold text-lg">2024</span>
+                            </div>
+                            <h3 class="text-2xl font-playfair font-semibold text-pearl-white mb-4">Digital Innovation</h3>
+                            <p class="text-pearl-white/80">Launching ChronoElite Collection, bringing centuries of craftsmanship to the digital age with authenticated luxury timepieces.</p>
+                        </div>
+                        <div class="order-1 md:order-2 flex justify-center">
+                            <div class="w-32 h-32 bg-gradient-gold rounded-full flex items-center justify-center">
+                                <i class="fas fa-laptop text-deep-black text-3xl"></i>
+                            </div>
+                        </div>
+                        <!-- Timeline Dot -->
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gold rounded-full border-4 border-charcoal hidden md:block"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Authentication & Security -->
+    <section id="authentication" class="py-20 bg-deep-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="text-4xl md:text-5xl font-playfair font-bold text-gold mb-6">Verified Authenticity</h2>
+                <p class="text-xl text-pearl-white/80 max-w-3xl mx-auto">Every timepiece undergoes rigorous authentication by certified horologists and advanced technology.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Certification Process -->
+                <div class="scroll-animate bg-gradient-black rounded-2xl p-8 border border-gold/20 text-center">
+                    <div class="auth-badge w-20 h-20 bg-gradient-gold rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-certificate text-deep-black text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-playfair font-semibold text-pearl-white mb-4">Master Certification</h3>
+                    <p class="text-pearl-white/80">Each watch is examined by master horologists with over 20 years of experience in luxury timepiece authentication.</p>
+                </div>
+                
+                <!-- Technology Verification -->
+                <div class="scroll-animate bg-gradient-black rounded-2xl p-8 border border-gold/20 text-center">
+                    <div class="auth-badge w-20 h-20 bg-gradient-gold rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-microscope text-deep-black text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-playfair font-semibold text-pearl-white mb-4">Advanced Analysis</h3>
+                    <p class="text-pearl-white/80">Cutting-edge technology including spectroscopy and micro-imaging to verify materials and craftsmanship.</p>
+                </div>
+                
+                <!-- Blockchain Security -->
+                <div class="scroll-animate bg-gradient-black rounded-2xl p-8 border border-gold/20 text-center">
+                    <div class="auth-badge w-20 h-20 bg-gradient-gold rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-shield-alt text-deep-black text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-playfair font-semibold text-pearl-white mb-4">Blockchain Registry</h3>
+                    <p class="text-pearl-white/80">Immutable digital certificates stored on blockchain technology, ensuring permanent authenticity records.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investment Value Tracker -->
+    <section id="investment" class="py-20 bg-charcoal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="text-4xl md:text-5xl font-playfair font-bold text-gold mb-6">Investment Potential</h2>
+                <p class="text-xl text-pearl-white/80 max-w-3xl mx-auto">Track market trends and investment performance of luxury timepieces with our advanced analytics platform.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Market Trends Visualization -->
+                <div class="scroll-animate">
+                    <div class="bg-gradient-black rounded-2xl p-8 border border-gold/20">
+                        <h3 class="text-2xl font-playfair font-semibold text-pearl-white mb-6">Market Performance</h3>
+                        
+                        <!-- SVG Chart Placeholder -->
+                        <div class="bg-pearl-white/5 rounded-xl p-6 mb-6">
+                            <svg width="100%" height="200" viewBox="0 0 400 200" class="overflow-visible">
+                                <defs>
+                                    <linearGradient id="trendGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" style="stop-color:var(--color-gold);stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:var(--color-gold-light);stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                                <polyline class="trend-line" fill="none" stroke="url(#trendGradient)" stroke-width="3" points="0,150 50,120 100,140 150,100 200,110 250,80 300,90 350,60 400,70"/>
+                                <circle cx="400" cy="70" r="4" fill="var(--color-gold)"/>
+                            </svg>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="text-center">
+                                <div class="text-2xl font-playfair font-bold text-gold">+24.7%</div>
+                                <div class="text-pearl-white/70 text-sm">YTD Growth</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-playfair font-bold text-gold">$2.1M</div>
+                                <div class="text-pearl-white/70 text-sm">Avg. Portfolio</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Investment Features -->
+                <div class="scroll-animate space-y-6">
+                    <div class="bg-gradient-black rounded-xl p-6 border border-gold/20">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-chart-line text-gold text-xl mr-4"></i>
+                            <h4 class="text-lg font-playfair font-semibold text-pearl-white">Real-Time Valuations</h4>
+                        </div>
+                        <p class="text-pearl-white/80">Live market data and AI-powered valuations updated continuously for accurate portfolio tracking.</p>
+                    </div>
+                    
+                    <div class="bg-gradient-black rounded-xl p-6 border border-gold/20">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-user-tie text-gold text-xl mr-4"></i>
+                            <h4 class="text-lg font-playfair font-semibold text-pearl-white">Expert Insights</h4>
+                        </div>
+                        <p class="text-pearl-white/80">Monthly reports from industry experts with market predictions and investment recommendations.</p>
+                    </div>
+                    
+                    <div class="bg-gradient-black rounded-xl p-6 border border-gold/20">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-bell text-gold text-xl mr-4"></i>
+                            <h4 class="text-lg font-playfair font-semibold text-pearl-white">Smart Alerts</h4>
+                        </div>
+                        <p class="text-pearl-white/80">Personalized notifications for market opportunities, price changes, and auction alerts.</p>
+                    </div>
+                    
+                    <button class="w-full bg-gradient-gold text-deep-black py-4 rounded-xl font-semibold text-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                        Access Investment Tools
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Concierge Services & VIP Membership -->
+    <section id="concierge" class="py-20 bg-deep-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="text-4xl md:text-5xl font-playfair font-bold text-gold mb-6">Concierge Excellence</h2>
+                <p class="text-xl text-pearl-white/80 max-w-3xl mx-auto">Experience unparalleled service with our dedicated concierge team and exclusive VIP membership benefits.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Concierge Services -->
+                <div class="scroll-animate">
+                    <h3 class="text-2xl font-playfair font-semibold text-gold mb-8">Personal Concierge</h3>
+                    <div class="space-y-6">
+                        <div class="bg-gradient-black rounded-xl p-6 border border-gold/20 flex items-start">
+                            <i class="fas fa-search text-gold text-xl mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="text-lg font-semibold text-pearl-white mb-2">Watch Sourcing</h4>
+                                <p class="text-pearl-white/80">Dedicated specialists to find rare and specific timepieces from our global network.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-black rounded-xl p-6 border border-gold/20 flex items-start">
+                            <i class="fas fa-wrench text-gold text-xl mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="text-lg font-semibold text-pearl-white mb-2">Master Servicing</h4>
+                                <p class="text-pearl-white/80">Expert maintenance and restoration by certified watchmakers with lifetime guarantees.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-black rounded-xl p-6 border border-gold/20 flex items-start">
+                            <i class="fas fa-shield-alt text-gold text-xl mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="text-lg font-semibold text-pearl-white mb-2">Insurance & Storage</h4>
+                                <p class="text-pearl-white/80">Comprehensive insurance coverage and secure vault storage with 24/7 monitoring.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- VIP Membership -->
+                <div class="scroll-animate">
+                    <div class="vip-exclusive rounded-2xl p-8 text-deep-black relative overflow-hidden">
+                        <div class="relative z-10">
+                            <div class="flex items-center mb-6">
+                                <i class="fas fa-crown text-3xl mr-4"></i>
+                                <h3 class="text-2xl font-playfair font-bold">VIP Elite Membership</h3>
+                            </div>
+                            
+                            <div class="space-y-4 mb-8">
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-xl mr-3"></i>
+                                    <span class="font-medium">Exclusive access to private collections</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-xl mr-3"></i>
+                                    <span class="font-medium">Priority on limited edition releases</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-xl mr-3"></i>
+                                    <span class="font-medium">Invitation-only events and exhibitions</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-xl mr-3"></i>
+                                    <span class="font-medium">Personal shopping appointments</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-xl mr-3"></i>
+                                    <span class="font-medium">Complimentary worldwide delivery</span>
+                                </div>
+                            </div>
+                            
+                            <button class="w-full bg-deep-black text-gold border-2 border-deep-black py-4 rounded-xl font-semibold text-lg hover:bg-charcoal transition-all duration-300">
+                                Apply for VIP Membership
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-charcoal border-t border-gold/20 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <!-- Company Info -->
+                <div class="col-span-1 md:col-span-2">
+                    <h3 class="text-2xl font-playfair font-bold text-gold mb-4">ChronoElite Collection</h3>
+                    <p class="text-pearl-white/80 mb-6 max-w-md">The world's premier destination for authenticated luxury timepieces, serving discerning collectors since 1743.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gold hover:text-gold-light transition-colors duration-300" aria-label="Facebook">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gold hover:text-gold-light transition-colors duration-300" aria-label="Instagram">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gold hover:text-gold-light transition-colors duration-300" aria-label="Twitter">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gold hover:text-gold-light transition-colors duration-300" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-playfair font-semibold text-pearl-white mb-4">Collections</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-pearl-white/80 hover:text-gold transition-colors duration-300">Vintage Classics</a></li>
+                        <li><a href="#" class="text-pearl-white/80 hover:text-gold transition-colors duration-300">Modern Masters</a></li>
+                        <li><a href="#" class="text-pearl-white/80 hover:text-gold transition-colors duration-300">Limited Editions</a></li>
+                        <li><a href="#" class="text-pearl-white/80 hover:text-gold transition-colors duration-300">Custom Pieces</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Services -->
+                <div>
+                    <h4 class="text-lg font-playfair font-semibold text-pearl-white mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-pearl-white/80 hover:text-gold transition-colors duration-300">Authentication</a></li>
+                        <li><a href="#" class="text-pearl-white/80 hover:text-gold transition-colors duration-300">Investment Tracking</a></li>
+                        <li><a href="#" class="text-pearl-white/80 hover:text-gold transition-colors duration-300">Concierge Service</a></li>
+                        <li><a href="#" class="text-pearl-white/80 hover:text-gold transition-colors duration-300">VIP Membership</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Bottom Bar -->
+            <div class="border-t border-gold/20 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-pearl-white/60 text-sm mb-4 md:mb-0">
+                    © 2024 ChronoElite Collection. All rights reserved.
+                </p>
+                <div class="flex space-x-6 text-sm">
+                    <a href="#" class="text-pearl-white/60 hover:text-gold transition-colors duration-300">Privacy Policy</a>
+                    <a href="#" class="text-pearl-white/60 hover:text-gold transition-colors duration-300">Terms of Service</a>
+                    <a href="#" class="text-pearl-white/60 hover:text-gold transition-colors duration-300">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '-50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all scroll-animate elements
+        document.querySelectorAll('.scroll-animate, .timeline-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Collection filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const watchCards = document.querySelectorAll('.watch-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active button
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                // Update button styles
+                filterButtons.forEach(btn => {
+                    if (btn === button) {
+                        btn.classList.add('bg-gradient-gold', 'text-deep-black');
+                        btn.classList.remove('bg-charcoal', 'border', 'border-gold', 'text-gold');
+                    } else {
+                        btn.classList.remove('bg-gradient-gold', 'text-deep-black');
+                        btn.classList.add('bg-charcoal', 'border', 'border-gold', 'text-gold');
+                    }
+                });
+
+                const filter = button.dataset.filter;
+
+                // Filter cards with animation
+                watchCards.forEach(card => {
+                    const category = card.dataset.category;
+                    if (filter === 'all' || category === filter) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 100);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Customization options
+        const customizationOptions = document.querySelectorAll('.customization-option');
+        const customWatch = document.getElementById('customWatch');
+        const customPrice = document.getElementById('customPrice');
+
+        customizationOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                // Update active state within the same group
+                const parent = option.parentElement;
+                parent.querySelectorAll('.customization-option').forEach(opt => {
+                    opt.classList.remove('active', 'bg-gold/20', 'text-gold');
+                    opt.classList.add('bg-charcoal', 'text-pearl-white');
+                });
+                
+                option.classList.add('active', 'bg-gold/20', 'text-gold');
+                option.classList.remove('bg-charcoal', 'text-pearl-white');
+
+                // Update watch preview (simple icon change)
+                const optionValue = option.dataset.option;
+                switch(optionValue) {
+                    case 'platinum':
+                    case 'skeleton':
+                        customWatch.className = 'fas fa-stopwatch text-gold text-5xl';
+                        break;
+                    case 'diamond':
+                        customWatch.className = 'fas fa-gem text-gold text-5xl';
+                        break;
+                    default:
+                        customWatch.className = 'fas fa-clock text-gold text-5xl';
+                }
+
+                // Update price based on selections
+                updateCustomPrice();
+            });
+        });
+
+        function updateCustomPrice() {
+            const activeOptions = document.querySelectorAll('.customization-option.active');
+            let basePrice = 75000;
+            
+            activeOptions.forEach(option => {
+                const value = option.dataset.option;
+                switch(value) {
+                    case 'platinum':
+                        basePrice += 25000;
+                        break;
+                    case 'diamond':
+                        basePrice += 50000;
+                        break;
+                    case 'skeleton':
+                        basePrice += 15000;
+                        break;
+                }
+            });
+            
+            customPrice.textContent = `Starting at $${basePrice.toLocaleString()}`;
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Loading animation for buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                if (!this.classList.contains('filter-btn') && !this.classList.contains('customization-option')) {
+                    const originalText = this.textContent;
+                    this.innerHTML = '<div class="luxury-loader mx-auto"></div>';
+                    this.disabled = true;
+                    
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                        this.disabled = false;
+                    }, 2000);
+                }
+            });
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.watch-3d');
+            if (parallax) {
+                const speed = scrolled * 0.2;
+                parallax.style.transform = `translateY(${speed}px) rotateY(${scrolled * 0.1}deg) rotateX(10deg)`;
+            }
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                navbar.classList.add('bg-charcoal');
+                navbar.classList.remove('bg-charcoal/90');
+            } else {
+                navbar.classList.remove('bg-charcoal');
+                navbar.classList.add('bg-charcoal/90');
+            }
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add loading animation
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease-in-out';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
