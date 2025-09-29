@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SunPower Innovations - Transform Your Home with Solar Energy</title>
+    <meta name="description" content="Leading solar energy solutions with eco-friendly technology. Calculate your savings, reduce your carbon footprint, and switch to clean energy today.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts - Lato and Roboto Slab -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Roboto+Slab:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Custom color palette */
+        :root {
+            --solar-orange: #FF8C00;
+            --eco-green: #22C55E;
+            --sky-blue: #0EA5E9;
+            --deep-green: #15803D;
+            --light-orange: #FFEDD5;
+            --light-green: #DCFCE7;
+            --light-blue: #E0F2FE;
+        }
+        
+        /* Custom Tailwind config */
+        .font-lato { font-family: 'Lato', sans-serif; }
+        .font-roboto-slab { font-family: 'Roboto Slab', serif; }
+        
+        .text-solar-orange { color: var(--solar-orange); }
+        .text-eco-green { color: var(--eco-green); }
+        .text-sky-blue { color: var(--sky-blue); }
+        .text-deep-green { color: var(--deep-green); }
+        
+        .bg-solar-orange { background-color: var(--solar-orange); }
+        .bg-eco-green { background-color: var(--eco-green); }
+        .bg-sky-blue { background-color: var(--sky-blue); }
+        .bg-deep-green { background-color: var(--deep-green); }
+        .bg-light-orange { background-color: var(--light-orange); }
+        .bg-light-green { background-color: var(--light-green); }
+        .bg-light-blue { background-color: var(--light-blue); }
+        
+        .border-solar-orange { border-color: var(--solar-orange); }
+        .border-eco-green { border-color: var(--eco-green); }
+        .border-sky-blue { border-color: var(--sky-blue); }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes pulse-green {
+            0%, 100% { background-color: var(--eco-green); transform: scale(1); }
+            50% { background-color: var(--deep-green); transform: scale(1.05); }
+        }
+        
+        @keyframes solar-glow {
+            0%, 100% { box-shadow: 0 0 20px var(--solar-orange); }
+            50% { box-shadow: 0 0 40px var(--solar-orange), 0 0 60px var(--solar-orange); }
+        }
+        
+        @keyframes energy-flow {
+            0% { transform: translateX(-100%); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateX(100%); opacity: 0; }
+        }
+        
+        .float-animation { animation: float 3s ease-in-out infinite; }
+        .pulse-green { animation: pulse-green 2s ease-in-out infinite; }
+        .solar-glow { animation: solar-glow 3s ease-in-out infinite; }
+        .energy-flow { animation: energy-flow 4s linear infinite; }
+        
+        /* Scroll-triggered animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Solar panel pattern background */
+        .solar-pattern {
+            background-image: 
+                linear-gradient(45deg, transparent 25%, rgba(34, 197, 94, 0.1) 25%, rgba(34, 197, 94, 0.1) 50%, transparent 50%),
+                linear-gradient(-45deg, transparent 25%, rgba(14, 165, 233, 0.1) 25%, rgba(14, 165, 233, 0.1) 50%, transparent 50%);
+            background-size: 60px 60px;
+        }
+        
+        /* Nature pattern background */
+        .nature-pattern {
+            background-image: radial-gradient(circle at 25% 25%, rgba(34, 197, 94, 0.1) 2px, transparent 2px),
+                              radial-gradient(circle at 75% 75%, rgba(14, 165, 233, 0.1) 2px, transparent 2px);
+            background-size: 40px 40px;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--eco-green);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--deep-green);
+        }
+        
+        /* Reduced motion accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body class="font-lato bg-white text-gray-800">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-solar-panel text-2xl text-solar-orange"></i>
+                    <span class="text-xl font-roboto-slab font-bold text-deep-green">SunPower Innovations</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-eco-green transition-colors duration-300">Home</a>
+                    <a href="#calculator" class="text-gray-700 hover:text-eco-green transition-colors duration-300">Calculator</a>
+                    <a href="#showcases" class="text-gray-700 hover:text-eco-green transition-colors duration-300">Showcases</a>
+                    <a href="#experts" class="text-gray-700 hover:text-eco-green transition-colors duration-300">Experts</a>
+                    <a href="#financing" class="text-gray-700 hover:text-eco-green transition-colors duration-300">Financing</a>
+                    <a href="#assessment" class="text-gray-700 hover:text-eco-green transition-colors duration-300">Assessment</a>
+                    <button class="bg-eco-green text-white px-6 py-2 rounded-full hover:bg-deep-green transition-colors duration-300">
+                        Get Quote
+                    </button>
+                </div>
+                
+                <button class="md:hidden text-gray-700" id="mobile-menu-button">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="md:hidden bg-white border-t border-gray-200 hidden" id="mobile-menu">
+            <div class="px-4 py-2 space-y-2">
+                <a href="#home" class="block py-2 text-gray-700 hover:text-eco-green">Home</a>
+                <a href="#calculator" class="block py-2 text-gray-700 hover:text-eco-green">Calculator</a>
+                <a href="#showcases" class="block py-2 text-gray-700 hover:text-eco-green">Showcases</a>
+                <a href="#experts" class="block py-2 text-gray-700 hover:text-eco-green">Experts</a>
+                <a href="#financing" class="block py-2 text-gray-700 hover:text-eco-green">Financing</a>
+                <a href="#assessment" class="block py-2 text-gray-700 hover:text-eco-green">Assessment</a>
+                <button class="w-full text-left bg-eco-green text-white px-4 py-2 rounded-full hover:bg-deep-green transition-colors duration-300">
+                    Get Quote
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center solar-pattern overflow-hidden">
+        <!-- Animated background elements -->
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-10 left-10 w-20 h-20 bg-solar-orange rounded-full float-animation"></div>
+            <div class="absolute top-32 right-20 w-16 h-16 bg-eco-green rounded-full float-animation" style="animation-delay: 1s;"></div>
+            <div class="absolute bottom-20 left-1/4 w-12 h-12 bg-sky-blue rounded-full float-animation" style="animation-delay: 2s;"></div>
+            <div class="absolute bottom-40 right-1/3 w-24 h-24 bg-solar-orange rounded-full float-animation" style="animation-delay: 0.5s;"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="mb-8">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-roboto-slab font-bold text-deep-green mb-6 leading-tight">
+                    Power Your Future with 
+                    <span class="text-solar-orange">Clean Energy</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto">
+                    Transform your home with sustainable solar solutions. Reduce your energy bills, carbon footprint, and join the clean energy revolution today.
+                </p>
+                
+                <!-- Animated Solar Energy Visualization -->
+                <div class="mb-12">
+                    <div class="relative bg-white/80 backdrop-blur-sm rounded-2xl p-8 mx-auto max-w-md border-2 border-eco-green shadow-lg">
+                        <h3 class="text-lg font-semibold text-deep-green mb-4">Live Energy Generation</h3>
+                        <div class="flex items-center justify-center space-x-4">
+                            <div class="relative">
+                                <i class="fas fa-solar-panel text-4xl text-solar-orange solar-glow"></i>
+                                <div class="absolute -top-2 -right-2 w-4 h-4 bg-eco-green rounded-full pulse-green"></div>
+                            </div>
+                            <div class="flex-1 relative bg-gray-200 h-2 rounded-full overflow-hidden">
+                                <div class="absolute inset-0 bg-gradient-to-r from-solar-orange to-eco-green energy-flow"></div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-2xl font-bold text-eco-green" id="energy-counter">0</div>
+                                <div class="text-sm text-gray-600">kWh Today</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Floating Environmental Impact Calculator -->
+                <div class="mb-12">
+                    <div class="bg-light-green rounded-2xl p-6 mx-auto max-w-lg border-2 border-eco-green shadow-lg float-animation">
+                        <h3 class="text-lg font-semibold text-deep-green mb-4">Your Environmental Impact</h3>
+                        <div class="grid grid-cols-2 gap-4 text-center">
+                            <div>
+                                <div class="text-3xl font-bold text-eco-green" id="co2-saved">0</div>
+                                <div class="text-sm text-gray-600">lbs CO₂ Saved</div>
+                            </div>
+                            <div>
+                                <div class="text-3xl font-bold text-sky-blue" id="trees-planted">0</div>
+                                <div class="text-sm text-gray-600">Trees Equivalent</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <button class="bg-eco-green text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-deep-green transform hover:scale-105 transition-all duration-300 shadow-lg">
+                        <i class="fas fa-calculator mr-2"></i>
+                        Calculate My Savings
+                    </button>
+                    <button class="bg-transparent border-2 border-solar-orange text-solar-orange px-8 py-4 rounded-full text-lg font-semibold hover:bg-solar-orange hover:text-white transition-all duration-300">
+                        <i class="fas fa-play mr-2"></i>
+                        Watch Solar Demo
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Home Solar Installation Simulation -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2">
+            <div class="bg-white/90 backdrop-blur-sm rounded-lg p-4 shadow-lg">
+                <div class="flex items-center space-x-4">
+                    <div class="flex space-x-1">
+                        <div class="w-8 h-6 bg-solar-orange rounded-sm opacity-80"></div>
+                        <div class="w-8 h-6 bg-solar-orange rounded-sm opacity-90"></div>
+                        <div class="w-8 h-6 bg-solar-orange rounded-sm opacity-100"></div>
+                        <div class="w-8 h-6 bg-solar-orange rounded-sm opacity-80"></div>
+                    </div>
+                    <div class="text-sm">
+                        <div class="font-semibold text-deep-green">Solar Installation Preview</div>
+                        <div class="text-gray-600">16 panels • 8.5kW system</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Interactive Energy Savings Calculator -->
+    <section id="calculator" class="py-20 bg-light-blue">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-4xl md:text-5xl font-roboto-slab font-bold text-deep-green mb-6">
+                    Calculate Your Energy Savings
+                </h2>
+                <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+                    See how much you can save with solar energy. Our advanced calculator provides personalized estimates based on your location and energy usage.
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Calculator Form -->
+                <div class="bg-white rounded-2xl p-8 shadow-xl fade-in-up">
+                    <h3 class="text-2xl font-roboto-slab font-bold text-deep-green mb-6">Your Information</h3>
+                    <form id="savings-calculator" class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Monthly Electric Bill</label>
+                            <div class="relative">
+                                <span class="absolute left-3 top-3 text-gray-500">$</span>
+                                <input type="number" id="monthly-bill" 
+                                       class="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green focus:border-transparent"
+                                       placeholder="150" min="50" max="1000" value="150">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">ZIP Code</label>
+                            <input type="text" id="zip-code" 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green focus:border-transparent"
+                                   placeholder="12345" maxlength="5">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Home Size (sq ft)</label>
+                            <select id="home-size" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green focus:border-transparent">
+                                <option value="1500">1,000 - 1,500 sq ft</option>
+                                <option value="2000" selected>1,500 - 2,000 sq ft</option>
+                                <option value="2500">2,000 - 2,500 sq ft</option>
+                                <option value="3000">2,500 - 3,000 sq ft</option>
+                                <option value="3500">3,000+ sq ft</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Roof Condition</label>
+                            <div class="grid grid-cols-3 gap-2">
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="radio" name="roof-condition" value="excellent" class="text-eco-green focus:ring-eco-green">
+                                    <span class="text-sm">Excellent</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="radio" name="roof-condition" value="good" checked class="text-eco-green focus:ring-eco-green">
+                                    <span class="text-sm">Good</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="radio" name="roof-condition" value="fair" class="text-eco-green focus:ring-eco-green">
+                                    <span class="text-sm">Fair</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-eco-green text-white py-4 rounded-lg text-lg font-semibold hover:bg-deep-green transition-colors duration-300">
+                            <i class="fas fa-chart-line mr-2"></i>
+                            Calculate Savings
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Results Display -->
+                <div class="bg-white rounded-2xl p-8 shadow-xl fade-in-up">
+                    <h3 class="text-2xl font-roboto-slab font-bold text-deep-green mb-6">Your Savings Projection</h3>
+                    
+                    <!-- Animated Bill Reduction -->
+                    <div class="mb-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-gray-700">Current Monthly Bill</span>
+                            <span class="text-2xl font-bold text-red-500" id="current-bill">$150</span>
+                        </div>
+                        <div class="relative bg-gray-200 h-4 rounded-full overflow-hidden mb-2">
+                            <div class="absolute inset-0 bg-red-500 transition-all duration-1000" id="current-bill-bar" style="width: 100%;"></div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-gray-700">With Solar</span>
+                            <span class="text-2xl font-bold text-eco-green" id="solar-bill">$25</span>
+                        </div>
+                        <div class="relative bg-gray-200 h-4 rounded-full overflow-hidden mb-6">
+                            <div class="absolute inset-0 bg-eco-green transition-all duration-1000 delay-500" id="solar-bill-bar" style="width: 17%;"></div>
+                        </div>
+                        
+                        <div class="text-center bg-light-green rounded-lg p-4">
+                            <div class="text-3xl font-bold text-deep-green" id="monthly-savings">$125</div>
+                            <div class="text-sm text-gray-600">Monthly Savings</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Additional Metrics -->
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-solar-orange" id="annual-savings">$1,500</div>
+                            <div class="text-sm text-gray-600">Annual Savings</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-sky-blue" id="lifetime-savings">$45,000</div>
+                            <div class="text-sm text-gray-600">25-Year Savings</div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-light-orange rounded-lg p-4 mb-6">
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-700">System Payback Period</span>
+                            <span class="text-lg font-bold text-solar-orange" id="payback-period">7.2 years</span>
+                        </div>
+                    </div>
+                    
+                    <button class="w-full bg-solar-orange text-white py-3 rounded-lg font-semibold hover:bg-orange-600 transition-colors duration-300">
+                        <i class="fas fa-file-download mr-2"></i>
+                        Download Detailed Report
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Customer Installation Showcases -->
+    <section id="showcases" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-4xl md:text-5xl font-roboto-slab font-bold text-deep-green mb-6">
+                    Real Customer Success Stories
+                </h2>
+                <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+                    See how our customers are saving money and reducing their environmental impact with solar energy solutions.
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Showcase 1 -->
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden fade-in-up" data-showcase="1">
+                    <div class="relative h-64 bg-gradient-to-br from-sky-blue to-eco-green">
+                        <div class="absolute inset-0 bg-black/20"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h3 class="text-xl font-bold">Johnson Family</h3>
+                            <p class="text-sm opacity-90">Suburban Home • 2,400 sq ft</p>
+                        </div>
+                        <div class="absolute top-4 right-4 bg-white/90 rounded-full p-2">
+                            <i class="fas fa-home text-deep-green"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <div class="mb-6">
+                            <h4 class="text-lg font-semibold text-deep-green mb-4">Before & After Comparison</h4>
+                            
+                            <!-- Before -->
+                            <div class="bg-red-50 rounded-lg p-4 mb-4">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-red-700 font-medium">Before Solar</span>
+                                    <span class="text-2xl font-bold text-red-600">$285/month</span>
+                                </div>
+                                <div class="mt-2 bg-red-200 h-2 rounded-full">
+                                    <div class="bg-red-500 h-2 rounded-full" style="width: 100%;"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- After -->
+                            <div class="bg-green-50 rounded-lg p-4">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-eco-green font-medium">After Solar</span>
+                                    <span class="text-2xl font-bold text-eco-green">$42/month</span>
+                                </div>
+                                <div class="mt-2 bg-green-200 h-2 rounded-full">
+                                    <div class="bg-eco-green h-2 rounded-full transition-all duration-1000" style="width: 15%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="text-center bg-light-green rounded-lg p-3">
+                                <div class="text-xl font-bold text-deep-green">85%</div>
+                                <div class="text-xs text-gray-600">Bill Reduction</div>
+                            </div>
+                            <div class="text-center bg-light-blue rounded-lg p-3">
+                                <div class="text-xl font-bold text-sky-blue">$2,916</div>
+                                <div class="text-xs text-gray-600">Annual Savings</div>
+                            </div>
+                        </div>
+                        
+                        <blockquote class="text-sm text-gray-600 italic mb-4">
+                            "We're amazed by how much we're saving! The installation was smooth and our energy bills dropped immediately."
+                        </blockquote>
+                        
+                        <div class="flex items-center space-x-1 mb-4">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <span class="text-sm text-gray-600 ml-2">5.0 Rating</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Showcase 2 -->
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden fade-in-up" data-showcase="2">
+                    <div class="relative h-64 bg-gradient-to-br from-solar-orange to-yellow-400">
+                        <div class="absolute inset-0 bg-black/20"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h3 class="text-xl font-bold">Martinez Business</h3>
+                            <p class="text-sm opacity-90">Commercial Building • 8,500 sq ft</p>
+                        </div>
+                        <div class="absolute top-4 right-4 bg-white/90 rounded-full p-2">
+                            <i class="fas fa-building text-deep-green"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <div class="mb-6">
+                            <h4 class="text-lg font-semibold text-deep-green mb-4">Before & After Comparison</h4>
+                            
+                            <!-- Before -->
+                            <div class="bg-red-50 rounded-lg p-4 mb-4">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-red-700 font-medium">Before Solar</span>
+                                    <span class="text-2xl font-bold text-red-600">$1,250/month</span>
+                                </div>
+                                <div class="mt-2 bg-red-200 h-2 rounded-full">
+                                    <div class="bg-red-500 h-2 rounded-full" style="width: 100%;"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- After -->
+                            <div class="bg-green-50 rounded-lg p-4">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-eco-green font-medium">After Solar</span>
+                                    <span class="text-2xl font-bold text-eco-green">$180/month</span>
+                                </div>
+                                <div class="mt-2 bg-green-200 h-2 rounded-full">
+                                    <div class="bg-eco-green h-2 rounded-full transition-all duration-1000" style="width: 14%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="text-center bg-light-orange rounded-lg p-3">
+                                <div class="text-xl font-bold text-solar-orange">86%</div>
+                                <div class="text-xs text-gray-600">Bill Reduction</div>
+                            </div>
+                            <div class="text-center bg-light-blue rounded-lg p-3">
+                                <div class="text-xl font-bold text-sky-blue">$12,840</div>
+                                <div class="text-xs text-gray-600">Annual Savings</div>
+                            </div>
+                        </div>
+                        
+                        <blockquote class="text-sm text-gray-600 italic mb-4">
+                            "The ROI exceeded our expectations. Solar has become a major competitive advantage for our business operations."
+                        </blockquote>
+                        
+                        <div class="flex items-center space-x-1 mb-4">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <span class="text-sm text-gray-600 ml-2">5.0 Rating</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Showcase 3 -->
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden fade-in-up" data-showcase="3">
+                    <div class="relative h-64 bg-gradient-to-br from-eco-green to-emerald-600">
+                        <div class="absolute inset-0 bg-black/20"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h3 class="text-xl font-bold">Chen Residence</h3>
+                            <p class="text-sm opacity-90">Modern Home • 3,200 sq ft</p>
+                        </div>
+                        <div class="absolute top-4 right-4 bg-white/90 rounded-full p-2">
+                            <i class="fas fa-leaf text-deep-green"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <div class="mb-6">
+                            <h4 class="text-lg font-semibold text-deep-green mb-4">Before & After Comparison</h4>
+                            
+                            <!-- Before -->
+                            <div class="bg-red-50 rounded-lg p-4 mb-4">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-red-700 font-medium">Before Solar</span>
+                                    <span class="text-2xl font-bold text-red-600">$425/month</span>
+                                </div>
+                                <div class="mt-2 bg-red-200 h-2 rounded-full">
+                                    <div class="bg-red-500 h-2 rounded-full" style="width: 100%;"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- After -->
+                            <div class="bg-green-50 rounded-lg p-4">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-eco-green font-medium">After Solar</span>
+                                    <span class="text-2xl font-bold text-eco-green">$15/month</span>
+                                </div>
+                                <div class="mt-2 bg-green-200 h-2 rounded-full">
+                                    <div class="bg-eco-green h-2 rounded-full transition-all duration-1000" style="width: 4%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="text-center bg-light-green rounded-lg p-3">
+                                <div class="text-xl font-bold text-deep-green">96%</div>
+                                <div class="text-xs text-gray-600">Bill Reduction</div>
+                            </div>
+                            <div class="text-center bg-light-blue rounded-lg p-3">
+                                <div class="text-xl font-bold text-sky-blue">$4,920</div>
+                                <div class="text-xs text-gray-600">Annual Savings</div>
+                            </div>
+                        </div>
+                        
+                        <blockquote class="text-sm text-gray-600 italic mb-4">
+                            "We're practically energy independent now! Plus we're contributing to a cleaner environment for our kids."
+                        </blockquote>
+                        
+                        <div class="flex items-center space-x-1 mb-4">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <span class="text-sm text-gray-600 ml-2">5.0 Rating</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solar Expert Consultant Profiles -->
+    <section id="experts" class="py-20 bg-light-green nature-pattern">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-4xl md:text-5xl font-roboto-slab font-bold text-deep-green mb-6">
+                    Meet Our Solar Experts
+                </h2>
+                <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+                    Our certified professionals bring decades of experience in renewable energy solutions.
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Expert cards with certifications -->
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden fade-in-up">
+                    <div class="relative h-64 bg-gradient-to-br from-solar-orange to-yellow-400">
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h3 class="text-xl font-bold">Dr. Sarah Mitchell</h3>
+                            <p class="text-sm opacity-90">Senior Solar Engineer</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-sm font-semibold text-deep-green mb-3">Green Energy Certifications</h4>
+                        <div class="space-y-2">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-certificate text-eco-green"></i>
+                                <span class="text-sm">NABCEP PV Installation Professional</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-certificate text-sky-blue"></i>
+                                <span class="text-sm">LEED Green Associate</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Financing Options -->
+    <section id="financing" class="py-20 bg-light-blue">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-4xl md:text-5xl font-roboto-slab font-bold text-deep-green mb-6">
+                    Flexible Financing Options
+                </h2>
+                <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+                    Choose the financing option with ROI timeline visualizations.
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Solar Loan -->
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden fade-in-up border-4 border-solar-orange">
+                    <div class="bg-gradient-to-r from-solar-orange to-yellow-500 p-6 text-white text-center">
+                        <h3 class="text-2xl font-roboto-slab font-bold mb-2">Solar Loan</h3>
+                        <div class="mt-4">
+                            <span class="text-4xl font-bold">$89</span>
+                            <span class="text-lg">/month</span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <div class="bg-light-orange rounded-lg p-4 mb-6">
+                            <h4 class="text-lg font-semibold text-deep-green mb-3">ROI Timeline</h4>
+                            <div class="space-y-2">
+                                <div class="flex justify-between text-sm">
+                                    <span>Payback Period</span>
+                                    <span class="font-bold text-solar-orange">8.1 years</span>
+                                </div>
+                                <div class="bg-gray-200 h-2 rounded-full">
+                                    <div class="bg-solar-orange h-2 rounded-full" style="width: 32%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Solar Suitability Assessment -->
+    <section id="assessment" class="py-20 bg-white solar-pattern">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-4xl md:text-5xl font-roboto-slab font-bold text-deep-green mb-6">
+                    Solar Suitability Assessment
+                </h2>
+            </div>
+            
+            <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-xl fade-in-up mx-auto max-w-4xl">
+                <div class="mb-8">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-lg font-semibold text-gray-700">Solar Suitability Score</span>
+                        <span class="text-3xl font-bold text-eco-green">85%</span>
+                    </div>
+                    <div class="bg-gray-200 h-4 rounded-full">
+                        <div class="bg-gradient-to-r from-solar-orange via-eco-green to-deep-green h-4 rounded-full" style="width: 85%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-deep-green text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <i class="fas fa-solar-panel text-2xl text-solar-orange"></i>
+                        <span class="text-xl font-roboto-slab font-bold">SunPower Innovations</span>
+                    </div>
+                    <p class="text-gray-300 mb-6">
+                        Leading the clean energy revolution with innovative solar solutions.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-roboto-slab font-bold mb-6">Services</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-300 hover:text-eco-green transition-colors duration-300">Residential Solar</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-eco-green transition-colors duration-300">Commercial Solar</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-roboto-slab font-bold mb-6">Contact</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-phone text-eco-green mt-1"></i>
+                            <p class="text-gray-300">(555) 123-SOLAR</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-600 pt-8">
+                <p class="text-gray-400 text-sm text-center">
+                    © 2024 SunPower Innovations. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+        
+        // Scroll-triggered animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Animated counters for hero section
+        function animateCounter(element, target, duration = 2000) {
+            if (!element) return;
+            let start = 0;
+            const increment = target / (duration / 16);
+            
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = Math.round(target);
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.round(start);
+                }
+            }, 16);
+        }
+        
+        // Savings calculator
+        const calculatorForm = document.getElementById('savings-calculator');
+        if (calculatorForm) {
+            calculatorForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const monthlyBill = parseFloat(document.getElementById('monthly-bill').value) || 150;
+                const monthlySavings = monthlyBill * 0.85;
+                const newBill = monthlyBill - monthlySavings;
+                
+                document.getElementById('current-bill').textContent = `$${monthlyBill}`;
+                document.getElementById('solar-bill').textContent = `$${Math.round(newBill)}`;
+                document.getElementById('monthly-savings').textContent = `$${Math.round(monthlySavings)}`;
+                document.getElementById('annual-savings').textContent = `$${Math.round(monthlySavings * 12).toLocaleString()}`;
+                document.getElementById('lifetime-savings').textContent = `$${Math.round(monthlySavings * 12 * 25).toLocaleString()}`;
+            });
+        }
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                    if (mobileMenu) mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+        
+        // Initialize counters
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                animateCounter(document.getElementById('energy-counter'), 24.8);
+                animateCounter(document.getElementById('co2-saved'), 1250);
+                animateCounter(document.getElementById('trees-planted'), 6);
+            }, 1000);
+            
+            if (calculatorForm) {
+                calculatorForm.dispatchEvent(new Event('submit'));
+            }
+        });
+    </script>
+</body>
+</html>
