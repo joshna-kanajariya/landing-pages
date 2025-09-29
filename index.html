@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinguaFlow Connect - Immersive Language Learning</title>
+    <meta name="description" content="Master any language through cultural immersion with LinguaFlow Connect. AI-powered conversations, native speakers, and real-world practice.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts - Noto Sans for international support -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+JP:wght@300;400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'global-blue': '#1E40AF',
+                        'culture-green': '#059669',
+                        'communication-orange': '#EA580C'
+                    },
+                    fontFamily: {
+                        'noto': ['Noto Sans', 'sans-serif'],
+                        'noto-jp': ['Noto Sans JP', 'sans-serif'],
+                        'noto-ar': ['Noto Sans Arabic', 'sans-serif'],
+                        'noto-dev': ['Noto Sans Devanagari', 'sans-serif']
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'progress': 'progress 3s ease-in-out infinite',
+                        'pulse-soft': 'pulse-soft 2s ease-in-out infinite',
+                        'slide-up': 'slide-up 0.6s ease-out',
+                        'fade-in': 'fade-in 0.8s ease-out'
+                    },
+                    keyframes: {
+                        'float': {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        },
+                        'progress': {
+                            '0%': { width: '0%' },
+                            '100%': { width: '100%' }
+                        },
+                        'pulse-soft': {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0.7' }
+                        },
+                        'slide-up': {
+                            '0%': { transform: 'translateY(100px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        'fade-in': {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .world-map-bg {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" fill="%23E5E7EB" opacity="0.3"><path d="M200 100c20-10 40-15 60-10s35 20 30 40c-5 20-25 30-45 35s-40 0-45-20c-5-20 0-35 0-45zm150 50c15-5 30-5 40 5s10 25 5 35-20 15-35 10-25-15-20-30c5-15 10-20 10-20zm100 80c25-15 50-10 65 10s5 40-15 50-45 5-55-15-20-30 5-45zm-200 100c30-20 60-15 75 15s-5 50-25 60-50 5-60-20-15-35 10-55z"/></svg>');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(45deg, #1E40AF, #059669, #EA580C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .language-flow::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(30, 64, 175, 0.1), rgba(5, 150, 105, 0.1), rgba(234, 88, 12, 0.1));
+            border-radius: inherit;
+            z-index: -1;
+        }
+        
+        .cultural-symbol {
+            transition: all 0.3s ease;
+        }
+        
+        .cultural-symbol:hover {
+            transform: scale(1.2) rotate(5deg);
+        }
+        
+        .conversation-bubble {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        .conversation-bubble:nth-child(even) {
+            animation-delay: -2s;
+        }
+        
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+        
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #1E40AF, #059669, #EA580C);
+            height: 4px;
+            border-radius: 2px;
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-noto antialiased overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md shadow-sm z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-r from-global-blue to-culture-green rounded-full flex items-center justify-center">
+                        <i class="fas fa-globe text-white text-sm"></i>
+                    </div>
+                    <span class="text-xl font-bold gradient-text">LinguaFlow Connect</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#features" class="text-gray-700 hover:text-global-blue transition-colors">Features</a>
+                    <a href="#teachers" class="text-gray-700 hover:text-global-blue transition-colors">Teachers</a>
+                    <a href="#testimonials" class="text-gray-700 hover:text-global-blue transition-colors">Success Stories</a>
+                    <a href="#pricing" class="text-gray-700 hover:text-global-blue transition-colors">Courses</a>
+                    <button class="bg-communication-orange text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors">
+                        Start Free Trial
+                    </button>
+                </div>
+                
+                <button class="md:hidden">
+                    <i class="fas fa-bars text-gray-700"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center world-map-bg relative overflow-hidden pt-20">
+        <!-- Floating Cultural Symbols -->
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="cultural-symbol absolute top-20 left-10 text-4xl opacity-60 animate-float">🌸</div>
+            <div class="cultural-symbol absolute top-32 right-20 text-3xl opacity-50 animate-float" style="animation-delay: -1s;">🗼</div>
+            <div class="cultural-symbol absolute bottom-40 left-20 text-4xl opacity-40 animate-float" style="animation-delay: -2s;">🏛️</div>
+            <div class="cultural-symbol absolute bottom-20 right-10 text-3xl opacity-60 animate-float" style="animation-delay: -3s;">🎭</div>
+            <div class="cultural-symbol absolute top-1/2 left-1/4 text-2xl opacity-30 animate-float" style="animation-delay: -4s;">🌮</div>
+            <div class="cultural-symbol absolute top-1/3 right-1/3 text-3xl opacity-50 animate-float" style="animation-delay: -5s;">🏺</div>
+        </div>
+        
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">
+                    Master Languages Through 
+                    <span class="gradient-text">Cultural Immersion</span>
+                </h1>
+                
+                <p class="text-lg md:text-xl text-gray-600 mb-8 animate-slide-up">
+                    Connect with native speakers worldwide. Learn through real conversations, 
+                    cultural experiences, and AI-powered personalized lessons.
+                </p>
+                
+                <!-- Language Progress Animation -->
+                <div class="flex justify-center mb-8">
+                    <div class="language-flow relative bg-white rounded-2xl p-6 shadow-lg max-w-md">
+                        <div class="text-sm text-gray-600 mb-2">Your Language Journey</div>
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-3">
+                                <span class="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center text-white text-xs">中</span>
+                                <div class="flex-1 bg-gray-200 rounded-full h-2">
+                                    <div class="progress-bar w-3/4 h-full rounded-full animate-progress"></div>
+                                </div>
+                                <span class="text-sm font-medium">Advanced</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-xs">Es</span>
+                                <div class="flex-1 bg-gray-200 rounded-full h-2">
+                                    <div class="progress-bar w-1/2 h-full rounded-full animate-progress" style="animation-delay: 0.5s;"></div>
+                                </div>
+                                <span class="text-sm font-medium">Intermediate</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs">Fr</span>
+                                <div class="flex-1 bg-gray-200 rounded-full h-2">
+                                    <div class="progress-bar w-1/4 h-full rounded-full animate-progress" style="animation-delay: 1s;"></div>
+                                </div>
+                                <span class="text-sm font-medium">Beginner</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <button class="bg-global-blue text-white px-8 py-4 rounded-xl font-semibold hover:bg-blue-700 transition-all transform hover:scale-105 shadow-lg">
+                        <i class="fas fa-play mr-2"></i>
+                        Start Your Journey
+                    </button>
+                    <button class="border-2 border-culture-green text-culture-green px-8 py-4 rounded-xl font-semibold hover:bg-culture-green hover:text-white transition-all">
+                        <i class="fas fa-vial mr-2"></i>
+                        Take Placement Test
+                    </button>
+                </div>
+                
+                <!-- Conversation Practice Preview -->
+                <div class="mt-12 flex justify-center flex-wrap gap-4">
+                    <div class="conversation-bubble bg-white rounded-2xl p-4 shadow-lg">
+                        <div class="flex items-center space-x-2 mb-2">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&h=32&fit=crop&crop=face&auto=format" 
+                                 alt="Native Speaker" class="w-8 h-8 rounded-full">
+                            <span class="text-sm font-medium">Carlos (Madrid)</span>
+                        </div>
+                        <p class="text-sm">¡Hola! ¿Cómo estás hoy?</p>
+                        <div class="text-xs text-gray-500 mt-1">
+                            <i class="fas fa-volume-up mr-1"></i>
+                            Pronunciation Guide
+                        </div>
+                    </div>
+                    
+                    <div class="conversation-bubble bg-global-blue text-white rounded-2xl p-4 shadow-lg">
+                        <div class="flex items-center space-x-2 mb-2">
+                            <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center">
+                                <span class="text-global-blue text-xs font-bold">You</span>
+                            </div>
+                            <span class="text-sm font-medium">Learning Spanish</span>
+                        </div>
+                        <p class="text-sm">¡Muy bien, gracias!</p>
+                        <div class="text-xs opacity-80 mt-1">
+                            <i class="fas fa-check mr-1"></i>
+                            Perfect pronunciation!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Immersive Learning <span class="gradient-text">Methods</span>
+                </h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Experience language learning like never before with our innovative cultural immersion approach
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- AI Conversation Practice -->
+                <div class="scroll-reveal bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="w-12 h-12 bg-global-blue rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-robot text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">AI Conversation Practice</h3>
+                    <p class="text-gray-600 mb-4">Practice real conversations with AI tutors that adapt to your level and interests</p>
+                    <div class="bg-gray-50 rounded-lg p-3">
+                        <div class="flex items-center text-sm text-gray-700">
+                            <i class="fas fa-brain mr-2 text-global-blue"></i>
+                            Adaptive Learning Engine
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cultural Immersion -->
+                <div class="scroll-reveal bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="w-12 h-12 bg-culture-green rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-globe-americas text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Cultural Immersion</h3>
+                    <p class="text-gray-600 mb-4">Learn through authentic cultural experiences and real-world contexts</p>
+                    <div class="bg-gray-50 rounded-lg p-3">
+                        <div class="flex items-center text-sm text-gray-700">
+                            <i class="fas fa-landmark mr-2 text-culture-green"></i>
+                            Virtual Cultural Tours
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Native Speaker Network -->
+                <div class="scroll-reveal bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="w-12 h-12 bg-communication-orange rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-users text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Native Speaker Network</h3>
+                    <p class="text-gray-600 mb-4">Connect with verified native speakers for authentic practice sessions</p>
+                    <div class="bg-gray-50 rounded-lg p-3">
+                        <div class="flex items-center text-sm text-gray-700">
+                            <i class="fas fa-certificate mr-2 text-communication-orange"></i>
+                            Verified Credentials
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Language Learning Method Demonstrations -->
+            <div class="mt-16 scroll-reveal">
+                <h3 class="text-2xl font-bold text-center mb-8">Interactive Learning Methods</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-2xl p-6 shadow-lg">
+                        <h4 class="font-semibold mb-4 flex items-center">
+                            <i class="fas fa-volume-up mr-2 text-global-blue"></i>
+                            Pronunciation Training
+                        </h4>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between bg-gray-50 rounded-lg p-3">
+                                <span class="font-noto-jp">こんにちは</span>
+                                <button class="bg-global-blue text-white px-3 py-1 rounded text-sm">
+                                    <i class="fas fa-play mr-1"></i>Listen
+                                </button>
+                            </div>
+                            <div class="flex items-center justify-between bg-gray-50 rounded-lg p-3">
+                                <span class="font-noto-ar">مرحبا</span>
+                                <button class="bg-global-blue text-white px-3 py-1 rounded text-sm">
+                                    <i class="fas fa-play mr-1"></i>Listen
+                                </button>
+                            </div>
+                            <div class="flex items-center justify-between bg-gray-50 rounded-lg p-3">
+                                <span class="font-noto-dev">नमस्ते</span>
+                                <button class="bg-global-blue text-white px-3 py-1 rounded text-sm">
+                                    <i class="fas fa-play mr-1"></i>Listen
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-6 shadow-lg">
+                        <h4 class="font-semibold mb-4 flex items-center">
+                            <i class="fas fa-chart-line mr-2 text-culture-green"></i>
+                            Progress Tracking
+                        </h4>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span>Vocabulary</span>
+                                    <span>856/1000</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="progress-bar h-2 rounded-full" style="width: 85.6%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span>Grammar</span>
+                                    <span>72/100</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="progress-bar h-2 rounded-full" style="width: 72%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span>Pronunciation</span>
+                                    <span>91/100</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="progress-bar h-2 rounded-full" style="width: 91%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teachers Section -->
+    <section id="teachers" class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Meet Our <span class="gradient-text">Polyglot Teachers</span>
+                </h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Learn from certified native speakers with proven teaching experience
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Teacher 1 -->
+                <div class="scroll-reveal bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="relative mb-4">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b000?w=200&h=200&fit=crop&crop=face&auto=format" 
+                             alt="Maria Rodriguez" class="w-20 h-20 rounded-full mx-auto">
+                        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-culture-green text-white px-2 py-1 rounded-full text-xs">
+                            ⭐ 4.9
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-semibold text-center">Maria Rodriguez</h3>
+                    <p class="text-gray-600 text-center text-sm mb-3">Native Spanish Speaker</p>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex items-center">
+                            <i class="fas fa-graduation-cap mr-2 text-global-blue"></i>
+                            <span>M.A. in Applied Linguistics</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-globe mr-2 text-culture-green"></i>
+                            <span>8 years teaching experience</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-language mr-2 text-communication-orange"></i>
+                            <span>Spanish, English, Portuguese</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-center">
+                        <span class="bg-gray-100 px-2 py-1 rounded text-xs">Specializes in Business Spanish</span>
+                    </div>
+                </div>
+                
+                <!-- Teacher 2 -->
+                <div class="scroll-reveal bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="relative mb-4">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face&auto=format" 
+                             alt="Hiroshi Tanaka" class="w-20 h-20 rounded-full mx-auto">
+                        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-culture-green text-white px-2 py-1 rounded-full text-xs">
+                            ⭐ 4.8
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-semibold text-center">Hiroshi Tanaka</h3>
+                    <p class="text-gray-600 text-center text-sm mb-3">Native Japanese Speaker</p>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex items-center">
+                            <i class="fas fa-graduation-cap mr-2 text-global-blue"></i>
+                            <span>Ph.D. in Japanese Literature</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-globe mr-2 text-culture-green"></i>
+                            <span>12 years teaching experience</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-language mr-2 text-communication-orange"></i>
+                            <span>Japanese, English, Mandarin</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-center">
+                        <span class="bg-gray-100 px-2 py-1 rounded text-xs">Cultural Context Expert</span>
+                    </div>
+                </div>
+                
+                <!-- Teacher 3 -->
+                <div class="scroll-reveal bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="relative mb-4">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face&auto=format" 
+                             alt="Sophie Laurent" class="w-20 h-20 rounded-full mx-auto">
+                        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-culture-green text-white px-2 py-1 rounded-full text-xs">
+                            ⭐ 4.9
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-semibold text-center">Sophie Laurent</h3>
+                    <p class="text-gray-600 text-center text-sm mb-3">Native French Speaker</p>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex items-center">
+                            <i class="fas fa-graduation-cap mr-2 text-global-blue"></i>
+                            <span>M.A. in French Studies</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-globe mr-2 text-culture-green"></i>
+                            <span>6 years teaching experience</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-language mr-2 text-communication-orange"></i>
+                            <span>French, English, Italian</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-center">
+                        <span class="bg-gray-100 px-2 py-1 rounded text-xs">Conversational Fluency</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Success <span class="gradient-text">Stories</span>
+                </h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    See how our students achieve fluency through cultural immersion
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Student Testimonial 1 -->
+                <div class="scroll-reveal bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face&auto=format" 
+                             alt="David Chen" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold">David Chen</h4>
+                            <p class="text-gray-600 text-sm">Software Engineer</p>
+                        </div>
+                        <div class="ml-auto">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        "I went from beginner to conversational Spanish in just 6 months! The cultural immersion approach made learning feel natural and enjoyable."
+                    </p>
+                    <div class="bg-gray-50 rounded-lg p-4">
+                        <h5 class="font-semibold text-sm mb-2">Fluency Progress</h5>
+                        <div class="flex items-center space-x-4">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-global-blue">A1</div>
+                                <div class="text-xs text-gray-600">Started</div>
+                            </div>
+                            <div class="flex-1 bg-gray-200 rounded-full h-2 relative">
+                                <div class="progress-bar h-2 rounded-full" style="width: 75%;"></div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-culture-green">B2</div>
+                                <div class="text-xs text-gray-600">Current</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Student Testimonial 2 -->
+                <div class="scroll-reveal bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b000?w=60&h=60&fit=crop&crop=face&auto=format" 
+                             alt="Emma Wilson" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold">Emma Wilson</h4>
+                            <p class="text-gray-600 text-sm">Marketing Manager</p>
+                        </div>
+                        <div class="ml-auto">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        "The native speaker sessions were incredible! I learned not just the language but the culture behind it. Now I can confidently do business in Japan."
+                    </p>
+                    <div class="bg-gray-50 rounded-lg p-4">
+                        <h5 class="font-semibold text-sm mb-2">Fluency Progress</h5>
+                        <div class="flex items-center space-x-4">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-global-blue">A2</div>
+                                <div class="text-xs text-gray-600">Started</div>
+                            </div>
+                            <div class="flex-1 bg-gray-200 rounded-full h-2 relative">
+                                <div class="progress-bar h-2 rounded-full" style="width: 90%;"></div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-culture-green">C1</div>
+                                <div class="text-xs text-gray-600">Current</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Comparison Section -->
+    <section id="pricing" class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Choose Your <span class="gradient-text">Learning Path</span>
+                </h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Flexible courses designed for every level and learning style
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Beginner Course -->
+                <div class="scroll-reveal bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-seedling text-blue-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Beginner</h3>
+                        <p class="text-gray-600">Perfect for first-time learners</p>
+                    </div>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-culture-green mr-2"></i>
+                            <span class="text-sm">Basic vocabulary (500+ words)</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-culture-green mr-2"></i>
+                            <span class="text-sm">Essential grammar</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-culture-green mr-2"></i>
+                            <span class="text-sm">Pronunciation basics</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-culture-green mr-2"></i>
+                            <span class="text-sm">Cultural introduction</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-medium">Difficulty Level</span>
+                            <span class="text-sm text-gray-600">A1-A2</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-blue-500 h-2 rounded-full" style="width: 25%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="text-3xl font-bold mb-2">$29<span class="text-lg text-gray-600">/month</span></div>
+                        <button class="w-full bg-global-blue text-white py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                            Start Learning
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Intermediate Course -->
+                <div class="scroll-reveal bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow border-2 border-culture-green relative">
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-culture-green text-white px-4 py-1 rounded-full text-sm">
+                        Most Popular
+                    </div>
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-tree text-green-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Intermediate</h3>
+                        <p class="text-gray-600">Build conversational skills</p>
+                    </div>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-culture-green mr-2"></i>
+                            <span class="text-sm">Extended vocabulary (2000+ words)</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-culture-green mr-2"></i>
+                            <span class="text-sm">Complex grammar structures</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-culture-green mr-2"></i>
+                            <span class="text-sm">Conversation practice</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-culture-green mr-2"></i>
+                            <span class="text-sm">Cultural deep dive</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-culture-green mr-2"></i>
+                            <span class="text-sm">Native speaker sessions</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-medium">Difficulty Level</span>
+                            <span class="text-sm text-gray-600">B1-B2</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-green-500 h-2 rounded-full" style="width: 60%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="text-3xl font-bold mb-2">$49<span class="text-lg text-gray-600">/month</span></div>
+                        <button class="w-full bg-culture-green text-white py-3 rounded-lg hover:bg-green-700 transition-colors">
+                            Start Learning
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Advanced Course -->
+                <div class="scroll-reveal bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-crown text-orange-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Advanced</h3>
+                        <p class="text-gray-600">Achieve native-like fluency</p>
+                    </div>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-culture-green mr-2"></i>
+                            <span class="text-sm">Professional vocabulary (5000+ words)</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-culture-green mr-2"></i>
+                            <span class="text-sm">Advanced grammar mastery</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-culture-green mr-2"></i>
+                            <span class="text-sm">Business conversations</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-culture-green mr-2"></i>
+                            <span class="text-sm">Cultural expertise</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-culture-green mr-2"></i>
+                            <span class="text-sm">Certification preparation</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-culture-green mr-2"></i>
+                            <span class="text-sm">One-on-one coaching</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-medium">Difficulty Level</span>
+                            <span class="text-sm text-gray-600">C1-C2</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-orange-500 h-2 rounded-full" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="text-3xl font-bold mb-2">$79<span class="text-lg text-gray-600">/month</span></div>
+                        <button class="w-full bg-communication-orange text-white py-3 rounded-lg hover:bg-orange-700 transition-colors">
+                            Start Learning
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Join Our Global <span class="gradient-text">Community</span>
+                </h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Connect with learners worldwide and practice with conversation partners
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Community Features -->
+                <div class="scroll-reveal">
+                    <h3 class="text-2xl font-bold mb-6">Cultural Exchange Program</h3>
+                    <div class="space-y-4">
+                        <div class="bg-white rounded-lg p-4 shadow-sm">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-handshake mr-3 text-global-blue"></i>
+                                <h4 class="font-semibold">Conversation Partner Matching</h4>
+                            </div>
+                            <p class="text-gray-600 text-sm">Get matched with native speakers who want to learn your language</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-4 shadow-sm">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-calendar-alt mr-3 text-culture-green"></i>
+                                <h4 class="font-semibold">Virtual Cultural Events</h4>
+                            </div>
+                            <p class="text-gray-600 text-sm">Join online festivals, cooking classes, and cultural celebrations</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-4 shadow-sm">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-comments mr-3 text-communication-orange"></i>
+                                <h4 class="font-semibold">Discussion Forums</h4>
+                            </div>
+                            <p class="text-gray-600 text-sm">Connect with learners, ask questions, and share experiences</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Partner Matching Tool Preview -->
+                <div class="scroll-reveal bg-white rounded-2xl p-6 shadow-lg">
+                    <h3 class="text-xl font-bold mb-4">Find Your Perfect Practice Partner</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between bg-gray-50 rounded-lg p-3">
+                            <div class="flex items-center">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face&auto=format" 
+                                     alt="Partner" class="w-10 h-10 rounded-full mr-3">
+                                <div>
+                                    <div class="font-medium">Alex Chen</div>
+                                    <div class="text-sm text-gray-600">Native Mandarin • Learning English</div>
+                                </div>
+                            </div>
+                            <button class="bg-global-blue text-white px-3 py-1 rounded text-sm">Connect</button>
+                        </div>
+                        
+                        <div class="flex items-center justify-between bg-gray-50 rounded-lg p-3">
+                            <div class="flex items-center">
+                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b000?w=40&h=40&fit=crop&crop=face&auto=format" 
+                                     alt="Partner" class="w-10 h-10 rounded-full mr-3">
+                                <div>
+                                    <div class="font-medium">Isabella Garcia</div>
+                                    <div class="text-sm text-gray-600">Native Spanish • Learning French</div>
+                                </div>
+                            </div>
+                            <button class="bg-global-blue text-white px-3 py-1 rounded text-sm">Connect</button>
+                        </div>
+                        
+                        <div class="flex items-center justify-between bg-gray-50 rounded-lg p-3">
+                            <div class="flex items-center">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face&auto=format" 
+                                     alt="Partner" class="w-10 h-10 rounded-full mr-3">
+                                <div>
+                                    <div class="font-medium">Pierre Dubois</div>
+                                    <div class="text-sm text-gray-600">Native French • Learning Japanese</div>
+                                </div>
+                            </div>
+                            <button class="bg-global-blue text-white px-3 py-1 rounded text-sm">Connect</button>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 text-center">
+                        <button class="bg-culture-green text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors">
+                            Find More Partners
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-r from-global-blue to-culture-green rounded-full flex items-center justify-center">
+                            <i class="fas fa-globe text-white text-sm"></i>
+                        </div>
+                        <span class="text-xl font-bold gradient-text">LinguaFlow Connect</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Master languages through cultural immersion and native speaker connections.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Languages</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Spanish</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">French</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Japanese</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Mandarin</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">German</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Placement Test</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Cultural Guides</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Pronunciation Tools</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Progress Tracking</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Mobile App</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 LinguaFlow Connect. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Interactions -->
+    <script>
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach((el) => {
+            observer.observe(el);
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.md\\:hidden button');
+        const mobileMenu = document.createElement('div');
+        mobileMenu.className = 'md:hidden bg-white shadow-lg rounded-lg mt-2 p-4 space-y-2';
+        mobileMenu.innerHTML = `
+            <a href="#features" class="block text-gray-700 hover:text-global-blue transition-colors">Features</a>
+            <a href="#teachers" class="block text-gray-700 hover:text-global-blue transition-colors">Teachers</a>
+            <a href="#testimonials" class="block text-gray-700 hover:text-global-blue transition-colors">Success Stories</a>
+            <a href="#pricing" class="block text-gray-700 hover:text-global-blue transition-colors">Courses</a>
+            <button class="w-full bg-communication-orange text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition-colors">Start Free Trial</button>
+        `;
+
+        let mobileMenuVisible = false;
+        mobileMenuBtn.addEventListener('click', () => {
+            if (!mobileMenuVisible) {
+                mobileMenuBtn.parentNode.appendChild(mobileMenu);
+                mobileMenuVisible = true;
+            } else {
+                mobileMenu.remove();
+                mobileMenuVisible = false;
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Interactive cultural symbols hover effect
+        document.querySelectorAll('.cultural-symbol').forEach(symbol => {
+            symbol.addEventListener('mouseenter', () => {
+                symbol.style.cursor = 'pointer';
+            });
+        });
+
+        // Placement test modal functionality
+        document.querySelectorAll('button').forEach(button => {
+            if (button.textContent.includes('Take Placement Test')) {
+                button.addEventListener('click', () => {
+                    alert('Placement test feature coming soon! This would open a comprehensive language assessment.');
+                });
+            }
+        });
+
+        // Progress bar animations on scroll
+        const progressBars = document.querySelectorAll('.progress-bar');
+        const progressObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'progress 2s ease-out forwards';
+                }
+            });
+        }, { threshold: 0.5 });
+
+        progressBars.forEach(bar => {
+            progressObserver.observe(bar);
+        });
+    </script>
+</body>
+</html>
