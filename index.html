@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WealthPath Navigator - Your Financial Success Journey Starts Here</title>
+    <meta name="description" content="Transform your financial future with WealthPath Navigator. Smart budgeting, goal tracking, and personalized financial guidance all in one powerful app.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts - Nunito Sans and Lora -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Custom Tailwind Configuration */
+        .font-nunito { font-family: 'Nunito Sans', sans-serif; }
+        .font-lora { font-family: 'Lora', serif; }
+        
+        /* Custom Colors - Financial Success Palette */
+        .text-prosperity { color: #22C55E; }
+        .bg-prosperity { background-color: #22C55E; }
+        .text-trust { color: #3B82F6; }
+        .bg-trust { background-color: #3B82F6; }
+        .text-caution { color: #EAB308; }
+        .bg-caution { background-color: #EAB308; }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes pulse-money {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+        
+        @keyframes slide-up {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes progress-fill {
+            from { width: 0%; }
+            to { width: var(--progress-width); }
+        }
+        
+        @keyframes celebrate {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1) rotate(-5deg); }
+            75% { transform: scale(1.1) rotate(5deg); }
+        }
+        
+        .float-animation { animation: float 6s ease-in-out infinite; }
+        .pulse-money { animation: pulse-money 2s ease-in-out infinite; }
+        .slide-up { animation: slide-up 0.6s ease-out forwards; }
+        .progress-fill { animation: progress-fill 2s ease-out forwards; }
+        .celebrate { animation: celebrate 0.6s ease-in-out; }
+        
+        /* Custom Gradients */
+        .gradient-prosperity { background: linear-gradient(135deg, #22C55E 0%, #16A34A 100%); }
+        .gradient-trust { background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%); }
+        .gradient-caution { background: linear-gradient(135deg, #EAB308 0%, #CA8A04 100%); }
+        .gradient-hero { background: linear-gradient(135deg, #1E293B 0%, #334155 50%, #475569 100%); }
+        
+        /* Interactive Elements */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Progress Bar Styles */
+        .progress-bar {
+            position: relative;
+            overflow: hidden;
+        }
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        /* Responsive Typography */
+        @media (max-width: 640px) {
+            .hero-title { font-size: 2.5rem; line-height: 1.1; }
+            .hero-subtitle { font-size: 1.125rem; }
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #22C55E; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #16A34A; }
+        
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        /* Loading States */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+</head>
+<body class="font-nunito bg-gray-50 text-gray-900 overflow-x-hidden">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-prosperity rounded-lg flex items-center justify-center">
+                        <i class="fas fa-chart-line text-white text-sm"></i>
+                    </div>
+                    <span class="font-lora font-bold text-xl text-gray-900">WealthPath Navigator</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-600 hover:text-prosperity transition-colors">Features</a>
+                    <a href="#tools" class="text-gray-600 hover:text-prosperity transition-colors">Tools</a>
+                    <a href="#success-stories" class="text-gray-600 hover:text-prosperity transition-colors">Success Stories</a>
+                    <a href="#pricing" class="text-gray-600 hover:text-prosperity transition-colors">Pricing</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <button class="text-gray-600 hover:text-prosperity transition-colors">Sign In</button>
+                    <button class="bg-prosperity text-white px-6 py-2 rounded-lg hover:bg-green-600 transition-colors font-semibold">
+                        Start Free Trial
+                    </button>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-gray-600" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="md:hidden bg-white border-t hidden" id="mobile-menu">
+            <div class="px-4 py-6 space-y-4">
+                <a href="#features" class="block text-gray-600 hover:text-prosperity transition-colors">Features</a>
+                <a href="#tools" class="block text-gray-600 hover:text-prosperity transition-colors">Tools</a>
+                <a href="#success-stories" class="block text-gray-600 hover:text-prosperity transition-colors">Success Stories</a>
+                <a href="#pricing" class="block text-gray-600 hover:text-prosperity transition-colors">Pricing</a>
+                <div class="pt-4 border-t">
+                    <button class="w-full bg-prosperity text-white py-3 rounded-lg hover:bg-green-600 transition-colors font-semibold">
+                        Start Free Trial
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-hero text-white pt-24 pb-16 relative overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0">
+            <div class="absolute top-20 left-10 w-64 h-64 bg-prosperity/10 rounded-full blur-3xl float-animation"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-trust/10 rounded-full blur-3xl float-animation" style="animation-delay: -2s;"></div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-128 h-128 bg-caution/5 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Hero Content -->
+                <div class="text-center lg:text-left">
+                    <h1 class="hero-title font-lora font-bold text-4xl md:text-6xl mb-6 leading-tight">
+                        Navigate Your Path to 
+                        <span class="text-prosperity">Financial Freedom</span>
+                    </h1>
+                    <p class="hero-subtitle text-xl text-gray-300 mb-8 leading-relaxed">
+                        Transform your financial future with intelligent budgeting, goal tracking, and personalized guidance. 
+                        Join thousands who've already started their wealth-building journey.
+                    </p>
+                    
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
+                        <button class="bg-prosperity text-white px-8 py-4 rounded-lg hover:bg-green-600 transition-all duration-300 font-semibold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                            <i class="fas fa-rocket mr-2"></i>
+                            Start Your Journey Free
+                        </button>
+                        <button class="border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-gray-900 transition-all duration-300 font-semibold text-lg">
+                            <i class="fas fa-play mr-2"></i>
+                            Watch Demo
+                        </button>
+                    </div>
+                    
+                    <!-- Trust Indicators -->
+                    <div class="flex flex-wrap justify-center lg:justify-start items-center gap-8 text-sm text-gray-400">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-shield-alt text-prosperity"></i>
+                            <span>Bank-level Security</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-users text-trust"></i>
+                            <span>50K+ Happy Users</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-star text-caution"></i>
+                            <span>4.9/5 Rating</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hero Visualization -->
+                <div class="relative">
+                    <!-- Main Dashboard Preview -->
+                    <div class="bg-white rounded-2xl shadow-2xl p-6 relative z-10 transform rotate-3 hover:rotate-0 transition-all duration-500">
+                        <div class="mb-4">
+                            <h3 class="font-lora font-semibold text-gray-900 mb-2">Monthly Overview</h3>
+                            <div class="flex items-center justify-between text-sm text-gray-600">
+                                <span>December 2024</span>
+                                <span class="text-prosperity font-semibold">+$1,247 saved</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Budget Tracking Display -->
+                        <div class="space-y-3 mb-6">
+                            <div class="budget-item" data-category="Housing" data-spent="1200" data-budget="1500">
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-sm font-medium text-gray-700">Housing</span>
+                                    <span class="text-sm text-gray-600">$1,200 / $1,500</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2 progress-bar">
+                                    <div class="bg-prosperity h-2 rounded-full progress-fill" style="--progress-width: 80%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="budget-item" data-category="Food" data-spent="450" data-budget="600">
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-sm font-medium text-gray-700">Food & Dining</span>
+                                    <span class="text-sm text-gray-600">$450 / $600</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2 progress-bar">
+                                    <div class="bg-trust h-2 rounded-full progress-fill" style="--progress-width: 75%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="budget-item" data-category="Transportation" data-spent="320" data-budget="400">
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-sm font-medium text-gray-700">Transportation</span>
+                                    <span class="text-sm text-gray-600">$320 / $400</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2 progress-bar">
+                                    <div class="bg-caution h-2 rounded-full progress-fill" style="--progress-width: 80%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Financial Goals Preview -->
+                        <div class="border-t pt-4">
+                            <h4 class="font-semibold text-gray-900 mb-3 text-sm">Active Goals</h4>
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-2">
+                                        <div class="w-3 h-3 bg-prosperity rounded-full pulse-money"></div>
+                                        <span class="text-sm">Emergency Fund</span>
+                                    </div>
+                                    <span class="text-sm font-semibold text-prosperity">$8,500 / $10,000</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-2">
+                                        <div class="w-3 h-3 bg-trust rounded-full pulse-money" style="animation-delay: -1s;"></div>
+                                        <span class="text-sm">Vacation Fund</span>
+                                    </div>
+                                    <span class="text-sm font-semibold text-trust">$2,300 / $5,000</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Floating Goal Cards -->
+                    <div class="absolute -top-4 -right-4 bg-white rounded-lg shadow-lg p-3 float-animation z-20" style="animation-delay: -1s;">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-8 h-8 bg-prosperity rounded-full flex items-center justify-center">
+                                <i class="fas fa-piggy-bank text-white text-xs"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs font-semibold text-gray-900">Savings Goal</div>
+                                <div class="text-xs text-prosperity">85% Complete!</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute -bottom-6 -left-6 bg-white rounded-lg shadow-lg p-3 float-animation z-20" style="animation-delay: -3s;">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-8 h-8 bg-trust rounded-full flex items-center justify-center">
+                                <i class="fas fa-chart-pie text-white text-xs"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs font-semibold text-gray-900">Portfolio</div>
+                                <div class="text-xs text-trust">+12.5% YTD</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-lora font-bold text-4xl text-gray-900 mb-4">
+                    Everything You Need to <span class="text-prosperity">Build Wealth</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Powerful tools and insights to help you take control of your finances, 
+                    achieve your goals, and build lasting wealth.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Smart Budgeting -->
+                <div class="card-hover bg-white rounded-xl shadow-lg p-8 border border-gray-100">
+                    <div class="w-16 h-16 gradient-prosperity rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-calculator text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-lora font-semibold text-xl text-gray-900 mb-4">Smart Budgeting</h3>
+                    <p class="text-gray-600 mb-6">
+                        AI-powered budget recommendations that adapt to your spending patterns and help you save more.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="flex items-center text-sm text-gray-700">
+                            <i class="fas fa-check text-prosperity mr-2"></i>
+                            Automatic expense categorization
+                        </div>
+                        <div class="flex items-center text-sm text-gray-700">
+                            <i class="fas fa-check text-prosperity mr-2"></i>
+                            Personalized spending insights
+                        </div>
+                        <div class="flex items-center text-sm text-gray-700">
+                            <i class="fas fa-check text-prosperity mr-2"></i>
+                            Real-time budget alerts
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Goal Tracking -->
+                <div class="card-hover bg-white rounded-xl shadow-lg p-8 border border-gray-100">
+                    <div class="w-16 h-16 gradient-trust rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-bullseye text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-lora font-semibold text-xl text-gray-900 mb-4">Goal Tracking</h3>
+                    <p class="text-gray-600 mb-6">
+                        Set and track multiple financial goals with visual progress indicators and milestone celebrations.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="flex items-center text-sm text-gray-700">
+                            <i class="fas fa-check text-prosperity mr-2"></i>
+                            Multiple goal types
+                        </div>
+                        <div class="flex items-center text-sm text-gray-700">
+                            <i class="fas fa-check text-prosperity mr-2"></i>
+                            Progress visualization
+                        </div>
+                        <div class="flex items-center text-sm text-gray-700">
+                            <i class="fas fa-check text-prosperity mr-2"></i>
+                            Achievement rewards
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Investment Insights -->
+                <div class="card-hover bg-white rounded-xl shadow-lg p-8 border border-gray-100">
+                    <div class="w-16 h-16 gradient-caution rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-lora font-semibold text-xl text-gray-900 mb-4">Investment Insights</h3>
+                    <p class="text-gray-600 mb-6">
+                        Discover investment opportunities with comprehensive risk assessments and portfolio recommendations.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="flex items-center text-sm text-gray-700">
+                            <i class="fas fa-check text-prosperity mr-2"></i>
+                            Risk assessment tools
+                        </div>
+                        <div class="flex items-center text-sm text-gray-700">
+                            <i class="fas fa-check text-prosperity mr-2"></i>
+                            Portfolio optimization
+                        </div>
+                        <div class="flex items-center text-sm text-gray-700">
+                            <i class="fas fa-check text-prosperity mr-2"></i>
+                            Market analysis
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Debt Management -->
+                <div class="card-hover bg-white rounded-xl shadow-lg p-8 border border-gray-100">
+                    <div class="w-16 h-16 bg-red-500 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-credit-card text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-lora font-semibold text-xl text-gray-900 mb-4">Debt Payoff</h3>
+                    <p class="text-gray-600 mb-6">
+                        Strategic debt elimination plans with payoff calculators and progress tracking.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="flex items-center text-sm text-gray-700">
+                            <i class="fas fa-check text-prosperity mr-2"></i>
+                            Debt avalanche & snowball methods
+                        </div>
+                        <div class="flex items-center text-sm text-gray-700">
+                            <i class="fas fa-check text-prosperity mr-2"></i>
+                            Payoff timeline calculators
+                        </div>
+                        <div class="flex items-center text-sm text-gray-700">
+                            <i class="fas fa-check text-prosperity mr-2"></i>
+                            Interest savings tracking
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Financial Health Score -->
+                <div class="card-hover bg-white rounded-xl shadow-lg p-8 border border-gray-100">
+                    <div class="w-16 h-16 bg-purple-500 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-heartbeat text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-lora font-semibold text-xl text-gray-900 mb-4">Financial Health Score</h3>
+                    <p class="text-gray-600 mb-6">
+                        Comprehensive financial wellness assessment with personalized improvement recommendations.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="flex items-center text-sm text-gray-700">
+                            <i class="fas fa-check text-prosperity mr-2"></i>
+                            Multi-factor scoring
+                        </div>
+                        <div class="flex items-center text-sm text-gray-700">
+                            <i class="fas fa-check text-prosperity mr-2"></i>
+                            Improvement roadmap
+                        </div>
+                        <div class="flex items-center text-sm text-gray-700">
+                            <i class="fas fa-check text-prosperity mr-2"></i>
+                            Monthly health reports
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Expert Guidance -->
+                <div class="card-hover bg-white rounded-xl shadow-lg p-8 border border-gray-100">
+                    <div class="w-16 h-16 bg-indigo-500 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-user-tie text-white text-2xl"></i>
+                    </div>
+                    <h3 class="font-lora font-semibold text-xl text-gray-900 mb-4">Expert Guidance</h3>
+                    <p class="text-gray-600 mb-6">
+                        Connect with certified financial advisors for personalized advice and strategy sessions.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="flex items-center text-sm text-gray-700">
+                            <i class="fas fa-check text-prosperity mr-2"></i>
+                            Certified advisors
+                        </div>
+                        <div class="flex items-center text-sm text-gray-700">
+                            <i class="fas fa-check text-prosperity mr-2"></i>
+                            1-on-1 consultations
+                        </div>
+                        <div class="flex items-center text-sm text-gray-700">
+                            <i class="fas fa-check text-prosperity mr-2"></i>
+                            24/7 chat support
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Tools Section -->
+    <section id="tools" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-lora font-bold text-4xl text-gray-900 mb-4">
+                    Try Our <span class="text-trust">Financial Tools</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Get a taste of our powerful calculators and tools that help you make informed financial decisions.
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Debt Payoff Calculator -->
+                <div class="bg-white rounded-2xl shadow-xl p-8">
+                    <h3 class="font-lora font-semibold text-2xl text-gray-900 mb-6">
+                        <i class="fas fa-calculator text-prosperity mr-2"></i>
+                        Debt Payoff Calculator
+                    </h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Total Debt Amount</label>
+                            <input type="number" id="debt-amount" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-prosperity focus:border-prosperity" placeholder="$25,000" value="25000">
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Interest Rate (%)</label>
+                                <input type="number" id="interest-rate" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-prosperity focus:border-prosperity" placeholder="18.5" value="18.5">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Monthly Payment</label>
+                                <input type="number" id="monthly-payment" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-prosperity focus:border-prosperity" placeholder="$500" value="500">
+                            </div>
+                        </div>
+                        
+                        <button onclick="calculateDebtPayoff()" class="w-full bg-prosperity text-white py-3 rounded-lg hover:bg-green-600 transition-colors font-semibold">
+                            Calculate Payoff Time
+                        </button>
+                        
+                        <div id="debt-results" class="hidden bg-gray-50 rounded-lg p-4">
+                            <div class="grid grid-cols-2 gap-4 text-center">
+                                <div>
+                                    <div class="text-2xl font-bold text-prosperity" id="payoff-time"></div>
+                                    <div class="text-sm text-gray-600">Payoff Time</div>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-trust" id="total-interest"></div>
+                                    <div class="text-sm text-gray-600">Total Interest</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Savings Goal Calculator -->
+                <div class="bg-white rounded-2xl shadow-xl p-8">
+                    <h3 class="font-lora font-semibold text-2xl text-gray-900 mb-6">
+                        <i class="fas fa-piggy-bank text-trust mr-2"></i>
+                        Savings Goal Calculator
+                    </h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Goal Amount</label>
+                            <input type="number" id="goal-amount" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-trust focus:border-trust" placeholder="$10,000" value="10000">
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Target Months</label>
+                                <input type="number" id="target-months" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-trust focus:border-trust" placeholder="24" value="24">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Current Savings</label>
+                                <input type="number" id="current-savings" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-trust focus:border-trust" placeholder="$2,000" value="2000">
+                            </div>
+                        </div>
+                        
+                        <button onclick="calculateSavingsGoal()" class="w-full bg-trust text-white py-3 rounded-lg hover:bg-blue-600 transition-colors font-semibold">
+                            Calculate Monthly Savings
+                        </button>
+                        
+                        <div id="savings-results" class="hidden bg-gray-50 rounded-lg p-4">
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-trust mb-2" id="monthly-needed"></div>
+                                <div class="text-sm text-gray-600 mb-4">Monthly Savings Needed</div>
+                                <div class="w-full bg-gray-200 rounded-full h-3 mb-2">
+                                    <div class="bg-trust h-3 rounded-full transition-all duration-1000" id="savings-progress"></div>
+                                </div>
+                                <div class="text-sm text-gray-600" id="progress-text"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Financial Health Score Tool -->
+            <div class="mt-16 bg-white rounded-2xl shadow-xl p-8">
+                <div class="text-center mb-8">
+                    <h3 class="font-lora font-semibold text-2xl text-gray-900 mb-4">
+                        <i class="fas fa-heartbeat text-purple-500 mr-2"></i>
+                        Financial Health Score Assessment
+                    </h3>
+                    <p class="text-gray-600">Answer a few questions to get your personalized financial health score</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-prosperity rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-wallet text-white text-xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Emergency Fund</h4>
+                        <select class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm" id="emergency-fund">
+                            <option value="0">No emergency fund</option>
+                            <option value="25">1-2 months expenses</option>
+                            <option value="50">3-4 months expenses</option>
+                            <option value="75">5-6 months expenses</option>
+                            <option value="100">6+ months expenses</option>
+                        </select>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-trust rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-credit-card text-white text-xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Debt-to-Income</h4>
+                        <select class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm" id="debt-ratio">
+                            <option value="100">Under 20%</option>
+                            <option value="75">20-30%</option>
+                            <option value="50">30-40%</option>
+                            <option value="25">40-50%</option>
+                            <option value="0">Over 50%</option>
+                        </select>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-caution rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-chart-pie text-white text-xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Retirement Savings</h4>
+                        <select class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm" id="retirement-savings">
+                            <option value="0">Not saving for retirement</option>
+                            <option value="25">1-5% of income</option>
+                            <option value="50">6-10% of income</option>
+                            <option value="75">11-15% of income</option>
+                            <option value="100">15%+ of income</option>
+                        </select>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-university text-white text-xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Credit Score</h4>
+                        <select class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm" id="credit-score">
+                            <option value="100">800+</option>
+                            <option value="85">740-799</option>
+                            <option value="70">670-739</option>
+                            <option value="50">580-669</option>
+                            <option value="25">Below 580</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button onclick="calculateHealthScore()" class="bg-purple-500 text-white px-8 py-3 rounded-lg hover:bg-purple-600 transition-colors font-semibold">
+                        Calculate My Health Score
+                    </button>
+                </div>
+                
+                <div id="health-score-result" class="hidden mt-8 text-center">
+                    <div class="bg-gray-50 rounded-lg p-6">
+                        <div class="mb-4">
+                            <div class="text-4xl font-bold mb-2" id="health-score-value"></div>
+                            <div class="text-lg text-gray-600" id="health-score-label"></div>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-4 mb-4">
+                            <div class="h-4 rounded-full transition-all duration-2000" id="health-score-bar"></div>
+                        </div>
+                        <div id="health-score-recommendations" class="text-left space-y-2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories Timeline -->
+    <section id="success-stories" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-lora font-bold text-4xl text-gray-900 mb-4">
+                    Real People, <span class="text-prosperity">Real Results</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    See how WealthPath Navigator has transformed the financial lives of thousands of users.
+                </p>
+            </div>
+            
+            <!-- Success Timeline -->
+            <div class="relative">
+                <!-- Timeline Line -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-prosperity via-trust to-caution"></div>
+                
+                <!-- Success Story 1 -->
+                <div class="relative mb-16">
+                    <div class="flex flex-col lg:flex-row items-center">
+                        <div class="lg:w-1/2 lg:pr-12 mb-8 lg:mb-0">
+                            <div class="bg-white rounded-2xl shadow-xl p-8 card-hover">
+                                <div class="flex items-center mb-4">
+                                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=64&h=64&fit=crop&crop=face&faceindex=1" 
+                                         alt="Sarah Johnson" class="w-16 h-16 rounded-full mr-4">
+                                    <div>
+                                        <h3 class="font-lora font-semibold text-xl text-gray-900">Sarah Johnson</h3>
+                                        <p class="text-gray-600">Marketing Manager, Seattle</p>
+                                    </div>
+                                </div>
+                                <blockquote class="text-gray-700 mb-6 italic">
+                                    "I was drowning in credit card debt and had no savings. WealthPath Navigator helped me create a realistic budget and debt payoff plan. In 18 months, I paid off $23,000 in debt and built my first emergency fund!"
+                                </blockquote>
+                                <div class="grid grid-cols-3 gap-4 text-center">
+                                    <div>
+                                        <div class="text-2xl font-bold text-prosperity">$23K</div>
+                                        <div class="text-sm text-gray-600">Debt Eliminated</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-2xl font-bold text-trust">$8K</div>
+                                        <div class="text-sm text-gray-600">Emergency Fund</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-2xl font-bold text-caution">18</div>
+                                        <div class="text-sm text-gray-600">Months</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:w-1/2 lg:pl-12">
+                            <div class="bg-gray-50 rounded-2xl p-6">
+                                <h4 class="font-semibold text-gray-900 mb-4">Sarah's Journey Timeline</h4>
+                                <div class="space-y-4">
+                                    <div class="flex items-center">
+                                        <div class="w-4 h-4 bg-red-500 rounded-full mr-3 flex-shrink-0"></div>
+                                        <div>
+                                            <div class="font-medium text-gray-900">Month 0: Started with $23K debt</div>
+                                            <div class="text-sm text-gray-600">Credit score: 580, No savings</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-4 h-4 bg-caution rounded-full mr-3 flex-shrink-0"></div>
+                                        <div>
+                                            <div class="font-medium text-gray-900">Month 6: First milestone</div>
+                                            <div class="text-sm text-gray-600">$8K debt paid, $1K emergency fund</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-4 h-4 bg-trust rounded-full mr-3 flex-shrink-0"></div>
+                                        <div>
+                                            <div class="font-medium text-gray-900">Month 12: Major progress</div>
+                                            <div class="text-sm text-gray-600">$15K debt paid, $3K emergency fund</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-4 h-4 bg-prosperity rounded-full mr-3 flex-shrink-0 celebrate"></div>
+                                        <div>
+                                            <div class="font-medium text-gray-900">Month 18: Debt-free!</div>
+                                            <div class="text-sm text-gray-600">$0 debt, $8K emergency fund, Credit: 750+</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Timeline Dot -->
+                    <div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-prosperity rounded-full border-4 border-white shadow-lg"></div>
+                </div>
+                
+                <!-- Success Story 2 -->
+                <div class="relative mb-16">
+                    <div class="flex flex-col lg:flex-row-reverse items-center">
+                        <div class="lg:w-1/2 lg:pl-12 mb-8 lg:mb-0">
+                            <div class="bg-white rounded-2xl shadow-xl p-8 card-hover">
+                                <div class="flex items-center mb-4">
+                                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=64&h=64&fit=crop&crop=face&faceindex=1" 
+                                         alt="Mike Chen" class="w-16 h-16 rounded-full mr-4">
+                                    <div>
+                                        <h3 class="font-lora font-semibold text-xl text-gray-900">Mike Chen</h3>
+                                        <p class="text-gray-600">Software Engineer, Austin</p>
+                                    </div>
+                                </div>
+                                <blockquote class="text-gray-700 mb-6 italic">
+                                    "I was earning good money but had no idea where it was going. WealthPath Navigator's budgeting tools and investment guidance helped me save $50K for a house down payment in just 2 years!"
+                                </blockquote>
+                                <div class="grid grid-cols-3 gap-4 text-center">
+                                    <div>
+                                        <div class="text-2xl font-bold text-prosperity">$50K</div>
+                                        <div class="text-sm text-gray-600">House Down Payment</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-2xl font-bold text-trust">$25K</div>
+                                        <div class="text-sm text-gray-600">Investment Portfolio</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-2xl font-bold text-caution">24</div>
+                                        <div class="text-sm text-gray-600">Months</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:w-1/2 lg:pr-12">
+                            <div class="bg-gray-50 rounded-2xl p-6">
+                                <h4 class="font-semibold text-gray-900 mb-4">Investment Growth Chart</h4>
+                                <div class="space-y-3">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm text-gray-600">Month 6</span>
+                                        <div class="flex-1 mx-4">
+                                            <div class="bg-gray-200 rounded-full h-2">
+                                                <div class="bg-trust h-2 rounded-full" style="width: 25%;"></div>
+                                            </div>
+                                        </div>
+                                        <span class="text-sm font-semibold text-trust">$12.5K</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm text-gray-600">Month 12</span>
+                                        <div class="flex-1 mx-4">
+                                            <div class="bg-gray-200 rounded-full h-2">
+                                                <div class="bg-trust h-2 rounded-full" style="width: 50%;"></div>
+                                            </div>
+                                        </div>
+                                        <span class="text-sm font-semibold text-trust">$25K</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm text-gray-600">Month 18</span>
+                                        <div class="flex-1 mx-4">
+                                            <div class="bg-gray-200 rounded-full h-2">
+                                                <div class="bg-trust h-2 rounded-full" style="width: 75%;"></div>
+                                            </div>
+                                        </div>
+                                        <span class="text-sm font-semibold text-trust">$37.5K</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm text-gray-600">Month 24</span>
+                                        <div class="flex-1 mx-4">
+                                            <div class="bg-gray-200 rounded-full h-2">
+                                                <div class="bg-prosperity h-2 rounded-full" style="width: 100%;"></div>
+                                            </div>
+                                        </div>
+                                        <span class="text-sm font-semibold text-prosperity">$50K</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Timeline Dot -->
+                    <div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-trust rounded-full border-4 border-white shadow-lg"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-lora font-bold text-4xl text-gray-900 mb-4">
+                    Simple, <span class="text-prosperity">Transparent Pricing</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Choose the plan that fits your financial journey. All plans include our core features with no hidden fees.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Basic Plan -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 relative">
+                    <div class="text-center mb-8">
+                        <h3 class="font-lora font-semibold text-2xl text-gray-900 mb-2">Basic</h3>
+                        <p class="text-gray-600 mb-4">Perfect for getting started</p>
+                        <div class="text-4xl font-bold text-gray-900 mb-2">Free</div>
+                        <p class="text-gray-600">Forever</p>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-prosperity mr-3"></i>
+                            <span>Basic budgeting tools</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-prosperity mr-3"></i>
+                            <span>Expense tracking</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-prosperity mr-3"></i>
+                            <span>Up to 3 financial goals</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-prosperity mr-3"></i>
+                            <span>Mobile app access</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-prosperity mr-3"></i>
+                            <span>Email support</span>
+                        </li>
+                    </ul>
+                    
+                    <button class="w-full border-2 border-prosperity text-prosperity py-3 rounded-lg hover:bg-prosperity hover:text-white transition-colors font-semibold">
+                        Get Started Free
+                    </button>
+                </div>
+                
+                <!-- Premium Plan -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 relative border-2 border-prosperity">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                        <span class="bg-prosperity text-white px-4 py-1 rounded-full text-sm font-semibold">Most Popular</span>
+                    </div>
+                    
+                    <div class="text-center mb-8">
+                        <h3 class="font-lora font-semibold text-2xl text-gray-900 mb-2">Premium</h3>
+                        <p class="text-gray-600 mb-4">Everything you need to succeed</p>
+                        <div class="text-4xl font-bold text-gray-900 mb-2">$9.99</div>
+                        <p class="text-gray-600">per month</p>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-prosperity mr-3"></i>
+                            <span>Everything in Basic</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-prosperity mr-3"></i>
+                            <span>Unlimited financial goals</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-prosperity mr-3"></i>
+                            <span>Investment tracking</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-prosperity mr-3"></i>
+                            <span>Debt payoff planner</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-prosperity mr-3"></i>
+                            <span>Financial health score</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-prosperity mr-3"></i>
+                            <span>Priority support</span>
+                        </li>
+                    </ul>
+                    
+                    <button class="w-full bg-prosperity text-white py-3 rounded-lg hover:bg-green-600 transition-colors font-semibold">
+                        Start 30-Day Free Trial
+                    </button>
+                </div>
+                
+                <!-- Elite Plan -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 relative">
+                    <div class="text-center mb-8">
+                        <h3 class="font-lora font-semibold text-2xl text-gray-900 mb-2">Elite</h3>
+                        <p class="text-gray-600 mb-4">For serious wealth builders</p>
+                        <div class="text-4xl font-bold text-gray-900 mb-2">$19.99</div>
+                        <p class="text-gray-600">per month</p>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-prosperity mr-3"></i>
+                            <span>Everything in Premium</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-prosperity mr-3"></i>
+                            <span>Personal financial advisor</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-prosperity mr-3"></i>
+                            <span>Advanced investment insights</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-prosperity mr-3"></i>
+                            <span>Tax optimization tools</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-prosperity mr-3"></i>
+                            <span>Retirement planning</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-prosperity mr-3"></i>
+                            <span>24/7 advisor chat</span>
+                        </li>
+                    </ul>
+                    
+                    <button class="w-full border-2 border-trust text-trust py-3 rounded-lg hover:bg-trust hover:text-white transition-colors font-semibold">
+                        Start 30-Day Free Trial
+                    </button>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <p class="text-gray-600 mb-4">30-day money-back guarantee • Cancel anytime • No setup fees</p>
+                <div class="flex justify-center items-center space-x-8 text-gray-500">
+                    <div class="flex items-center">
+                        <i class="fas fa-shield-alt mr-2"></i>
+                        <span>Bank-level Security</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-lock mr-2"></i>
+                        <span>256-bit Encryption</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-award mr-2"></i>
+                        <span>SOC 2 Certified</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 gradient-hero text-white">
+        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+            <h2 class="font-lora font-bold text-4xl md:text-5xl mb-6">
+                Ready to Take Control of Your <span class="text-prosperity">Financial Future?</span>
+            </h2>
+            <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                Join thousands of users who have transformed their financial lives with WealthPath Navigator. 
+                Start your journey today with a free 30-day trial.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                <button class="bg-prosperity text-white px-8 py-4 rounded-lg hover:bg-green-600 transition-all duration-300 font-semibold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                    <i class="fas fa-rocket mr-2"></i>
+                    Start Your Free Trial
+                </button>
+                <button class="border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-gray-900 transition-all duration-300 font-semibold text-lg">
+                    <i class="fas fa-calendar mr-2"></i>
+                    Schedule Demo
+                </button>
+            </div>
+            
+            <p class="text-gray-400 text-sm">
+                No credit card required • Setup takes less than 5 minutes • Cancel anytime
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Brand -->
+                <div class="col-span-1">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-prosperity rounded-lg flex items-center justify-center">
+                            <i class="fas fa-chart-line text-white text-sm"></i>
+                        </div>
+                        <span class="font-lora font-bold text-xl text-white">WealthPath Navigator</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Empowering individuals to achieve financial freedom through smart budgeting, goal tracking, and expert guidance.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-prosperity transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-prosperity transition-colors">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-prosperity transition-colors">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-prosperity transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Product -->
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Product</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#features" class="text-gray-400 hover:text-prosperity transition-colors">Features</a></li>
+                        <li><a href="#tools" class="text-gray-400 hover:text-prosperity transition-colors">Tools</a></li>
+                        <li><a href="#pricing" class="text-gray-400 hover:text-prosperity transition-colors">Pricing</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-prosperity transition-colors">Mobile App</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-prosperity transition-colors">API</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Company -->
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Company</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-prosperity transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-prosperity transition-colors">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-prosperity transition-colors">Press</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-prosperity transition-colors">Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-prosperity transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Support -->
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Support</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-prosperity transition-colors">Help Center</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-prosperity transition-colors">Community</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-prosperity transition-colors">Security</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-prosperity transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-prosperity transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">
+                    © 2024 WealthPath Navigator. All rights reserved.
+                </p>
+                <div class="flex items-center space-x-6 mt-4 md:mt-0">
+                    <div class="flex items-center text-sm text-gray-400">
+                        <i class="fas fa-shield-alt text-prosperity mr-2"></i>
+                        <span>SOC 2 Type II Certified</span>
+                    </div>
+                    <div class="flex items-center text-sm text-gray-400">
+                        <i class="fas fa-lock text-prosperity mr-2"></i>
+                        <span>256-bit SSL Encryption</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white/95', 'shadow-md');
+                navbar.classList.remove('bg-white/95');
+            } else {
+                navbar.classList.remove('shadow-md');
+            }
+        });
+
+        // Debt Payoff Calculator
+        function calculateDebtPayoff() {
+            const debtAmount = parseFloat(document.getElementById('debt-amount').value) || 0;
+            const interestRate = parseFloat(document.getElementById('interest-rate').value) / 100 / 12 || 0;
+            const monthlyPayment = parseFloat(document.getElementById('monthly-payment').value) || 0;
+            
+            if (debtAmount <= 0 || monthlyPayment <= 0) {
+                alert('Please enter valid amounts');
+                return;
+            }
+            
+            let balance = debtAmount;
+            let months = 0;
+            let totalInterest = 0;
+            
+            while (balance > 0 && months < 1000) {
+                const interestPayment = balance * interestRate;
+                const principalPayment = monthlyPayment - interestPayment;
+                
+                if (principalPayment <= 0) {
+                    alert('Monthly payment is too low to pay off this debt');
+                    return;
+                }
+                
+                totalInterest += interestPayment;
+                balance -= principalPayment;
+                months++;
+                
+                if (balance < 0) balance = 0;
+            }
+            
+            const years = Math.floor(months / 12);
+            const remainingMonths = months % 12;
+            
+            let timeText = '';
+            if (years > 0) {
+                timeText = years + ' year' + (years > 1 ? 's' : '');
+                if (remainingMonths > 0) {
+                    timeText += ' ' + remainingMonths + ' month' + (remainingMonths > 1 ? 's' : '');
+                }
+            } else {
+                timeText = months + ' month' + (months > 1 ? 's' : '');
+            }
+            
+            document.getElementById('payoff-time').textContent = timeText;
+            document.getElementById('total-interest').textContent = '$' + totalInterest.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            document.getElementById('debt-results').classList.remove('hidden');
+        }
+
+        // Savings Goal Calculator
+        function calculateSavingsGoal() {
+            const goalAmount = parseFloat(document.getElementById('goal-amount').value) || 0;
+            const targetMonths = parseFloat(document.getElementById('target-months').value) || 0;
+            const currentSavings = parseFloat(document.getElementById('current-savings').value) || 0;
+            
+            if (goalAmount <= 0 || targetMonths <= 0) {
+                alert('Please enter valid amounts');
+                return;
+            }
+            
+            const remainingAmount = goalAmount - currentSavings;
+            const monthlyNeeded = remainingAmount / targetMonths;
+            const progressPercentage = (currentSavings / goalAmount) * 100;
+            
+            document.getElementById('monthly-needed').textContent = '$' + monthlyNeeded.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            document.getElementById('savings-progress').style.width = Math.min(progressPercentage, 100) + '%';
+            document.getElementById('progress-text').textContent = Math.round(progressPercentage) + '% of goal reached';
+            document.getElementById('savings-results').classList.remove('hidden');
+        }
+
+        // Financial Health Score Calculator
+        function calculateHealthScore() {
+            const emergencyFund = parseInt(document.getElementById('emergency-fund').value) || 0;
+            const debtRatio = parseInt(document.getElementById('debt-ratio').value) || 0;
+            const retirementSavings = parseInt(document.getElementById('retirement-savings').value) || 0;
+            const creditScore = parseInt(document.getElementById('credit-score').value) || 0;
+            
+            const totalScore = Math.round((emergencyFund + debtRatio + retirementSavings + creditScore) / 4);
+            
+            let label = '';
+            let color = '';
+            let recommendations = [];
+            
+            if (totalScore >= 80) {
+                label = 'Excellent';
+                color = 'bg-prosperity';
+                recommendations = [
+                    '✅ You\'re in great financial health!',
+                    '💡 Consider optimizing your investment portfolio',
+                    '📈 Look into tax-advantaged accounts'
+                ];
+            } else if (totalScore >= 60) {
+                label = 'Good';
+                color = 'bg-trust';
+                recommendations = [
+                    '👍 You\'re on the right track!',
+                    '💡 Focus on building your emergency fund',
+                    '📊 Consider increasing retirement contributions'
+                ];
+            } else if (totalScore >= 40) {
+                label = 'Fair';
+                color = 'bg-caution';
+                recommendations = [
+                    '⚠️ Some areas need attention',
+                    '💡 Work on reducing high-interest debt',
+                    '📱 Start with basic budgeting tools'
+                ];
+            } else {
+                label = 'Needs Improvement';
+                color = 'bg-red-500';
+                recommendations = [
+                    '🚨 Let\'s work on the basics first',
+                    '💡 Create an emergency fund plan',
+                    '📞 Consider speaking with a financial advisor'
+                ];
+            }
+            
+            document.getElementById('health-score-value').textContent = totalScore;
+            document.getElementById('health-score-label').textContent = label;
+            document.getElementById('health-score-bar').className = `h-4 rounded-full transition-all duration-2000 ${color}`;
+            document.getElementById('health-score-bar').style.width = totalScore + '%';
+            
+            const recommendationsEl = document.getElementById('health-score-recommendations');
+            recommendationsEl.innerHTML = recommendations.map(rec => `<div class="text-sm text-gray-700">${rec}</div>`).join('');
+            
+            document.getElementById('health-score-result').classList.remove('hidden');
+        }
+
+        // Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('slide-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.card-hover, .budget-item');
+            animatedElements.forEach(el => observer.observe(el));
+            
+            // Trigger progress bar animations on scroll
+            const progressBars = document.querySelectorAll('.progress-fill');
+            progressBars.forEach(bar => {
+                observer.observe(bar);
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add celebration animation trigger
+        function triggerCelebration(element) {
+            element.classList.add('celebrate');
+            setTimeout(() => {
+                element.classList.remove('celebrate');
+            }, 600);
+        }
+
+        // Trigger celebrations when milestones are reached
+        document.addEventListener('DOMContentLoaded', function() {
+            const milestoneElements = document.querySelectorAll('.celebrate');
+            milestoneElements.forEach((el, index) => {
+                setTimeout(() => {
+                    triggerCelebration(el);
+                }, index * 1000 + 2000);
+            });
+        });
+    </script>
+</body>
+</html>
